@@ -24,4 +24,4 @@ export const DROPS = gql`
 // `
 
 export const getDrops = async () => client.query({ query: DROPS })
-export const getDropDates = async () => client.query({ query: DROP_DATES })
+// export const getDropDates = async () => client.query({ query: DROP_DATES })
