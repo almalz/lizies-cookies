@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - ${NEXT_PUBLIC_DATOCMS_API_URL}:
+      headers:
+        Authorization: ${NEXT_PUBLIC_DATOCMS_API_TOKEN}
+documents: 'graphql/**/*.graphql'
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

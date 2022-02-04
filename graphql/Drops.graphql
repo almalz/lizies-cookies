@@ -1,0 +1,21 @@
+query DropDates {
+  allDrops {
+    deliveryDate
+  }
+}
+
+query Drops {
+  allDrops {
+    releaseDate
+    deliveryDate
+    cookies {
+      id
+      description
+      name
+      picture {
+        alt
+        url
+      }
+    }
+  }
+}
