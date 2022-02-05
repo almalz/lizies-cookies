@@ -5,7 +5,7 @@ schema:
         Authorization: ${NEXT_PUBLIC_DATOCMS_API_TOKEN}
 documents: 'graphql/**/*.graphql'
 generates:
-  generated/graphql.tsx:
+  types/generated/graphql.tsx:
     plugins:
       - 'typescript'
       - 'typescript-operations'

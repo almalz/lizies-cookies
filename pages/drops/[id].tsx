@@ -1,15 +1,31 @@
 import { from } from 'apollo-link'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import client from '../../lib/apolloClient'
+import { Drops } from '../../types'
 import {
   DropDatesDocument,
   DropDatesQuery,
   DropsDocument,
   DropsQuery,
-} from '../../generated/graphql'
+} from '../../types/generated/graphql'
+
+export type DropPageProps = {
+  drops: Drops
+}
+
+const Drop: NextPage<DropPageProps> = ({ drops }) => {
+  return (
+    // <ul>
+    //   {drops.map((drop) => (
+    //     <li key={drop.id}>{drop}</li>
+    //   ))}
+    // </ul>
+    <div>{JSON.stringify(drops)}</div>
+  )
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Call an external API endpoint to get posts
+  // Call an external API endpoint to get dates
   const res = await client.query<DropDatesQuery>({
     query: DropDatesDocument,
   })
@@ -41,3 +57,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   }
 }
+
+export default Drop
