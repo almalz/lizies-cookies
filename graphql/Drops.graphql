@@ -1,17 +1,32 @@
-query DropDates {
-  allDrops {
-    deliveryDate
-  }
-}
-
 query Drops {
   allDrops {
+    id
+    slug
     releaseDate
     deliveryDate
     cookies {
       id
       description
       name
+      picture {
+        alt
+        url
+      }
+    }
+  }
+}
+
+query DropById($dropId: ItemId) {
+  drop(filter: { id: { eq: $dropId } }) {
+    id
+    slug
+    releaseDate
+    endDate
+    deliveryDate
+    cookies {
+      id
+      name
+      description
       picture {
         alt
         url

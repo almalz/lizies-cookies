@@ -1,8 +1,6 @@
 import { DropRecord } from './generated/graphql'
 import { GraphQLError } from 'graphql'
 
-export type Drops = Array<DropRecord>
+export type Drop = DropRecord
 
-export interface DropDates {
-  allDrops: Array<Pick<DropRecord, 'deliveryDate'>>
-}
+export type Drops = Array<Drop>

@@ -199,6 +199,7 @@ export type DropModelFilter = {
   endDate?: InputMaybe<DateFilter>
   id?: InputMaybe<ItemIdFilter>
   releaseDate?: InputMaybe<DateFilter>
+  slug?: InputMaybe<StringFilter>
   updatedAt?: InputMaybe<UpdatedAtFilter>
 }
 
@@ -229,6 +230,8 @@ export enum DropModelOrderBy {
   IdDesc = 'id_DESC',
   ReleaseDateAsc = 'releaseDate_ASC',
   ReleaseDateDesc = 'releaseDate_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
 }
@@ -253,6 +256,7 @@ export type DropRecord = {
   endDate?: Maybe<Scalars['Date']>
   id: Scalars['ItemId']
   releaseDate?: Maybe<Scalars['Date']>
+  slug?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
 
@@ -2351,19 +2355,14 @@ export type FocalPoint = {
   y?: Maybe<Scalars['FloatType']>
 }
 
-export type DropDatesQueryVariables = Exact<{ [key: string]: never }>
-
-export type DropDatesQuery = {
-  __typename?: 'Query'
-  allDrops: Array<{ __typename?: 'DropRecord'; deliveryDate?: any | null }>
-}
-
 export type DropsQueryVariables = Exact<{ [key: string]: never }>
 
 export type DropsQuery = {
   __typename?: 'Query'
   allDrops: Array<{
     __typename?: 'DropRecord'
+    id: any
+    slug?: string | null
     releaseDate?: any | null
     deliveryDate?: any | null
     cookies: Array<{
@@ -2380,61 +2379,38 @@ export type DropsQuery = {
   }>
 }
 
-export const DropDatesDocument = gql`
-  query DropDates {
-    allDrops {
-      deliveryDate
-    }
-  }
-`
+export type DropByIdQueryVariables = Exact<{
+  dropId?: InputMaybe<Scalars['ItemId']>
+}>
 
-/**
- * __useDropDatesQuery__
- *
- * To run a query within a React component, call `useDropDatesQuery` and pass it any options that fit your needs.
- * When your component renders, `useDropDatesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDropDatesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDropDatesQuery(
-  baseOptions?: Apollo.QueryHookOptions<DropDatesQuery, DropDatesQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<DropDatesQuery, DropDatesQueryVariables>(
-    DropDatesDocument,
-    options
-  )
+export type DropByIdQuery = {
+  __typename?: 'Query'
+  drop?: {
+    __typename?: 'DropRecord'
+    id: any
+    slug?: string | null
+    releaseDate?: any | null
+    endDate?: any | null
+    deliveryDate?: any | null
+    cookies: Array<{
+      __typename?: 'CookieRecord'
+      id: any
+      name?: string | null
+      description?: string | null
+      picture?: {
+        __typename?: 'FileField'
+        alt?: string | null
+        url: string
+      } | null
+    }>
+  } | null
 }
-export function useDropDatesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    DropDatesQuery,
-    DropDatesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<DropDatesQuery, DropDatesQueryVariables>(
-    DropDatesDocument,
-    options
-  )
-}
-export type DropDatesQueryHookResult = ReturnType<typeof useDropDatesQuery>
-export type DropDatesLazyQueryHookResult = ReturnType<
-  typeof useDropDatesLazyQuery
->
-export type DropDatesQueryResult = Apollo.QueryResult<
-  DropDatesQuery,
-  DropDatesQueryVariables
->
+
 export const DropsDocument = gql`
   query Drops {
     allDrops {
+      id
+      slug
       releaseDate
       deliveryDate
       cookies {
@@ -2488,4 +2464,70 @@ export type DropsLazyQueryHookResult = ReturnType<typeof useDropsLazyQuery>
 export type DropsQueryResult = Apollo.QueryResult<
   DropsQuery,
   DropsQueryVariables
+>
+export const DropByIdDocument = gql`
+  query DropById($dropId: ItemId) {
+    drop(filter: { id: { eq: $dropId } }) {
+      id
+      slug
+      releaseDate
+      endDate
+      deliveryDate
+      cookies {
+        id
+        name
+        description
+        picture {
+          alt
+          url
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useDropByIdQuery__
+ *
+ * To run a query within a React component, call `useDropByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDropByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDropByIdQuery({
+ *   variables: {
+ *      dropId: // value for 'dropId'
+ *   },
+ * });
+ */
+export function useDropByIdQuery(
+  baseOptions?: Apollo.QueryHookOptions<DropByIdQuery, DropByIdQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<DropByIdQuery, DropByIdQueryVariables>(
+    DropByIdDocument,
+    options
+  )
+}
+export function useDropByIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    DropByIdQuery,
+    DropByIdQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<DropByIdQuery, DropByIdQueryVariables>(
+    DropByIdDocument,
+    options
+  )
+}
+export type DropByIdQueryHookResult = ReturnType<typeof useDropByIdQuery>
+export type DropByIdLazyQueryHookResult = ReturnType<
+  typeof useDropByIdLazyQuery
+>
+export type DropByIdQueryResult = Apollo.QueryResult<
+  DropByIdQuery,
+  DropByIdQueryVariables
 >
