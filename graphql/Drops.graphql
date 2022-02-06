@@ -4,11 +4,12 @@ query Drops {
     slug
     releaseDate
     deliveryDate
-    cookies {
+    products {
       id
       description
       name
-      picture {
+      unitPrice
+      pictures {
         alt
         url
       }
@@ -16,21 +17,20 @@ query Drops {
   }
 }
 
-query DropById($dropId: ItemId) {
+query dropById($dropId: ItemId) {
   drop(filter: { id: { eq: $dropId } }) {
     id
-    slug
     releaseDate
     endDate
     deliveryDate
-    cookies {
+    products {
       id
       name
       description
-      picture {
-        alt
-        url
-      }
+    }
+    pictures {
+      alt
+      url
     }
   }
 }

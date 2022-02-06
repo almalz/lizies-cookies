@@ -1,7 +1,7 @@
-// Currently not used, just making it ready for later
-
 import { extendTheme } from '@chakra-ui/react'
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 
+// Currently not used, just making it ready for later
 const theme = extendTheme({
   colors: {
     brand: {
@@ -10,5 +10,7 @@ const theme = extendTheme({
     },
   },
 })
+
+const useBreakpoints = () => {}
 
 export default theme

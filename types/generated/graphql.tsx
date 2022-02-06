@@ -70,83 +70,6 @@ export type ColorField = {
   red?: Maybe<Scalars['IntType']>
 }
 
-export type CookieModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<CookieModelFilter>>>
-  _createdAt?: InputMaybe<CreatedAtFilter>
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
-  _isValid?: InputMaybe<BooleanFilter>
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
-  _publishedAt?: InputMaybe<PublishedAtFilter>
-  _status?: InputMaybe<StatusFilter>
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
-  _updatedAt?: InputMaybe<UpdatedAtFilter>
-  createdAt?: InputMaybe<CreatedAtFilter>
-  description?: InputMaybe<TextFilter>
-  id?: InputMaybe<ItemIdFilter>
-  name?: InputMaybe<StringFilter>
-  picture?: InputMaybe<FileFilter>
-  updatedAt?: InputMaybe<UpdatedAtFilter>
-}
-
-export enum CookieModelOrderBy {
-  CreatedAtAsc = '_createdAt_ASC',
-  CreatedAtDesc = '_createdAt_DESC',
-  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
-  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
-  IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC',
-  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
-  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
-  PublishedAtAsc = '_publishedAt_ASC',
-  PublishedAtDesc = '_publishedAt_DESC',
-  StatusAsc = '_status_ASC',
-  StatusDesc = '_status_DESC',
-  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
-  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  UpdatedAtAsc = '_updatedAt_ASC',
-  UpdatedAtDesc = '_updatedAt_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-}
-
-/** Record of type Cookie (cookie) */
-export type CookieRecord = {
-  __typename?: 'CookieRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  description?: Maybe<Scalars['String']>
-  id: Scalars['ItemId']
-  name?: Maybe<Scalars['String']>
-  picture?: Maybe<FileField>
-  updatedAt: Scalars['DateTime']
-}
-
-/** Record of type Cookie (cookie) */
-export type CookieRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
-
-/** Record of type Cookie (cookie) */
-export type CookieRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
-
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -193,11 +116,12 @@ export type DropModelFilter = {
   _status?: InputMaybe<StatusFilter>
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
   _updatedAt?: InputMaybe<UpdatedAtFilter>
-  cookies?: InputMaybe<LinksFilter>
   createdAt?: InputMaybe<CreatedAtFilter>
   deliveryDate?: InputMaybe<DateFilter>
   endDate?: InputMaybe<DateFilter>
   id?: InputMaybe<ItemIdFilter>
+  pictures?: InputMaybe<GalleryFilter>
+  products?: InputMaybe<LinksFilter>
   releaseDate?: InputMaybe<DateFilter>
   slug?: InputMaybe<StringFilter>
   updatedAt?: InputMaybe<UpdatedAtFilter>
@@ -250,11 +174,12 @@ export type DropRecord = {
   _status: ItemStatus
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
   _updatedAt: Scalars['DateTime']
-  cookies: Array<CookieRecord>
   createdAt: Scalars['DateTime']
   deliveryDate?: Maybe<Scalars['Date']>
   endDate?: Maybe<Scalars['Date']>
   id: Scalars['ItemId']
+  pictures: Array<FileField>
+  products: Array<ProductRecord>
   releaseDate?: Maybe<Scalars['Date']>
   slug?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
@@ -334,17 +259,35 @@ export type FileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>
 }
 
-/** Specifies how to filter Single-file/image fields */
-export type FileFilter = {
-  /** Search for records with an exact match. The specified value must be an Upload ID */
-  eq?: InputMaybe<Scalars['UploadId']>
+/** Specifies how to filter Floating-point fields */
+export type FloatFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['FloatType']>
   /** Filter records with the specified field defined (i.e. with any value) or not */
   exists?: InputMaybe<Scalars['BooleanType']>
-  /** Filter records that have one of the specified uploads */
-  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
-  /** Exclude records with an exact match. The specified value must be an Upload ID */
-  neq?: InputMaybe<Scalars['UploadId']>
-  /** Filter records that do not have one of the specified uploads */
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['FloatType']>
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['FloatType']>
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['FloatType']>
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['FloatType']>
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['FloatType']>
+}
+
+/** Specifies how to filter Multiple files/images field */
+export type GalleryFilter = {
+  /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  /** Search for records with an exact match. The specified values must be Upload IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
 }
 
@@ -1753,6 +1696,87 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>
 }
 
+export type ProductModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ProductModelFilter>>>
+  _createdAt?: InputMaybe<CreatedAtFilter>
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
+  _isValid?: InputMaybe<BooleanFilter>
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
+  _publishedAt?: InputMaybe<PublishedAtFilter>
+  _status?: InputMaybe<StatusFilter>
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
+  _updatedAt?: InputMaybe<UpdatedAtFilter>
+  createdAt?: InputMaybe<CreatedAtFilter>
+  description?: InputMaybe<TextFilter>
+  id?: InputMaybe<ItemIdFilter>
+  name?: InputMaybe<StringFilter>
+  pictures?: InputMaybe<GalleryFilter>
+  unitPrice?: InputMaybe<FloatFilter>
+  updatedAt?: InputMaybe<UpdatedAtFilter>
+}
+
+export enum ProductModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  UnitPriceAsc = 'unitPrice_ASC',
+  UnitPriceDesc = 'unitPrice_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+}
+
+/** Record of type Product (product) */
+export type ProductRecord = {
+  __typename?: 'ProductRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  createdAt: Scalars['DateTime']
+  description?: Maybe<Scalars['String']>
+  id: Scalars['ItemId']
+  name?: Maybe<Scalars['String']>
+  pictures: Array<FileField>
+  unitPrice?: Maybe<Scalars['FloatType']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type Product (product) */
+export type ProductRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type Product (product) */
+export type ProductRecordDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
 /** Specifies how to filter by publication datetime */
 export type PublishedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -1775,36 +1799,36 @@ export type PublishedAtFilter = {
 export type Query = {
   __typename?: 'Query'
   /** Returns meta information regarding a record collection */
-  _allCookiesMeta: CollectionMetadata
-  /** Returns meta information regarding a record collection */
   _allDropsMeta: CollectionMetadata
+  /** Returns meta information regarding a record collection */
+  _allProductsMeta: CollectionMetadata
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>
   /** Returns the single instance record */
   _site: Site
   /** Returns a collection of records */
-  allCookies: Array<CookieRecord>
-  /** Returns a collection of records */
   allDrops: Array<DropRecord>
+  /** Returns a collection of records */
+  allProducts: Array<ProductRecord>
   /** Returns a collection of assets */
   allUploads: Array<FileField>
   /** Returns a specific record */
-  cookie?: Maybe<CookieRecord>
-  /** Returns a specific record */
   drop?: Maybe<DropRecord>
+  /** Returns a specific record */
+  product?: Maybe<ProductRecord>
   /** Returns a specific asset */
   upload?: Maybe<FileField>
 }
 
 /** The query root for this schema */
-export type Query_AllCookiesMetaArgs = {
-  filter?: InputMaybe<CookieModelFilter>
+export type Query_AllDropsMetaArgs = {
+  filter?: InputMaybe<DropModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
 
 /** The query root for this schema */
-export type Query_AllDropsMetaArgs = {
-  filter?: InputMaybe<DropModelFilter>
+export type Query_AllProductsMetaArgs = {
+  filter?: InputMaybe<ProductModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
 
@@ -1820,20 +1844,20 @@ export type Query_SiteArgs = {
 }
 
 /** The query root for this schema */
-export type QueryAllCookiesArgs = {
-  filter?: InputMaybe<CookieModelFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<CookieModelOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
-
-/** The query root for this schema */
 export type QueryAllDropsArgs = {
   filter?: InputMaybe<DropModelFilter>
   first?: InputMaybe<Scalars['IntType']>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>
+  skip?: InputMaybe<Scalars['IntType']>
+}
+
+/** The query root for this schema */
+export type QueryAllProductsArgs = {
+  filter?: InputMaybe<ProductModelFilter>
+  first?: InputMaybe<Scalars['IntType']>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
   skip?: InputMaybe<Scalars['IntType']>
 }
 
@@ -1847,17 +1871,17 @@ export type QueryAllUploadsArgs = {
 }
 
 /** The query root for this schema */
-export type QueryCookieArgs = {
-  filter?: InputMaybe<CookieModelFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<CookieModelOrderBy>>>
-}
-
-/** The query root for this schema */
 export type QueryDropArgs = {
   filter?: InputMaybe<DropModelFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>
+}
+
+/** The query root for this schema */
+export type QueryProductArgs = {
+  filter?: InputMaybe<ProductModelFilter>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
 }
 
 /** The query root for this schema */
@@ -2365,16 +2389,17 @@ export type DropsQuery = {
     slug?: string | null
     releaseDate?: any | null
     deliveryDate?: any | null
-    cookies: Array<{
-      __typename?: 'CookieRecord'
+    products: Array<{
+      __typename?: 'ProductRecord'
       id: any
       description?: string | null
       name?: string | null
-      picture?: {
+      unitPrice?: any | null
+      pictures: Array<{
         __typename?: 'FileField'
         alt?: string | null
         url: string
-      } | null
+      }>
     }>
   }>
 }
@@ -2388,20 +2413,19 @@ export type DropByIdQuery = {
   drop?: {
     __typename?: 'DropRecord'
     id: any
-    slug?: string | null
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
-    cookies: Array<{
-      __typename?: 'CookieRecord'
+    products: Array<{
+      __typename?: 'ProductRecord'
       id: any
       name?: string | null
       description?: string | null
-      picture?: {
-        __typename?: 'FileField'
-        alt?: string | null
-        url: string
-      } | null
+    }>
+    pictures: Array<{
+      __typename?: 'FileField'
+      alt?: string | null
+      url: string
     }>
   } | null
 }
@@ -2413,11 +2437,12 @@ export const DropsDocument = gql`
       slug
       releaseDate
       deliveryDate
-      cookies {
+      products {
         id
         description
         name
-        picture {
+        unitPrice
+        pictures {
           alt
           url
         }
@@ -2466,21 +2491,20 @@ export type DropsQueryResult = Apollo.QueryResult<
   DropsQueryVariables
 >
 export const DropByIdDocument = gql`
-  query DropById($dropId: ItemId) {
+  query dropById($dropId: ItemId) {
     drop(filter: { id: { eq: $dropId } }) {
       id
-      slug
       releaseDate
       endDate
       deliveryDate
-      cookies {
+      products {
         id
         name
         description
-        picture {
-          alt
-          url
-        }
+      }
+      pictures {
+        alt
+        url
       }
     }
   }
