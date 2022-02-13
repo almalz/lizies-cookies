@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useQuery } from '@apollo/client'
 import { DROPS } from '../lib/queries'
+import '../assets/global.css'
 
 const Home: NextPage = () => {
   const { data, loading, error } = useQuery(DROPS)

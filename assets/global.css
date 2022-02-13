@@ -1,0 +1,14 @@
+.carousel .control-dots .dot {
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.carousel .dot.selected,
+.carousel .dot:hover {
+  background-color: #000 !important;
+}
+
+.carousel.carousel-slider .control-arrow {
+  background-color: transparent !important;
+  opacity: 1;
+}
