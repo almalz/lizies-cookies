@@ -1,5 +1,4 @@
-import { Button, Flex, Text, Center, Box } from '@chakra-ui/react'
-import { ProductRecord } from '../../../types/generated/graphql'
+import { Flex, Text, Center } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../../types'
 import NumberInput from '../../NumberInput'
