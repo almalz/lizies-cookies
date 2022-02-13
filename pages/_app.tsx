@@ -7,9 +7,9 @@ import theme from '../lib/theme'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider>
         <Component {...pageProps} />
-      </ChakraProvider>{' '}
+      </ChakraProvider>
     </ApolloProvider>
   )
 }

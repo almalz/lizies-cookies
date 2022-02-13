@@ -5,7 +5,7 @@ import ProductItem, { ProductItemProps } from '.'
 import { Product, File } from '../../../types'
 
 export default {
-  title: 'Button',
+  title: 'ProductItem',
   component: ProductItem,
 } as Meta<ProductItemProps>
 
@@ -21,6 +21,8 @@ const pictures: Array<File> = [
 const product: Product = {
   id: 12412,
   name: 'Cookies aux pépites de chocolat noir',
+  description:
+    'Pâte à cookie nature, pépites de chocolat noir, insert fondant au beurre de cacahuète',
   unitPrice: 3,
   pictures: pictures,
 }

@@ -1,96 +1,100 @@
-import {
-  Button,
-  Flex,
-  Text,
-  Center,
-  NumberInput,
-  NumberIncrementStepper,
-  NumberInputField,
-  NumberInputStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react'
+import { Button, Flex, Text, Center, Box } from '@chakra-ui/react'
 import { ProductRecord } from '../../../types/generated/graphql'
 import Image from 'next/image'
 import { Product } from '../../../types'
-import { ChangeEvent, useCallback, useState } from 'react'
+import NumberInput from '../../NumberInput'
+import { useState } from 'react'
 
 export type ProductItemProps = {
   product: Product
 }
 
-const IMAGE_SIZE = ['144px', '144px', '72px', '72px']
-
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-  const [productQty, setProductQty] = useState<number>(0)
+  const [value, setValue] = useState(0)
 
   return (
     <Flex
-      p="8px"
-      maxWidth={['150px', '250px', '650px', '650px']}
+      p={['8px', '8px', '16px', '16px']}
       borderRadius="md"
       border="1px"
-      direction={['column', 'column', 'row', 'row']}
-      align={['auto', 'auto', 'center', 'center']}
+      direction={'row'}
+      boxShadow="xl"
     >
       <Center
-        width={IMAGE_SIZE}
-        height={IMAGE_SIZE}
+        m="4px"
         borderRadius="md"
         overflow="hidden"
+        minHeight="100%"
+        minWidth={['40%', '40%', 'auto', 'auto']}
+        sx={{ img: { borderRadius: '0.25rem' } }}
       >
         <Image
           src={product.pictures[0].url || ''}
           alt={product.pictures[0].alt || product.name || ''}
-          width="200px"
-          height="200px"
+          width="150px"
+          height="150px"
         />
       </Center>
-      <Flex
-        pl="16px"
-        align={['center', 'center', 'start ', 'start']}
-        justify={['start', 'start', 'end ', 'end']}
-        flexGrow="2"
-      >
-        <Text
-          fontWeight={'700'}
-          fontSize={['sm', 'md', 'md', 'md']}
-          _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+      <Flex px="16px" flexDirection="column" flexGrow={1}>
+        <Flex
+          flexGrow="2"
+          flexDirection="column"
+          gap={['8px', '8px', '16px', '16px']}
+          pr="16px"
         >
-          {product.name}
-        </Text>
-      </Flex>
-      <Flex
-        pl={['0', '0', '16px', '16px']}
-        pt={['8px', '8px', '0', '0']}
-        align={['center', 'center', 'end ', 'end']}
-        justify={['center', 'center ', 'end', 'end']}
-      >
-        <NumberInput
-          w="80px"
-          value={productQty}
-          onChange={(value) => setProductQty(Number(value))}
+          <Text
+            fontWeight={'700'}
+            fontSize={['md', 'md', 'xl', 'xl']}
+            _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+            lineHeight={'1rem'}
+          >
+            {product.name}
+          </Text>
+          <Text
+            fontWeight={'400'}
+            fontSize={['xs', 'xs', 'sm', 'sm']}
+            color="gray.500"
+            lineHeight={'0.9rem'}
+          >
+            {product.description}
+          </Text>
+          <Flex display={['flex', 'flex', 'none', 'none']}>
+            <Text
+              fontWeight={'700'}
+              fontSize={['md', 'md', 'xl', 'xl']}
+              whiteSpace="nowrap"
+            >
+              {`${product.unitPrice.toFixed(2)} €`}
+            </Text>
+          </Flex>
+        </Flex>
+
+        <Flex
+          pt={['8px', '8px', '0', '0']}
+          align={'center'}
+          justify={['center', 'center ', 'end', 'end']}
+          w={['100%', '100% ', 'auto', 'auto']}
         >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-      </Flex>
-      <Flex
-        px={['8px', '16px', '0', '0']}
-        pl={['0', '0', '16px', '16px']}
-        pt={['8px', '8px', '0', '0']}
-        align={['end', 'end ', 'end', 'end']}
-        justify={['center', 'center ', 'end', 'end']}
-        w={['100%', '100% ', 'auto', 'auto']}
-      >
-        <Button
-          w={['100%', '100%', 'auto', 'auto']}
-          fontSize={['sm', 'sm', 'md', 'md']}
-        >
-          Ajouter
-        </Button>
+          <Flex flexGrow={1} display={['none', 'none', 'flex', 'flex']}>
+            <Text fontWeight={'700'} fontSize={'xl'} whiteSpace="nowrap">
+              {`${product.unitPrice.toFixed(2)} €`}
+            </Text>
+          </Flex>
+          <Flex>
+            <NumberInput value={value} onChange={(value) => setValue(value)} />
+
+            {/* <Button
+              w={['100%', '100%', 'auto', 'auto']}
+              ml={['8px', '8px', '16px', '16px']}
+              fontSize={['sm', 'sm', 'md', 'md']}
+              bg="gray.900"
+              color="white"
+              display="none"
+            >
+              Ajouter
+            </Button> */}
+          </Flex>
+        </Flex>
       </Flex>
     </Flex>
   )
