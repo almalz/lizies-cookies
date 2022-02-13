@@ -1,6 +1,5 @@
-import { Box, Circle } from '@chakra-ui/react'
+import { Circle } from '@chakra-ui/react'
 import Image from 'next/image'
-import { relative } from 'path'
 import CartIcon from '../../assets/icons/cart.svg'
 
 export type CartProps = {
@@ -10,7 +9,12 @@ export type CartProps = {
 const Cart: React.FC<CartProps> = ({ itemCount }) => {
   return (
     <button>
-      <Box pos="relative">
+      <Circle
+        p="4px"
+        pos="relative"
+        sx={{ border: '2px transparent solid' }}
+        _hover={{ border: '2px black solid' }}
+      >
         <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
         {itemCount && (
           <Circle
@@ -29,7 +33,7 @@ const Cart: React.FC<CartProps> = ({ itemCount }) => {
             {itemCount}
           </Circle>
         )}
-      </Box>
+      </Circle>
     </button>
   )
 }
