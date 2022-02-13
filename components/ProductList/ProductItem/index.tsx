@@ -25,17 +25,17 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         borderRadius="md"
         overflow="hidden"
         minHeight="100%"
-        minWidth={['40%', '40%', 'auto', 'auto']}
+        minWidth={['45%', '45%', 'auto', 'auto']}
         sx={{ img: { borderRadius: '0.25rem' } }}
       >
         <Image
           src={product.pictures[0].url || ''}
           alt={product.pictures[0].alt || product.name || ''}
-          width="150px"
-          height="150px"
+          width="170px"
+          height="170px"
         />
       </Center>
-      <Flex px="16px" flexDirection="column" flexGrow={1}>
+      <Flex px="16px" py="8px" flexDirection="column" flexGrow={1}>
         <Flex
           flexGrow="2"
           flexDirection="column"
