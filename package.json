@@ -17,6 +17,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "apollo-link-http": "^1.5.17",
+    "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
     "framer-motion": "^5",
     "graphql": "^16.3.0",
