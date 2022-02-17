@@ -2,7 +2,8 @@ import { Flex, Text, Center } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../../types'
 import NumberInput from '../../NumberInput'
-import { useState } from 'react'
+import ProductModal, { ProductModalRef } from './ProductModal'
+import { useState, useRef } from 'react'
 
 export type ProductItemProps = {
   product: Product
@@ -10,14 +11,15 @@ export type ProductItemProps = {
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const [value, setValue] = useState(0)
+  const modalRef = useRef<ProductModalRef>(null)
 
   return (
     <Flex
       p={['8px', '8px', '16px', '16px']}
       borderRadius="md"
-      border="1px"
+      border="1px solid black"
       direction={'row'}
-      boxShadow="xl"
+      boxShadow="2xl"
     >
       <Center
         m="4px"
@@ -46,6 +48,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             fontSize={['md', 'md', 'xl', 'xl']}
             _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
             lineHeight={'1rem'}
+            onClick={() => modalRef.current?.onOpenModal()}
           >
             {product.name}
           </Text>
@@ -95,6 +98,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           </Flex>
         </Flex>
       </Flex>
+      <ProductModal product={product} ref={modalRef} />
     </Flex>
   )
 }

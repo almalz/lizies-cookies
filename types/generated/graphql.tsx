@@ -228,6 +228,7 @@ export type FileField = {
 }
 
 export type FileFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 
@@ -239,19 +240,24 @@ export type FileFieldBlurUpThumbArgs = {
 }
 
 export type FileFieldCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 
 export type FileFieldFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 
 export type FileFieldResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   imgixParams?: InputMaybe<ImgixParams>
+  locale?: InputMaybe<SiteLocale>
   sizes?: InputMaybe<Scalars['String']>
 }
 
 export type FileFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 
@@ -1706,9 +1712,11 @@ export type ProductModelFilter = {
   _status?: InputMaybe<StatusFilter>
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
   _updatedAt?: InputMaybe<UpdatedAtFilter>
+  allergens?: InputMaybe<TextFilter>
   createdAt?: InputMaybe<CreatedAtFilter>
   description?: InputMaybe<TextFilter>
   id?: InputMaybe<ItemIdFilter>
+  ingredients?: InputMaybe<TextFilter>
   name?: InputMaybe<StringFilter>
   pictures?: InputMaybe<GalleryFilter>
   unitPrice?: InputMaybe<FloatFilter>
@@ -1758,9 +1766,11 @@ export type ProductRecord = {
   _status: ItemStatus
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
   _updatedAt: Scalars['DateTime']
+  allergens?: Maybe<Scalars['String']>
   createdAt: Scalars['DateTime']
   description?: Maybe<Scalars['String']>
   id: Scalars['ItemId']
+  ingredients?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   pictures: Array<FileField>
   unitPrice?: Maybe<Scalars['FloatType']>
@@ -1773,7 +1783,17 @@ export type ProductRecord_SeoMetaTagsArgs = {
 }
 
 /** Record of type Product (product) */
+export type ProductRecordAllergensArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Record of type Product (product) */
 export type ProductRecordDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Record of type Product (product) */
+export type ProductRecordIngredientsArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>
 }
 
@@ -1822,12 +1842,14 @@ export type Query = {
 
 /** The query root for this schema */
 export type Query_AllDropsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<DropModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
 
 /** The query root for this schema */
 export type Query_AllProductsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<ProductModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
@@ -1840,11 +1862,13 @@ export type Query_AllUploadsMetaArgs = {
 
 /** The query root for this schema */
 export type Query_SiteArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 
 /** The query root for this schema */
 export type QueryAllDropsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<DropModelFilter>
   first?: InputMaybe<Scalars['IntType']>
   locale?: InputMaybe<SiteLocale>
@@ -1854,6 +1878,7 @@ export type QueryAllDropsArgs = {
 
 /** The query root for this schema */
 export type QueryAllProductsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<ProductModelFilter>
   first?: InputMaybe<Scalars['IntType']>
   locale?: InputMaybe<SiteLocale>
@@ -1863,6 +1888,7 @@ export type QueryAllProductsArgs = {
 
 /** The query root for this schema */
 export type QueryAllUploadsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<UploadFilter>
   first?: InputMaybe<Scalars['IntType']>
   locale?: InputMaybe<SiteLocale>
@@ -1872,6 +1898,7 @@ export type QueryAllUploadsArgs = {
 
 /** The query root for this schema */
 export type QueryDropArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<DropModelFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>
@@ -1879,6 +1906,7 @@ export type QueryDropArgs = {
 
 /** The query root for this schema */
 export type QueryProductArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<ProductModelFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
@@ -1886,6 +1914,7 @@ export type QueryProductArgs = {
 
 /** The query root for this schema */
 export type QueryUploadArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<UploadFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>
@@ -1946,6 +1975,7 @@ export type SiteFaviconMetaTagsArgs = {
 }
 
 export type SiteGlobalSeoArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
 

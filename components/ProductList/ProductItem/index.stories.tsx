@@ -25,6 +25,10 @@ const product: Product = {
     'Pâte à cookie nature, pépites de chocolat noir, insert fondant au beurre de cacahuète',
   unitPrice: 3,
   pictures: pictures,
+  ingredients:
+    'farine de blé tendre, chocolat noir (cacao, sucre), oeufs, sucre brun, bicarbonate de soude',
+  allergens:
+    'gluten, arachides, lactose. Peut contenir des traces de soja, fruits a coques',
 }
 
 export const Primary = Template.bind({})

@@ -9,6 +9,8 @@ query Drops {
       description
       name
       unitPrice
+      alllergens
+      ingredients
       pictures {
         alt
         url
