@@ -12,15 +12,14 @@ export const RBox: React.FC<RBoxProps> = ({
   desktopOnly,
   ...props
 }) => {
-  console.log(props)
   return (
     <>
       {mobileOnly ? (
-        <Box display={['block', 'block', 'none', 'none']} {...props}>
+        <Box display={['block', 'block', 'block', 'none']} {...props}>
           {children}
         </Box>
       ) : desktopOnly ? (
-        <Box display={['none', 'none', 'block', 'block']} {...props}>
+        <Box display={['none', 'none', 'none', 'block']} {...props}>
           {children}
         </Box>
       ) : (
@@ -44,11 +43,11 @@ export const RFlex: React.FC<RBoxProps> = ({
   return (
     <>
       {mobileOnly ? (
-        <Flex display={['flex', 'flex', 'none', 'none']} {...props}>
+        <Flex display={['flex', 'flex', 'flex', 'none']} {...props}>
           {children}
         </Flex>
       ) : desktopOnly ? (
-        <Flex display={['none', 'none', 'flex', 'flex']} {...props}>
+        <Flex display={['none', 'none', 'none', 'flex']} {...props}>
           {children}
         </Flex>
       ) : (

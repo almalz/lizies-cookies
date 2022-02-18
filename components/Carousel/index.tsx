@@ -24,6 +24,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, width, height }) => {
         emulateTouch
         autoPlay
         showStatus={false}
+        showThumbs={false}
         infiniteLoop
         useKeyboardArrows
       >

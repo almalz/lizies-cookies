@@ -2419,14 +2419,24 @@ export type DropsQuery = {
     slug?: string | null
     releaseDate?: any | null
     deliveryDate?: any | null
+    endDate?: any | null
+    pictures: Array<{
+      __typename?: 'FileField'
+      id: any
+      alt?: string | null
+      url: string
+    }>
     products: Array<{
       __typename?: 'ProductRecord'
       id: any
       description?: string | null
       name?: string | null
       unitPrice?: any | null
+      allergens?: string | null
+      ingredients?: string | null
       pictures: Array<{
         __typename?: 'FileField'
+        id: any
         alt?: string | null
         url: string
       }>
@@ -2443,19 +2453,28 @@ export type DropByIdQuery = {
   drop?: {
     __typename?: 'DropRecord'
     id: any
+    slug?: string | null
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
+    pictures: Array<{
+      __typename?: 'FileField'
+      id: any
+      alt?: string | null
+      url: string
+    }>
     products: Array<{
       __typename?: 'ProductRecord'
       id: any
       name?: string | null
       description?: string | null
-    }>
-    pictures: Array<{
-      __typename?: 'FileField'
-      alt?: string | null
-      url: string
+      unitPrice?: any | null
+      pictures: Array<{
+        __typename?: 'FileField'
+        id: any
+        alt?: string | null
+        url: string
+      }>
     }>
   } | null
 }
@@ -2467,12 +2486,21 @@ export const DropsDocument = gql`
       slug
       releaseDate
       deliveryDate
+      endDate
+      pictures {
+        id
+        alt
+        url
+      }
       products {
         id
         description
         name
         unitPrice
+        allergens
+        ingredients
         pictures {
+          id
           alt
           url
         }
@@ -2524,17 +2552,26 @@ export const DropByIdDocument = gql`
   query dropById($dropId: ItemId) {
     drop(filter: { id: { eq: $dropId } }) {
       id
+      slug
       releaseDate
       endDate
       deliveryDate
+      endDate
+      pictures {
+        id
+        alt
+        url
+      }
       products {
         id
         name
         description
-      }
-      pictures {
-        alt
-        url
+        unitPrice
+        pictures {
+          id
+          alt
+          url
+        }
       }
     }
   }

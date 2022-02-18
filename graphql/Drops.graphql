@@ -4,14 +4,21 @@ query Drops {
     slug
     releaseDate
     deliveryDate
+    endDate
+    pictures {
+      id
+      alt
+      url
+    }
     products {
       id
       description
       name
       unitPrice
-      alllergens
+      allergens
       ingredients
       pictures {
+        id
         alt
         url
       }
@@ -22,17 +29,26 @@ query Drops {
 query dropById($dropId: ItemId) {
   drop(filter: { id: { eq: $dropId } }) {
     id
+    slug
     releaseDate
     endDate
     deliveryDate
+    endDate
+    pictures {
+      id
+      alt
+      url
+    }
     products {
       id
       name
       description
-    }
-    pictures {
-      alt
-      url
+      unitPrice
+      pictures {
+        id
+        alt
+        url
+      }
     }
   }
 }
