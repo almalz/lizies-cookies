@@ -8,14 +8,14 @@ export type DropSummaryProps = {
   drop: Drop
 }
 
-const formatDate = (date: Date) => format(new Date(2014, 1, 11), 'MM/dd/yyyy')
+const formatDate = (date: Date) => format(new Date(date), 'MM.dd.yyyy')
 
 const DropSummary: React.FC<DropSummaryProps> = ({ drop }) => {
   return (
     <Flex flexDirection={'column'}>
       <Heading
         as="h1"
-        size="2xl"
+        size="xl"
         mb="32px"
         w={['80%', '80%', '100%', '100%']}
       >{`Drop du ${formatDate(drop.deliveryDate)}`}</Heading>

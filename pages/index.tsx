@@ -87,6 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     variables: { TODAY: TODAY },
   })
 
+  // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
   const nextIncomingDrop: Drop = data.allDrops[0]
 
   return {

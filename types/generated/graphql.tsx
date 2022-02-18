@@ -2659,7 +2659,7 @@ export type DropByIdQueryResult = Apollo.QueryResult<
 >
 export const NextIncomingDropsDocument = gql`
   query nextIncomingDrops($TODAY: Date) {
-    allDrops(orderBy: deliveryDate_ASC, filter: { endDate: { gte: $TODAY } }) {
+    allDrops(orderBy: endDate_ASC, filter: { endDate: { gte: $TODAY } }) {
       id
       slug
       releaseDate
