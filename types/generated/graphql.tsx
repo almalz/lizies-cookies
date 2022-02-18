@@ -2479,6 +2479,41 @@ export type DropByIdQuery = {
   } | null
 }
 
+export type NextIncomingDropsQueryVariables = Exact<{
+  TODAY?: InputMaybe<Scalars['Date']>
+}>
+
+export type NextIncomingDropsQuery = {
+  __typename?: 'Query'
+  allDrops: Array<{
+    __typename?: 'DropRecord'
+    id: any
+    slug?: string | null
+    releaseDate?: any | null
+    endDate?: any | null
+    deliveryDate?: any | null
+    pictures: Array<{
+      __typename?: 'FileField'
+      id: any
+      alt?: string | null
+      url: string
+    }>
+    products: Array<{
+      __typename?: 'ProductRecord'
+      id: any
+      name?: string | null
+      description?: string | null
+      unitPrice?: any | null
+      pictures: Array<{
+        __typename?: 'FileField'
+        id: any
+        alt?: string | null
+        url: string
+      }>
+    }>
+  }>
+}
+
 export const DropsDocument = gql`
   query Drops {
     allDrops {
@@ -2621,4 +2656,83 @@ export type DropByIdLazyQueryHookResult = ReturnType<
 export type DropByIdQueryResult = Apollo.QueryResult<
   DropByIdQuery,
   DropByIdQueryVariables
+>
+export const NextIncomingDropsDocument = gql`
+  query nextIncomingDrops($TODAY: Date) {
+    allDrops(orderBy: deliveryDate_ASC, filter: { endDate: { gte: $TODAY } }) {
+      id
+      slug
+      releaseDate
+      endDate
+      deliveryDate
+      endDate
+      pictures {
+        id
+        alt
+        url
+      }
+      products {
+        id
+        name
+        description
+        unitPrice
+        pictures {
+          id
+          alt
+          url
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useNextIncomingDropsQuery__
+ *
+ * To run a query within a React component, call `useNextIncomingDropsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNextIncomingDropsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNextIncomingDropsQuery({
+ *   variables: {
+ *      TODAY: // value for 'TODAY'
+ *   },
+ * });
+ */
+export function useNextIncomingDropsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    NextIncomingDropsQuery,
+    NextIncomingDropsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<
+    NextIncomingDropsQuery,
+    NextIncomingDropsQueryVariables
+  >(NextIncomingDropsDocument, options)
+}
+export function useNextIncomingDropsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NextIncomingDropsQuery,
+    NextIncomingDropsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    NextIncomingDropsQuery,
+    NextIncomingDropsQueryVariables
+  >(NextIncomingDropsDocument, options)
+}
+export type NextIncomingDropsQueryHookResult = ReturnType<
+  typeof useNextIncomingDropsQuery
+>
+export type NextIncomingDropsLazyQueryHookResult = ReturnType<
+  typeof useNextIncomingDropsLazyQuery
+>
+export type NextIncomingDropsQueryResult = Apollo.QueryResult<
+  NextIncomingDropsQuery,
+  NextIncomingDropsQueryVariables
 >

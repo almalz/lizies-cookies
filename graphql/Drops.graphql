@@ -52,3 +52,30 @@ query dropById($dropId: ItemId) {
     }
   }
 }
+
+query nextIncomingDrops($TODAY: Date) {
+  allDrops(orderBy: deliveryDate_ASC, filter: { endDate: { gte: $TODAY } }) {
+    id
+    slug
+    releaseDate
+    endDate
+    deliveryDate
+    endDate
+    pictures {
+      id
+      alt
+      url
+    }
+    products {
+      id
+      name
+      description
+      unitPrice
+      pictures {
+        id
+        alt
+        url
+      }
+    }
+  }
+}
