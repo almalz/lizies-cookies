@@ -40,6 +40,7 @@ const Drop: NextPage<DropPageProps> = ({ drop }) => {
         w={['100%', '100%', '100%', '60%']}
         h="100%"
         pt={['', '', '32px', '']}
+        boxShadow="2xl"
       >
         <RBox
           mobileOnly
@@ -63,10 +64,9 @@ const Drop: NextPage<DropPageProps> = ({ drop }) => {
           h="100%"
           px={['8px', '8px', '96px', '96px']}
           py={['8px', '8px', '16px', '96px']}
-          boxShadow="2xl"
           pb={['32px', '32px', '32px', '0px']}
         >
-          <RBox desktopOnly pos="absolute" top="4" right="24">
+          <RBox desktopOnly pos="absolute" top="16" right="24">
             <Cart />
           </RBox>
           <ProductList products={drop.products} />
