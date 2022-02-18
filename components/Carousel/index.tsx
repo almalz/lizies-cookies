@@ -29,13 +29,14 @@ const Carousel: React.FC<CarouselProps> = ({ images, width, height }) => {
       >
         {images.map((image) => {
           return (
-            <Image
-              key={image.id}
-              src={image.url || ''}
-              alt={image.alt || ''}
-              height="500px"
-              width="450px"
-            />
+            <Box key={image.id} w={width} h={height}>
+              <Image
+                key={image.id}
+                src={image.url || ''}
+                alt={image.alt || ''}
+                layout="fill"
+              />
+            </Box>
           )
         })}
       </RRCarousel>

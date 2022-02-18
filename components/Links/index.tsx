@@ -18,7 +18,7 @@ const Links: React.FC = ({}) => {
     <Flex justify="space-between" flexWrap="wrap">
       {LINKS.map((link: Link) => (
         <Link
-          key={link.href}
+          key={`${link.href}-${link.label}`}
           href={link.href}
           isExternal={link.isExtrenal}
           fontWeight={600}

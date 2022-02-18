@@ -4,6 +4,7 @@ import { Product } from '../../../types'
 import NumberInput from '../../NumberInput'
 import ProductModal, { ProductModalRef } from './ProductModal'
 import { useState, useRef } from 'react'
+import { RFlex } from '../../Breakpoints'
 
 export type ProductItemProps = {
   product: Product
@@ -20,6 +21,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       border="1px solid black"
       direction={'row'}
       boxShadow="2xl"
+      width="100%"
+      height={['40%', '40%', '40%', '40%']}
     >
       <Center
         m="4px"
@@ -60,7 +63,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           >
             {product.description}
           </Text>
-          <Flex display={['flex', 'flex', 'none', 'none']}>
+          <RFlex mobileOnly>
             <Text
               fontWeight={'700'}
               fontSize={['md', 'md', 'xl', 'xl']}
@@ -68,7 +71,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             >
               {`${product.unitPrice.toFixed(2)} €`}
             </Text>
-          </Flex>
+          </RFlex>
         </Flex>
 
         <Flex
@@ -77,11 +80,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           justify={['center', 'center ', 'end', 'end']}
           w={['100%', '100% ', 'auto', 'auto']}
         >
-          <Flex flexGrow={1} display={['none', 'none', 'flex', 'flex']}>
+          <RFlex flexGrow={1} desktopOnly>
             <Text fontWeight={'700'} fontSize={'xl'} whiteSpace="nowrap">
               {`${product.unitPrice.toFixed(2)} €`}
             </Text>
-          </Flex>
+          </RFlex>
           <Flex>
             <NumberInput value={value} onChange={(value) => setValue(value)} />
 

@@ -9,7 +9,6 @@ export type NumberInputProps = {
 const NumberInput = forwardRef(
   ({ onChange, value }: NumberInputProps, ref: Ref<HTMLInputElement>) => {
     const [_value, setValue] = useState<number>(value || 0)
-    console.log(ref)
     useEffect(() => {
       onChange && onChange(_value)
     }, [_value, onChange])

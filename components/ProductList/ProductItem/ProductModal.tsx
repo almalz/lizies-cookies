@@ -12,6 +12,7 @@ import {
 import Image from 'next/image'
 import { Product } from '../../../types'
 import NumberInput from '../../NumberInput'
+import { RFlex } from '../../Breakpoints'
 
 export type ProductModalProps = {
   product: Product
@@ -27,8 +28,6 @@ const ProductModal = forwardRef(
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef<HTMLButtonElement>(null)
-
-    console.log(initialRef)
 
     useImperativeHandle(ref, () => ({
       onOpenModal() {
@@ -117,7 +116,7 @@ const ProductModal = forwardRef(
                     {`allergènes : ${product.allergens}`}
                   </Text>
                 )}
-                <Flex display={['flex', 'flex', 'none', 'none']}>
+                <RFlex mobileOnly>
                   <Text
                     fontWeight={'700'}
                     fontSize={['xl', 'xl', '3xl', '3xl']}
@@ -125,7 +124,7 @@ const ProductModal = forwardRef(
                   >
                     {`${product.unitPrice.toFixed(2)} €`}
                   </Text>
-                </Flex>
+                </RFlex>
               </Flex>
 
               <Flex
@@ -134,7 +133,7 @@ const ProductModal = forwardRef(
                 justify={['center', 'center ', 'end', 'end']}
                 w={['100%', '100% ', 'auto', 'auto']}
               >
-                <Flex flexGrow={1} display={['none', 'none', 'flex', 'flex']}>
+                <RFlex flexGrow={1} desktopOnly>
                   <Text
                     fontWeight={'700'}
                     fontSize={['xl', 'xl', '3xl', '3xl']}
@@ -142,7 +141,7 @@ const ProductModal = forwardRef(
                   >
                     {`${product.unitPrice.toFixed(2)} €`}
                   </Text>
-                </Flex>
+                </RFlex>
                 <Flex>
                   <NumberInput
                     value={value}

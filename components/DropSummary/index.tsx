@@ -2,6 +2,7 @@ import { Heading, Text, Flex, Box } from '@chakra-ui/react'
 import format from 'date-fns/format'
 import { Drop } from '../../types'
 import Carousel from '../Carousel'
+import { RBox } from '../Breakpoints'
 
 export type DropSummaryProps = {
   drop: Drop
@@ -28,13 +29,13 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop }) => {
       >{`Commandes disponibles le samedi matin \n
               À récupérer a l’arret de Tram ”Mairie du Bouscat” (ligne D).\n
               Livraison possible à Bordeaux ou au Bouscat.`}</Text>
-      <Box display={['none', 'none', 'block', 'block']} mx="auto">
+      <RBox desktopOnly mx="auto">
         <Carousel
           images={drop.pictures}
-          width={['250px', '250px', '450px', '450px']}
-          height={['30px', '300px', '500px', '500px']}
+          height={['30px', '300px', '400px', '400px']}
+          width={['250px', '250px', '400px', '400px']}
         />
-      </Box>
+      </RBox>
     </Flex>
   )
 }
