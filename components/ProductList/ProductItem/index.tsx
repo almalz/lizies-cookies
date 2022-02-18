@@ -18,18 +18,18 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
     <Flex
       p={['8px', '8px', '16px', '16px']}
       borderRadius="md"
-      border="1px solid black"
+      border="1px solid"
+      borderColor="gray.200"
       direction={'row'}
-      boxShadow="2xl"
+      boxShadow="md"
       width="100%"
-      height={['40%', '40%', '40%', '40%']}
+      height={['40%', '40%', '40%', '30%']}
     >
       <Center
         m="4px"
         borderRadius="md"
         overflow="hidden"
-        minHeight="100%"
-        minWidth={['45%', '45%', 'auto', 'auto']}
+        height="100%"
         sx={{ img: { borderRadius: '0.25rem' } }}
       >
         <Image
@@ -39,7 +39,13 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           height="170px"
         />
       </Center>
-      <Flex px="16px" py="8px" flexDirection="column" flexGrow={1}>
+      <Flex
+        px="16px"
+        py="8px"
+        flexDirection="column"
+        flexGrow={1}
+        width={['55%', '55%', '55%', '70%']}
+      >
         <Flex
           flexGrow="2"
           flexDirection="column"
@@ -52,6 +58,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
             lineHeight={'1rem'}
             onClick={() => modalRef.current?.onOpenModal()}
+            maxWidth="100%"
           >
             {product.name}
           </Text>
@@ -60,6 +67,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             fontSize={['xs', 'xs', 'sm', 'sm']}
             color="gray.500"
             lineHeight={'0.9rem'}
+            maxWidth="100%"
           >
             {product.description}
           </Text>

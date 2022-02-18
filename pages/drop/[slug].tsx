@@ -20,14 +20,15 @@ export type DropPageProps = {
 
 const Drop: NextPage<DropPageProps> = ({ drop }) => {
   return (
-    <Flex h={['auto', 'auto', '100vh', '100vh']}>
+    <Flex h={['100%', '100%', '100%', '100vh']}>
       <RBox desktopOnly w="40%" h="100%">
         <Flex
           h="100%"
           flexDir={'column'}
           boxShadow="inner"
           px={['', '', '64px', '64px']}
-          py={['', '', '64px', '64px']}
+          pt={['', '', '64px', '64px']}
+          pb={['', '', '16px', '24px']}
         >
           <DropSummary drop={drop} />
           <Box mt="auto">
@@ -39,7 +40,7 @@ const Drop: NextPage<DropPageProps> = ({ drop }) => {
         pos="relative"
         w={['100%', '100%', '100%', '60%']}
         h="100%"
-        pt={['', '', '32px', '']}
+        pt={['', '', '', '']}
         boxShadow="2xl"
       >
         <RBox
@@ -62,13 +63,13 @@ const Drop: NextPage<DropPageProps> = ({ drop }) => {
         <Flex
           flexDir={'column'}
           h="100%"
-          px={['8px', '8px', '96px', '96px']}
-          py={['8px', '8px', '16px', '96px']}
+          px={['16px', '16px', '96px', '96px']}
+          pt={['8px', '8px', '5%', '5%']}
           pb={['32px', '32px', '32px', '0px']}
         >
-          <RBox desktopOnly pos="absolute" top="16" right="24">
+          <RFlex desktopOnly justifyContent="end" py="8px">
             <Cart />
-          </RBox>
+          </RFlex>
           <ProductList products={drop.products} />
           <RBox mobileOnly mt={['32px', '32px', '64px', 'auto']} px="32px">
             <Links />

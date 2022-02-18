@@ -47,7 +47,6 @@ const ProductModal = forwardRef(
           <Flex
             p={['8px', '8px', '32px', '32px']}
             borderRadius="xl"
-            border="1px"
             direction={['column', 'column', 'row', 'row']}
             boxShadow="xl"
           >
