@@ -5,11 +5,14 @@ export type LayoutProps = {
   description: string
 }
 
-const LayoutProps: React.FC<LayoutProps> = ({ title, description }) => {
+const Layout: React.FC<LayoutProps> = ({ title, description }) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta property="og:title" content={title} key={title} />
+      <meta charSet="utf-8" />
+      <meta name="description" content={description} />
     </Head>
   )
 }
+
+export default Layout

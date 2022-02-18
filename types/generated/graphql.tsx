@@ -118,12 +118,14 @@ export type DropModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>
   createdAt?: InputMaybe<CreatedAtFilter>
   deliveryDate?: InputMaybe<DateFilter>
+  description?: InputMaybe<TextFilter>
   endDate?: InputMaybe<DateFilter>
   id?: InputMaybe<ItemIdFilter>
   pictures?: InputMaybe<GalleryFilter>
   products?: InputMaybe<LinksFilter>
   releaseDate?: InputMaybe<DateFilter>
   slug?: InputMaybe<StringFilter>
+  title?: InputMaybe<StringFilter>
   updatedAt?: InputMaybe<UpdatedAtFilter>
 }
 
@@ -156,6 +158,8 @@ export enum DropModelOrderBy {
   ReleaseDate_DESC = 'releaseDate_DESC',
   Slug_ASC = 'slug_ASC',
   Slug_DESC = 'slug_DESC',
+  Title_ASC = 'title_ASC',
+  Title_DESC = 'title_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
   UpdatedAt_DESC = 'updatedAt_DESC',
 }
@@ -176,18 +180,25 @@ export type DropRecord = {
   _updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   deliveryDate?: Maybe<Scalars['Date']>
+  description?: Maybe<Scalars['String']>
   endDate?: Maybe<Scalars['Date']>
   id: Scalars['ItemId']
   pictures: Array<FileField>
   products: Array<ProductRecord>
   releaseDate?: Maybe<Scalars['Date']>
   slug?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
 
 /** Record of type Drop (drop) */
 export type DropRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type Drop (drop) */
+export type DropRecordDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
 }
 
 export enum FaviconType {
@@ -2420,6 +2431,8 @@ export type DropsQuery = {
     releaseDate?: any | null
     deliveryDate?: any | null
     endDate?: any | null
+    title?: string | null
+    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -2457,6 +2470,8 @@ export type DropByIdQuery = {
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
+    title?: string | null
+    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -2492,6 +2507,8 @@ export type NextIncomingDropsQuery = {
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
+    title?: string | null
+    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -2540,6 +2557,8 @@ export const DropsDocument = gql`
           url
         }
       }
+      title
+      description
     }
   }
 `
@@ -2608,6 +2627,8 @@ export const DropByIdDocument = gql`
           url
         }
       }
+      title
+      description
     }
   }
 `
@@ -2682,6 +2703,8 @@ export const NextIncomingDropsDocument = gql`
           url
         }
       }
+      title
+      description
     }
   }
 `
