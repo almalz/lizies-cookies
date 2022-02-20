@@ -1,4 +1,4 @@
-import ProductItem from './ProductItem'
+import ProductItem from '../ProductItem'
 import { Product } from '../../types'
 import { VStack } from '@chakra-ui/react'
 

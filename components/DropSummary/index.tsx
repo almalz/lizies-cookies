@@ -8,7 +8,7 @@ export type DropSummaryProps = {
   drop: Drop
 }
 
-const formatDate = (date: Date) => format(new Date(date), 'MM.dd.yyyy')
+const formatDate = (date: Date) => format(new Date(date), 'dd.MM.yyyy')
 
 const DropSummary: React.FC<DropSummaryProps> = ({ drop }) => {
   return (

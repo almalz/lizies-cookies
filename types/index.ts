@@ -1,5 +1,10 @@
-import ProductItem from '../components/ProductList/ProductItem'
-import { DropRecord, ProductRecord, FileField } from './generated/graphql'
+import ProductItem from '../components/ProductItem'
+import {
+  DropRecord,
+  ProductRecord,
+  FileField,
+  Scalars,
+} from './generated/graphql'
 
 export type File = Partial<FileField>
 
@@ -19,7 +24,9 @@ type _Product = PartialBy<
   | 'updatedAt'
 >
 
-export type Product = Omit<_Product, 'pictures'> & { pictures: Array<File> }
+export type Product = Omit<_Product, 'pictures'> & {
+  pictures: Array<File>
+} & { name: Scalars['String'] }
 
 export type Products = Array<Product>
 

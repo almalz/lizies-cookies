@@ -2,7 +2,7 @@ import React from 'react'
 import { Story, Meta } from '@storybook/react'
 
 import ProductItem, { ProductItemProps } from '.'
-import { Product, File } from '../../../types'
+import { Product, File } from '../../types'
 
 export default {
   title: 'ProductItem',

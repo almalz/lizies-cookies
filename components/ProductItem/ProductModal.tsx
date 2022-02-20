@@ -10,9 +10,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import Image from 'next/image'
-import { Product } from '../../../types'
-import NumberInput from '../../NumberInput'
-import { RFlex } from '../../Breakpoints'
+import { Product } from '../../types'
+import NumberInput from '../NumberInput'
+import { RFlex } from '../Breakpoints'
 
 export type ProductModalProps = {
   product: Product

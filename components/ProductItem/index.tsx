@@ -1,17 +1,18 @@
 import { Flex, Text, Center } from '@chakra-ui/react'
 import Image from 'next/image'
-import { Product } from '../../../types'
-import NumberInput from '../../NumberInput'
+import { Product } from '../../types'
+import NumberInput from '../NumberInput'
 import ProductModal, { ProductModalRef } from './ProductModal'
-import { useState, useRef } from 'react'
-import { RFlex } from '../../Breakpoints'
+import { useState, useRef, useCallback, useEffect } from 'react'
+import { RFlex } from '../Breakpoints'
+import Snipcart from '../../lib/snipcart'
+import ProductForm from '../ProductForm'
 
 export type ProductItemProps = {
   product: Product
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-  const [value, setValue] = useState(0)
   const modalRef = useRef<ProductModalRef>(null)
 
   return (
@@ -35,8 +36,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <Image
           src={product.pictures[0].url || ''}
           alt={product.pictures[0].alt || product.name || ''}
-          width="170px"
-          height="170px"
+          width="150px"
+          height="150px"
         />
       </Center>
       <Flex
@@ -94,18 +95,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             </Text>
           </RFlex>
           <Flex>
-            <NumberInput value={value} onChange={(value) => setValue(value)} />
-
-            {/* <Button
-              w={['100%', '100%', 'auto', 'auto']}
-              ml={['8px', '8px', '16px', '16px']}
-              fontSize={['sm', 'sm', 'md', 'md']}
-              bg="gray.900"
-              color="white"
-              display="none"
-            >
-              Ajouter
-            </Button> */}
+            <ProductForm product={product} />
           </Flex>
         </Flex>
       </Flex>
