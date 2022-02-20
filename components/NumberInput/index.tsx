@@ -2,7 +2,7 @@ import { forwardRef, Ref, useCallback } from 'react'
 import { Button, HStack, FormLabel, FormControl, Box } from '@chakra-ui/react'
 
 export type NumberInputProps = {
-  value?: number
+  value?: number | null
   label: string
   onAdd?: () => void
   onRemove?: () => void

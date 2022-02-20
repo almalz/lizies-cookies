@@ -9,11 +9,11 @@ export type ProductFormProps = {
 }
 
 const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
-  let initialValue
+  let initialValue = 0
   if (typeof window !== 'undefined') {
     initialValue = Snipcart.store.getItemById(product.id)?.quantity
   }
-  const [value, setValue] = useState(initialValue || null)
+  const [value, setValue] = useState<number | null>(initialValue ?? null)
 
   const STEP = Number(process.env.NEXT_PUBLIC_INPUT_STEP) || 1
   const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY) || 24
@@ -28,7 +28,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
       maxQuantity: MAX,
       url: window.location.origin,
     })
-  }, [STEP, product])
+  }, [product])
 
   const handleRemove = useCallback(async () => {
     await Snipcart.items.remove(product.id, STEP)
@@ -39,7 +39,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
       const itemCount =
         (await Snipcart.store.getItemById(product.id)?.quantity) || 0
       setValue(itemCount)
-      console.log(itemCount)
     })
   }, [product])
 

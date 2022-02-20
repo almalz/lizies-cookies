@@ -81,7 +81,6 @@ const ProductModal = forwardRef(
                 <Text
                   fontWeight={'700'}
                   fontSize={['xl', 'xl', '3xl', '3xl']}
-                  _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
                   lineHeight={'1.8rem'}
                 >
                   {product.name}
