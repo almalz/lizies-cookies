@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
-import NumberInput from '../NumberInput'
+import ProductForm from '../ProductForm'
 import { RFlex } from '../Breakpoints'
 
 export type ProductModalProps = {
@@ -24,7 +24,6 @@ export type ProductModalRef = {
 
 const ProductModal = forwardRef(
   ({ product }: ProductModalProps, ref: Ref<ProductModalRef>) => {
-    const [value, setValue] = useState(0)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = useRef<HTMLButtonElement>(null)
@@ -142,11 +141,7 @@ const ProductModal = forwardRef(
                   </Text>
                 </RFlex>
                 <Flex>
-                  <NumberInput
-                    value={value}
-                    // ref={initialRef}
-                    onChange={(value) => setValue(value)}
-                  />
+                  <ProductForm product={product} />
                 </Flex>
               </Flex>
             </Flex>
