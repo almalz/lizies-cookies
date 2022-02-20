@@ -12,6 +12,5 @@ const Template: Story<NumberInputProps> = (args) => <NumberInput {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  onChange: (value) => console.log(value),
   value: 2,
 }
