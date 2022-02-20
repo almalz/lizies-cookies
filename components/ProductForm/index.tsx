@@ -13,7 +13,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
   if (typeof window !== 'undefined') {
     initialValue = Snipcart.store.getItemById(product.id)?.quantity
   }
-  const [value, setValue] = useState(initialValue || 0)
+  const [value, setValue] = useState(initialValue || null)
 
   const STEP = Number(process.env.NEXT_PUBLIC_INPUT_STEP) || 1
   const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY) || 24
