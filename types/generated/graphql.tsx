@@ -31,6 +31,7 @@ export type Scalars = {
   /** Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
   IntType: any
   ItemId: any
+  JsonField: any
   MetaTagAttributes: any
   UploadId: any
 }
@@ -199,6 +200,195 @@ export type DropRecord_SeoMetaTagsArgs = {
 /** Record of type Drop (drop) */
 export type DropRecordDescriptionArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>
+}
+
+export type DroppageModelBodyField = {
+  __typename?: 'DroppageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type DropPage (droppage) */
+export type DroppageRecord = {
+  __typename?: 'DroppageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<DroppageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type DropPage (droppage) */
+export type DroppageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+export type ErrorpageModelBodyField = {
+  __typename?: 'ErrorpageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type ErrorPage (errorpage) */
+export type ErrorpageRecord = {
+  __typename?: 'ErrorpageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<ErrorpageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  textiscentered?: Maybe<Scalars['BooleanType']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type ErrorPage (errorpage) */
+export type ErrorpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+export type FaqcategoryModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<FaqcategoryModelFilter>>>
+  _createdAt?: InputMaybe<CreatedAtFilter>
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
+  _isValid?: InputMaybe<BooleanFilter>
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
+  _publishedAt?: InputMaybe<PublishedAtFilter>
+  _status?: InputMaybe<StatusFilter>
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
+  _updatedAt?: InputMaybe<UpdatedAtFilter>
+  createdAt?: InputMaybe<CreatedAtFilter>
+  id?: InputMaybe<ItemIdFilter>
+  name?: InputMaybe<StringFilter>
+  position?: InputMaybe<PositionFilter>
+  updatedAt?: InputMaybe<UpdatedAtFilter>
+}
+
+export enum FaqcategoryModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  Name_ASC = 'name_ASC',
+  Name_DESC = 'name_DESC',
+  Position_ASC = 'position_ASC',
+  Position_DESC = 'position_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type FAQCategory (faqcategory) */
+export type FaqcategoryRecord = {
+  __typename?: 'FaqcategoryRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  name?: Maybe<Scalars['String']>
+  position?: Maybe<Scalars['IntType']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type FAQCategory (faqcategory) */
+export type FaqcategoryRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type FaqItem (faqitem) */
+export type FaqitemRecord = {
+  __typename?: 'FaqitemRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  answer?: Maybe<Scalars['String']>
+  category?: Maybe<FaqcategoryRecord>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  question?: Maybe<Scalars['String']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type FaqItem (faqitem) */
+export type FaqitemRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type FAQPage (faqpage) */
+export type FaqpageRecord = {
+  __typename?: 'FaqpageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  items: Array<FaqitemRecord>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type FAQPage (faqpage) */
+export type FaqpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
 }
 
 export enum FaviconType {
@@ -1685,6 +1875,38 @@ export enum ItemStatus {
   Updated = 'updated',
 }
 
+export type LegalpageModelBodyField = {
+  __typename?: 'LegalpageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type LegalPage (legalpage) */
+export type LegalpageRecord = {
+  __typename?: 'LegalpageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<LegalpageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type LegalPage (legalpage) */
+export type LegalpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
@@ -1705,12 +1927,61 @@ export enum MuxThumbnailFormatType {
   Png = 'png',
 }
 
+export type NodroppageModelBodyField = {
+  __typename?: 'NodroppageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type NoDropPage (nodroppage) */
+export type NodroppageRecord = {
+  __typename?: 'NodroppageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<NodroppageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  textiscentered?: Maybe<Scalars['BooleanType']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type NoDropPage (nodroppage) */
+export type NodroppageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
 /** Specifies how to filter by image orientation */
 export type OrientationFilter = {
   /** Search uploads with the specified orientation */
   eq?: InputMaybe<UploadOrientation>
   /** Exclude uploads with the specified orientation */
   neq?: InputMaybe<UploadOrientation>
+}
+
+/** Specifies how to filter by position (sorted and tree-like collections) */
+export type PositionFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']>
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']>
 }
 
 export type ProductModelFilter = {
@@ -1832,6 +2103,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allDropsMeta: CollectionMetadata
   /** Returns meta information regarding a record collection */
+  _allFaqcategoriesMeta: CollectionMetadata
+  /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>
@@ -1840,13 +2113,29 @@ export type Query = {
   /** Returns a collection of records */
   allDrops: Array<DropRecord>
   /** Returns a collection of records */
+  allFaqcategories: Array<FaqcategoryRecord>
+  /** Returns a collection of records */
   allProducts: Array<ProductRecord>
   /** Returns a collection of assets */
   allUploads: Array<FileField>
   /** Returns a specific record */
   drop?: Maybe<DropRecord>
+  /** Returns the single instance record */
+  droppage?: Maybe<DroppageRecord>
+  /** Returns the single instance record */
+  errorpage?: Maybe<ErrorpageRecord>
+  /** Returns a specific record */
+  faqcategory?: Maybe<FaqcategoryRecord>
+  /** Returns the single instance record */
+  faqpage?: Maybe<FaqpageRecord>
+  /** Returns the single instance record */
+  legalpage?: Maybe<LegalpageRecord>
+  /** Returns the single instance record */
+  nodroppage?: Maybe<NodroppageRecord>
   /** Returns a specific record */
   product?: Maybe<ProductRecord>
+  /** Returns the single instance record */
+  termspage?: Maybe<TermspageRecord>
   /** Returns a specific asset */
   upload?: Maybe<FileField>
 }
@@ -1855,6 +2144,13 @@ export type Query = {
 export type Query_AllDropsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<DropModelFilter>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type Query_AllFaqcategoriesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqcategoryModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
 
@@ -1888,6 +2184,16 @@ export type QueryAllDropsArgs = {
 }
 
 /** The query root for this schema */
+export type QueryAllFaqcategoriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqcategoryModelFilter>
+  first?: InputMaybe<Scalars['IntType']>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
+  skip?: InputMaybe<Scalars['IntType']>
+}
+
+/** The query root for this schema */
 export type QueryAllProductsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<ProductModelFilter>
@@ -1916,11 +2222,55 @@ export type QueryDropArgs = {
 }
 
 /** The query root for this schema */
+export type QueryDroppageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryErrorpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryFaqcategoryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqcategoryModelFilter>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
+}
+
+/** The query root for this schema */
+export type QueryFaqpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryLegalpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryNodroppageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
 export type QueryProductArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<ProductModelFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
+}
+
+/** The query root for this schema */
+export type QueryTermspageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
 }
 
 /** The query root for this schema */
@@ -2037,6 +2387,38 @@ export type Tag = {
   attributes?: Maybe<Scalars['MetaTagAttributes']>
   content?: Maybe<Scalars['String']>
   tag: Scalars['String']
+}
+
+export type TermspageModelBodyField = {
+  __typename?: 'TermspageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type TermsPage (termspage) */
+export type TermspageRecord = {
+  __typename?: 'TermspageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<TermspageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type TermsPage (termspage) */
+export type TermspageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
 }
 
 /** Specifies how to filter text fields */
@@ -2531,6 +2913,51 @@ export type NextIncomingDropsQuery = {
   }>
 }
 
+export type DropPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type DropPageQuery = {
+  __typename?: 'Query'
+  droppage?: {
+    __typename?: 'DroppageRecord'
+    body?: {
+      __typename?: 'DroppageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+  } | null
+}
+
+export type LegalPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type LegalPageQuery = {
+  __typename?: 'Query'
+  legalpage?: {
+    __typename?: 'LegalpageRecord'
+    body?: {
+      __typename?: 'LegalpageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+  } | null
+}
+
+export type TermsPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type TermsPageQuery = {
+  __typename?: 'Query'
+  termspage?: {
+    __typename?: 'TermspageRecord'
+    body?: {
+      __typename?: 'TermspageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+  } | null
+}
+
 export const DropsDocument = gql`
   query Drops {
     allDrops {
@@ -2758,4 +3185,172 @@ export type NextIncomingDropsLazyQueryHookResult = ReturnType<
 export type NextIncomingDropsQueryResult = Apollo.QueryResult<
   NextIncomingDropsQuery,
   NextIncomingDropsQueryVariables
+>
+export const DropPageDocument = gql`
+  query DropPage {
+    droppage {
+      body {
+        blocks
+        links
+        value
+      }
+    }
+  }
+`
+
+/**
+ * __useDropPageQuery__
+ *
+ * To run a query within a React component, call `useDropPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDropPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDropPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(
+    DropPageDocument,
+    options
+  )
+}
+export function useDropPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    DropPageQuery,
+    DropPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(
+    DropPageDocument,
+    options
+  )
+}
+export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>
+export type DropPageLazyQueryHookResult = ReturnType<
+  typeof useDropPageLazyQuery
+>
+export type DropPageQueryResult = Apollo.QueryResult<
+  DropPageQuery,
+  DropPageQueryVariables
+>
+export const LegalPageDocument = gql`
+  query LegalPage {
+    legalpage {
+      body {
+        blocks
+        links
+        value
+      }
+    }
+  }
+`
+
+/**
+ * __useLegalPageQuery__
+ *
+ * To run a query within a React component, call `useLegalPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLegalPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLegalPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLegalPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<LegalPageQuery, LegalPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<LegalPageQuery, LegalPageQueryVariables>(
+    LegalPageDocument,
+    options
+  )
+}
+export function useLegalPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    LegalPageQuery,
+    LegalPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<LegalPageQuery, LegalPageQueryVariables>(
+    LegalPageDocument,
+    options
+  )
+}
+export type LegalPageQueryHookResult = ReturnType<typeof useLegalPageQuery>
+export type LegalPageLazyQueryHookResult = ReturnType<
+  typeof useLegalPageLazyQuery
+>
+export type LegalPageQueryResult = Apollo.QueryResult<
+  LegalPageQuery,
+  LegalPageQueryVariables
+>
+export const TermsPageDocument = gql`
+  query TermsPage {
+    termspage {
+      body {
+        blocks
+        links
+        value
+      }
+    }
+  }
+`
+
+/**
+ * __useTermsPageQuery__
+ *
+ * To run a query within a React component, call `useTermsPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTermsPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTermsPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTermsPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<TermsPageQuery, TermsPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<TermsPageQuery, TermsPageQueryVariables>(
+    TermsPageDocument,
+    options
+  )
+}
+export function useTermsPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    TermsPageQuery,
+    TermsPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<TermsPageQuery, TermsPageQueryVariables>(
+    TermsPageDocument,
+    options
+  )
+}
+export type TermsPageQueryHookResult = ReturnType<typeof useTermsPageQuery>
+export type TermsPageLazyQueryHookResult = ReturnType<
+  typeof useTermsPageLazyQuery
+>
+export type TermsPageQueryResult = Apollo.QueryResult<
+  TermsPageQuery,
+  TermsPageQueryVariables
 >

@@ -1,0 +1,29 @@
+query DropPage {
+  droppage {
+    body {
+      blocks
+      links
+      value
+    }
+  }
+}
+
+query LegalPage {
+  legalpage {
+    body {
+      blocks
+      links
+      value
+    }
+  }
+}
+
+query TermsPage {
+  termspage {
+    body {
+      blocks
+      links
+      value
+    }
+  }
+}

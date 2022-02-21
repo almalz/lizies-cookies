@@ -7,9 +7,9 @@ export type Link = {
 }
 
 const LINKS: Link[] = [
-  { label: 'Mentions légales', href: '/', isExtrenal: false },
+  { label: 'Mentions légales', href: '/legal', isExtrenal: false },
+  { label: 'CGV', href: '/terms', isExtrenal: false },
   { label: 'FAQ', href: '/', isExtrenal: false },
-  { label: 'CGV', href: '/', isExtrenal: false },
   { label: 'Contact', href: '/', isExtrenal: true },
 ]
 
