@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
 import BackButton from '../components/BackButton'
+import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import client from '../lib/apolloClient'
 import {
@@ -15,15 +16,21 @@ export type LegalPageProps = {
 
 const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
   return (
-    <Box shadow={'inner'}>
-      <BackButton />
-      <Box
-        py={['32px', '32px', '32px', '120px']}
-        px={['32px', '64px', '120px', '240px']}
-      >
-        {legalpage.body && <MarkdownRenderer data={legalpage.body.value} />}
+    <>
+      <Layout
+        title={'Mentions légales'}
+        description={"Lizie's Cookies - Mentions légales"}
+      />
+      <Box shadow={'inner'}>
+        <BackButton />
+        <Box
+          py={['32px', '32px', '32px', '120px']}
+          px={['32px', '64px', '120px', '240px']}
+        >
+          {legalpage.body && <MarkdownRenderer data={legalpage.body.value} />}
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 

@@ -13,7 +13,7 @@ const LINKS: Link[] = [
   { label: 'Contact', href: '/', isExtrenal: true },
 ]
 
-const Links: React.FC = ({}) => {
+const Links: React.FC = () => {
   return (
     <Flex justify="space-between" flexWrap="wrap">
       {LINKS.map((link: Link) => (
