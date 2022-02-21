@@ -40,7 +40,7 @@ const NumberInput = forwardRef(
             fontSize={['md', 'md', 'lg', 'lg']}
             textAlign="center"
           >
-            {value}
+            <span>{value}</span>
           </Box>
           <Button
             bg="gray.900"

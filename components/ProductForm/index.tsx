@@ -6,14 +6,20 @@ import NumberInput from '../NumberInput'
 
 export type ProductFormProps = {
   product: Product
+  zeroWhenNull?: boolean
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
-  let initialValue = 0
+const ProductForm: React.FC<ProductFormProps> = ({
+  product,
+  zeroWhenNull = false,
+}) => {
+  let initialValue
   if (typeof window !== 'undefined') {
     initialValue = Snipcart.store.getItemById(product.id)?.quantity
   }
-  const [value, setValue] = useState<number | null>(initialValue ?? null)
+  const [value, setValue] = useState<number | null>(
+    initialValue ?? zeroWhenNull ? 0 : null
+  )
 
   const STEP = Number(process.env.NEXT_PUBLIC_INPUT_STEP) || 1
   const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY) || 24
@@ -28,18 +34,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
       maxQuantity: MAX,
       url: window.location.origin,
     })
-  }, [product])
+  }, [MAX, STEP, product.id, product.name, product.unitPrice])
 
   const handleRemove = useCallback(async () => {
     await Snipcart.items.remove(product.id, STEP)
-  }, [product])
+  }, [STEP, product.id])
 
   useEffect(() => {
-    Snipcart.store.subscribe(async () => {
+    const unsubscribe = Snipcart.store.subscribe(async () => {
       const itemCount =
         (await Snipcart.store.getItemById(product.id)?.quantity) || 0
       setValue(itemCount)
     })
+    return () => unsubscribe()
   }, [product])
 
   return (

@@ -140,7 +140,7 @@ const ProductModal = forwardRef(
                   </Text>
                 </RFlex>
                 <Flex>
-                  <ProductForm product={product} />
+                  <ProductForm product={product} zeroWhenNull />
                 </Flex>
               </Flex>
             </Flex>
