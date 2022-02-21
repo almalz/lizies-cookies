@@ -41,12 +41,17 @@ const ProductForm: React.FC<ProductFormProps> = ({
   }, [STEP, product.id])
 
   useEffect(() => {
-    const unsubscribe = Snipcart.store.subscribe(async () => {
-      const itemCount =
-        (await Snipcart.store.getItemById(product.id)?.quantity) || 0
-      setValue(itemCount)
-    })
-    return () => unsubscribe()
+    let unsubscribe: () => void
+    if (typeof window !== 'undefined') {
+      unsubscribe = Snipcart.store.subscribe(async () => {
+        const itemCount =
+          (await Snipcart.store.getItemById(product.id)?.quantity) || 0
+        setValue(itemCount)
+      })
+    }
+    return () => {
+      unsubscribe()
+    }
   }, [product])
 
   return (
