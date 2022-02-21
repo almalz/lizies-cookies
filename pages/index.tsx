@@ -31,11 +31,10 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
   }, [])
 
   return (
-    <>
-      <Layout
-        title={drop.title || "Lizie's cookies"}
-        description={drop.description || "Lizie's cookies"}
-      />
+    <Layout
+      title={drop.title || "Lizie's cookies"}
+      description={drop.description || "Lizie's cookies"}
+    >
       <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
         <RBox desktopOnly w="40%" h="100%">
           <Flex
@@ -94,7 +93,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
           </Flex>
         </Box>
       </Flex>
-    </>
+    </Layout>
   )
 }
 

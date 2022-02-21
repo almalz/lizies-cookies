@@ -16,11 +16,10 @@ export type TermsPageProps = {
 
 const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
   return (
-    <>
-      <Layout
-        title={'Conditions générales de ventes'}
-        description={"Lizie's Cookies - Conditions générales de ventes"}
-      />
+    <Layout
+      title={'Conditions générales de ventes'}
+      description={"Lizie's Cookies - Conditions générales de ventes"}
+    >
       <Box shadow={'inner'}>
         <BackButton />
         <Box
@@ -30,7 +29,7 @@ const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
           {termspage.body && <MarkdownRenderer data={termspage.body.value} />}
         </Box>
       </Box>
-    </>
+    </Layout>
   )
 }
 

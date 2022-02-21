@@ -15,17 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </ChakraProvider>
       </ApolloProvider>
-      <script
-        async
-        src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"
-      ></script>
-      <div
-        id="snipcart"
-        data-config-modal-style="side"
-        data-api-key={API_KEY}
-        data-config-add-product-behavior="none"
-        hidden
-      ></div>
     </>
   )
 }

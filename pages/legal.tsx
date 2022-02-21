@@ -16,11 +16,10 @@ export type LegalPageProps = {
 
 const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
   return (
-    <>
-      <Layout
-        title={'Mentions légales'}
-        description={"Lizie's Cookies - Mentions légales"}
-      />
+    <Layout
+      title={'Mentions légales'}
+      description={"Lizie's Cookies - Mentions légales"}
+    >
       <Box shadow={'inner'}>
         <BackButton />
         <Box
@@ -30,7 +29,7 @@ const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
           {legalpage.body && <MarkdownRenderer data={legalpage.body.value} />}
         </Box>
       </Box>
-    </>
+    </Layout>
   )
 }
 
