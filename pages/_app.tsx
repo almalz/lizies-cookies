@@ -15,11 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </ChakraProvider>
       </ApolloProvider>
-      <Script
+      <script
         async
         src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"
-        strategy="beforeInteractive"
-      ></Script>
+      ></script>
       <div
         id="snipcart"
         data-config-modal-style="side"
