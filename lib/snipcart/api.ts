@@ -19,9 +19,6 @@ export const Items = {
       const snipcartItem = await Store.getItemById(id)
       const { uniqueId, quantity } = snipcartItem
       const newQuantity = quantity - value >= 0 ? quantity - value : 0
-
-      console.log(snipcartItem)
-
       await Snipcart.api.cart.items.update({
         uniqueId,
         quantity: newQuantity,

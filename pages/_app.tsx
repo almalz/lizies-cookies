@@ -3,14 +3,31 @@ import { ApolloProvider } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import client from '../lib/apolloClient'
 import '../assets/global.css'
+import Script from 'next/script'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const API_KEY = process.env.NEXT_PUBLIC_SNIPCART_API_KEY
+
   return (
-    <ApolloProvider client={client}>
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </ApolloProvider>
+    <>
+      <ApolloProvider client={client}>
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </ApolloProvider>
+      <Script
+        async
+        src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"
+        strategy="beforeInteractive"
+      ></Script>
+      <div
+        id="snipcart"
+        data-config-modal-style="side"
+        data-api-key={API_KEY}
+        data-config-add-product-behavior="none"
+        hidden
+      ></div>
+    </>
   )
 }
 
