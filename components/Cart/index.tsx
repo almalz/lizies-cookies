@@ -15,12 +15,7 @@ const Cart: React.FC<CartProps> = ({ itemCount }) => {
 
   return (
     <button onClick={handleClick}>
-      <Circle
-        p="4px"
-        pos="relative"
-        sx={{ border: '2px transparent solid' }}
-        _hover={{ border: '2px black solid' }}
-      >
+      <Circle p="4px" pos="relative">
         <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
         <Circle
           pos="absolute"

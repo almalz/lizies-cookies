@@ -31,14 +31,18 @@ const ProductForm: React.FC<ProductFormProps> = ({
   //value subscription when cart changes
   useEffect(() => {
     let unsubscribe: () => void
-    unsubscribe = Snipcart?.store?.subscribe(async () => {
-      const itemCount =
-        (await Snipcart?.store?.getItemById(product.id)?.quantity) || 0
-      setValue(itemCount)
-    })
+    if (typeof window !== 'undefined') {
+      unsubscribe = Snipcart?.store?.subscribe(async () => {
+        if (typeof window !== 'undefined') {
+          const itemCount =
+            (await Snipcart?.store?.getItemById(product.id)?.quantity) || 0
+          setValue(itemCount)
+        }
+      })
+    }
 
     return () => {
-      unsubscribe()
+      unsubscribe && unsubscribe()
     }
   }, [product])
 
