@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { ProductModalRef } from '../ProductItem/ProductModal'
-import Snipcart from '../../lib/snipcart'
+import SnipcartClient from '../../lib/snipcart'
 import { Product } from '../../types'
 import NumberInput from '../NumberInput'
 
@@ -15,7 +15,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 }) => {
   let initialValue
   if (typeof window !== 'undefined') {
-    initialValue = Snipcart.store.getItemById(product.id)?.quantity
+    // initialValue = SnipcartClient.store.getItemById(product.id)?.quantity
   }
   const [value, setValue] = useState<number | null>(
     initialValue ?? zeroWhenNull ? 0 : null
@@ -25,7 +25,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY) || 24
 
   const handleAdd = useCallback(async () => {
-    await Snipcart.items.add({
+    await SnipcartClient.items.add({
       id: product.id,
       name: product.name,
       price: product.unitPrice,
@@ -37,16 +37,17 @@ const ProductForm: React.FC<ProductFormProps> = ({
   }, [MAX, STEP, product.id, product.name, product.unitPrice])
 
   const handleRemove = useCallback(async () => {
-    await Snipcart.items.remove(product.id, STEP)
+    await SnipcartClient.items.remove(product.id, STEP)
   }, [STEP, product.id])
 
   useEffect(() => {
     let unsubscribe: () => void
     if (typeof window !== 'undefined') {
       document.addEventListener('snipcart.ready', () => {
-        unsubscribe = Snipcart.store.subscribe(async () => {
+        unsubscribe = SnipcartClient.store.subscribe(async () => {
           const itemCount =
-            (await Snipcart.store.getItemById(product.id)?.quantity) || 0
+            (await SnipcartClient?.store?.getItemById(product.id)?.quantity) ||
+            0
           setValue(itemCount)
         })
       })
@@ -55,6 +56,24 @@ const ProductForm: React.FC<ProductFormProps> = ({
       unsubscribe()
     }
   }, [product])
+
+  // useEffect(() => {
+  //   let unsubscribe: () => void
+
+  //   unsubscribe = Snipcart.store.subscribe(async () => {
+  //     const itemCount =
+  //       (
+  //         await Snipcart?.store
+  //           .getState()
+  //           .cart.items.items.find((item: any) => item.id == product.id)
+  //       )?.quantity || 0
+  //     setValue(itemCount)
+  //   })
+
+  //   return () => {
+  //     unsubscribe()
+  //   }
+  // }, [product])
 
   return (
     <NumberInput
