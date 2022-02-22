@@ -25,7 +25,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
 
   useEffect(() => {
     Snipcart.store.subscribe(async () => {
-      const _itemCount = await Snipcart.store.itemCount()
+      const _itemCount = await Snipcart?.store?.itemCount()
       setItemCount(_itemCount)
     })
   }, [])

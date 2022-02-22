@@ -10,7 +10,7 @@ export type CartProps = {
 
 const Cart: React.FC<CartProps> = ({ itemCount }) => {
   const handleClick = useCallback(() => {
-    Snipcart.cart.open()
+    Snipcart?.cart?.open()
   }, [])
 
   return (
