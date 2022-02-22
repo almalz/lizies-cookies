@@ -22,11 +22,12 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
           href="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.css"
         />
       </Head>
+      <main className="main">{children}</main>
       <Script
         async
         src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"
+        strategy="beforeInteractive"
       ></Script>
-      <main className="main">{children}</main>
       <div
         id="snipcart"
         data-config-modal-style="side"
