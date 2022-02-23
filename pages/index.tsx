@@ -3,7 +3,6 @@ import format from 'date-fns/format'
 import { NextPage, GetServerSideProps } from 'next'
 import Snipcart from '../lib/snipcart'
 import { RBox, RFlex } from '../components/Breakpoints'
-import Cart from '../components/Cart'
 import DropSummary from '../components/DropSummary'
 import Layout from '../components/Layout'
 import Links from '../components/Links'
@@ -14,31 +13,15 @@ import {
   NextIncomingDropsDocument,
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
-import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+
+const Cart = dynamic(() => import('../components/Cart'))
 
 export type DropPageProps = {
   drop: Drop
 }
 
 const Home: NextPage<DropPageProps> = ({ drop }) => {
-  const [itemCount, setItemCount] = useState(0)
-
-  useEffect(() => {
-    let unsubscribe: () => void
-    if (typeof window !== 'undefined' && Snipcart?.store?.subscribe) {
-      unsubscribe = Snipcart?.store?.subscribe(async () => {
-        if (typeof window !== 'undefined') {
-          const _itemCount = (await Snipcart?.store?.itemCount()) || 0
-          setItemCount(_itemCount)
-        }
-      })
-    }
-
-    return () => {
-      unsubscribe && unsubscribe()
-    }
-  }, [])
-
   return (
     <Layout
       title={drop.title || "Lizie's cookies"}
@@ -79,7 +62,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
               top={['4', '4', '8', '0']}
               right={['4', '4', '24', '0']}
             >
-              <Cart itemCount={itemCount} />
+              <Cart />
             </RFlex>
             <DropSummary drop={drop} />
           </RBox>
@@ -91,7 +74,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
             pt={['8px', '8px', '2%', '2%']}
           >
             <RFlex desktopOnly justifyContent="end" py="8px">
-              <Cart itemCount={itemCount} />
+              <Cart />
             </RFlex>
             <Box pb={['32px', '64px', '96px', '96px']}>
               <ProductList products={drop.products} />

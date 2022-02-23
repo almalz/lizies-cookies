@@ -29,11 +29,11 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
         strategy="beforeInteractive"
       ></Script>
       <div
+        hidden
         id="snipcart"
         data-config-modal-style="side"
         data-api-key={API_KEY}
         data-config-add-product-behavior="none"
-        hidden
       ></div>
     </>
   )

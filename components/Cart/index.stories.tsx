@@ -1,16 +1,14 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react'
 
-import Cart, { CartProps } from '.'
+import Cart from '.'
 
 export default {
   title: 'Cart',
   component: Cart,
-} as Meta<CartProps>
+} as Meta
 
-const Template: Story<CartProps> = (args) => <Cart {...args} />
+const Template: Story = (args) => <Cart {...args} />
 
 export const Primary = Template.bind({})
-Primary.args = {
-  itemCount: 23,
-}
+Primary.args = {}

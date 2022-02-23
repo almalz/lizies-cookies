@@ -4,11 +4,7 @@ import { useCallback } from 'react'
 import CartIcon from '../../assets/icons/cart.svg'
 import Snipcart from '../../lib/snipcart'
 
-export type CartProps = {
-  itemCount?: number
-}
-
-const Cart: React.FC<CartProps> = ({ itemCount }) => {
+const Cart: React.FC = () => {
   const handleClick = useCallback(() => {
     Snipcart?.cart?.open()
   }, [])
@@ -30,7 +26,7 @@ const Cart: React.FC<CartProps> = ({ itemCount }) => {
           border="2px solid"
           borderColor="white"
         >
-          {itemCount || 0}
+          <span className="snipcart-items-count"></span>
         </Circle>
       </Circle>
     </button>

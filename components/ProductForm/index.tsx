@@ -20,9 +20,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
   // value loading on mount
   useEffect(() => {
     const syncItemcount = async () => {
-      const initialValue = await Snipcart?.store?.getItemById(product.id)
-        ?.quantity
-      setValue(initialValue)
+      if (typeof window !== 'undefined' && Snipcart) {
+        const initialValue = await Snipcart?.store?.getItemById(product.id)
+          ?.quantity
+        setValue(initialValue)
+      }
     }
     syncItemcount()
   }, [product])
@@ -30,14 +32,18 @@ const ProductForm: React.FC<ProductFormProps> = ({
   //value subscription when cart changes
   useEffect(() => {
     let unsubscribe: () => void
-    if (typeof window !== 'undefined' && Snipcart?.store?.subscribe) {
-      unsubscribe = Snipcart?.store?.subscribe(async () => {
-        if (typeof window !== 'undefined') {
-          const itemCount =
-            (await Snipcart?.store?.getItemById(product.id)?.quantity) || 0
-          setValue(itemCount)
-        }
-      })
+    if (typeof window !== 'undefined' && Snipcart) {
+      unsubscribe =
+        Snipcart &&
+        Snipcart?.store?.subscribe(async () => {
+          if (typeof window !== 'undefined' && Snipcart) {
+            const itemCount =
+              (Snipcart &&
+                (await Snipcart?.store?.getItemById(product.id)?.quantity)) ||
+              0
+            setValue(itemCount)
+          }
+        })
     }
 
     return () => {

@@ -1,4 +1,4 @@
-import { forwardRef, useState, useImperativeHandle, Ref, useRef } from 'react'
+import { forwardRef, useImperativeHandle, Ref, useRef } from 'react'
 import {
   Flex,
   Text,
@@ -11,8 +11,10 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
-import ProductForm from '../ProductForm'
 import { RFlex } from '../Breakpoints'
+import dynamic from 'next/dynamic'
+
+const ProductForm = dynamic(() => import('../ProductForm'), { ssr: false })
 
 export type ProductModalProps = {
   product: Product

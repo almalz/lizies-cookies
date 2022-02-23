@@ -1,12 +1,12 @@
 import { Flex, Text, Center } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
-import NumberInput from '../NumberInput'
 import ProductModal, { ProductModalRef } from './ProductModal'
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useRef } from 'react'
 import { RFlex } from '../Breakpoints'
-import Snipcart from '../../lib/snipcart'
-import ProductForm from '../ProductForm'
+import dynamic from 'next/dynamic'
+
+const ProductForm = dynamic(() => import('../ProductForm'), { ssr: false })
 
 export type ProductItemProps = {
   product: Product
@@ -95,7 +95,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             </Text>
           </RFlex>
           <Flex>
-            <ProductForm product={product} />
+            <ProductForm product={product} zeroWhenNull />
           </Flex>
         </Flex>
       </Flex>
