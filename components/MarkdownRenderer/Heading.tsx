@@ -10,12 +10,12 @@ export const H: React.FC<HProps> = ({ tag, ...props }) => {
   switch (tag) {
     case 'h1':
       return (
-        <Heading size="3xl" mb={['16px', '16px', '32px', '64px']} {...props} />
+        <Heading size="2xl" mb={['16px', '16px', '32px', '32px']} {...props} />
       )
     case 'h2':
       return (
         <Heading
-          size="2xl"
+          size="xl"
           mb={['8px', '8px', '16px', '32px']}
           color="gray.600"
           {...props}
@@ -24,7 +24,7 @@ export const H: React.FC<HProps> = ({ tag, ...props }) => {
     case 'h3':
       return (
         <Heading
-          size="xl"
+          size="lg"
           mb={['4px', '4px', '8px', '16px']}
           color="gray.600"
           fontWeight="500"

@@ -10,6 +10,7 @@ import ProductList from '../components/ProductList'
 import client from '../lib/apolloClient'
 import { Drop } from '../types'
 import {
+  DroppageRecord,
   NextIncomingDropsDocument,
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
@@ -19,9 +20,10 @@ const Cart = dynamic(() => import('../components/Cart'))
 
 export type DropPageProps = {
   drop: Drop
+  pageBody: DroppageRecord
 }
 
-const Home: NextPage<DropPageProps> = ({ drop }) => {
+const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
   return (
     <Layout
       title={drop.title || "Lizie's cookies"}
@@ -37,7 +39,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
             pt={['0', '0', '64px', '64px']}
             pb={['0', '0', '16px', '24px']}
           >
-            <DropSummary drop={drop} />
+            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
             <Box mt="auto">
               <Links />
             </Box>
@@ -64,7 +66,7 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
             >
               <Cart />
             </RFlex>
-            <DropSummary drop={drop} />
+            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
           </RBox>
 
           <Flex
@@ -100,6 +102,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
   const nextIncomingDrop: Drop = (data.allDrops[0] as Drop) || null
 
+  console.log(data)
+
   if (!nextIncomingDrop) {
     return {
       redirect: {
@@ -112,6 +116,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   return {
     props: {
       drop: nextIncomingDrop,
+      pageBody: data?.droppage,
     },
   }
 }

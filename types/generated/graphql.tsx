@@ -202,13 +202,6 @@ export type DropRecordDescriptionArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>
 }
 
-export type DroppageModelBodyField = {
-  __typename?: 'DroppageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
-
 /** Record of type DropPage (droppage) */
 export type DroppageRecord = {
   __typename?: 'DroppageRecord'
@@ -223,15 +216,22 @@ export type DroppageRecord = {
   _status: ItemStatus
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
   _updatedAt: Scalars['DateTime']
-  body?: Maybe<DroppageModelBodyField>
   createdAt: Scalars['DateTime']
+  description?: Maybe<Scalars['String']>
   id: Scalars['ItemId']
+  metadata: Array<MetadatumRecord>
+  title?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type DropPage (droppage) */
+export type DroppageRecordDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
 }
 
 export type ErrorpageModelBodyField = {
@@ -1927,6 +1927,37 @@ export type LinksFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
 }
 
+/** Record of type Metadata (metadatum) */
+export type MetadatumRecord = {
+  __typename?: 'MetadatumRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  createdAt: Scalars['DateTime']
+  description?: Maybe<Scalars['String']>
+  id: Scalars['ItemId']
+  title?: Maybe<Scalars['String']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type Metadata (metadatum) */
+export type MetadatumRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type Metadata (metadatum) */
+export type MetadatumRecordDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
 export enum MuxThumbnailFormatType {
   Gif = 'gif',
   Jpg = 'jpg',
@@ -2916,20 +2947,15 @@ export type NextIncomingDropsQuery = {
       }>
     }>
   }>
-}
-
-export type DropPageQueryVariables = Exact<{ [key: string]: never }>
-
-export type DropPageQuery = {
-  __typename?: 'Query'
   droppage?: {
     __typename?: 'DroppageRecord'
-    body?: {
-      __typename?: 'DroppageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
+    title?: string | null
+    description?: string | null
+    metadata: Array<{
+      __typename?: 'MetadatumRecord'
+      title?: string | null
+      description?: string | null
+    }>
   } | null
 }
 
@@ -3169,7 +3195,10 @@ export type DropByIdQueryResult = Apollo.QueryResult<
 >
 export const NextIncomingDropsDocument = gql`
   query nextIncomingDrops($TODAY: Date) {
-    allDrops(orderBy: endDate_ASC, filter: { endDate: { gte: $TODAY } }) {
+    allDrops(
+      orderBy: endDate_ASC
+      filter: { endDate: { gte: $TODAY }, releaseDate: { lte: $TODAY } }
+    ) {
       id
       slug
       releaseDate
@@ -3194,6 +3223,14 @@ export const NextIncomingDropsDocument = gql`
       }
       title
       description
+    }
+    droppage {
+      title
+      description
+      metadata {
+        title
+        description
+      }
     }
   }
 `
@@ -3247,62 +3284,6 @@ export type NextIncomingDropsLazyQueryHookResult = ReturnType<
 export type NextIncomingDropsQueryResult = Apollo.QueryResult<
   NextIncomingDropsQuery,
   NextIncomingDropsQueryVariables
->
-export const DropPageDocument = gql`
-  query DropPage {
-    droppage {
-      body {
-        blocks
-        links
-        value
-      }
-    }
-  }
-`
-
-/**
- * __useDropPageQuery__
- *
- * To run a query within a React component, call `useDropPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDropPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDropPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(
-    DropPageDocument,
-    options
-  )
-}
-export function useDropPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    DropPageQuery,
-    DropPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(
-    DropPageDocument,
-    options
-  )
-}
-export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>
-export type DropPageLazyQueryHookResult = ReturnType<
-  typeof useDropPageLazyQuery
->
-export type DropPageQueryResult = Apollo.QueryResult<
-  DropPageQuery,
-  DropPageQueryVariables
 >
 export const LegalPageDocument = gql`
   query LegalPage {

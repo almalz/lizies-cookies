@@ -87,4 +87,12 @@ query nextIncomingDrops($TODAY: Date) {
     title
     description
   }
+  droppage {
+    title
+    description
+    metadata {
+      title
+      description
+    }
+  }
 }

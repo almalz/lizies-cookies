@@ -1,13 +1,3 @@
-query DropPage {
-  droppage {
-    body {
-      blocks
-      links
-      value
-    }
-  }
-}
-
 query LegalPage {
   legalpage {
     body {
