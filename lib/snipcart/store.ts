@@ -6,5 +6,5 @@ export const Store = {
     Snipcart.store
       .getState()
       .cart.items.items.find((item: any) => item.id == id),
-  subscribe: (callback: () => void) => Snipcart.store.subscribe(callback),
+  subscribe: (callback: () => void) => Snipcart?.store?.subscribe(callback),
 }

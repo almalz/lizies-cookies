@@ -1,4 +1,4 @@
-import { Heading, Text, Flex, Box } from '@chakra-ui/react'
+import { Heading, Text, Flex } from '@chakra-ui/react'
 import format from 'date-fns/format'
 import { Drop } from '../../types'
 import Carousel from '../Carousel'

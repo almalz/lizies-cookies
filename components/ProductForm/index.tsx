@@ -1,5 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react'
-import { ProductModalRef } from '../ProductItem/ProductModal'
+import { useState, useCallback, useEffect } from 'react'
 import Snipcart from '../../lib/snipcart'
 import { Product } from '../../types'
 import NumberInput from '../NumberInput'
@@ -31,7 +30,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   //value subscription when cart changes
   useEffect(() => {
     let unsubscribe: () => void
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && Snipcart?.store?.subscribe) {
       unsubscribe = Snipcart?.store?.subscribe(async () => {
         if (typeof window !== 'undefined') {
           const itemCount =

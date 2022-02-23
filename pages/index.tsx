@@ -15,7 +15,6 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 
 export type DropPageProps = {
   drop: Drop
