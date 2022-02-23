@@ -339,6 +339,13 @@ export type FaqcategoryRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
 }
 
+export type FaqitemModelAnswerField = {
+  __typename?: 'FaqitemModelAnswerField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
 /** Record of type FaqItem (faqitem) */
 export type FaqitemRecord = {
   __typename?: 'FaqitemRecord'
@@ -353,7 +360,7 @@ export type FaqitemRecord = {
   _status: ItemStatus
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
   _updatedAt: Scalars['DateTime']
-  answer?: Maybe<Scalars['String']>
+  answer?: Maybe<FaqitemModelAnswerField>
   category?: Maybe<FaqcategoryRecord>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
@@ -2958,6 +2965,33 @@ export type TermsPageQuery = {
   } | null
 }
 
+export type FaqPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type FaqPageQuery = {
+  __typename?: 'Query'
+  faqpage?: {
+    __typename?: 'FaqpageRecord'
+    items: Array<{
+      __typename?: 'FaqitemRecord'
+      id: any
+      question?: string | null
+      updatedAt: any
+      answer?: {
+        __typename?: 'FaqitemModelAnswerField'
+        blocks: Array<string>
+        links: Array<string>
+        value: any
+      } | null
+      category?: {
+        __typename?: 'FaqcategoryRecord'
+        id: any
+        name?: string | null
+        position?: any | null
+      } | null
+    }>
+  } | null
+}
+
 export const DropsDocument = gql`
   query Drops {
     allDrops {
@@ -3353,4 +3387,65 @@ export type TermsPageLazyQueryHookResult = ReturnType<
 export type TermsPageQueryResult = Apollo.QueryResult<
   TermsPageQuery,
   TermsPageQueryVariables
+>
+export const FaqPageDocument = gql`
+  query FaqPage {
+    faqpage {
+      items {
+        id
+        question
+        answer {
+          blocks
+          links
+          value
+        }
+        updatedAt
+        category {
+          id
+          name
+          position
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useFaqPageQuery__
+ *
+ * To run a query within a React component, call `useFaqPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFaqPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFaqPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFaqPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<FaqPageQuery, FaqPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<FaqPageQuery, FaqPageQueryVariables>(
+    FaqPageDocument,
+    options
+  )
+}
+export function useFaqPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<FaqPageQuery, FaqPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<FaqPageQuery, FaqPageQueryVariables>(
+    FaqPageDocument,
+    options
+  )
+}
+export type FaqPageQueryHookResult = ReturnType<typeof useFaqPageQuery>
+export type FaqPageLazyQueryHookResult = ReturnType<typeof useFaqPageLazyQuery>
+export type FaqPageQueryResult = Apollo.QueryResult<
+  FaqPageQuery,
+  FaqPageQueryVariables
 >

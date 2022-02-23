@@ -24,10 +24,19 @@ const Home: NextPage<DropPageProps> = ({ drop }) => {
   const [itemCount, setItemCount] = useState(0)
 
   useEffect(() => {
-    Snipcart.store.subscribe(async () => {
-      const _itemCount = await Snipcart?.store?.itemCount()
-      setItemCount(_itemCount)
-    })
+    let unsubscribe: () => void
+    if (typeof window !== 'undefined' && Snipcart?.store?.subscribe) {
+      unsubscribe = Snipcart?.store?.subscribe(async () => {
+        if (typeof window !== 'undefined') {
+          const _itemCount = (await Snipcart?.store?.itemCount()) || 0
+          setItemCount(_itemCount)
+        }
+      })
+    }
+
+    return () => {
+      unsubscribe && unsubscribe()
+    }
   }, [])
 
   return (

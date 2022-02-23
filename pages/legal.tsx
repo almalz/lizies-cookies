@@ -33,7 +33,7 @@ const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<LegalPageQuery>({
     query: LegalPageDocument,
   })

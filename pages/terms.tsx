@@ -33,7 +33,7 @@ const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<TermsPageQuery>({
     query: TermsPageDocument,
   })
