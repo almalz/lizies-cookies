@@ -5,24 +5,27 @@ import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import client from '../lib/apolloClient'
 import {
-  ErrorPageQuery,
-  ErrorPageDocument,
-  ErrorpageRecord,
+  NoDropPageQuery,
+  NoDropPageDocument,
+  NodroppageRecord,
 } from '../types/generated/graphql'
 
-export type ErrorPageProps = {
-  errorpage: ErrorpageRecord
+export type NoDropPageProps = {
+  nodroppage: NodroppageRecord
 }
 
-const ErrorPage: NextPage<ErrorPageProps> = ({ errorpage }) => {
+const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage }) => {
   return (
-    <Layout title={'404'} description={"Lizie's Cookies - 404 Not found"}>
+    <Layout
+      title={'Aucun drop en cours'}
+      description={"Lizie's Cookies - aucun drop en cours"}
+    >
       <Box shadow={'inner'}>
         <Box
           py={['32px', '32px', '32px', '120px']}
           px={['32px', '64px', '120px', '240px']}
         >
-          {errorpage.body && <MarkdownRenderer data={errorpage.body.value} />}
+          {nodroppage.body && <MarkdownRenderer data={nodroppage.body.value} />}
         </Box>
       </Box>
     </Layout>
@@ -30,15 +33,15 @@ const ErrorPage: NextPage<ErrorPageProps> = ({ errorpage }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await client.query<ErrorPageQuery>({
-    query: ErrorPageDocument,
+  const { data } = await client.query<NoDropPageQuery>({
+    query: NoDropPageDocument,
   })
 
   return {
     props: {
-      errorpage: data.errorpage,
+      nodroppage: data.nodroppage,
     },
   }
 }
 
-export default ErrorPage
+export default NoDropPage

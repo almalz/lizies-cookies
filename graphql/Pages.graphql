@@ -47,3 +47,23 @@ query FaqPage {
     }
   }
 }
+
+query ErrorPage {
+  errorpage {
+    body {
+      blocks
+      links
+      value
+    }
+  }
+}
+
+query NoDropPage {
+  nodroppage {
+    body {
+      blocks
+      links
+      value
+    }
+  }
+}

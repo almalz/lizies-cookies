@@ -258,7 +258,6 @@ export type ErrorpageRecord = {
   body?: Maybe<ErrorpageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
-  textiscentered?: Maybe<Scalars['BooleanType']>
   updatedAt: Scalars['DateTime']
 }
 
@@ -1958,7 +1957,6 @@ export type NodroppageRecord = {
   body?: Maybe<NodroppageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
-  textiscentered?: Maybe<Scalars['BooleanType']>
   updatedAt: Scalars['DateTime']
 }
 
@@ -2992,6 +2990,36 @@ export type FaqPageQuery = {
   } | null
 }
 
+export type ErrorPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type ErrorPageQuery = {
+  __typename?: 'Query'
+  errorpage?: {
+    __typename?: 'ErrorpageRecord'
+    body?: {
+      __typename?: 'ErrorpageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+  } | null
+}
+
+export type NoDropPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type NoDropPageQuery = {
+  __typename?: 'Query'
+  nodroppage?: {
+    __typename?: 'NodroppageRecord'
+    body?: {
+      __typename?: 'NodroppageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+  } | null
+}
+
 export const DropsDocument = gql`
   query Drops {
     allDrops {
@@ -3448,4 +3476,119 @@ export type FaqPageLazyQueryHookResult = ReturnType<typeof useFaqPageLazyQuery>
 export type FaqPageQueryResult = Apollo.QueryResult<
   FaqPageQuery,
   FaqPageQueryVariables
+>
+export const ErrorPageDocument = gql`
+  query ErrorPage {
+    errorpage {
+      body {
+        blocks
+        links
+        value
+      }
+    }
+  }
+`
+
+/**
+ * __useErrorPageQuery__
+ *
+ * To run a query within a React component, call `useErrorPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useErrorPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useErrorPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useErrorPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<ErrorPageQuery, ErrorPageQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<ErrorPageQuery, ErrorPageQueryVariables>(
+    ErrorPageDocument,
+    options
+  )
+}
+export function useErrorPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    ErrorPageQuery,
+    ErrorPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<ErrorPageQuery, ErrorPageQueryVariables>(
+    ErrorPageDocument,
+    options
+  )
+}
+export type ErrorPageQueryHookResult = ReturnType<typeof useErrorPageQuery>
+export type ErrorPageLazyQueryHookResult = ReturnType<
+  typeof useErrorPageLazyQuery
+>
+export type ErrorPageQueryResult = Apollo.QueryResult<
+  ErrorPageQuery,
+  ErrorPageQueryVariables
+>
+export const NoDropPageDocument = gql`
+  query NoDropPage {
+    nodroppage {
+      body {
+        blocks
+        links
+        value
+      }
+    }
+  }
+`
+
+/**
+ * __useNoDropPageQuery__
+ *
+ * To run a query within a React component, call `useNoDropPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNoDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNoDropPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNoDropPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    NoDropPageQuery,
+    NoDropPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<NoDropPageQuery, NoDropPageQueryVariables>(
+    NoDropPageDocument,
+    options
+  )
+}
+export function useNoDropPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    NoDropPageQuery,
+    NoDropPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<NoDropPageQuery, NoDropPageQueryVariables>(
+    NoDropPageDocument,
+    options
+  )
+}
+export type NoDropPageQueryHookResult = ReturnType<typeof useNoDropPageQuery>
+export type NoDropPageLazyQueryHookResult = ReturnType<
+  typeof useNoDropPageLazyQuery
+>
+export type NoDropPageQueryResult = Apollo.QueryResult<
+  NoDropPageQuery,
+  NoDropPageQueryVariables
 >

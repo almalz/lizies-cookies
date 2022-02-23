@@ -15,6 +15,7 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 export type DropPageProps = {
   drop: Drop
@@ -115,7 +116,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   })
 
   // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
-  const nextIncomingDrop: Drop = data.allDrops[0] as Drop
+  const nextIncomingDrop: Drop = (data.allDrops[0] as Drop) || null
+
+  if (!nextIncomingDrop) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/nodrop',
+      },
+    }
+  }
 
   return {
     props: {

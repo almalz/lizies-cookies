@@ -10,7 +10,11 @@ const LINKS: Link[] = [
   { label: 'Mentions légales', href: '/legal', isExtrenal: false },
   { label: 'CGV', href: '/terms', isExtrenal: false },
   { label: 'FAQ', href: '/faq', isExtrenal: false },
-  { label: 'Contact', href: '/', isExtrenal: true },
+  {
+    label: 'Contact',
+    href: 'mailto:hello@liziescookies.fr',
+    isExtrenal: true,
+  },
 ]
 
 const Links: React.FC = () => {
