@@ -3,8 +3,11 @@ import { Drop } from '../../types'
 import Carousel from '../Carousel'
 import { RBox } from '../Breakpoints'
 import { DroppageRecord } from '../../types/generated/graphql'
-import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { injectVariables } from '../../lib/utils'
+import { CountdownRenderProps } from 'react-countdown'
+import dynamic from 'next/dynamic'
+
+const Countdown = dynamic(() => import('react-countdown'), { ssr: false })
 
 export type DropSummaryProps = {
   pageBody: DroppageRecord
@@ -30,17 +33,17 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       <Heading as="h1" size="xl" mb="32px" w={['80%', '80%', '100%', '100%']}>
         {pageBody.title && injectVariables(pageBody.title, drop)}
       </Heading>
-      {typeof window !== 'undefined' && (
-        <Text as="i" color="gray.700" mb="16px">
-          {'Fin du drop dans '}
+      <Text color="gray.800" mb="16px">
+        {'Fin du drop dans '}
+        {typeof window !== 'undefined' && (
           <Countdown
             date={drop.endDate}
             renderer={(props) => <RenderCountdown {...props} />}
           />
-        </Text>
-      )}
+        )}
+      </Text>
 
-      <Text color="gray.700" mb={['4px', '4px', '32px', '32px']}>
+      <Text color="gray.800" mb={['4px', '4px', '32px', '32px']}>
         {pageBody.description}
       </Text>
       <RBox desktopOnly mx="auto">
