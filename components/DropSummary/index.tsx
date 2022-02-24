@@ -3,12 +3,25 @@ import { Drop } from '../../types'
 import Carousel from '../Carousel'
 import { RBox } from '../Breakpoints'
 import { DroppageRecord } from '../../types/generated/graphql'
-import Countdown from 'react-countdown'
+import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { injectVariables } from '../../lib/utils'
 
 export type DropSummaryProps = {
   pageBody: DroppageRecord
   drop: Drop
+}
+
+const RenderCountdown: React.FC<CountdownRenderProps> = (props) => {
+  const { days, hours, minutes, seconds } = props
+
+  return (
+    <span>
+      {(days ? `${days} jour(s)` : '') +
+        (hours ? `${hours} h ` : '') +
+        (minutes ? `${minutes} min ` : '') +
+        (seconds ? `${seconds} s ` : '')}
+    </span>
+  )
 }
 
 const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
@@ -21,9 +34,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
         {'Fin du drop dans '}
         <Countdown
           date={drop.endDate}
-          renderer={(props) => (
-            <span>{`${props.days} jour(s) ${props.hours} h ${props.minutes} min ${props.seconds} s`}</span>
-          )}
+          renderer={(props) => <RenderCountdown {...props} />}
         />
       </Text>
       <Text color="gray.700" mb={['4px', '4px', '32px', '32px']}>
