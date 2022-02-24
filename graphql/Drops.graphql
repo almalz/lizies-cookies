@@ -90,9 +90,14 @@ query nextIncomingDrops($TODAY: Date) {
   droppage {
     title
     description
-    metadata {
+    noindex
+    seo {
       title
       description
+      image {
+        url
+      }
+      twitterCard
     }
   }
 }

@@ -1,20 +1,19 @@
 import Head from 'next/head'
 import Script from 'next/script'
+import { NextSeo } from 'next-seo'
+import { SeoField } from '../../types/generated/graphql'
 
 export type LayoutProps = {
-  title: string
-  description: string
+  seo?: SeoField
+  noIndex?: boolean
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
+const Layout: React.FC<LayoutProps> = ({ children, seo, noIndex = false }) => {
   const API_KEY = process.env.NEXT_PUBLIC_SNIPCART_API_KEY
 
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="description" content={description} />
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link
@@ -22,6 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
           href="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.css"
         />
       </Head>
+      <NextSeo
+        noindex={noIndex}
+        title={seo?.title || "Lizie's cookies"}
+        description={seo?.description || "Lizie's cookies"}
+      />
       <main className="main">{children}</main>
       <Script
         async

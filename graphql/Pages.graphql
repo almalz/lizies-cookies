@@ -5,6 +5,15 @@ query LegalPage {
       links
       value
     }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
   }
 }
 
@@ -14,6 +23,15 @@ query TermsPage {
       blocks
       links
       value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
     }
   }
 }
@@ -35,6 +53,15 @@ query FaqPage {
         position
       }
     }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
   }
 }
 
@@ -45,6 +72,15 @@ query ErrorPage {
       links
       value
     }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
   }
 }
 
@@ -54,6 +90,15 @@ query NoDropPage {
       blocks
       links
       value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
     }
   }
 }

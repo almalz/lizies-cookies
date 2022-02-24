@@ -25,10 +25,7 @@ export type DropPageProps = {
 
 const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
   return (
-    <Layout
-      title={drop.title || "Lizie's cookies"}
-      description={drop.description || "Lizie's cookies"}
-    >
+    <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex}>
       <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
         <RBox desktopOnly w="40%" h="100%">
           <Flex
@@ -101,8 +98,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
   const nextIncomingDrop: Drop = (data.allDrops[0] as Drop) || null
-
-  console.log(data)
 
   if (!nextIncomingDrop) {
     return {

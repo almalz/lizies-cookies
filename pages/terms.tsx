@@ -16,10 +16,7 @@ export type TermsPageProps = {
 
 const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
   return (
-    <Layout
-      title={'Conditions générales de ventes'}
-      description={"Lizie's Cookies - Conditions générales de ventes"}
-    >
+    <Layout seo={termspage?.seo || undefined} noIndex={termspage?.noindex}>
       <Box shadow={'inner'}>
         <BackButton />
         <Box

@@ -16,10 +16,7 @@ export type LegalPageProps = {
 
 const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
   return (
-    <Layout
-      title={'Mentions légales'}
-      description={"Lizie's Cookies - Mentions légales"}
-    >
+    <Layout seo={legalpage?.seo || undefined} noIndex={legalpage?.noindex}>
       <Box shadow={'inner'}>
         <BackButton />
         <Box

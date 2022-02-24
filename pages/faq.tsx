@@ -26,7 +26,7 @@ export type FaqPageProps = {
 
 const FaqPage: NextPage<FaqPageProps> = ({ faqpage }) => {
   return (
-    <Layout title={'FAQ'} description={"Lizie's Cookies - FAQ"}>
+    <Layout seo={faqpage?.seo || undefined} noIndex={faqpage?.noindex}>
       <Box shadow={'inner'}>
         <BackButton />
         <Box

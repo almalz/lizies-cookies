@@ -16,10 +16,7 @@ export type NoDropPageProps = {
 
 const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage }) => {
   return (
-    <Layout
-      title={'Aucun drop en cours'}
-      description={"Lizie's Cookies - aucun drop en cours"}
-    >
+    <Layout seo={nodroppage?.seo || undefined} noIndex={nodroppage?.noindex}>
       <Box shadow={'inner'}>
         <Box
           py={['32px', '32px', '32px', '120px']}

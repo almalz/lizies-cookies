@@ -16,7 +16,7 @@ export type ErrorPageProps = {
 
 const ErrorPage: NextPage<ErrorPageProps> = ({ errorpage }) => {
   return (
-    <Layout title={'404'} description={"Lizie's Cookies - 404 Not found"}>
+    <Layout seo={errorpage?.seo || undefined} noIndex={errorpage?.noindex}>
       <Box shadow={'inner'}>
         <Box
           py={['32px', '32px', '32px', '120px']}

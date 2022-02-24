@@ -219,7 +219,8 @@ export type DroppageRecord = {
   createdAt: Scalars['DateTime']
   description?: Maybe<Scalars['String']>
   id: Scalars['ItemId']
-  metadata: Array<MetadatumRecord>
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   title?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
@@ -258,6 +259,8 @@ export type ErrorpageRecord = {
   body?: Maybe<ErrorpageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   updatedAt: Scalars['DateTime']
 }
 
@@ -389,6 +392,8 @@ export type FaqpageRecord = {
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
   items: Array<FaqitemRecord>
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   updatedAt: Scalars['DateTime']
 }
 
@@ -1905,6 +1910,8 @@ export type LegalpageRecord = {
   body?: Maybe<LegalpageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   updatedAt: Scalars['DateTime']
 }
 
@@ -1925,37 +1932,6 @@ export type LinksFilter = {
   exists?: InputMaybe<Scalars['BooleanType']>
   /** Filter records not linked to any of the specified records. The specified values must be Record IDs */
   notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
-}
-
-/** Record of type Metadata (metadatum) */
-export type MetadatumRecord = {
-  __typename?: 'MetadatumRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
-  /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  description?: Maybe<Scalars['String']>
-  id: Scalars['ItemId']
-  title?: Maybe<Scalars['String']>
-  updatedAt: Scalars['DateTime']
-}
-
-/** Record of type Metadata (metadatum) */
-export type MetadatumRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
-
-/** Record of type Metadata (metadatum) */
-export type MetadatumRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
 }
 
 export enum MuxThumbnailFormatType {
@@ -1988,6 +1964,8 @@ export type NodroppageRecord = {
   body?: Maybe<NodroppageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   updatedAt: Scalars['DateTime']
 }
 
@@ -2449,6 +2427,8 @@ export type TermspageRecord = {
   body?: Maybe<TermspageModelBodyField>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
   updatedAt: Scalars['DateTime']
 }
 
@@ -2951,11 +2931,14 @@ export type NextIncomingDropsQuery = {
     __typename?: 'DroppageRecord'
     title?: string | null
     description?: string | null
-    metadata: Array<{
-      __typename?: 'MetadatumRecord'
+    noindex?: any | null
+    seo?: {
+      __typename?: 'SeoField'
       title?: string | null
       description?: string | null
-    }>
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
+    } | null
   } | null
 }
 
@@ -2965,11 +2948,19 @@ export type LegalPageQuery = {
   __typename?: 'Query'
   legalpage?: {
     __typename?: 'LegalpageRecord'
+    noindex?: any | null
     body?: {
       __typename?: 'LegalpageModelBodyField'
       blocks: Array<string>
       links: Array<string>
       value: any
+    } | null
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
     } | null
   } | null
 }
@@ -2980,11 +2971,19 @@ export type TermsPageQuery = {
   __typename?: 'Query'
   termspage?: {
     __typename?: 'TermspageRecord'
+    noindex?: any | null
     body?: {
       __typename?: 'TermspageModelBodyField'
       blocks: Array<string>
       links: Array<string>
       value: any
+    } | null
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
     } | null
   } | null
 }
@@ -2995,6 +2994,7 @@ export type FaqPageQuery = {
   __typename?: 'Query'
   faqpage?: {
     __typename?: 'FaqpageRecord'
+    noindex?: any | null
     items: Array<{
       __typename?: 'FaqitemRecord'
       id: any
@@ -3013,6 +3013,13 @@ export type FaqPageQuery = {
         position?: any | null
       } | null
     }>
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
+    } | null
   } | null
 }
 
@@ -3022,11 +3029,19 @@ export type ErrorPageQuery = {
   __typename?: 'Query'
   errorpage?: {
     __typename?: 'ErrorpageRecord'
+    noindex?: any | null
     body?: {
       __typename?: 'ErrorpageModelBodyField'
       blocks: Array<string>
       links: Array<string>
       value: any
+    } | null
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
     } | null
   } | null
 }
@@ -3037,11 +3052,19 @@ export type NoDropPageQuery = {
   __typename?: 'Query'
   nodroppage?: {
     __typename?: 'NodroppageRecord'
+    noindex?: any | null
     body?: {
       __typename?: 'NodroppageModelBodyField'
       blocks: Array<string>
       links: Array<string>
       value: any
+    } | null
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
     } | null
   } | null
 }
@@ -3227,9 +3250,14 @@ export const NextIncomingDropsDocument = gql`
     droppage {
       title
       description
-      metadata {
+      noindex
+      seo {
         title
         description
+        image {
+          url
+        }
+        twitterCard
       }
     }
   }
@@ -3293,6 +3321,15 @@ export const LegalPageDocument = gql`
         links
         value
       }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
+      }
     }
   }
 `
@@ -3348,6 +3385,15 @@ export const TermsPageDocument = gql`
         blocks
         links
         value
+      }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
       }
     }
   }
@@ -3415,6 +3461,15 @@ export const FaqPageDocument = gql`
           position
         }
       }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
+      }
     }
   }
 `
@@ -3465,6 +3520,15 @@ export const ErrorPageDocument = gql`
         blocks
         links
         value
+      }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
       }
     }
   }
@@ -3521,6 +3585,15 @@ export const NoDropPageDocument = gql`
         blocks
         links
         value
+      }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
       }
     }
   }
