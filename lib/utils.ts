@@ -1,3 +1,5 @@
+import { format, isValid } from 'date-fns'
+
 export const injectVariables = (
   text: string,
   variableSource: Record<string, any>
@@ -14,8 +16,18 @@ export const injectVariables = (
         typeof variableSource[key] === 'number')
     ) {
       const searchRegExp = new RegExp(placeholder, 'g')
-      text = text.replace(searchRegExp, variableSource[key])
+      let replaceWith: any
+
+      if (isValid(new Date(variableSource[key]))) {
+        replaceWith = formatDate(variableSource[key])
+      } else {
+        replaceWith = variableSource[key]
+      }
+
+      text = text.replace(searchRegExp, replaceWith)
     }
   })
   return text
 }
+
+const formatDate = (date: Date) => format(new Date(date), 'dd.MM.yyyy')

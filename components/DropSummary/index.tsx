@@ -1,5 +1,4 @@
 import { Heading, Text, Flex } from '@chakra-ui/react'
-import format from 'date-fns/format'
 import { Drop } from '../../types'
 import Carousel from '../Carousel'
 import { RBox } from '../Breakpoints'
@@ -11,8 +10,6 @@ export type DropSummaryProps = {
   pageBody: DroppageRecord
   drop: Drop
 }
-
-const formatDate = (date: Date) => format(new Date(date), 'dd.MM.yyyy')
 
 const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
   return (
