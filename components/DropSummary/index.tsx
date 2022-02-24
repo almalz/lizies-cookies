@@ -16,7 +16,7 @@ const RenderCountdown: React.FC<CountdownRenderProps> = (props) => {
 
   return (
     <span>
-      {(days ? `${days} jour(s)` : '') +
+      {(days ? (days > 1 ? `${days} jours ` : `${days} jour `) : '') +
         (hours ? `${hours} h ` : '') +
         (minutes ? `${minutes} min ` : '') +
         (seconds ? `${seconds} s ` : '')}

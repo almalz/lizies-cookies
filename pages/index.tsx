@@ -1,7 +1,6 @@
 import { Flex, Box } from '@chakra-ui/react'
 import format from 'date-fns/format'
 import { NextPage, GetServerSideProps } from 'next'
-import Snipcart from '../lib/snipcart'
 import { RBox, RFlex } from '../components/Breakpoints'
 import DropSummary from '../components/DropSummary'
 import Layout from '../components/Layout'
@@ -16,7 +15,10 @@ import {
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
 
-const Cart = dynamic(() => import('../components/Cart'))
+const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
+const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
+  ssr: false,
+})
 
 export type DropPageProps = {
   drop: Drop
@@ -83,6 +85,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             </RBox>
           </Flex>
         </Box>
+        <ThresholdModal />
       </Flex>
     </Layout>
   )
