@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box, Center } from '@chakra-ui/react'
 import format from 'date-fns/format'
 import { NextPage, GetServerSideProps } from 'next'
 import { RBox, RFlex } from '../components/Breakpoints'
@@ -35,11 +35,11 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             flexDir={'column'}
             boxShadow="inner"
             px={['0', '0', '64px', '64px']}
-            pt={['0', '0', '64px', '64px']}
-            pb={['0', '0', '16px', '24px']}
+            alignItems="center"
+            justifyContent="center"
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            <Box mt="auto">
+            <Box mt="10%" w="100%" mx="auto">
               <Links />
             </Box>
           </Flex>
@@ -49,13 +49,13 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           w={['100%', '100%', '100%', '60%']}
           h="100%"
           boxShadow="2xl"
-          overflowY="scroll"
+          overflow="scroll"
         >
           <RBox
             mobileOnly
             pos="relative"
             px={['16px', '16px', '96px', '0px']}
-            py={['16px', '16px', '32px', '0px']}
+            pt={['16px', '16px', '32px', '0px']}
           >
             <RFlex
               mobileOnly
@@ -69,20 +69,27 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           </RBox>
 
           <Flex
-            flexDir={'column'}
             h="100%"
-            px={['16px', '16px', '96px', '96px']}
-            pt={['8px', '8px', '2%', '2%']}
+            justifyContent="center"
+            alignItems={['start', 'start', 'start', 'center']}
           >
-            <RFlex desktopOnly justifyContent="end" py="8px">
-              <Cart />
+            <RFlex
+              px={['16px', '16px', '96px', '96px']}
+              pt={['32px', '32px', '2%', '2%']}
+              flexDir={'column'}
+              overflowY="scroll"
+              maxH={['', '', '', '100%']}
+            >
+              <RFlex desktopOnly justifyContent="end" py="8px">
+                <Cart />
+              </RFlex>
+              <Box pb={['32px', '64px', '96px', '96px']}>
+                <ProductList products={drop.products} />
+              </Box>
+              <RBox mobileOnly px="32px" pb="32px">
+                <Links />
+              </RBox>
             </RFlex>
-            <Box pb={['32px', '64px', '96px', '96px']}>
-              <ProductList products={drop.products} />
-            </Box>
-            <RBox mobileOnly px="32px" pb="32px">
-              <Links />
-            </RBox>
           </Flex>
         </Box>
         <ThresholdModal />
