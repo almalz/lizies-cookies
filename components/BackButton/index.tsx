@@ -5,7 +5,13 @@ import { useCallback } from 'react'
 const BackButton: React.FC = () => {
   const handleClick = useCallback(() => {
     if (typeof window !== 'undefined') {
-      window.history.back()
+      // if previous page is from the domain, to go this page
+      // else go to index page
+      if (document.referrer.includes(window.location.origin)) {
+        window.history.back()
+      } else {
+        window.location.href = window.location.origin
+      }
     }
   }, [])
 
