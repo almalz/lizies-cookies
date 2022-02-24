@@ -27,7 +27,7 @@ export type DropPageProps = {
 
 const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
   return (
-    <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex}>
+    <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
       <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
         <RBox desktopOnly w="40%" h="100%">
           <Flex

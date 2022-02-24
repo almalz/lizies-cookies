@@ -16,7 +16,11 @@ export type ErrorPageProps = {
 
 const ErrorPage: NextPage<ErrorPageProps> = ({ errorpage }) => {
   return (
-    <Layout seo={errorpage?.seo || undefined} noIndex={errorpage?.noindex}>
+    <Layout
+      seo={errorpage?.seo || undefined}
+      noIndex={errorpage?.noindex}
+      slug="404"
+    >
       <Box shadow={'inner'}>
         <Box
           py={['32px', '32px', '32px', '120px']}

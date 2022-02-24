@@ -16,7 +16,11 @@ export type LegalPageProps = {
 
 const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
   return (
-    <Layout seo={legalpage?.seo || undefined} noIndex={legalpage?.noindex}>
+    <Layout
+      seo={legalpage?.seo || undefined}
+      noIndex={legalpage?.noindex}
+      slug="legal"
+    >
       <Box shadow={'inner'}>
         <BackButton />
         <Box

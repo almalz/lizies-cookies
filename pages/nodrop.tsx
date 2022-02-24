@@ -16,7 +16,11 @@ export type NoDropPageProps = {
 
 const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage }) => {
   return (
-    <Layout seo={nodroppage?.seo || undefined} noIndex={nodroppage?.noindex}>
+    <Layout
+      seo={nodroppage?.seo || undefined}
+      noIndex={nodroppage?.noindex}
+      slug="nodrop"
+    >
       <Box shadow={'inner'}>
         <Box
           py={['32px', '32px', '32px', '120px']}

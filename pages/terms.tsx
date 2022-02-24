@@ -16,7 +16,11 @@ export type TermsPageProps = {
 
 const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
   return (
-    <Layout seo={termspage?.seo || undefined} noIndex={termspage?.noindex}>
+    <Layout
+      seo={termspage?.seo || undefined}
+      noIndex={termspage?.noindex}
+      slug="terms"
+    >
       <Box shadow={'inner'}>
         <BackButton />
         <Box

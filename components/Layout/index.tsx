@@ -6,10 +6,17 @@ import { SeoField } from '../../types/generated/graphql'
 export type LayoutProps = {
   seo?: SeoField
   noIndex?: boolean
+  slug?: string
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, seo, noIndex = false }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  seo,
+  noIndex = false,
+  slug,
+}) => {
   const API_KEY = process.env.NEXT_PUBLIC_SNIPCART_API_KEY
+  const BASE_URL = process.env.DOMAIN_NAME
 
   return (
     <>
@@ -25,6 +32,11 @@ const Layout: React.FC<LayoutProps> = ({ children, seo, noIndex = false }) => {
         noindex={noIndex}
         title={seo?.title || "Lizie's cookies"}
         description={seo?.description || "Lizie's cookies"}
+        openGraph={{
+          title: seo?.title || "Lizie's cookies",
+          description: seo?.description || "Lizie's cookies",
+          url: `${BASE_URL}/${slug}`,
+        }}
       />
       <main className="main">{children}</main>
       <Script
