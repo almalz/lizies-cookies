@@ -36,7 +36,7 @@ const ThresholdModal: React.FC = () => {
         <ModalHeader>{'Une grosse commande ?'}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          {`Pour les commandes supérieurs à ${MAX} cookies, merci de nous contacter par email`}
+          {`Pour les commandes supérieurs à ${MAX} cookies, merci de nous contacter par email.`}
         </ModalBody>
         <ModalFooter>
           <Button
