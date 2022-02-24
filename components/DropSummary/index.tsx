@@ -30,13 +30,16 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       <Heading as="h1" size="xl" mb="32px" w={['80%', '80%', '100%', '100%']}>
         {pageBody.title && injectVariables(pageBody.title, drop)}
       </Heading>
-      <Text as="i" color="gray.700" mb="16px">
-        {'Fin du drop dans '}
-        <Countdown
-          date={drop.endDate}
-          renderer={(props) => <RenderCountdown {...props} />}
-        />
-      </Text>
+      {typeof window !== 'undefined' && (
+        <Text as="i" color="gray.700" mb="16px">
+          {'Fin du drop dans '}
+          <Countdown
+            date={drop.endDate}
+            renderer={(props) => <RenderCountdown {...props} />}
+          />
+        </Text>
+      )}
+
       <Text color="gray.700" mb={['4px', '4px', '32px', '32px']}>
         {pageBody.description}
       </Text>
