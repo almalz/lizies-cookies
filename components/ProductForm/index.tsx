@@ -18,8 +18,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
   const defaultValue = zeroWhenNull ? 0 : null
   const [value, setValue] = useState<number | null>(defaultValue)
 
-  console.log(value, zeroWhenNull)
-
   // value loading on mount
   useEffect(() => {
     const syncItemcount = async () => {

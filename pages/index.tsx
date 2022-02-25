@@ -43,7 +43,6 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
         fetchPolicy: 'no-cache',
       })
       const _drop = data.allDrops[0]
-      console.log(data, _drop)
       if (!_drop) {
         router.push('/nodrop')
       }
