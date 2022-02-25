@@ -10,6 +10,7 @@ export type ProductFormProps = {
 
 const STEP = Number(process.env.NEXT_PUBLIC_INPUT_STEP) || 1
 const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY) || 24
+const DOMAIN_NAME = process.env.NEXT_PUBLIC_DOMAIN_NAME
 
 const ProductForm: React.FC<ProductFormProps> = ({
   product,
@@ -38,7 +39,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
         (await Snipcart?.store?.getItemById(product.id)?.quantity) || 0
       setValue(itemCount)
     })
-
     return () => {
       unsubscribe && unsubscribe()
     }
@@ -52,7 +52,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       quantity: STEP,
       quantityStep: STEP,
       maxQuantity: MAX,
-      url: window.location.origin,
+      url: `${DOMAIN_NAME}/api/snipcartProducts`,
     })
   }, [product])
 

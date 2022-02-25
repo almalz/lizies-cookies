@@ -26,6 +26,7 @@ const BackButton: React.FC = () => {
       alignItems="center"
       onClick={handleClick}
       as={'button'}
+      _hover={{ textDecoration: 'underline' }}
     >
       <ArrowBackIcon w={6} h={6} mr={2} />
       Retour
