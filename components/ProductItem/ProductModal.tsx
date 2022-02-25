@@ -65,6 +65,7 @@ const ProductModal = forwardRef(
                 alt={product.pictures[0].alt || product.name || ''}
                 width="300px"
                 height="300px"
+                quality={50}
               />
             </Center>
             <Flex

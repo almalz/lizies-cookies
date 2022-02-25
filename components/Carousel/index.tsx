@@ -36,6 +36,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, width, height }) => {
                 src={image.url || ''}
                 alt={image.alt || ''}
                 layout="fill"
+                quality={50}
               />
             </Box>
           )

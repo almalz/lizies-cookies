@@ -38,6 +38,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           alt={product.pictures[0].alt || product.name || ''}
           width="150px"
           height="150px"
+          quality={50}
         />
       </Center>
       <Flex
@@ -66,7 +67,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           <Text
             fontWeight={'400'}
             fontSize={['xs', 'xs', 'sm', 'sm']}
-            color="gray.500"
+            color="gray.600"
             lineHeight={'0.9rem'}
             maxWidth="100%"
           >
