@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react'
-import { format } from 'date-fns'
+import { add, format, isBefore } from 'date-fns'
 import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import client from '../lib/apolloClient'
@@ -14,12 +15,33 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 
+const TODAY = format(Date.now(), 'yyyy-MM-dd')
+
 export type NoDropPageProps = {
   nodroppage: NodroppageRecord
   drop: Drop
 }
 
 const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage, drop }) => {
+  const router = useRouter()
+
+  // while on the page, check every 10 minutes, if a drop is finaly scheluded
+  // if yes, redirects to home page
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const { data } = await client.query<NextIncomingDropsQuery>({
+        query: NextIncomingDropsDocument,
+        variables: { TODAY: TODAY },
+        fetchPolicy: 'no-cache',
+      })
+      const _drop = data.allDrops[0]
+      if (_drop) {
+        router.push('/')
+      }
+    }, 600000)
+    return () => clearInterval(interval)
+  }, [router])
+
   return (
     <Layout
       seo={nodroppage?.seo || undefined}

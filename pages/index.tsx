@@ -14,11 +14,16 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { isAfter, add } from 'date-fns'
+import { useRouter } from 'next/router'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
+
+const TODAY = format(Date.now(), 'yyyy-MM-dd')
 
 export type DropPageProps = {
   drop: Drop
@@ -26,6 +31,26 @@ export type DropPageProps = {
 }
 
 const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
+  const router = useRouter()
+
+  // while on the page, check every 5 minutes, if a drop is still currently scheluded
+  // if not, redirects to /nodrop page
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const { data } = await client.query<NextIncomingDropsQuery>({
+        query: NextIncomingDropsDocument,
+        variables: { TODAY: TODAY },
+        fetchPolicy: 'no-cache',
+      })
+      const _drop = data.allDrops[0]
+      console.log(data, _drop)
+      if (!_drop) {
+        router.push('/nodrop')
+      }
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [router])
+
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
       <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
@@ -99,8 +124,6 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const TODAY = format(Date.now(), 'yyyy-MM-dd')
-
   const { data } = await client.query<NextIncomingDropsQuery>({
     query: NextIncomingDropsDocument,
     variables: { TODAY: TODAY },
