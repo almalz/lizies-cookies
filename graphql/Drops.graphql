@@ -23,8 +23,6 @@ query Drops {
         url
       }
     }
-    title
-    description
   }
 }
 
@@ -52,8 +50,6 @@ query dropById($dropId: ItemId) {
         url
       }
     }
-    title
-    description
   }
 }
 
@@ -84,8 +80,6 @@ query nextIncomingDrops($TODAY: Date) {
         url
       }
     }
-    title
-    description
   }
   droppage {
     title

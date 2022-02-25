@@ -119,14 +119,12 @@ export type DropModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>
   createdAt?: InputMaybe<CreatedAtFilter>
   deliveryDate?: InputMaybe<DateFilter>
-  description?: InputMaybe<TextFilter>
   endDate?: InputMaybe<DateFilter>
   id?: InputMaybe<ItemIdFilter>
   pictures?: InputMaybe<GalleryFilter>
   products?: InputMaybe<LinksFilter>
   releaseDate?: InputMaybe<DateFilter>
   slug?: InputMaybe<StringFilter>
-  title?: InputMaybe<StringFilter>
   updatedAt?: InputMaybe<UpdatedAtFilter>
 }
 
@@ -159,8 +157,6 @@ export enum DropModelOrderBy {
   ReleaseDate_DESC = 'releaseDate_DESC',
   Slug_ASC = 'slug_ASC',
   Slug_DESC = 'slug_DESC',
-  Title_ASC = 'title_ASC',
-  Title_DESC = 'title_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
   UpdatedAt_DESC = 'updatedAt_DESC',
 }
@@ -181,25 +177,18 @@ export type DropRecord = {
   _updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   deliveryDate?: Maybe<Scalars['Date']>
-  description?: Maybe<Scalars['String']>
   endDate?: Maybe<Scalars['Date']>
   id: Scalars['ItemId']
   pictures: Array<FileField>
   products: Array<ProductRecord>
   releaseDate?: Maybe<Scalars['Date']>
   slug?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
 
 /** Record of type Drop (drop) */
 export type DropRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
-}
-
-/** Record of type Drop (drop) */
-export type DropRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
 }
 
 /** Record of type DropPage (droppage) */
@@ -348,7 +337,55 @@ export type FaqitemModelAnswerField = {
   value: Scalars['JsonField']
 }
 
-/** Record of type FaqItem (faqitem) */
+export type FaqitemModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<FaqitemModelFilter>>>
+  _createdAt?: InputMaybe<CreatedAtFilter>
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
+  _isValid?: InputMaybe<BooleanFilter>
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
+  _publishedAt?: InputMaybe<PublishedAtFilter>
+  _status?: InputMaybe<StatusFilter>
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
+  _updatedAt?: InputMaybe<UpdatedAtFilter>
+  answer?: InputMaybe<StructuredTextFilter>
+  category?: InputMaybe<LinkFilter>
+  createdAt?: InputMaybe<CreatedAtFilter>
+  id?: InputMaybe<ItemIdFilter>
+  order?: InputMaybe<IntegerFilter>
+  question?: InputMaybe<StringFilter>
+  updatedAt?: InputMaybe<UpdatedAtFilter>
+}
+
+export enum FaqitemModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  Order_ASC = 'order_ASC',
+  Order_DESC = 'order_DESC',
+  Question_ASC = 'question_ASC',
+  Question_DESC = 'question_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC',
+}
+
+/** Record of type FAQItem (faqitem) */
 export type FaqitemRecord = {
   __typename?: 'FaqitemRecord'
   _createdAt: Scalars['DateTime']
@@ -366,11 +403,12 @@ export type FaqitemRecord = {
   category?: Maybe<FaqcategoryRecord>
   createdAt: Scalars['DateTime']
   id: Scalars['ItemId']
+  order?: Maybe<Scalars['IntType']>
   question?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
 
-/** Record of type FaqItem (faqitem) */
+/** Record of type FAQItem (faqitem) */
 export type FaqitemRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
 }
@@ -1868,6 +1906,24 @@ export type InUseFilter = {
   eq?: InputMaybe<Scalars['BooleanType']>
 }
 
+/** Specifies how to filter Integer fields */
+export type IntegerFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']>
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']>
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']>
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']>
+}
+
 /** Specifies how to filter by ID */
 export type ItemIdFilter = {
   /** Search the record with the specified ID */
@@ -1918,6 +1974,20 @@ export type LegalpageRecord = {
 /** Record of type LegalPage (legalpage) */
 export type LegalpageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>
+}
+
+/** Specifies how to filter Single-link fields */
+export type LinkFilter = {
+  /** Search for records with an exact match. The specified value must be a Record ID */
+  eq?: InputMaybe<Scalars['ItemId']>
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records linked to one of the specified records */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  /** Exclude records with an exact match. The specified value must be a Record ID */
+  neq?: InputMaybe<Scalars['ItemId']>
+  /** Filter records not linked to one of the specified records */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
 }
 
 /** Specifies how to filter Multiple-links fields */
@@ -2119,6 +2189,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allFaqcategoriesMeta: CollectionMetadata
   /** Returns meta information regarding a record collection */
+  _allFaqitemsMeta: CollectionMetadata
+  /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta?: Maybe<CollectionMetadata>
@@ -2128,6 +2200,8 @@ export type Query = {
   allDrops: Array<DropRecord>
   /** Returns a collection of records */
   allFaqcategories: Array<FaqcategoryRecord>
+  /** Returns a collection of records */
+  allFaqitems: Array<FaqitemRecord>
   /** Returns a collection of records */
   allProducts: Array<ProductRecord>
   /** Returns a collection of assets */
@@ -2140,6 +2214,8 @@ export type Query = {
   errorpage?: Maybe<ErrorpageRecord>
   /** Returns a specific record */
   faqcategory?: Maybe<FaqcategoryRecord>
+  /** Returns a specific record */
+  faqitem?: Maybe<FaqitemRecord>
   /** Returns the single instance record */
   faqpage?: Maybe<FaqpageRecord>
   /** Returns the single instance record */
@@ -2165,6 +2241,13 @@ export type Query_AllDropsMetaArgs = {
 export type Query_AllFaqcategoriesMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   filter?: InputMaybe<FaqcategoryModelFilter>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type Query_AllFaqitemsMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqitemModelFilter>
   locale?: InputMaybe<SiteLocale>
 }
 
@@ -2204,6 +2287,16 @@ export type QueryAllFaqcategoriesArgs = {
   first?: InputMaybe<Scalars['IntType']>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
+  skip?: InputMaybe<Scalars['IntType']>
+}
+
+/** The query root for this schema */
+export type QueryAllFaqitemsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqitemModelFilter>
+  first?: InputMaybe<Scalars['IntType']>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>
   skip?: InputMaybe<Scalars['IntType']>
 }
 
@@ -2253,6 +2346,14 @@ export type QueryFaqcategoryArgs = {
   filter?: InputMaybe<FaqcategoryModelFilter>
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
+}
+
+/** The query root for this schema */
+export type QueryFaqitemArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  filter?: InputMaybe<FaqitemModelFilter>
+  locale?: InputMaybe<SiteLocale>
+  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>
 }
 
 /** The query root for this schema */
@@ -2394,6 +2495,18 @@ export type StringMatchesFilter = {
   caseSensitive?: InputMaybe<Scalars['BooleanType']>
   pattern: Scalars['String']
   regexp?: InputMaybe<Scalars['BooleanType']>
+}
+
+/** Specifies how to filter Structured Text fields */
+export type StructuredTextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records with the specified field set as blank (null or single empty paragraph) */
+  isBlank?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>
 }
 
 export type Tag = {
@@ -2829,8 +2942,6 @@ export type DropsQuery = {
     releaseDate?: any | null
     deliveryDate?: any | null
     endDate?: any | null
-    title?: string | null
-    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -2868,8 +2979,6 @@ export type DropByIdQuery = {
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
-    title?: string | null
-    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -2905,8 +3014,6 @@ export type NextIncomingDropsQuery = {
     releaseDate?: any | null
     endDate?: any | null
     deliveryDate?: any | null
-    title?: string | null
-    description?: string | null
     pictures: Array<{
       __typename?: 'FileField'
       id: any
@@ -3095,8 +3202,6 @@ export const DropsDocument = gql`
           url
         }
       }
-      title
-      description
     }
   }
 `
@@ -3165,8 +3270,6 @@ export const DropByIdDocument = gql`
           url
         }
       }
-      title
-      description
     }
   }
 `
@@ -3244,8 +3347,6 @@ export const NextIncomingDropsDocument = gql`
           url
         }
       }
-      title
-      description
     }
     droppage {
       title
