@@ -5,6 +5,7 @@ import { RBox } from '../Breakpoints'
 import { DroppageRecord } from '../../types/generated/graphql'
 import { injectVariables } from '../../lib/utils'
 import { CountdownRenderProps } from 'react-countdown'
+import { add } from 'date-fns'
 import dynamic from 'next/dynamic'
 
 const Countdown = dynamic(() => import('react-countdown'), { ssr: false })
@@ -37,7 +38,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
         {'Fin du drop dans '}
         {typeof window !== 'undefined' && (
           <Countdown
-            date={drop.endDate}
+            date={add(new Date(drop.endDate), { hours: 24 })}
             renderer={(props) => <RenderCountdown {...props} />}
           />
         )}
