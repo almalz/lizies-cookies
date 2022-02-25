@@ -36,6 +36,7 @@ const Layout: React.FC<LayoutProps> = ({
           title: seo?.title || "Lizie's cookies",
           description: seo?.description || "Lizie's cookies",
           url: `${BASE_URL}/${slug}`,
+          type: 'website',
         }}
       />
       <main className="main">{children}</main>
