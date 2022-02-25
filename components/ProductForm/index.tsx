@@ -15,7 +15,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
   product,
   zeroWhenNull = false,
 }) => {
-  const [value, setValue] = useState<number | null>(zeroWhenNull ? 0 : null)
+  const defaultValue = zeroWhenNull ? 0 : null
+  const [value, setValue] = useState<number | null>(defaultValue)
+
+  console.log(value, zeroWhenNull)
 
   // value loading on mount
   useEffect(() => {
@@ -23,11 +26,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
       if (typeof window !== 'undefined') {
         const initialValue = await Snipcart?.store?.getItemById(product.id)
           ?.quantity
-        setValue(initialValue)
+        setValue(initialValue || defaultValue)
       }
     }
     syncItemcount()
-  }, [product])
+  }, [product, defaultValue])
 
   //value subscription when cart changes
   useEffect(() => {
