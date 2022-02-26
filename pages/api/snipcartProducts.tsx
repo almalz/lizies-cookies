@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import ProductItem from '../../components/ProductItem'
 import client from '../../lib/apolloClient'
 import { ProductsDocument, ProductsQuery } from '../../types/generated/graphql'
 
@@ -12,6 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const products = data.allProducts.map((product) => {
     return {
       id: product.id,
+      name: product.name,
       price: product.unitPrice,
       url: `${DOMAIN_NAME}/api/snipcartProducts`,
     }
