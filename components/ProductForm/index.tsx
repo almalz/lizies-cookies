@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
-import Snipcart from '../../lib/snipcart'
+// import Snipcart from '../../lib/snipcart'
+import { useSnipcart } from '../../lib/snipcart'
 import { Product } from '../../types'
 import NumberInput from '../NumberInput'
 
@@ -18,6 +19,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 }) => {
   const defaultValue = zeroWhenNull ? 0 : null
   const [value, setValue] = useState<number | null>(defaultValue)
+  const { Snipcart, loading, setLoading } = useSnipcart()
 
   // value loading on mount
   useEffect(() => {
@@ -29,7 +31,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       }
     }
     syncItemcount()
-  }, [product, defaultValue])
+  }, [product, defaultValue, Snipcart?.store])
 
   //value subscription when cart changes
   useEffect(() => {
@@ -42,9 +44,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
     return () => {
       unsubscribe && unsubscribe()
     }
-  }, [product])
+  }, [Snipcart?.store, product])
 
   const handleAdd = useCallback(async () => {
+    setLoading(true)
     await Snipcart?.items?.add({
       id: product.id,
       name: product.name,
@@ -54,11 +57,14 @@ const ProductForm: React.FC<ProductFormProps> = ({
       maxQuantity: MAX,
       url: `${DOMAIN_NAME}/api/snipcartProducts`,
     })
-  }, [product])
+    setLoading(false)
+  }, [Snipcart?.items, product.id, product.name, product.unitPrice, setLoading])
 
   const handleRemove = useCallback(async () => {
+    setLoading(true)
     await Snipcart?.items?.remove(product.id, STEP)
-  }, [product])
+    setLoading(false)
+  }, [Snipcart?.items, product.id, setLoading])
 
   return (
     <NumberInput
@@ -66,6 +72,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       label={`${product.name}`}
       onAdd={handleAdd}
       onRemove={handleRemove}
+      disabled={loading}
     />
   )
 }

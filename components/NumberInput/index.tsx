@@ -6,11 +6,12 @@ export type NumberInputProps = {
   label: string
   onAdd?: () => void
   onRemove?: () => void
+  disabled?: boolean
 }
 
 const NumberInput = forwardRef(
   (
-    { value, label, onAdd, onRemove }: NumberInputProps,
+    { value, label, onAdd, onRemove, disabled = false }: NumberInputProps,
     ref: Ref<HTMLButtonElement>
   ) => {
     const handleAddClick = useCallback(() => {
@@ -31,6 +32,7 @@ const NumberInput = forwardRef(
             borderRadius={100}
             fontWeight="700"
             onClick={handleRemoveClick}
+            isDisabled={disabled}
           >
             -
           </Button>
@@ -49,6 +51,7 @@ const NumberInput = forwardRef(
             fontWeight="700"
             onClick={handleAddClick}
             ref={ref}
+            isDisabled={disabled}
           >
             +
           </Button>
