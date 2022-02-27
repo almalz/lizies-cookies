@@ -16,14 +16,16 @@ import {
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { SnipcartLayout } from '../lib/snipcart'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
 
-const TODAY = format(Date.now(), 'yyyy-MM-dd')
+const REFRESH_INTERVAL =
+  Number(process.env.NEXT_PUBLIC_DROP_REFRESH_INTERVAL) || 30000
+
+const TODAY = new Date(Date.now()).toISOString()
 
 export type DropPageProps = {
   drop: Drop
@@ -45,92 +47,90 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
       const _drop = data.allDrops[0]
       if (!_drop) {
         router.push('/nodrop')
-      }
-      if (_drop.id !== drop.id) {
+      } else if (_drop.id !== drop.id) {
         router.reload()
       }
-    }, 30000)
+    }, REFRESH_INTERVAL)
     return () => clearInterval(interval)
   }, [router, drop.id])
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
-      <SnipcartLayout>
-        <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
-          <RBox desktopOnly w="40%" h="100%">
-            <Flex
-              h="100%"
-              flexDir={'column'}
-              boxShadow="inner"
-              px={['0', '0', '64px', '64px']}
-              alignItems="center"
-              justifyContent="center"
-            >
-              {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-              <Box mt="10%" w="100%" mx="auto">
-                <Links />
-              </Box>
-            </Flex>
-          </RBox>
-          <Box
-            pos="relative"
-            w={['100%', '100%', '100%', '60%']}
+      <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
+        <RBox desktopOnly w="40%" h="100%">
+          <Flex
             h="100%"
-            boxShadow="2xl"
-            overflow="scroll"
+            flexDir={'column'}
+            boxShadow="inner"
+            px={['0', '0', '64px', '64px']}
+            alignItems="center"
+            justifyContent="center"
           >
-            <RBox
+            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
+            <Box mt="10%" w="100%" mx="auto">
+              <Links />
+            </Box>
+          </Flex>
+        </RBox>
+        <Box
+          pos="relative"
+          w={['100%', '100%', '100%', '60%']}
+          h="100%"
+          boxShadow="2xl"
+          overflow="scroll"
+        >
+          <RBox
+            mobileOnly
+            pos="relative"
+            px={['16px', '16px', '96px', '0px']}
+            pt={['16px', '16px', '32px', '0px']}
+          >
+            <RFlex
               mobileOnly
-              pos="relative"
-              px={['16px', '16px', '96px', '0px']}
-              pt={['16px', '16px', '32px', '0px']}
+              pos="absolute"
+              top={['4', '4', '8', '0']}
+              right={['4', '4', '24', '0']}
             >
-              <RFlex
-                mobileOnly
-                pos="absolute"
-                top={['4', '4', '8', '0']}
-                right={['4', '4', '24', '0']}
-              >
+              <Cart />
+            </RFlex>
+            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
+          </RBox>
+
+          <Flex
+            h="100%"
+            justifyContent="center"
+            alignItems={['start', 'start', 'start', 'center']}
+          >
+            <RFlex
+              px={['16px', '16px', '96px', '96px']}
+              pt={['32px', '32px', '2%', '2%']}
+              flexDir={'column'}
+              overflowY="scroll"
+              maxH={['', '', '', '100%']}
+            >
+              <RFlex desktopOnly justifyContent="end" py="8px">
                 <Cart />
               </RFlex>
-              {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            </RBox>
-
-            <Flex
-              h="100%"
-              justifyContent="center"
-              alignItems={['start', 'start', 'start', 'center']}
-            >
-              <RFlex
-                px={['16px', '16px', '96px', '96px']}
-                pt={['32px', '32px', '2%', '2%']}
-                flexDir={'column'}
-                overflowY="scroll"
-                maxH={['', '', '', '100%']}
-              >
-                <RFlex desktopOnly justifyContent="end" py="8px">
-                  <Cart />
-                </RFlex>
-                <Box pb={['32px', '64px', '96px', '96px']}>
-                  <ProductList products={drop.products} />
-                </Box>
-                <RBox mobileOnly px="32px" pb="32px">
-                  <Links />
-                </RBox>
-              </RFlex>
-            </Flex>
-          </Box>
-          <ThresholdModal />
-        </Flex>
-      </SnipcartLayout>
+              <Box pb={['32px', '64px', '96px', '96px']}>
+                <ProductList products={drop.products} />
+              </Box>
+              <RBox mobileOnly px="32px" pb="32px">
+                <Links />
+              </RBox>
+            </RFlex>
+          </Flex>
+        </Box>
+        <ThresholdModal />
+      </Flex>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query<NextIncomingDropsQuery>({
     query: NextIncomingDropsDocument,
     variables: { TODAY: TODAY },
+    fetchPolicy: 'no-cache',
   })
 
   // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC

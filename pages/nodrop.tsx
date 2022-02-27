@@ -15,7 +15,9 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 
-const TODAY = format(Date.now(), 'yyyy-MM-dd')
+const REFRESH_INTERVAL =
+  Number(process.env.NEXT_PUBLIC_DROP_REFRESH_INTERVAL) || 30000
+const TODAY = new Date(Date.now()).toISOString()
 
 export type NoDropPageProps = {
   nodroppage: NodroppageRecord
@@ -38,7 +40,7 @@ const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage, drop }) => {
       if (_drop) {
         router.push('/')
       }
-    }, 600000)
+    }, REFRESH_INTERVAL * 2)
     return () => clearInterval(interval)
   }, [router])
 
@@ -61,11 +63,10 @@ const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage, drop }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const TODAY = format(Date.now(), 'yyyy-MM-dd')
-
   const { nodroppage } = (
     await client.query<NoDropPageQuery>({
       query: NoDropPageDocument,
+      fetchPolicy: 'no-cache',
     })
   ).data
 

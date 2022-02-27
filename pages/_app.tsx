@@ -3,13 +3,16 @@ import { ApolloProvider } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import client from '../lib/apolloClient'
 import '../assets/global.css'
+import { SnipcartLayout } from '../lib/snipcart'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <ApolloProvider client={client}>
         <ChakraProvider>
-          <Component {...pageProps} />
+          <SnipcartLayout>
+            <Component {...pageProps} />
+          </SnipcartLayout>
         </ChakraProvider>
       </ApolloProvider>
     </>

@@ -107,6 +107,24 @@ export type DateFilter = {
   neq?: InputMaybe<Scalars['Date']>
 }
 
+/** Specifies how to filter DateTime fields */
+export type DateTimeFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars['DateTime']>
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']>
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars['DateTime']>
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars['DateTime']>
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars['DateTime']>
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars['DateTime']>
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars['DateTime']>
+}
+
 export type DropModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<DropModelFilter>>>
   _createdAt?: InputMaybe<CreatedAtFilter>
@@ -119,11 +137,11 @@ export type DropModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>
   createdAt?: InputMaybe<CreatedAtFilter>
   deliveryDate?: InputMaybe<DateFilter>
-  endDate?: InputMaybe<DateFilter>
+  endDate?: InputMaybe<DateTimeFilter>
   id?: InputMaybe<ItemIdFilter>
   pictures?: InputMaybe<GalleryFilter>
   products?: InputMaybe<LinksFilter>
-  releaseDate?: InputMaybe<DateFilter>
+  releaseDate?: InputMaybe<DateTimeFilter>
   slug?: InputMaybe<StringFilter>
   updatedAt?: InputMaybe<UpdatedAtFilter>
 }
@@ -177,11 +195,11 @@ export type DropRecord = {
   _updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   deliveryDate?: Maybe<Scalars['Date']>
-  endDate?: Maybe<Scalars['Date']>
+  endDate?: Maybe<Scalars['DateTime']>
   id: Scalars['ItemId']
   pictures: Array<FileField>
   products: Array<ProductRecord>
-  releaseDate?: Maybe<Scalars['Date']>
+  releaseDate?: Maybe<Scalars['DateTime']>
   slug?: Maybe<Scalars['String']>
   updatedAt: Scalars['DateTime']
 }
@@ -3002,7 +3020,7 @@ export type DropByIdQuery = {
 }
 
 export type NextIncomingDropsQueryVariables = Exact<{
-  TODAY?: InputMaybe<Scalars['Date']>
+  TODAY?: InputMaybe<Scalars['DateTime']>
 }>
 
 export type NextIncomingDropsQuery = {
@@ -3333,7 +3351,7 @@ export type DropByIdQueryResult = Apollo.QueryResult<
   DropByIdQueryVariables
 >
 export const NextIncomingDropsDocument = gql`
-  query nextIncomingDrops($TODAY: Date) {
+  query nextIncomingDrops($TODAY: DateTime) {
     allDrops(
       orderBy: endDate_ASC
       filter: { endDate: { gte: $TODAY }, releaseDate: { lte: $TODAY } }
