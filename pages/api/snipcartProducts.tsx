@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import ProductItem from '../../components/ProductItem'
 import client from '../../lib/apolloClient'
 import { ProductsDocument, ProductsQuery } from '../../types/generated/graphql'
 

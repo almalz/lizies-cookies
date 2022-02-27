@@ -17,6 +17,7 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { isAfter, add } from 'date-fns'
 import { useRouter } from 'next/router'
+import { SnipcartLayout } from '../lib/snipcart'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
@@ -46,78 +47,83 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
       if (!_drop) {
         router.push('/nodrop')
       }
+      if (_drop.id !== drop.id) {
+        router.reload()
+      }
     }, 30000)
     return () => clearInterval(interval)
   }, [router])
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
-      <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
-        <RBox desktopOnly w="40%" h="100%">
-          <Flex
-            h="100%"
-            flexDir={'column'}
-            boxShadow="inner"
-            px={['0', '0', '64px', '64px']}
-            alignItems="center"
-            justifyContent="center"
-          >
-            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            <Box mt="10%" w="100%" mx="auto">
-              <Links />
-            </Box>
-          </Flex>
-        </RBox>
-        <Box
-          pos="relative"
-          w={['100%', '100%', '100%', '60%']}
-          h="100%"
-          boxShadow="2xl"
-          overflow="scroll"
-        >
-          <RBox
-            mobileOnly
-            pos="relative"
-            px={['16px', '16px', '96px', '0px']}
-            pt={['16px', '16px', '32px', '0px']}
-          >
-            <RFlex
-              mobileOnly
-              pos="absolute"
-              top={['4', '4', '8', '0']}
-              right={['4', '4', '24', '0']}
-            >
-              <Cart />
-            </RFlex>
-            {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-          </RBox>
-
-          <Flex
-            h="100%"
-            justifyContent="center"
-            alignItems={['start', 'start', 'start', 'center']}
-          >
-            <RFlex
-              px={['16px', '16px', '96px', '96px']}
-              pt={['32px', '32px', '2%', '2%']}
+      <SnipcartLayout>
+        <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
+          <RBox desktopOnly w="40%" h="100%">
+            <Flex
+              h="100%"
               flexDir={'column'}
-              overflowY="scroll"
-              maxH={['', '', '', '100%']}
+              boxShadow="inner"
+              px={['0', '0', '64px', '64px']}
+              alignItems="center"
+              justifyContent="center"
             >
-              <RFlex desktopOnly justifyContent="end" py="8px">
+              {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
+              <Box mt="10%" w="100%" mx="auto">
+                <Links />
+              </Box>
+            </Flex>
+          </RBox>
+          <Box
+            pos="relative"
+            w={['100%', '100%', '100%', '60%']}
+            h="100%"
+            boxShadow="2xl"
+            overflow="scroll"
+          >
+            <RBox
+              mobileOnly
+              pos="relative"
+              px={['16px', '16px', '96px', '0px']}
+              pt={['16px', '16px', '32px', '0px']}
+            >
+              <RFlex
+                mobileOnly
+                pos="absolute"
+                top={['4', '4', '8', '0']}
+                right={['4', '4', '24', '0']}
+              >
                 <Cart />
               </RFlex>
-              <Box pb={['32px', '64px', '96px', '96px']}>
-                <ProductList products={drop.products} />
-              </Box>
-              <RBox mobileOnly px="32px" pb="32px">
-                <Links />
-              </RBox>
-            </RFlex>
-          </Flex>
-        </Box>
-        <ThresholdModal />
-      </Flex>
+              {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
+            </RBox>
+
+            <Flex
+              h="100%"
+              justifyContent="center"
+              alignItems={['start', 'start', 'start', 'center']}
+            >
+              <RFlex
+                px={['16px', '16px', '96px', '96px']}
+                pt={['32px', '32px', '2%', '2%']}
+                flexDir={'column'}
+                overflowY="scroll"
+                maxH={['', '', '', '100%']}
+              >
+                <RFlex desktopOnly justifyContent="end" py="8px">
+                  <Cart />
+                </RFlex>
+                <Box pb={['32px', '64px', '96px', '96px']}>
+                  <ProductList products={drop.products} />
+                </Box>
+                <RBox mobileOnly px="32px" pb="32px">
+                  <Links />
+                </RBox>
+              </RFlex>
+            </Flex>
+          </Box>
+          <ThresholdModal />
+        </Flex>
+      </SnipcartLayout>
     </Layout>
   )
 }
