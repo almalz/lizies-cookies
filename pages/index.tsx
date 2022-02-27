@@ -14,8 +14,7 @@ import {
   NextIncomingDropsQuery,
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
-import { isAfter, add } from 'date-fns'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { SnipcartLayout } from '../lib/snipcart'
 
@@ -52,7 +51,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
       }
     }, 30000)
     return () => clearInterval(interval)
-  }, [router])
+  }, [router, drop.id])
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
