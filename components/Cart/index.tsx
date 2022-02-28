@@ -13,6 +13,17 @@ const Cart: React.FC = () => {
     Snipcart?.cart?.open()
   }, [Snipcart?.cart])
 
+  // value loading on mount
+  useEffect(() => {
+    const syncItemcount = async () => {
+      if (typeof window !== 'undefined') {
+        const _itemCount = await Snipcart?.store?.itemCount()?.quantity
+        setItemCount(_itemCount || null)
+      }
+    }
+    syncItemcount()
+  }, [Snipcart?.store])
+
   //value subscription when cart changes
   useEffect(() => {
     let unsubscribe: () => void
