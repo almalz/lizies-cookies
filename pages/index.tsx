@@ -56,7 +56,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
-      <Flex h={['100%', '100%', '100%', '100%']} pos="fixed">
+      <Flex h={['100vh', '100vh', '100vh', '100vh']}>
         <RBox desktopOnly w="40%" h="100%">
           <Flex
             h="100%"
@@ -67,7 +67,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             justifyContent="center"
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            <Box mt="10%" w="100%" mx="auto">
+            <Box mt="10%" w={['0', '0', '200px', '300px', '400px']} mx="auto">
               <Links />
             </Box>
           </Flex>
@@ -78,6 +78,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           h="100%"
           boxShadow="2xl"
           overflow="scroll"
+          maxH={['auto', 'auto', 'auto', '100%']}
         >
           <RBox
             mobileOnly
@@ -87,9 +88,10 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           >
             <RFlex
               mobileOnly
-              pos="absolute"
-              top={['4', '4', '8', '0']}
-              right={['4', '4', '24', '0']}
+              pos="sticky"
+              justifyContent={'end'}
+              pr={['16px', '16px', '96px', '0px']}
+              pt={['16px', '16px', '32px', '0px']}
             >
               <Cart />
             </RFlex>
@@ -97,16 +99,15 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           </RBox>
 
           <Flex
-            h="100%"
             justifyContent="center"
-            alignItems={['start', 'start', 'start', 'center']}
+            alignItems={['start', 'start', 'start', 'start']}
+            py={['0', '0', '0', '10vh']}
           >
             <RFlex
               px={['16px', '16px', '96px', '96px']}
               pt={['32px', '32px', '2%', '2%']}
               flexDir={'column'}
-              overflowY="scroll"
-              maxH={['', '', '', '100%']}
+              h="100%"
             >
               <RFlex desktopOnly justifyContent="end" py="8px">
                 <Cart />
