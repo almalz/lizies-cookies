@@ -17,7 +17,7 @@ const Cart: React.FC = () => {
   useEffect(() => {
     const syncItemcount = async () => {
       if (typeof window !== 'undefined') {
-        const _itemCount = await Snipcart?.store?.itemCount()?.quantity
+        const _itemCount = await Snipcart?.store?.itemCount()
         setItemCount(_itemCount || null)
       }
     }
