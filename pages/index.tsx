@@ -77,7 +77,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           w={['100%', '100%', '100%', '60%']}
           h="100%"
           boxShadow="2xl"
-          overflow="scroll"
+          overflowY="scroll"
           maxH={['auto', 'auto', 'auto', '100%']}
         >
           <RBox
