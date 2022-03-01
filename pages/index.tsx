@@ -56,7 +56,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
-      <Flex h={['100vh', '100vh', '100vh', '100vh']}>
+      <Flex h={['100%', '100%', '100%', '100vh']}>
         <RBox desktopOnly w="40%" h="100%">
           <Flex
             h="100%"
@@ -65,6 +65,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             px={['0', '0', '64px', '64px']}
             alignItems="center"
             justifyContent="center"
+            py={['0', '0', '0', '20vh']}
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
             <Box mt="10%" w={['0', '0', '200px', '300px', '400px']} mx="auto">
@@ -89,7 +90,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             <RFlex
               mobileOnly
               pos="sticky"
-              justifyContent={'end'}
+              justifyContent={'flex-end'}
               pr={['16px', '16px', '96px', '0px']}
               pt={['16px', '16px', '32px', '0px']}
             >
@@ -101,7 +102,8 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           <Flex
             justifyContent="center"
             alignItems={['start', 'start', 'start', 'start']}
-            py={['0', '0', '0', '10vh']}
+            pt={['0', '0', '0', '10vh']}
+            h="100%"
           >
             <RFlex
               px={['16px', '16px', '96px', '96px']}
