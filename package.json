@@ -28,7 +28,9 @@
     "react": "17.0.2",
     "react-countdown": "^2.3.2",
     "react-datocms": "^3.0.10",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-markdown": "^8.0.0",
+    "remark-breaks": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",

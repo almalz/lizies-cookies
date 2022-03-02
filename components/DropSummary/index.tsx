@@ -1,4 +1,6 @@
-import { Heading, Text, Flex } from '@chakra-ui/react'
+import { Heading, Text, Flex, Box } from '@chakra-ui/react'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 import { Drop } from '../../types'
 import Carousel from '../Carousel'
 import { RBox } from '../Breakpoints'
@@ -28,6 +30,7 @@ const RenderCountdown: React.FC<CountdownRenderProps> = (props) => {
   )
 }
 
+// a combunation of `remark-breaks` and the `.replace()` seems required to allow multiple new lines
 const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
   return (
     <Flex flexDirection={'column'}>
@@ -44,9 +47,13 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
         )}
       </Text>
 
-      <Text color="gray.800" mb={['4px', '4px', '32px', '32px']}>
-        {pageBody.description && injectVariables(pageBody.description, drop)}
-      </Text>
+      <Box color="gray.800" mb={['4px', '4px', '32px', '32px']}>
+        <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+          {(
+            pageBody?.description && injectVariables(pageBody.description, drop)
+          )?.replace(/\n/gi, '\n &nbsp;') || ''}
+        </ReactMarkdown>
+      </Box>
       <RBox desktopOnly mx="auto">
         <Carousel
           images={drop.pictures}
