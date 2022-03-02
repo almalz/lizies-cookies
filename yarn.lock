@@ -5485,11 +5485,6 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
-  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
-
 clean-css@^4.2.3:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.4.tgz#733bf46eba4e607c6891ea57c24a989356831178"
@@ -6503,6 +6498,23 @@ elliptic@^6.5.3:
     inherits "^2.0.4"
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
+
+embla-carousel-autoplay@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/embla-carousel-autoplay/-/embla-carousel-autoplay-6.2.0.tgz#0fe9c1fb0b2e0f8196f686f21cf3a8c47a008ba6"
+  integrity sha512-3AxzeRwzgDR5aPcPXwdcrpm25A9yVB1ZE/0mQJJsOyfIfKrXu3wgSkI/cxQkCOxM54UjTVhiuhoJb8enpRa7FQ==
+
+embla-carousel-react@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-6.2.0.tgz#25fbba759b294b54d6241a04ff56dca83bd3c511"
+  integrity sha512-XshB7pmmhso/fzENefflWw5/N3HqCjO8H5CkzQxuCQqV9w+bvEaBkjUZ6fxfqLUMMSKFWIQvMD6uo9f8oKS+2g==
+  dependencies:
+    embla-carousel "6.2.0"
+
+embla-carousel@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-6.2.0.tgz#c16b18abe50e05ccd03d0b8d0b738f6a87aea1e0"
+  integrity sha512-dSNsiQ7nmSQJZgbYfZCLdzrnznHwpaAcdJFcMRKgm/pjH1doOgxmfsvlMy4VfO4J11hLz8jm/W8WxSSDqfuu4w==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -10953,7 +10965,7 @@ prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.0.0, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -11188,13 +11200,6 @@ react-draggable@^4.4.3:
     clsx "^1.1.1"
     prop-types "^15.6.0"
 
-react-easy-swipe@^0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.21.tgz#ce9384d576f7a8529dc2ca377c1bf03920bac8eb"
-  integrity sha512-OeR2jAxdoqUMHIn/nS9fgreI5hSpgGoL5ezdal4+oO7YSSgJR8ga+PkYGJrSrJ9MKlPcQjMQXnketrD7WNmNsg==
-  dependencies:
-    prop-types "^15.5.8"
-
 react-element-to-jsx-string@^14.3.4:
   version "14.3.4"
   resolved "https://registry.yarnpkg.com/react-element-to-jsx-string/-/react-element-to-jsx-string-14.3.4.tgz#709125bc72f06800b68f9f4db485f2c7d31218a8"
@@ -11301,15 +11306,6 @@ react-remove-scroll@2.4.1:
     tslib "^1.0.0"
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
-
-react-responsive-carousel@^3.2.22:
-  version "3.2.22"
-  resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.2.22.tgz#6281603daa33656940d01e207f511b83c0093c70"
-  integrity sha512-/r7dsIaN+l417IYIS0Fr7Z5VlpK3KYnTIIsdVCWSqtuJRIZNM+qdBIA4RIbzQtuW/ZBTnQanBecblCxg0HCqLQ==
-  dependencies:
-    classnames "^2.2.5"
-    prop-types "^15.5.8"
-    react-easy-swipe "^0.0.21"
 
 react-router-dom@^6.0.0:
   version "6.2.1"
