@@ -57,7 +57,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       <RBox desktopOnly mx="auto">
         <Carousel
           images={drop.pictures}
-          height={['30px', '300px', '300px', '40vh', '40vh']}
+          height={['30px', '300px', '300px', '30vh', '30vh']}
           width={['250px', '250px', '300px', '30vw', '30vw']}
         />
       </RBox>

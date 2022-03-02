@@ -65,7 +65,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             px={['0', '0', '64px', '64px']}
             alignItems="center"
             justifyContent="center"
-            py={['0', '0', '0', '20vh']}
+            py={['0', '0', '0', '10vh']}
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
             <Box mt="10%" w={['0', '0', '200px', '300px', '400px']} mx="auto">
@@ -102,7 +102,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           <Flex
             justifyContent="center"
             alignItems={['start', 'start', 'start', 'start']}
-            pt={['0', '0', '0', '8vh']}
+            pt={['0', '0', '0', '5vh']}
             h="100%"
           >
             <RFlex
