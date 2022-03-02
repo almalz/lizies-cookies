@@ -102,7 +102,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           <Flex
             justifyContent="center"
             alignItems={['start', 'start', 'start', 'start']}
-            pt={['0', '0', '0', '5vh']}
+            pt={['0', '0', '0', '8vh']}
             h="100%"
           >
             <RFlex

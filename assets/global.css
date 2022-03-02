@@ -1,3 +1,12 @@
+.snipcart-cart__footer-buttons {
+  margin-top: 64px;
+}
+
+.snipcart-cart__footer-buttons::before {
+  content: 'En cliquant sur le bouton ci-dessous, vous acceptez nos CGV.';
+  font-weight: 700;
+}
+
 .embla {
   position: relative;
   margin-left: auto;
