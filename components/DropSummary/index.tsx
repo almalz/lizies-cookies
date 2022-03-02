@@ -45,7 +45,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       </Text>
 
       <Text color="gray.800" mb={['4px', '4px', '32px', '32px']}>
-        {pageBody.description}
+        {pageBody.description && injectVariables(pageBody.description, drop)}
       </Text>
       <RBox desktopOnly mx="auto">
         <Carousel
