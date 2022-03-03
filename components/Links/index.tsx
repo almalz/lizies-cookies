@@ -7,9 +7,14 @@ export type Link = {
 }
 
 const LINKS: Link[] = [
-  { label: 'Mentions légales', href: '/legal', isExtrenal: false },
-  { label: 'CGV', href: '/terms', isExtrenal: false },
   { label: 'FAQ', href: '/faq', isExtrenal: false },
+  { label: 'Mentions légales', href: '/legal', isExtrenal: false },
+  {
+    label: 'Politique de confidentialité',
+    href: '/privacy',
+    isExtrenal: false,
+  },
+  { label: 'CGV', href: '/terms', isExtrenal: false },
   {
     label: 'Contact',
     href: 'mailto:hello@liziescookies.fr',
@@ -26,7 +31,7 @@ const Links: React.FC = () => {
           href={link.href}
           isExternal={link.isExtrenal}
           fontWeight={600}
-          fontSize="sm"
+          fontSize="xs"
           color="gray.600"
           mx="4px"
         >

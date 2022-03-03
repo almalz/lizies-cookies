@@ -36,6 +36,25 @@ query TermsPage {
   }
 }
 
+query PrivacyPage {
+  privacypage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
+  }
+}
+
 query FaqPage {
   faqpage {
     items {

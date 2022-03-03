@@ -2086,6 +2086,40 @@ export type PositionFilter = {
   neq?: InputMaybe<Scalars['IntType']>
 }
 
+export type PrivacypageModelBodyField = {
+  __typename?: 'PrivacypageModelBodyField'
+  blocks: Array<Scalars['String']>
+  links: Array<Scalars['String']>
+  value: Scalars['JsonField']
+}
+
+/** Record of type PrivacyPage (privacypage) */
+export type PrivacypageRecord = {
+  __typename?: 'PrivacypageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  body?: Maybe<PrivacypageModelBodyField>
+  createdAt: Scalars['DateTime']
+  id: Scalars['ItemId']
+  noindex?: Maybe<Scalars['BooleanType']>
+  seo?: Maybe<SeoField>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type PrivacyPage (privacypage) */
+export type PrivacypageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
 export type ProductModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<ProductModelFilter>>>
   _createdAt?: InputMaybe<CreatedAtFilter>
@@ -2240,6 +2274,8 @@ export type Query = {
   legalpage?: Maybe<LegalpageRecord>
   /** Returns the single instance record */
   nodroppage?: Maybe<NodroppageRecord>
+  /** Returns the single instance record */
+  privacypage?: Maybe<PrivacypageRecord>
   /** Returns a specific record */
   product?: Maybe<ProductRecord>
   /** Returns the single instance record */
@@ -2388,6 +2424,12 @@ export type QueryLegalpageArgs = {
 
 /** The query root for this schema */
 export type QueryNodroppageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryPrivacypageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
@@ -3117,6 +3159,29 @@ export type TermsPageQuery = {
   } | null
 }
 
+export type PrivacyPageQueryVariables = Exact<{ [key: string]: never }>
+
+export type PrivacyPageQuery = {
+  __typename?: 'Query'
+  privacypage?: {
+    __typename?: 'PrivacypageRecord'
+    noindex?: any | null
+    body?: {
+      __typename?: 'PrivacypageModelBodyField'
+      blocks: Array<string>
+      links: Array<string>
+      value: any
+    } | null
+    seo?: {
+      __typename?: 'SeoField'
+      title?: string | null
+      description?: string | null
+      twitterCard?: string | null
+      image?: { __typename?: 'FileField'; url: string } | null
+    } | null
+  } | null
+}
+
 export type FaqPageQueryVariables = Exact<{ [key: string]: never }>
 
 export type FaqPageQuery = {
@@ -3582,6 +3647,74 @@ export type TermsPageLazyQueryHookResult = ReturnType<
 export type TermsPageQueryResult = Apollo.QueryResult<
   TermsPageQuery,
   TermsPageQueryVariables
+>
+export const PrivacyPageDocument = gql`
+  query PrivacyPage {
+    privacypage {
+      body {
+        blocks
+        links
+        value
+      }
+      noindex
+      seo {
+        title
+        description
+        image {
+          url
+        }
+        twitterCard
+      }
+    }
+  }
+`
+
+/**
+ * __usePrivacyPageQuery__
+ *
+ * To run a query within a React component, call `usePrivacyPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePrivacyPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePrivacyPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePrivacyPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    PrivacyPageQuery,
+    PrivacyPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(
+    PrivacyPageDocument,
+    options
+  )
+}
+export function usePrivacyPageLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    PrivacyPageQuery,
+    PrivacyPageQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(
+    PrivacyPageDocument,
+    options
+  )
+}
+export type PrivacyPageQueryHookResult = ReturnType<typeof usePrivacyPageQuery>
+export type PrivacyPageLazyQueryHookResult = ReturnType<
+  typeof usePrivacyPageLazyQuery
+>
+export type PrivacyPageQueryResult = Apollo.QueryResult<
+  PrivacyPageQuery,
+  PrivacyPageQueryVariables
 >
 export const FaqPageDocument = gql`
   query FaqPage {
