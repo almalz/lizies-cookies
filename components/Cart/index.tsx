@@ -14,11 +14,14 @@ const Cart: React.FC = () => {
   }, [Snipcart?.cart])
 
   // value loading on mount
+  // The time out helps give time to Snipcart to load
   useEffect(() => {
     const syncItemcount = async () => {
       if (typeof window !== 'undefined') {
-        const _itemCount = await Snipcart?.store?.itemCount()
-        setItemCount(_itemCount || null)
+        setTimeout(async () => {
+          const _itemCount = await Snipcart?.store?.itemCount()
+          setItemCount(_itemCount || null)
+        }, 1000)
       }
     }
     syncItemcount()
@@ -42,7 +45,7 @@ const Cart: React.FC = () => {
 
   return (
     <button onClick={handleClick}>
-      <Circle p="4px" pos="relative">
+      <Circle p="4px" pos="relative" size="58px">
         <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
 
         <Circle
@@ -61,7 +64,7 @@ const Cart: React.FC = () => {
           {loading ? (
             <Spinner color="White" size="xs" />
           ) : (
-            <span>{itemCount || ''}</span>
+            <span>{itemCount || 0}</span>
           )}
         </Circle>
       </Circle>

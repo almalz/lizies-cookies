@@ -1,4 +1,4 @@
-import { Flex, Text, Center } from '@chakra-ui/react'
+import { Flex, Text, Center, Box } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
 import ProductModal, { ProductModalRef } from './ProductModal'
@@ -33,13 +33,14 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         height="100%"
         sx={{ img: { borderRadius: '0.25rem' } }}
       >
-        <Image
-          src={product.pictures[0].url || ''}
-          alt={product.pictures[0].alt || product.name || ''}
-          width="150px"
-          height="150px"
-          quality={50}
-        />
+        <Box pos="relative" w="150px" h="150px" overflow="hidden">
+          <Image
+            src={product.pictures[0].url || ''}
+            alt={product.pictures[0].alt || product.name || ''}
+            layout="fill"
+            quality={50}
+          />
+        </Box>
       </Center>
       <Flex
         px="16px"
