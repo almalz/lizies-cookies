@@ -42,7 +42,7 @@ const Cart: React.FC = () => {
 
   return (
     <button onClick={handleClick}>
-      <Circle p="4px" pos="relative">
+      <Circle p="4px" pos="relative" size="58px">
         <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
 
         <Circle

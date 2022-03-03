@@ -27,7 +27,7 @@ const Links: React.FC = () => {
           isExternal={link.isExtrenal}
           fontWeight={600}
           fontSize="sm"
-          color="gray.500"
+          color="gray.600"
           mx="4px"
         >
           {link.label}
