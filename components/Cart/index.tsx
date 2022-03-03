@@ -27,14 +27,18 @@ const Cart: React.FC = () => {
   //value subscription when cart changes
   useEffect(() => {
     let unsubscribe: () => void
-    unsubscribe = Snipcart?.store?.subscribe(async () => {
-      const _itemCount = await Snipcart?.store?.itemCount()
-      setItemCount(_itemCount || null)
-    })
+    if (typeof window !== 'undefined' && Snipcart && Snipcart.store) {
+      unsubscribe = Snipcart?.store?.subscribe(async () => {
+        if (typeof window !== 'undefined' && Snipcart) {
+          const _itemCount = await Snipcart?.store?.itemCount()
+          setItemCount(_itemCount || null)
+        }
+      })
+    }
     return () => {
       unsubscribe && unsubscribe()
     }
-  }, [Snipcart?.store])
+  }, [Snipcart, Snipcart.store])
 
   return (
     <button onClick={handleClick}>
