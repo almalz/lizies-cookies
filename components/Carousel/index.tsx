@@ -76,7 +76,6 @@ const Carousel: React.FC<CarouselProps> = ({ images, width, height }) => {
                     alt={image.alt || ''}
                     layout="fill"
                     quality={50}
-                    priority
                   />
                 </Box>
               </Box>
