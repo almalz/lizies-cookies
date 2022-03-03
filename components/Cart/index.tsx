@@ -35,7 +35,6 @@ const Cart: React.FC = () => {
         if (typeof window !== 'undefined' && Snipcart) {
           const _itemCount = await Snipcart?.store?.itemCount()
           setItemCount(_itemCount || null)
-          console.log('yo')
         }
       })
     }
