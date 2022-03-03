@@ -3009,6 +3009,8 @@ export type DropByIdQuery = {
       name?: string | null
       description?: string | null
       unitPrice?: any | null
+      allergens?: string | null
+      ingredients?: string | null
       pictures: Array<{
         __typename?: 'FileField'
         id: any
@@ -3044,6 +3046,8 @@ export type NextIncomingDropsQuery = {
       name?: string | null
       description?: string | null
       unitPrice?: any | null
+      allergens?: string | null
+      ingredients?: string | null
       pictures: Array<{
         __typename?: 'FileField'
         id: any
@@ -3295,6 +3299,8 @@ export const DropByIdDocument = gql`
         name
         description
         unitPrice
+        allergens
+        ingredients
         pictures {
           id
           alt
@@ -3372,6 +3378,8 @@ export const NextIncomingDropsDocument = gql`
         name
         description
         unitPrice
+        allergens
+        ingredients
         pictures {
           id
           alt

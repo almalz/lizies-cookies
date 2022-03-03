@@ -90,7 +90,7 @@ const ProductModal = forwardRef(
                 </Text>
                 <Text
                   fontWeight={'500'}
-                  fontSize={['sm', 'sm', 'lg', 'lg']}
+                  fontSize={['md', 'md', 'lg', 'lg']}
                   color="gray.700"
                   lineHeight={'1.2rem'}
                 >
@@ -100,20 +100,20 @@ const ProductModal = forwardRef(
                   <Text
                     fontWeight={'400'}
                     fontSize={['sm', 'sm', 'md', 'md']}
-                    color="gray.500"
+                    color="gray.600"
                     lineHeight={'1.2rem'}
                   >
-                    {`ingrédients : ${product.ingredients}`}
+                    {`Ingrédients : ${product.ingredients}`}
                   </Text>
                 )}
                 {product.allergens && (
                   <Text
                     fontWeight={'400'}
                     fontSize={['sm', 'sm', 'md', 'md']}
-                    color="gray.500"
+                    color="gray.600"
                     lineHeight={'1.2rem'}
                   >
-                    {`allergènes : ${product.allergens}`}
+                    {`Allergènes : ${product.allergens}`}
                   </Text>
                 )}
                 <RFlex mobileOnly>
