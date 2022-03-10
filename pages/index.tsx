@@ -68,7 +68,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
             py={['0', '0', '0', '10vh']}
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            <Box mt="10%" w={['0', '0', '200px', '300px', '400px']} mx="auto">
+            <Box mt="10%" w={'100%'}>
               <Links />
             </Box>
           </Flex>

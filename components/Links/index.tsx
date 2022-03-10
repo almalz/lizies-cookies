@@ -24,14 +24,14 @@ const LINKS: Link[] = [
 
 const Links: React.FC = () => {
   return (
-    <Flex justify="space-between" flexWrap="wrap">
+    <Flex justify="space-around" flexWrap="wrap">
       {LINKS.map((link: Link) => (
         <Link
           key={`${link.href}-${link.label}`}
           href={link.href}
           isExternal={link.isExtrenal}
           fontWeight={600}
-          fontSize="xs"
+          fontSize="sm"
           color="gray.600"
           mx="4px"
         >
