@@ -102,7 +102,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           <Flex
             justifyContent="center"
             alignItems={['start', 'start', 'start', 'start']}
-            pt={['0', '0', '0', '5vh']}
+            pt={['0pc', '0px', '0px', '5vh', '5vh']}
             h="100%"
           >
             <RFlex
@@ -111,9 +111,9 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
               flexDir={'column'}
               h="100%"
             >
-              <RFlex desktopOnly justifyContent="end" py="8px">
+              <RBox desktopOnly pos="fixed" right="0" pr="32px">
                 <Cart />
-              </RFlex>
+              </RBox>
               <Box pb={['32px', '64px', '96px', '96px']}>
                 <ProductList products={drop.products} />
               </Box>
