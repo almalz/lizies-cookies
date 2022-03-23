@@ -92,7 +92,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
               mobileOnly
               pos="sticky"
               justifyContent={'flex-end'}
-              pr={['16px', '16px', '96px', '0px']}
+              pr={['16px', '16px', '0px', '0px']}
               pt={['16px', '16px', '32px', '0px']}
             >
               <Cart />
@@ -103,7 +103,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           <Flex
             justifyContent="center"
             alignItems={['start', 'start', 'start', 'start']}
-            pt={['0pc', '0px', '0px', '5vh', '5vh']}
+            pt={['0px', '0px', '0px', '5vh', '5vh']}
             h="100%"
           >
             <RFlex
@@ -112,10 +112,15 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
               flexDir={'column'}
               h="100%"
             >
-              <RBox desktopOnly pos="fixed" right="0" pr="32px">
+              <RBox
+                desktopOnly
+                pos="fixed"
+                right="0"
+                pr={['0px', '0px', '0px', '2%', '2%']}
+              >
                 <Cart />
               </RBox>
-              <Box pb={['32px', '64px', '96px', '96px']}>
+              <Box pb={['32px', '32px', '32px', '96px']}>
                 <ProductList products={drop.products} />
               </Box>
               <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
