@@ -67,9 +67,9 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           </Text>
           <Text
             fontWeight={'400'}
-            fontSize={['xs', 'xs', 'sm', 'sm']}
+            fontSize={['sm', 'sm', 'sm', 'sm']}
             color="gray.600"
-            lineHeight={'0.9rem'}
+            lineHeight={'1rem'}
             maxWidth="100%"
           >
             {product.description}
