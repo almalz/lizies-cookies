@@ -1,5 +1,12 @@
 import { forwardRef, Ref, useCallback } from 'react'
-import { Button, HStack, FormLabel, FormControl, Box } from '@chakra-ui/react'
+import {
+  Button,
+  HStack,
+  FormLabel,
+  FormControl,
+  Box,
+  Text,
+} from '@chakra-ui/react'
 
 export type NumberInputProps = {
   value?: number | null
@@ -25,7 +32,7 @@ const NumberInput = forwardRef(
     return (
       <FormControl>
         <FormLabel htmlFor={label} visibility="hidden" h={0} w={0} />
-        <HStack maxW="320px">
+        <HStack maxW="120px">
           <Button
             bg="gray.900"
             color="white"
@@ -42,7 +49,7 @@ const NumberInput = forwardRef(
             fontSize={['md', 'md', 'lg', 'lg']}
             textAlign="center"
           >
-            <span>{value}</span>
+            <Text fontWeight="300">{value}</Text>
           </Box>
           <Button
             bg="gray.900"

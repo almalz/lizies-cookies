@@ -22,6 +22,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       border="1px solid"
       borderColor="gray.200"
       direction={'row'}
+      align={['center', 'center', 'normal', 'normal']}
       boxShadow="md"
       width="100%"
       height={['40%', '40%', '40%', '30%']}
@@ -57,7 +58,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         >
           <Text
             fontWeight={'700'}
-            fontSize={['md', 'md', 'xl', 'xl']}
+            fontSize={['lg', 'lg', 'xl', 'xl']}
             _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
             lineHeight={'1rem'}
             onClick={() => modalRef.current?.onOpenModal()}
@@ -77,7 +78,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           <RFlex mobileOnly>
             <Text
               fontWeight={'700'}
-              fontSize={['md', 'md', 'xl', 'xl']}
+              fontSize={['lg', 'lg', 'xl', 'xl']}
               whiteSpace="nowrap"
             >
               {`${product.unitPrice.toFixed(2)} €`}
@@ -88,7 +89,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <Flex
           pt={['8px', '8px', '0', '0']}
           align={'center'}
-          justify={['center', 'center ', 'end', 'end']}
+          justify={'end'}
           w={['100%', '100% ', 'auto', 'auto']}
         >
           <RFlex flexGrow={1} desktopOnly>
