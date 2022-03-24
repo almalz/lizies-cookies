@@ -1,5 +1,4 @@
 import { Flex, Box } from '@chakra-ui/react'
-import format from 'date-fns/format'
 import { NextPage, GetServerSideProps } from 'next'
 import { RBox, RFlex } from '../components/Breakpoints'
 import DropSummary from '../components/DropSummary'

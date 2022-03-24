@@ -1,4 +1,5 @@
 import { format, isValid } from 'date-fns'
+import fr from 'date-fns/locale/fr'
 
 export const injectVariables = (
   text: string,
@@ -30,4 +31,5 @@ export const injectVariables = (
   return text
 }
 
-const formatDate = (date: Date) => format(new Date(date), 'dd.MM.yyyy')
+const formatDate = (date: Date) =>
+  format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
