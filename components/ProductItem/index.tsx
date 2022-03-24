@@ -1,4 +1,4 @@
-import { Flex, Text, Center, Box } from '@chakra-ui/react'
+import { Flex, Text, Center, Box, AspectRatio } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
 import ProductModal, { ProductModalRef } from './ProductModal'
@@ -37,12 +37,14 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         _hover={{ opacity: 0.8, cursor: 'pointer' }}
       >
         <Box pos="relative" w="150px" h="150px" overflow="hidden">
-          <Image
-            src={product.pictures[0].url || ''}
-            alt={product.pictures[0].alt || product.name || ''}
-            layout="fill"
-            quality={50}
-          />
+          <AspectRatio ratio={3 / 4} sx={{ transform: 'translateY(-25px)' }}>
+            <Image
+              src={product.pictures[0].url || ''}
+              alt={product.pictures[0].alt || product.name || ''}
+              layout="fill"
+              quality={50}
+            />
+          </AspectRatio>
         </Box>
       </Center>
       <Flex

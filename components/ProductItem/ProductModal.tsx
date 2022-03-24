@@ -8,6 +8,8 @@ import {
   ModalOverlay,
   ModalCloseButton,
   useDisclosure,
+  AspectRatio,
+  Box,
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import { Product } from '../../types'
@@ -60,13 +62,27 @@ const ProductModal = forwardRef(
               maxWidth={'75%'}
               sx={{ img: { borderRadius: '0.25rem' } }}
             >
-              <Image
-                src={product.pictures[0].url || ''}
-                alt={product.pictures[0].alt || product.name || ''}
+              <Box
+                pos="relative"
                 width="300px"
                 height="300px"
-                quality={50}
-              />
+                overflow="hidden"
+                borderRadius="xl"
+              >
+                <AspectRatio
+                  ratio={3 / 4}
+                  sx={{ transform: 'translateY(-25px)' }}
+                >
+                  <Image
+                    src={product.pictures[0].url || ''}
+                    alt={product.pictures[0].alt || product.name || ''}
+                    layout="fill"
+                    // width="300px"
+                    // height="300px"
+                    quality={50}
+                  />
+                </AspectRatio>
+              </Box>
             </Center>
             <Flex
               pl={['8px', '8px', '32px', '32px']}
