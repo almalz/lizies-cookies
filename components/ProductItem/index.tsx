@@ -33,6 +33,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         overflow="hidden"
         height="100%"
         sx={{ img: { borderRadius: '0.25rem' } }}
+        onClick={() => modalRef.current?.onOpenModal()}
+        _hover={{ opacity: 0.8, cursor: 'pointer' }}
       >
         <Box pos="relative" w="150px" h="150px" overflow="hidden">
           <Image
