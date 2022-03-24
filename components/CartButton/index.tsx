@@ -48,7 +48,7 @@ const CartButton: React.FC<ButtonProps> = (props) => {
       {loading ? (
         <Spinner color="White" size="xs" />
       ) : (
-        `Voir mon panier (${itemCount})`
+        `Voir mon panier ${itemCount ? `(${itemCount || 0})` : ''}`
       )}
     </Button>
   )
