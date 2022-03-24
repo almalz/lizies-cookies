@@ -16,9 +16,11 @@ import {
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { CartBottomButton } from '../components/Cart'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
+const CartButton = dynamic(() => import('../components/CartButton'), {
+  ssr: false,
+})
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
@@ -124,7 +126,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
                 <ProductList products={drop.products} />
               </Box>
               <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
-                <CartBottomButton w="100%" h="48px" color="white" bg="black" />
+                <CartButton w="100%" h="48px" color="white" bg="black" />
               </RBox>
               <RBox mobileOnly px="32px" pb="32px">
                 <Links />
