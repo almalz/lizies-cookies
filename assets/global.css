@@ -133,3 +133,13 @@ address-fields * {
   opacity: 1;
   transition: all 0.8s;
 }
+
+.snipcart-flash-message--error h2 {
+  font-size: 0;
+  content: '';
+}
+
+.snipcart-flash-message--error h2::before {
+  font-size: 14px;
+  content: 'Malheureusement, l’article ci-dessous n’est plus disponible, supprimez-le du panier pour continuer.';
+}
