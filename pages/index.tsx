@@ -3,7 +3,7 @@ import { NextPage, GetServerSideProps } from 'next'
 import { RBox, RFlex } from '../components/Breakpoints'
 import DropSummary from '../components/DropSummary'
 import Layout from '../components/Layout'
-import Links from '../components/Links'
+import Links, { SocialLinks } from '../components/Links'
 import ProductList from '../components/ProductList'
 import client from '../lib/apolloClient'
 import { Drop } from '../types'
@@ -59,7 +59,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
       <Flex h={['100%', '100%', '100%', '100vh']}>
-        <RBox desktopOnly w="40%" h="100%">
+        <RBox desktopOnly w="45%" h="100%">
           <Flex
             h="100%"
             flexDir={'column'}
@@ -71,6 +71,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
             <Box mt="10%" w={'100%'}>
+              <SocialLinks />
               <Links />
             </Box>
           </Flex>
@@ -127,7 +128,8 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
               <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
                 <CartButton w="100%" h="48px" color="white" bg="black" />
               </RBox>
-              <RBox mobileOnly px="32px" pb="32px">
+              <RBox mobileOnly px="32px" pb="32px" gap="32px">
+                <SocialLinks />
                 <Links />
               </RBox>
             </RFlex>

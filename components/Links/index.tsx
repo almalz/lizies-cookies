@@ -1,4 +1,9 @@
-import { Flex, Link } from '@chakra-ui/react'
+import { Flex, Link, HStack, Icon } from '@chakra-ui/react'
+import {
+  FaInstagram as InstagramIcon,
+  FaFacebook as FacebookIcon,
+  FaTiktok as TiktokIcon,
+} from 'react-icons/fa'
 
 export type Link = {
   label: string
@@ -39,6 +44,40 @@ const Links: React.FC = () => {
         </Link>
       ))}
     </Flex>
+  )
+}
+
+export const SocialLinks: React.FC = () => {
+  return (
+    <HStack justify="space-around" w="150px" margin="auto" mb="16px">
+      <Link href={'https://www.instagram.com/liziescookies/'} isExternal={true}>
+        <Icon
+          as={InstagramIcon}
+          w={6}
+          h={6}
+          cursor="pointer"
+          _hover={{ color: '#718096' }}
+        />
+      </Link>
+      <Link href={'https://www.facebook.com/liziescookies'} isExternal={true}>
+        <Icon
+          as={FacebookIcon}
+          w={6}
+          h={6}
+          cursor="pointer"
+          _hover={{ color: '#718096' }}
+        />
+      </Link>
+      <Link href={'https://www.tiktok.com/@liziescookies'} isExternal={true}>
+        <Icon
+          as={TiktokIcon}
+          w={6}
+          h={6}
+          cursor="pointer"
+          _hover={{ color: '#718096' }}
+        />
+      </Link>
+    </HStack>
   )
 }
 
