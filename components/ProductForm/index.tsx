@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'react'
-// import Snipcart from '../../lib/snipcart'
 import { useSnipcart } from '../../lib/snipcart'
 import { Product } from '../../types'
 import NumberInput from '../NumberInput'

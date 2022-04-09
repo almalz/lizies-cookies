@@ -1,5 +1,6 @@
 import { Item } from './types'
 import { Store } from './store'
+import { setCookiesExpiration } from '../cookies'
 
 export const Cart = {
   open: () => Snipcart.api.theme.cart.open(),
@@ -10,8 +11,11 @@ export const Items = {
   add: async (item: Item) => {
     try {
       await Snipcart.api.cart.items.add(item)
+      setCartExpiration()
     } catch (error) {
       console.log(error)
+    } finally {
+      setCartExpiration()
     }
   },
   remove: async (id: string, value: number) => {
@@ -25,6 +29,14 @@ export const Items = {
       })
     } catch (error) {
       console.log(error)
+    } finally {
+      setCartExpiration()
     }
   },
+}
+
+export const setCartExpiration = () => {
+  const d = new Date()
+  d.setHours(23, 59)
+  setCookiesExpiration('snipcart-cart', d)
 }
