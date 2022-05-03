@@ -50,8 +50,8 @@ const Cart: React.FC = () => {
 
         <Circle
           pos="absolute"
-          top="-2"
-          right="-2"
+          top="-1"
+          right="-1"
           size="28px"
           zIndex={2}
           bg="gray.900"
