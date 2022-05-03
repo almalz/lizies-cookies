@@ -138,3 +138,13 @@ address-fields * {
   font-size: 14px;
   content: 'Malheureusement, l’article ci-dessous n’est plus disponible, supprimez-le du panier pour continuer.';
 }
+
+.cgv-link {
+  color: #0066dd;
+  text-decoration: underline;
+}
+
+.cgv-link:hover {
+  cursor: pointer;
+  color: #0022aa;
+}
