@@ -15,7 +15,6 @@ export type PrivacyPageProps = {
 }
 
 const PrivacyPage: NextPage<PrivacyPageProps> = ({ privacypage }) => {
-  console.log(privacypage)
   return (
     <Layout
       seo={privacypage?.seo || undefined}

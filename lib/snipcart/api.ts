@@ -13,7 +13,7 @@ export const Items = {
       await Snipcart.api.cart.items.add(item)
       setCartExpiration()
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       setCartExpiration()
     }
@@ -28,7 +28,7 @@ export const Items = {
         quantity: newQuantity,
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       setCartExpiration()
     }
