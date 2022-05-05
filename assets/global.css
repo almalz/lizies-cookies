@@ -141,10 +141,17 @@ address-fields * {
 
 .cgv-link {
   color: #0066dd;
-  text-decoration: underline;
 }
 
 .cgv-link:hover {
   cursor: pointer;
+  color: #0022aa;
+}
+
+.markdown a {
+  color: #0066dd;
+  font-weight: 600;
+}
+.markdown a:hover {
   color: #0022aa;
 }
