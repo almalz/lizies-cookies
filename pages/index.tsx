@@ -4,6 +4,7 @@ import { RBox, RFlex } from '../components/Breakpoints'
 import DropSummary from '../components/DropSummary'
 import Layout from '../components/Layout'
 import Links, { SocialLinks } from '../components/Links'
+import PopperMessage from '../components/PopperMessage'
 import ProductList from '../components/ProductList'
 import client from '../lib/apolloClient'
 import { Drop } from '../types'
@@ -11,6 +12,7 @@ import {
   DroppageRecord,
   NextIncomingDropsDocument,
   NextIncomingDropsQuery,
+  PoppermessageRecord,
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
@@ -32,9 +34,10 @@ const TODAY = new Date(Date.now()).toISOString()
 export type DropPageProps = {
   drop: Drop
   pageBody: DroppageRecord
+  popperMessage: PoppermessageRecord | null
 }
 
-const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
+const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
   const router = useRouter()
 
   // while on the page, check every 5 minutes, if a drop is still currently scheluded
@@ -136,6 +139,13 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody }) => {
         </Box>
         <ThresholdModal />
       </Flex>
+      {popperMessage?.message && (
+        <PopperMessage
+          message={popperMessage.message}
+          delay={popperMessage.delay}
+          updatedAt={popperMessage.updatedAt}
+        />
+      )}
     </Layout>
   )
 }
@@ -163,6 +173,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       drop: nextIncomingDrop,
       pageBody: data?.droppage,
+      popperMessage: data?.poppermessage,
     },
   }
 }

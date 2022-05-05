@@ -99,4 +99,9 @@ query nextIncomingDrops($TODAY: DateTime) {
       twitterCard
     }
   }
+  poppermessage {
+    updatedAt
+    delay
+    message
+  }
 }

@@ -2070,6 +2070,37 @@ export type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>
 }
 
+/** Record of type PopperMessage (poppermessage) */
+export type PoppermessageRecord = {
+  __typename?: 'PoppermessageRecord'
+  _createdAt: Scalars['DateTime']
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>
+  _isValid: Scalars['BooleanType']
+  _modelApiKey: Scalars['String']
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
+  _publishedAt?: Maybe<Scalars['DateTime']>
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>
+  _status: ItemStatus
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
+  _updatedAt: Scalars['DateTime']
+  createdAt: Scalars['DateTime']
+  delay?: Maybe<Scalars['IntType']>
+  id: Scalars['ItemId']
+  message?: Maybe<Scalars['String']>
+  updatedAt: Scalars['DateTime']
+}
+
+/** Record of type PopperMessage (poppermessage) */
+export type PoppermessageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** Record of type PopperMessage (poppermessage) */
+export type PoppermessageRecordMessageArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
 /** Specifies how to filter by position (sorted and tree-like collections) */
 export type PositionFilter = {
   /** Search for records with an exact match */
@@ -2275,6 +2306,8 @@ export type Query = {
   /** Returns the single instance record */
   nodroppage?: Maybe<NodroppageRecord>
   /** Returns the single instance record */
+  poppermessage?: Maybe<PoppermessageRecord>
+  /** Returns the single instance record */
   privacypage?: Maybe<PrivacypageRecord>
   /** Returns a specific record */
   product?: Maybe<ProductRecord>
@@ -2424,6 +2457,12 @@ export type QueryLegalpageArgs = {
 
 /** The query root for this schema */
 export type QueryNodroppageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>
+  locale?: InputMaybe<SiteLocale>
+}
+
+/** The query root for this schema */
+export type QueryPoppermessageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>
   locale?: InputMaybe<SiteLocale>
 }
@@ -3111,6 +3150,12 @@ export type NextIncomingDropsQuery = {
       image?: { __typename?: 'FileField'; url: string } | null
     } | null
   } | null
+  poppermessage?: {
+    __typename?: 'PoppermessageRecord'
+    updatedAt: any
+    delay?: any | null
+    message?: string | null
+  } | null
 }
 
 export type LegalPageQueryVariables = Exact<{ [key: string]: never }>
@@ -3464,6 +3509,11 @@ export const NextIncomingDropsDocument = gql`
         }
         twitterCard
       }
+    }
+    poppermessage {
+      updatedAt
+      delay
+      message
     }
   }
 `
