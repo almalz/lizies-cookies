@@ -34,7 +34,7 @@ const PopperMessage: React.FC<PopperMessageProps> = ({
       show = add(new Date(dismissedAt), { hours: 1 }).getTime() < Date.now()
     }
 
-    if (show) setTimeout(() => onOpen(), INITIAL_DELAY)
+    if (true) setTimeout(() => onOpen(), INITIAL_DELAY)
   }, [onOpen])
 
   useEffect(() => {
@@ -44,42 +44,49 @@ const PopperMessage: React.FC<PopperMessageProps> = ({
   }, [delay, handleClose, isOpen])
 
   return (
-    <SlideFade in={isOpen}>
-      <Box
-        pos="fixed"
-        w="300px"
-        m="16px"
-        p="16px"
-        pt="24px"
-        pr="42px"
-        right="0"
-        bottom="0"
-        borderRadius="xl"
-        boxShadow="dark-lg"
-        overflow="hidden"
-        zIndex="10"
-        bg="#FFF"
-      >
-        <Button
-          aria-label="Close message"
-          pos="absolute"
-          top="0"
-          right="0"
-          m="8px"
-          p="8px"
-          borderRadius="lg"
-          bg="transparent"
-          onClick={() => handleClose()}
-        >
-          <CloseIcon />
-        </Button>
-        <Box>
-          <ReactMarkdown className="markdown" remarkPlugins={[remarkBreaks]}>
-            {message}
-          </ReactMarkdown>
-        </Box>
-      </Box>
-    </SlideFade>
+    <>
+      {true && (
+        <SlideFade in={isOpen} offsetY="0px">
+          <Box
+            pos="fixed"
+            w="300px"
+            m="24px"
+            p="24px"
+            pt="24px"
+            pr="42px"
+            right="0"
+            bottom="0"
+            borderRadius="xl"
+            boxShadow="dark-lg"
+            overflow="hidden"
+            zIndex="10"
+            bg="#FFF"
+          >
+            <Button
+              aria-label="Close message"
+              pos="absolute"
+              top="0"
+              right="0"
+              m="8px"
+              p="8px"
+              borderRadius="lg"
+              bg="transparent"
+              onClick={() => handleClose()}
+            >
+              <CloseIcon />
+            </Button>
+            <Box>
+              <ReactMarkdown
+                className="markdown"
+                remarkPlugins={[remarkBreaks]}
+              >
+                {message}
+              </ReactMarkdown>
+            </Box>
+          </Box>
+        </SlideFade>
+      )}
+    </>
   )
 }
 
