@@ -7,6 +7,9 @@ import { injectVariables } from '../../lib/utils'
 import { CountdownRenderProps } from 'react-countdown'
 import { add } from 'date-fns'
 import dynamic from 'next/dynamic'
+import { RBox } from '../Breakpoints'
+import ProductList from '../ProductList'
+import CartButton from '../CartButton'
 
 const Countdown = dynamic(() => import('react-countdown'), { ssr: false })
 
@@ -48,7 +51,24 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       <Box color="gray.800" mb={['4px', '4px', '32px', '32px']}>
         <ReactMarkdown remarkPlugins={[remarkBreaks]}>
           {(
-            pageBody?.description && injectVariables(pageBody.description, drop)
+            pageBody?.headline && injectVariables(pageBody.headline, drop)
+          )?.replace(/\n/gi, '\n &nbsp;') || ''}
+        </ReactMarkdown>
+      </Box>
+
+      <RBox mobileOnly pt="32px" pb="32px">
+        <ProductList products={drop.products} />
+      </RBox>
+
+      <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
+        <CartButton w="100%" h="48px" color="white" bg="black" />
+      </RBox>
+
+      <Box color="gray.800" mb={['4px', '4px', '32px', '32px']}>
+        <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+          {(
+            pageBody?.deliveryDescription &&
+            injectVariables(pageBody.deliveryDescription, drop)
           )?.replace(/\n/gi, '\n &nbsp;') || ''}
         </ReactMarkdown>
       </Box>

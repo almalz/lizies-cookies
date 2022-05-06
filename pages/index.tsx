@@ -71,7 +71,6 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
             pt={['0', '0', '0', '10vh']}
           >
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
-            {/* <Box mt="10%" w={'100%'}> */}
             <Box mt="auto" pb="32px" w={'100%'}>
               <SocialLinks />
               <Links />
@@ -98,6 +97,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
               justifyContent={'flex-end'}
               pr={['16px', '16px', '0px', '0px']}
               pt={['16px', '16px', '32px', '0px']}
+              minH="75px"
             >
               <Cart />
             </RFlex>
@@ -124,11 +124,8 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
               >
                 <Cart />
               </RBox>
-              <Box pb={['32px', '32px', '32px', '96px']}>
+              <RBox desktopOnly pb={['32px', '32px', '32px', '96px']}>
                 <ProductList products={drop.products} />
-              </Box>
-              <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
-                <CartButton w="100%" h="48px" color="white" bg="black" />
               </RBox>
               <RBox mobileOnly px="32px" pb="32px" gap="32px">
                 <SocialLinks />

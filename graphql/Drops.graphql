@@ -88,7 +88,8 @@ query nextIncomingDrops($TODAY: DateTime) {
   }
   droppage {
     title
-    description
+    headline
+    deliveryDescription
     noindex
     seo {
       title

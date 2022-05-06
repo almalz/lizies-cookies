@@ -224,7 +224,8 @@ export type DroppageRecord = {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
   _updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
-  description?: Maybe<Scalars['String']>
+  deliveryDescription?: Maybe<Scalars['String']>
+  headline?: Maybe<Scalars['String']>
   id: Scalars['ItemId']
   noindex?: Maybe<Scalars['BooleanType']>
   seo?: Maybe<SeoField>
@@ -238,7 +239,12 @@ export type DroppageRecord_SeoMetaTagsArgs = {
 }
 
 /** Record of type DropPage (droppage) */
-export type DroppageRecordDescriptionArgs = {
+export type DroppageRecordDeliveryDescriptionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Record of type DropPage (droppage) */
+export type DroppageRecordHeadlineArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>
 }
 
@@ -3140,7 +3146,8 @@ export type NextIncomingDropsQuery = {
   droppage?: {
     __typename?: 'DroppageRecord'
     title?: string | null
-    description?: string | null
+    headline?: string | null
+    deliveryDescription?: string | null
     noindex?: any | null
     seo?: {
       __typename?: 'SeoField'
@@ -3499,7 +3506,8 @@ export const NextIncomingDropsDocument = gql`
     }
     droppage {
       title
-      description
+      headline
+      deliveryDescription
       noindex
       seo {
         title
