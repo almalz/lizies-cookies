@@ -3,16 +3,16 @@ import { ApolloProvider } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import client from '../lib/apolloClient'
 import '../assets/global.css'
-import { SnipcartProvider } from '../lib/snipcart'
+import { StoreProvider } from '../lib/store'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <ApolloProvider client={client}>
         <ChakraProvider>
-          <SnipcartProvider>
+          <StoreProvider>
             <Component {...pageProps} />
-          </SnipcartProvider>
+          </StoreProvider>
         </ChakraProvider>
       </ApolloProvider>
     </>

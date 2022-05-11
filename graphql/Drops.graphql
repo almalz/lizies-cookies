@@ -56,36 +56,7 @@ query dropById($dropId: ItemId) {
   }
 }
 
-query nextIncomingDrops($TODAY: DateTime) {
-  allDrops(
-    orderBy: endDate_ASC
-    filter: { endDate: { gte: $TODAY }, releaseDate: { lte: $TODAY } }
-  ) {
-    id
-    slug
-    releaseDate
-    endDate
-    deliveryDate
-    endDate
-    pictures {
-      id
-      alt
-      url
-    }
-    products {
-      id
-      name
-      description
-      unitPrice
-      allergens
-      ingredients
-      pictures {
-        id
-        alt
-        url
-      }
-    }
-  }
+query dropPage {
   droppage {
     title
     headline

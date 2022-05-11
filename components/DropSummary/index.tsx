@@ -1,7 +1,6 @@
 import { Heading, Text, Flex, Box } from '@chakra-ui/react'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
-import { Drop } from '../../types'
 import { DroppageRecord } from '../../types/generated/graphql'
 import { injectVariables } from '../../lib/utils'
 import { CountdownRenderProps } from 'react-countdown'
@@ -10,6 +9,7 @@ import dynamic from 'next/dynamic'
 import { RBox } from '../Breakpoints'
 import ProductList from '../ProductList'
 import CartButton from '../CartButton'
+import { Drop } from '../../lib/store/products/types'
 
 const Countdown = dynamic(() => import('react-countdown'), { ssr: false })
 
@@ -42,7 +42,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
         {'Fin du drop dans '}
         {typeof window !== 'undefined' && (
           <Countdown
-            date={add(new Date(drop.endDate), { hours: 24 })}
+            date={add(new Date(drop.expirationDate!), { hours: 24 })}
             renderer={(props) => <RenderCountdown {...props} />}
           />
         )}
@@ -61,7 +61,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       </RBox>
 
       <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
-        <CartButton w="100%" h="48px" color="white" bg="black" />
+        {/* <CartButton w="100%" h="48px" color="white" bg="black" /> */}
       </RBox>
 
       <Box color="gray.800" mb={['4px', '4px', '32px', '32px']}>

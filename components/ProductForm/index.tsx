@@ -1,10 +1,9 @@
 import { useState, useCallback, useEffect } from 'react'
-import { useSnipcart } from '../../lib/snipcart'
-import { Product } from '../../types'
+import { SwellProduct } from '../../lib/store/products/types'
 import NumberInput from '../NumberInput'
 
 export type ProductFormProps = {
-  product: Product
+  product: SwellProduct
   zeroWhenNull?: boolean
 }
 
@@ -18,7 +17,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 }) => {
   const defaultValue = zeroWhenNull ? 0 : null
   const [value, setValue] = useState<number | null>(defaultValue)
-  const { Snipcart, loading, setLoading } = useSnipcart()
+  const { Snipcart, loading, setLoading }: any = {}
 
   // value loading on mount
   useEffect(() => {
@@ -50,14 +49,14 @@ const ProductForm: React.FC<ProductFormProps> = ({
     await Snipcart?.items?.add({
       id: product.id,
       name: product.name,
-      price: product.unitPrice,
+      price: product.price,
       quantity: STEP,
       quantityStep: STEP,
       maxQuantity: MAX,
       url: `${DOMAIN_NAME}/api/snipcartProducts`,
     })
     setLoading(false)
-  }, [Snipcart?.items, product.id, product.name, product.unitPrice, setLoading])
+  }, [Snipcart?.items, product.id, product.name, product.price, setLoading])
 
   const handleRemove = useCallback(async () => {
     setLoading(true)

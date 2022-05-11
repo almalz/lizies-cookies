@@ -1,15 +1,17 @@
 import { Flex, Text, Center, Box, AspectRatio } from '@chakra-ui/react'
 import Image from 'next/image'
-import { Product } from '../../types'
 import ProductModal, { ProductModalRef } from './ProductModal'
 import { useRef } from 'react'
 import { RFlex } from '../Breakpoints'
 import dynamic from 'next/dynamic'
+import { SwellProduct } from '../../lib/store/products/types'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 
 const ProductForm = dynamic(() => import('../ProductForm'), { ssr: false })
 
 export type ProductItemProps = {
-  product: Product
+  product: SwellProduct
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
@@ -39,8 +41,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <Box pos="relative" w="150px" h="150px" overflow="hidden">
           <AspectRatio ratio={3 / 4} sx={{ transform: 'translateY(-25px)' }}>
             <Image
-              src={product.pictures[0].url || ''}
-              alt={product.pictures[0].alt || product.name || ''}
+              src={product.images[0].file.url || ''}
+              alt={product.name || ''}
               layout="fill"
               quality={50}
             />
@@ -70,22 +72,24 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           >
             {product.name}
           </Text>
-          <Text
-            fontWeight={'400'}
-            fontSize={['sm', 'sm', 'sm', 'sm']}
-            color="gray.600"
-            lineHeight={'1rem'}
-            maxWidth="100%"
-          >
-            {product.description}
-          </Text>
-          <RFlex mobileOnly>
+          <div>
+            <Text
+              fontWeight={'400'}
+              fontSize={['sm', 'sm', 'sm', 'sm']}
+              color="gray.600"
+              lineHeight={'1rem'}
+              maxWidth="100%"
+            >
+              <ReactMarkdown>{product.description}</ReactMarkdown>
+            </Text>
+          </div>
+          <RFlex mobileOnly className="price-mobile">
             <Text
               fontWeight={'700'}
               fontSize={['lg', 'lg', 'xl', 'xl']}
               whiteSpace="nowrap"
             >
-              {`${product.unitPrice.toFixed(2)} €`}
+              {`${product.price.toFixed(2)} €`}
             </Text>
           </RFlex>
         </Flex>
@@ -96,9 +100,9 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           justify={'end'}
           w={['100%', '100% ', 'auto', 'auto']}
         >
-          <RFlex flexGrow={1} desktopOnly>
+          <RFlex flexGrow={1} desktopOnly className="price-desktop">
             <Text fontWeight={'700'} fontSize={'xl'} whiteSpace="nowrap">
-              {`${product.unitPrice.toFixed(2)} €`}
+              {`${product.price.toFixed(2)} €`}
             </Text>
           </RFlex>
           <Flex>

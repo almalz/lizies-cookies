@@ -12,14 +12,16 @@ import {
   Box,
 } from '@chakra-ui/react'
 import Image from 'next/image'
-import { Product } from '../../types'
 import { RFlex } from '../Breakpoints'
 import dynamic from 'next/dynamic'
+import { SwellProduct } from '../../lib/store/products/types'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 
 const ProductForm = dynamic(() => import('../ProductForm'), { ssr: false })
 
 export type ProductModalProps = {
-  product: Product
+  product: SwellProduct
 }
 
 export type ProductModalRef = {
@@ -37,6 +39,8 @@ const ProductModal = forwardRef(
         onOpen()
       },
     }))
+
+    console.log(product)
 
     return (
       <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
@@ -74,8 +78,8 @@ const ProductModal = forwardRef(
                   sx={{ transform: 'translateY(-25px)' }}
                 >
                   <Image
-                    src={product.pictures[0].url || ''}
-                    alt={product.pictures[0].alt || product.name || ''}
+                    src={product.images[0].file.url || ''}
+                    alt={product.name || ''}
                     layout="fill"
                     // width="300px"
                     // height="300px"
@@ -110,26 +114,28 @@ const ProductModal = forwardRef(
                   color="gray.700"
                   lineHeight={'1.2rem'}
                 >
-                  {product.description}
+                  <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                    {product.description}
+                  </ReactMarkdown>
                 </Text>
-                {product.ingredients && (
+                {product?.content?.ingredients && (
                   <Text
                     fontWeight={'400'}
                     fontSize={['sm', 'sm', 'md', 'md']}
                     color="gray.600"
                     lineHeight={'1.2rem'}
                   >
-                    {`Ingrédients : ${product.ingredients}`}
+                    {`Ingrédients : ${product?.content?.ingredients}`}
                   </Text>
                 )}
-                {product.allergens && (
+                {product?.content?.allergens && (
                   <Text
                     fontWeight={'400'}
                     fontSize={['sm', 'sm', 'md', 'md']}
                     color="gray.600"
                     lineHeight={'1.2rem'}
                   >
-                    {`Allergènes : ${product.allergens}`}
+                    {`Allergènes : ${product?.content?.allergens}`}
                   </Text>
                 )}
                 <RFlex mobileOnly>
@@ -138,7 +144,7 @@ const ProductModal = forwardRef(
                     fontSize={['xl', 'xl', '3xl', '3xl']}
                     whiteSpace="nowrap"
                   >
-                    {`${product.unitPrice.toFixed(2)} €`}
+                    {`${product.price.toFixed(2)} €`}
                   </Text>
                 </RFlex>
               </Flex>
@@ -155,7 +161,7 @@ const ProductModal = forwardRef(
                     fontSize={['xl', 'xl', '3xl', '3xl']}
                     whiteSpace="nowrap"
                   >
-                    {`${product.unitPrice.toFixed(2)} €`}
+                    {`${product.price.toFixed(2)} €`}
                   </Text>
                 </RFlex>
                 <Flex>

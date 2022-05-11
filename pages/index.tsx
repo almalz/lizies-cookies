@@ -7,21 +7,22 @@ import Links, { SocialLinks } from '../components/Links'
 import PopperMessage from '../components/PopperMessage'
 import ProductList from '../components/ProductList'
 import client from '../lib/apolloClient'
-import { Drop } from '../types'
 import {
   DroppageRecord,
-  NextIncomingDropsDocument,
-  NextIncomingDropsQuery,
+  DropPageDocument,
+  DropPageQuery,
   PoppermessageRecord,
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Products } from '../lib/store/products/api'
+import { Drop } from '../lib/store/products/types'
 
-const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
-const CartButton = dynamic(() => import('../components/CartButton'), {
-  ssr: false,
-})
+// const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
+// const CartButton = dynamic(() => import('../components/CartButton'), {
+//   ssr: false,
+// })
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
@@ -42,22 +43,22 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
 
   // while on the page, check every 5 minutes, if a drop is still currently scheluded
   // if not, redirects to /nodrop page
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      const { data } = await client.query<NextIncomingDropsQuery>({
-        query: NextIncomingDropsDocument,
-        variables: { TODAY: TODAY },
-        fetchPolicy: 'no-cache',
-      })
-      const _drop = data.allDrops[0]
-      if (!_drop) {
-        router.push('/nodrop')
-      } else if (_drop.id !== drop.id) {
-        router.reload()
-      }
-    }, REFRESH_INTERVAL)
-    return () => clearInterval(interval)
-  }, [router, drop.id])
+  // useEffect(() => {
+  //   const interval = setInterval(async () => {
+  //     const { data } = await client.query<NextIncomingDropsQuery>({
+  //       query: NextIncomingDropsDocument,
+  //       variables: { TODAY: TODAY },
+  //       fetchPolicy: 'no-cache',
+  //     })
+  //     const _drop = data.allDrops[0]
+  //     if (!_drop) {
+  //       router.push('/nodrop')
+  //     } else if (_drop.id !== drop.id) {
+  //       router.reload()
+  //     }
+  //   }, REFRESH_INTERVAL)
+  //   return () => clearInterval(interval)
+  // }, [router, drop.id])
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">
@@ -99,7 +100,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
               pt={['16px', '16px', '32px', '0px']}
               minH="75px"
             >
-              <Cart />
+              {/* <Cart /> */}
             </RFlex>
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
           </RBox>
@@ -122,7 +123,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
                 right="0"
                 pr={['0px', '0px', '0px', '2%', '2%']}
               >
-                <Cart />
+                {/* <Cart /> */}
               </RBox>
               <RBox desktopOnly pb={['32px', '32px', '32px', '96px']}>
                 <ProductList products={drop.products} />
@@ -148,16 +149,14 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await client.query<NextIncomingDropsQuery>({
-    query: NextIncomingDropsDocument,
-    variables: { TODAY: TODAY },
+  const drop = await Products.getNextIncommingDrop()
+
+  const { data } = await client.query<DropPageQuery>({
+    query: DropPageDocument,
     fetchPolicy: 'no-cache',
   })
 
-  // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
-  const nextIncomingDrop: Drop = (data.allDrops[0] as Drop) || null
-
-  if (!nextIncomingDrop) {
+  if (!drop) {
     return {
       redirect: {
         permanent: false,
@@ -168,7 +167,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      drop: nextIncomingDrop,
+      drop: drop,
       pageBody: data?.droppage,
       popperMessage: data?.poppermessage,
     },

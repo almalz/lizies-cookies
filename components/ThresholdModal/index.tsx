@@ -9,7 +9,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react'
-import Snipcart from '../../lib/snipcart'
+import Snipcart from '../../lib/store'
 import { useEffect } from 'react'
 
 const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY)

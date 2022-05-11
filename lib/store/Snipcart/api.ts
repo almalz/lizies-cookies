@@ -1,6 +1,6 @@
 import { Item } from './types'
 import { Store } from './store'
-import { setCookiesExpiration } from '../cookies'
+import { setCookiesExpiration } from '../../cookies'
 
 export const Cart = {
   open: () => Snipcart.api.theme.cart.open(),

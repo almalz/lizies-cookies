@@ -3108,41 +3108,10 @@ export type DropByIdQuery = {
   } | null
 }
 
-export type NextIncomingDropsQueryVariables = Exact<{
-  TODAY?: InputMaybe<Scalars['DateTime']>
-}>
+export type DropPageQueryVariables = Exact<{ [key: string]: never }>
 
-export type NextIncomingDropsQuery = {
+export type DropPageQuery = {
   __typename?: 'Query'
-  allDrops: Array<{
-    __typename?: 'DropRecord'
-    id: any
-    slug?: string | null
-    releaseDate?: any | null
-    endDate?: any | null
-    deliveryDate?: any | null
-    pictures: Array<{
-      __typename?: 'FileField'
-      id: any
-      alt?: string | null
-      url: string
-    }>
-    products: Array<{
-      __typename?: 'ProductRecord'
-      id: any
-      name?: string | null
-      description?: string | null
-      unitPrice?: any | null
-      allergens?: string | null
-      ingredients?: string | null
-      pictures: Array<{
-        __typename?: 'FileField'
-        id: any
-        alt?: string | null
-        url: string
-      }>
-    }>
-  }>
   droppage?: {
     __typename?: 'DroppageRecord'
     title?: string | null
@@ -3473,37 +3442,8 @@ export type DropByIdQueryResult = Apollo.QueryResult<
   DropByIdQuery,
   DropByIdQueryVariables
 >
-export const NextIncomingDropsDocument = gql`
-  query nextIncomingDrops($TODAY: DateTime) {
-    allDrops(
-      orderBy: endDate_ASC
-      filter: { endDate: { gte: $TODAY }, releaseDate: { lte: $TODAY } }
-    ) {
-      id
-      slug
-      releaseDate
-      endDate
-      deliveryDate
-      endDate
-      pictures {
-        id
-        alt
-        url
-      }
-      products {
-        id
-        name
-        description
-        unitPrice
-        allergens
-        ingredients
-        pictures {
-          id
-          alt
-          url
-        }
-      }
-    }
+export const DropPageDocument = gql`
+  query dropPage {
     droppage {
       title
       headline
@@ -3527,54 +3467,48 @@ export const NextIncomingDropsDocument = gql`
 `
 
 /**
- * __useNextIncomingDropsQuery__
+ * __useDropPageQuery__
  *
- * To run a query within a React component, call `useNextIncomingDropsQuery` and pass it any options that fit your needs.
- * When your component renders, `useNextIncomingDropsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useDropPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useNextIncomingDropsQuery({
+ * const { data, loading, error } = useDropPageQuery({
  *   variables: {
- *      TODAY: // value for 'TODAY'
  *   },
  * });
  */
-export function useNextIncomingDropsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    NextIncomingDropsQuery,
-    NextIncomingDropsQueryVariables
-  >
+export function useDropPageQuery(
+  baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<
-    NextIncomingDropsQuery,
-    NextIncomingDropsQueryVariables
-  >(NextIncomingDropsDocument, options)
+  return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(
+    DropPageDocument,
+    options
+  )
 }
-export function useNextIncomingDropsLazyQuery(
+export function useDropPageLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<
-    NextIncomingDropsQuery,
-    NextIncomingDropsQueryVariables
+    DropPageQuery,
+    DropPageQueryVariables
   >
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<
-    NextIncomingDropsQuery,
-    NextIncomingDropsQueryVariables
-  >(NextIncomingDropsDocument, options)
+  return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(
+    DropPageDocument,
+    options
+  )
 }
-export type NextIncomingDropsQueryHookResult = ReturnType<
-  typeof useNextIncomingDropsQuery
+export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>
+export type DropPageLazyQueryHookResult = ReturnType<
+  typeof useDropPageLazyQuery
 >
-export type NextIncomingDropsLazyQueryHookResult = ReturnType<
-  typeof useNextIncomingDropsLazyQuery
->
-export type NextIncomingDropsQueryResult = Apollo.QueryResult<
-  NextIncomingDropsQuery,
-  NextIncomingDropsQueryVariables
+export type DropPageQueryResult = Apollo.QueryResult<
+  DropPageQuery,
+  DropPageQueryVariables
 >
 export const LegalPageDocument = gql`
   query LegalPage {
