@@ -6,7 +6,6 @@ import { RFlex } from '../Breakpoints'
 import dynamic from 'next/dynamic'
 import { SwellProduct } from '../../lib/store/products/types'
 import ReactMarkdown from 'react-markdown'
-import remarkBreaks from 'remark-breaks'
 
 const ProductForm = dynamic(() => import('../ProductForm'), { ssr: false })
 
@@ -73,7 +72,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             {product.name}
           </Text>
           <div>
-            <Text
+            <Box
               fontWeight={'400'}
               fontSize={['sm', 'sm', 'sm', 'sm']}
               color="gray.600"
@@ -81,7 +80,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
               maxWidth="100%"
             >
               <ReactMarkdown>{product.description}</ReactMarkdown>
-            </Text>
+            </Box>
           </div>
           <RFlex mobileOnly className="price-mobile">
             <Text

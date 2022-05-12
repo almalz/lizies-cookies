@@ -40,8 +40,6 @@ const ProductModal = forwardRef(
       },
     }))
 
-    console.log(product)
-
     return (
       <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
         <ModalOverlay />
@@ -108,7 +106,7 @@ const ProductModal = forwardRef(
                 >
                   {product.name}
                 </Text>
-                <Text
+                <Box
                   fontWeight={'500'}
                   fontSize={['md', 'md', 'lg', 'lg']}
                   color="gray.700"
@@ -117,7 +115,7 @@ const ProductModal = forwardRef(
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>
                     {product.description}
                   </ReactMarkdown>
-                </Text>
+                </Box>
                 {product?.content?.ingredients && (
                   <Text
                     fontWeight={'400'}

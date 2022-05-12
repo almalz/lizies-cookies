@@ -2,46 +2,42 @@ import { Button, ButtonProps, Circle, Spinner } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useCallback, useState, useEffect } from 'react'
 import CartIcon from '../../assets/icons/cart.svg'
-import { useSnipcart } from '../../lib/snipcart'
+import { useCart } from '../../lib/store/cart/provider'
 
 const Cart: React.FC = () => {
-  const { Snipcart, loading } = useSnipcart()
+  const { loading, cartItemsCount } = useCart()
 
-  const [itemCount, setItemCount] = useState<number | null>(null)
+  const [itemCount, setItemCount] = useState<number | null | undefined>(
+    cartItemsCount
+  )
 
-  const handleClick = useCallback(() => {
-    Snipcart?.cart?.open()
-  }, [Snipcart?.cart])
+  const handleClick = useCallback(() => {}, [])
 
   // value loading on mount
   // The time out helps give time to Snipcart to load
-  useEffect(() => {
-    const syncItemcount = async () => {
-      if (typeof window !== 'undefined') {
-        setTimeout(async () => {
-          const _itemCount = await Snipcart?.store?.itemCount()
-          setItemCount(_itemCount || null)
-        }, 1000)
-      }
-    }
-    syncItemcount()
-  }, [Snipcart?.store])
+  // useEffect(() => {
+  //   const syncItemcount = async () => {
+  //     const cart = await Cart.get()
+  //     console.log(cart)
+  //   }
+  //   syncItemcount()
+  // }, [Cart])
 
-  //value subscription when cart changes
-  useEffect(() => {
-    let unsubscribe: () => void
-    if (typeof window !== 'undefined' && Snipcart && Snipcart.store) {
-      unsubscribe = Snipcart?.store?.subscribe(async () => {
-        if (typeof window !== 'undefined' && Snipcart) {
-          const _itemCount = await Snipcart?.store?.itemCount()
-          setItemCount(_itemCount || null)
-        }
-      })
-    }
-    return () => {
-      unsubscribe && unsubscribe()
-    }
-  }, [Snipcart, Snipcart.store])
+  // //value subscription when cart changes
+  // useEffect(() => {
+  //   let unsubscribe: () => void
+  //   if (typeof window !== 'undefined' && Snipcart && Snipcart.store) {
+  //     unsubscribe = Snipcart?.store?.subscribe(async () => {
+  //       if (typeof window !== 'undefined' && Snipcart) {
+  //         const _itemCount = await Snipcart?.store?.itemCount()
+  //         setItemCount(_itemCount || null)
+  //       }
+  //     })
+  //   }
+  //   return () => {
+  //     unsubscribe && unsubscribe()
+  //   }
+  // }, [Snipcart, Snipcart.store])
 
   return (
     <button onClick={handleClick} disabled={loading}>
@@ -64,7 +60,7 @@ const Cart: React.FC = () => {
           {loading ? (
             <Spinner color="White" size="xs" />
           ) : (
-            <span>{itemCount || 0}</span>
+            <span>{cartItemsCount || 0}</span>
           )}
         </Circle>
       </Circle>

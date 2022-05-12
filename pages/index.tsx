@@ -19,10 +19,8 @@ import { useRouter } from 'next/router'
 import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
 
-// const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
-// const CartButton = dynamic(() => import('../components/CartButton'), {
-//   ssr: false,
-// })
+const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
+
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
@@ -100,7 +98,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
               pt={['16px', '16px', '32px', '0px']}
               minH="75px"
             >
-              {/* <Cart /> */}
+              <Cart />
             </RFlex>
             {pageBody && <DropSummary drop={drop} pageBody={pageBody} />}
           </RBox>
@@ -123,7 +121,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
                 right="0"
                 pr={['0px', '0px', '0px', '2%', '2%']}
               >
-                {/* <Cart /> */}
+                <Cart />
               </RBox>
               <RBox desktopOnly pb={['32px', '32px', '32px', '96px']}>
                 <ProductList products={drop.products} />

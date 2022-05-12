@@ -2,7 +2,7 @@ import { Button, ButtonProps, Circle, Spinner } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useCallback, useState, useEffect } from 'react'
 import CartIcon from '../../assets/icons/cart.svg'
-import { useSnipcart } from '../../lib/snipcart'
+import { useSnipcart } from '../../lib/store'
 
 const CartButton: React.FC<ButtonProps> = (props) => {
   const { Snipcart, loading } = useSnipcart()
