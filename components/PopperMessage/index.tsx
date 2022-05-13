@@ -1,6 +1,6 @@
 import { CloseIcon } from '@chakra-ui/icons'
 import { Box, Button, SlideFade, useDisclosure } from '@chakra-ui/react'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import add from 'date-fns/add'

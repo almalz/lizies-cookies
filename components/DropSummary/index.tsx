@@ -61,7 +61,7 @@ const DropSummary: React.FC<DropSummaryProps> = ({ drop, pageBody }) => {
       </RBox>
 
       <RBox mobileOnly pt="16px" pb="48px" textAlign="center">
-        {/* <CartButton w="100%" h="48px" color="white" bg="black" /> */}
+        <CartButton w="100%" h="48px" color="white" bg="black" />
       </RBox>
 
       <Box color="gray.800" mb={['4px', '4px', '32px', '32px']}>

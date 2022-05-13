@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
-import BackButton from '../components/BackButton'
 import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import client from '../lib/apolloClient'

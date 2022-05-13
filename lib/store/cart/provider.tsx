@@ -1,7 +1,5 @@
 import {
   createContext,
-  Dispatch,
-  SetStateAction,
   useCallback,
   useContext,
   useEffect,
@@ -18,6 +16,7 @@ type CartContextProps = {
   cartItemsCount: number | undefined
   updateItems: (product: SimpleCartItem) => void
   getProductCartQuantity: (productId: string) => number
+  goToCheckout: () => void
 }
 
 const CartContext = createContext<CartContextProps | null>(null)
@@ -25,6 +24,7 @@ const CartContext = createContext<CartContextProps | null>(null)
 const CartProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [cartItems, setCartItems] = useState<SimpleCartItem[]>()
+  const [checkoutUrl, setCheckoutUrl] = useState<string | undefined>()
 
   const cartItemsCount = useMemo(() => {
     const res =
@@ -39,7 +39,6 @@ const CartProvider: React.FC = ({ children }) => {
     const pullCart = async () => {
       setLoading(true)
       const cart = await Cart.get()
-      console.log('cart pull: ', cart?.items)
       if (cart?.items) setCartItems(simplifyCartItem(cart.items))
       setLoading(false)
     }
@@ -49,7 +48,6 @@ const CartProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const pushCart = async () => {
       if (cartItems !== undefined) {
-        console.log('cart push: ', { cartItems })
         setLoading(true)
         await Cart.updateAllItems(cartItems || [])
         setLoading(false)
@@ -86,12 +84,20 @@ const CartProvider: React.FC = ({ children }) => {
     [cartItems]
   )
 
+  const goToCheckout = useCallback(async () => {
+    await Cart.updateAllItems(cartItems || [])
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl
+    }
+  }, [checkoutUrl, cartItems])
+
   const value = {
     loading,
     cartItems,
     cartItemsCount,
     updateItems,
     getProductCartQuantity,
+    goToCheckout,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

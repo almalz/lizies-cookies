@@ -6,43 +6,29 @@ import { useEffect } from 'react'
 import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 import client from '../lib/apolloClient'
+import { useProducts } from '../lib/store'
+import { Products } from '../lib/store/products/api'
 import { Drop } from '../types'
 import {
   NoDropPageQuery,
   NoDropPageDocument,
   NodroppageRecord,
-  NextIncomingDropsDocument,
-  NextIncomingDropsQuery,
 } from '../types/generated/graphql'
-
-const REFRESH_INTERVAL =
-  Number(process.env.NEXT_PUBLIC_DROP_REFRESH_INTERVAL) || 30000
-const TODAY = new Date(Date.now()).toISOString()
 
 export type NoDropPageProps = {
   nodroppage: NodroppageRecord
   drop: Drop
 }
 
-const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage, drop }) => {
+const NoDropPage: NextPage<NoDropPageProps> = ({ nodroppage }) => {
   const router = useRouter()
+  const { currentDropId } = useProducts()
 
-  // while on the page, check every 10 minutes, if a drop is finaly scheluded
-  // if yes, redirects to home page
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const { data } = await client.query<NextIncomingDropsQuery>({
-        query: NextIncomingDropsDocument,
-        variables: { TODAY: TODAY },
-        fetchPolicy: 'no-cache',
-      })
-      const _drop = data.allDrops[0]
-      if (_drop) {
-        router.push('/')
-      }
-    }, REFRESH_INTERVAL * 2)
-    return () => clearInterval(interval)
-  }, [router])
+    if (currentDropId) {
+      router.reload()
+    }
+  }, [router, currentDropId])
 
   return (
     <Layout
@@ -70,15 +56,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     })
   ).data
 
-  const { data } = await client.query<NextIncomingDropsQuery>({
-    query: NextIncomingDropsDocument,
-    variables: { TODAY: TODAY },
-  })
+  const drop = await Products.getNextIncommingDrop()
 
-  // 1st drop of all drops where 'endDate' is gte TODAY ordered by endDate_ASC
-  const nextIncomingDrop: Drop = (data.allDrops[0] as Drop) || null
-
-  if (nextIncomingDrop) {
+  if (drop) {
     return {
       redirect: {
         permanent: false,
@@ -89,7 +69,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      drop: nextIncomingDrop,
       nodroppage: nodroppage,
     },
   }

@@ -18,15 +18,13 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
+import { useProducts } from '../lib/store'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
 })
-
-const REFRESH_INTERVAL =
-  Number(process.env.NEXT_PUBLIC_DROP_REFRESH_INTERVAL) || 30000
 
 const TODAY = new Date(Date.now()).toISOString()
 
@@ -38,25 +36,15 @@ export type DropPageProps = {
 
 const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
   const router = useRouter()
+  const { currentDropId } = useProducts()
 
-  // while on the page, check every 5 minutes, if a drop is still currently scheluded
-  // if not, redirects to /nodrop page
-  // useEffect(() => {
-  //   const interval = setInterval(async () => {
-  //     const { data } = await client.query<NextIncomingDropsQuery>({
-  //       query: NextIncomingDropsDocument,
-  //       variables: { TODAY: TODAY },
-  //       fetchPolicy: 'no-cache',
-  //     })
-  //     const _drop = data.allDrops[0]
-  //     if (!_drop) {
-  //       router.push('/nodrop')
-  //     } else if (_drop.id !== drop.id) {
-  //       router.reload()
-  //     }
-  //   }, REFRESH_INTERVAL)
-  //   return () => clearInterval(interval)
-  // }, [router, drop.id])
+  useEffect(() => {
+    if (!currentDropId) {
+      router.push('/nodrop')
+    } else if (currentDropId !== drop.id) {
+      router.reload()
+    }
+  }, [router, drop.id, currentDropId])
 
   return (
     <Layout seo={pageBody.seo || undefined} noIndex={pageBody.noindex} slug="">

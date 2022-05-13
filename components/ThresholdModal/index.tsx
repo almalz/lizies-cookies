@@ -9,25 +9,20 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react'
-import Snipcart from '../../lib/store'
 import { useEffect } from 'react'
+import { useCart } from '../../lib/store'
 
 const MAX = Number(process.env.NEXT_PUBLIC_MAX_QTY)
 
 const ThresholdModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { cartItemsCount } = useCart()
 
   useEffect(() => {
-    let unsubscribe: () => void
-    unsubscribe = Snipcart?.store?.subscribe(async () => {
-      const itemCount = await Snipcart?.store?.itemCount()
-      itemCount > MAX && onOpen()
-    })
-
-    return () => {
-      unsubscribe && unsubscribe()
+    if (cartItemsCount && cartItemsCount > MAX) {
+      onOpen()
     }
-  }, [onOpen])
+  }, [cartItemsCount, onOpen])
 
   return (
     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>

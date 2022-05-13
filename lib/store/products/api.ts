@@ -1,5 +1,8 @@
+import { isAfter, isBefore } from 'date-fns'
 import swell from '../swell'
 import { Drop, SwellCategory, SwellProduct } from './types'
+
+const TODAY = new Date(Date.now())
 
 export const Products = {
   getAllProducts: async () => {
@@ -23,16 +26,23 @@ export const Products = {
       })
 
     const dropCategories = categories
-      .filter((cat) => cat.content.isDrop)
+      .filter((cat) => cat.isDrop)
       .map((cat) => {
         return { ...cat.content, ...cat, content: null }
       })
+      .filter(
+        (cat) =>
+          isAfter(new Date(cat.expirationDate!), TODAY) &&
+          isBefore(new Date(cat.releaseDate!), TODAY)
+      )
       .sort((a, b) => {
         return (
           new Date(a.deliveryDate).getTime() -
           new Date(b.deliveryDate).getTime()
         )
       })
+
+    if (!dropCategories || dropCategories.length < 1) return null
 
     let nextIncommingDrop = dropCategories[0]
 
