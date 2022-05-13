@@ -40,6 +40,8 @@ const CartProvider: React.FC = ({ children }) => {
       setLoading(true)
       const cart = await Cart.get()
       if (cart?.items) setCartItems(simplifyCartItem(cart.items))
+      if (cart?.checkoutUrl && cart?.checkoutUrl !== checkoutUrl)
+        setCheckoutUrl(cart.checkoutUrl)
       setLoading(false)
     }
     pullCart()

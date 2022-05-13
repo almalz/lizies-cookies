@@ -33,8 +33,9 @@ const ProductsProvider: React.FC = ({ children }) => {
       const drop = await Products.getNextIncommingDrop()
       if (!drop) {
         if (currentDropId) {
+          currentDropId !== undefined &&
+            console.info('Drop update : no current drop anymore ')
           setCurrentDropId(null)
-          console.info('Drop update : no current drop anymore ')
         }
         return
       }
@@ -42,7 +43,8 @@ const ProductsProvider: React.FC = ({ children }) => {
       if (drop.id === currentDropId) return
 
       setCurrentDropId(drop.id)
-      console.info('Drop update : another drop has started')
+      currentDropId !== undefined &&
+        console.info('Drop update : another drop has started')
     }, REFRESH_INTERVAL)
     return () => clearInterval(interval)
   }, [currentDropId])
