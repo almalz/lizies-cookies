@@ -40,6 +40,7 @@ const NumberInput = forwardRef(
             fontWeight="700"
             onClick={handleRemoveClick}
             isDisabled={disabled}
+            _hover={{ background: '#718096' }}
           >
             -
           </Button>
@@ -59,6 +60,7 @@ const NumberInput = forwardRef(
             onClick={handleAddClick}
             ref={ref}
             isDisabled={disabled}
+            _hover={{ background: '#718096' }}
           >
             +
           </Button>
