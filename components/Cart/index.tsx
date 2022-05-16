@@ -13,7 +13,13 @@ const Cart: React.FC = () => {
 
   return (
     <button onClick={handleClick} disabled={loading}>
-      <Circle p="4px" pos="relative" size="58px">
+      <Circle
+        p="4px"
+        pos="relative"
+        size="58px"
+        border="solid 3px transparent"
+        _hover={{ border: 'solid rgba(32, 32, 32, 0.8) 3px' }}
+      >
         <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
 
         <Circle

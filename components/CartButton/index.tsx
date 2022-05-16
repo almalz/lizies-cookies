@@ -10,7 +10,12 @@ const CartButton: React.FC<ButtonProps> = (props) => {
   }, [goToCheckout])
 
   return (
-    <Button onClick={handleClick} disabled={loading} {...props}>
+    <Button
+      onClick={handleClick}
+      disabled={loading}
+      _hover={{ background: '#718096' }}
+      {...props}
+    >
       {loading ? (
         <Spinner color="White" size="xs" />
       ) : (
