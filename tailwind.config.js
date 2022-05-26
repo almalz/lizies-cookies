@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -33,8 +35,9 @@ module.exports = {
         black: '#000',
       },
       fontFamily: {
-        title: ['Chloé', ...defaultTheme.fontFamily.serif],
-        body: ['Parmigiano Pro', ...defaultTheme.fontFamily.sans],
+        title: ['Chloe', ...defaultTheme.fontFamily.serif],
+        subtitle: ['Gistesy', ...defaultTheme.fontFamily.serif],
+        body: ['Parmigiano Text Pro', ...defaultTheme.fontFamily.sans],
       },
     },
   },
