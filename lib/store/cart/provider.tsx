@@ -45,7 +45,7 @@ const CartProvider: React.FC = ({ children }) => {
       setLoading(false)
     }
     pullCart()
-  }, [])
+  }, [checkoutUrl])
 
   useEffect(() => {
     const pushCart = async () => {
@@ -90,6 +90,13 @@ const CartProvider: React.FC = ({ children }) => {
     await Cart.updateAllItems(cartItems || [])
     if (checkoutUrl) {
       window.location.href = checkoutUrl
+    } else {
+      setLoading(true)
+      const cart = await Cart.get()
+      if (cart?.checkoutUrl) {
+        window.location.href
+      }
+      setLoading(false)
     }
   }, [checkoutUrl, cartItems])
 
