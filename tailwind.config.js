@@ -32,6 +32,10 @@ module.exports = {
         white: '#fff',
         black: '#000',
       },
+      fontFamily: {
+        title: ['Chloé', ...defaultTheme.fontFamily.serif],
+        body: ['Parmigiano Pro', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   plugins: [],
