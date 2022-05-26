@@ -1,7 +1,6 @@
 import { Circle, Spinner } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useCallback } from 'react'
-import CartIcon from '../../assets/icons/cart.svg'
 import { useCart } from '../../lib/store/cart/provider'
 
 const Cart: React.FC = () => {
@@ -20,7 +19,7 @@ const Cart: React.FC = () => {
         border="solid 3px transparent"
         _hover={{ border: 'solid rgba(32, 32, 32, 0.8) 3px' }}
       >
-        <Image src={CartIcon} width={42} height={42} alt="cart_icon" />
+        <Image src={'/icons.cart.svg'} width={42} height={42} alt="cart_icon" />
 
         <Circle
           pos="absolute"
