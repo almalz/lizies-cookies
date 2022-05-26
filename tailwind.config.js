@@ -15,7 +15,7 @@ module.exports = {
           400: '#6d5b85',
           500: '#584473',
           600: '#432c62',
-          700: '#2E1550',
+          700: '#2E1550', //source
           800: '#251140',
           900: '#1c0d30',
         },
@@ -24,7 +24,7 @@ module.exports = {
           200: '#fad9da',
           300: '#f8c7c7',
           400: '#f5b4b5',
-          500: '#F3A1A2',
+          500: '#F3A1A2', //source
           600: '#c28182',
           700: '#926161',
           800: '#614041',
@@ -38,6 +38,9 @@ module.exports = {
         title: ['Chloe', ...defaultTheme.fontFamily.serif],
         subtitle: ['Gistesy', ...defaultTheme.fontFamily.serif],
         body: ['Parmigiano Text Pro', ...defaultTheme.fontFamily.sans],
+      },
+      borderWidth: {
+        3: '3px',
       },
     },
   },
