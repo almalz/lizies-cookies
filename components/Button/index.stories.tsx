@@ -12,5 +12,11 @@ const Template: Story = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  children: 'drop en cours',
+  children: 'drop du moment',
+}
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+  children: 'drop du moment',
+  color: 'purple',
 }
