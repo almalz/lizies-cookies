@@ -19,11 +19,11 @@ const Layout: React.FC<LayoutProps> = ({
     <>
       <NextSeo
         noindex={noIndex}
-        title={seo?.title || "Lizie's cookies"}
-        description={seo?.description || "Lizie's cookies"}
+        title={seo?.title || 'Naughty cookies'}
+        description={seo?.description || 'Naughty cookies'}
         openGraph={{
-          title: seo?.title || "Lizie's cookies",
-          description: seo?.description || "Lizie's cookies",
+          title: seo?.title || 'Naughty cookies',
+          description: seo?.description || 'Naughty cookies',
           url: `${BASE_URL}/${slug}`,
           type: 'website',
         }}

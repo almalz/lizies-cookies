@@ -40,7 +40,7 @@ const ThresholdModal: React.FC = () => {
             mr={3}
             onClick={() => {
               if (typeof window !== 'undefined')
-                window.open('mailto:hello@liziescookies.fr', '_blank')
+                window.open('mailto:hello@naughtycookies.fr', '_blank')
             }}
           >
             Nous contacter
