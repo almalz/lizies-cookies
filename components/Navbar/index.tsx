@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <Accordion as="nav" allowMultiple>
-      <AccordionItem borderTopWidth="0">
+      <AccordionItem border="0">
         {({ isExpanded }: { isExpanded: boolean }) => (
           <>
             <div className="sm:hidden">

@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { SeoField } from '../../types/generated/graphql'
+import { Footer } from '../Footer'
 import { Navbar } from '../Navbar'
 
 export type LayoutProps = {
@@ -31,6 +32,7 @@ const Layout: React.FC<LayoutProps> = ({
       />
       <Navbar />
       {children}
+      <Footer />
     </>
   )
 }
