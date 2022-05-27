@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { SeoField } from '../../types/generated/graphql'
+import { Navbar } from '../Navbar'
 
 export type LayoutProps = {
   seo?: SeoField
@@ -28,6 +29,7 @@ const Layout: React.FC<LayoutProps> = ({
           type: 'website',
         }}
       />
+      <Navbar />
       {children}
     </>
   )

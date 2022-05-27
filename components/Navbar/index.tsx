@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import { FaInstagram, FaTiktok, FaFacebook } from 'react-icons/fa'
 import { HiOutlineMenuAlt4, HiX } from 'react-icons/hi'
-
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -14,7 +14,6 @@ import clsx from 'clsx'
 type Naveitem = {
   label: string
   href: string
-  isActive?: boolean
 }
 
 const NAVITEMS: Naveitem[] = [
@@ -24,10 +23,12 @@ const NAVITEMS: Naveitem[] = [
   { label: 'contact', href: '/contact' },
 ]
 
-export const Navbar: React.FC = ({}) => {
+export const Navbar: React.FC = () => {
+  const router = useRouter()
+
   return (
     <Accordion as="nav" allowMultiple>
-      <AccordionItem>
+      <AccordionItem borderTopWidth="0">
         {({ isExpanded }: { isExpanded: boolean }) => (
           <>
             <div className="sm:hidden">
@@ -108,7 +109,7 @@ export const Navbar: React.FC = ({}) => {
                     key={item.label}
                     className={clsx(
                       'cursor-pointer rounded-md p-4 hover:bg-purple-600',
-                      item.isActive && 'bg-purple-800'
+                      router.pathname === item.href && 'bg-purple-800'
                     )}
                   >
                     <Link href={item.href}>
