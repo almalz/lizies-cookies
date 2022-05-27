@@ -11,12 +11,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-type Naveitem = {
+type NavItem = {
   label: string
   href: string
 }
 
-const NAVITEMS: Naveitem[] = [
+const NAVITEMS: NavItem[] = [
   { label: 'drop en cours', href: '/drop' },
   { label: 'à propos', href: '/about' },
   { label: 'faq', href: '/faq' },
