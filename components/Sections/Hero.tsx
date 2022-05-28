@@ -24,7 +24,9 @@ export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
           />
         </div>
         <div>
-          <Button color="pink">{heroCtaLabel}</Button>
+          <Button color="pink" onClick={() => router.push('/drop')}>
+            {heroCtaLabel}
+          </Button>
         </div>
       </div>
     </div>

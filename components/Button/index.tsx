@@ -2,9 +2,11 @@ import clsx from 'clsx'
 
 export type ButtonProps = {
   color?: 'pink' | 'purple'
+  onClick?: () => void
 }
 export const Button: React.FC<ButtonProps> = ({
   color = 'pink',
+  onClick,
   children,
   ...props
 }) => {
@@ -16,6 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
       ])}
+      onClick={() => onClick && onClick()}
       {...props}
     >
       {children}
