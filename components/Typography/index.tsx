@@ -8,8 +8,11 @@ export type TypographyProps = {
   markdown?: boolean
 }
 
-export const Markdown: React.FC = ({ children }) => (
-  <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+export const Markdown: React.FC<{ className?: string }> = ({
+  className,
+  children,
+}) => (
+  <ReactMarkdown remarkPlugins={[remarkBreaks]} className={className}>
     {children as string}
   </ReactMarkdown>
 )
@@ -38,9 +41,9 @@ export const Paragraph: React.FC<TypographyProps> = ({
 }) => (
   <>
     {markdown ? (
-      <p className="font-body text-base font-medium">
-        <Markdown>{children}</Markdown>
-      </p>
+      <Markdown className="font-body text-base font-medium">
+        {children}
+      </Markdown>
     ) : (
       <p className="font-body text-base font-medium">{children}</p>
     )}
@@ -53,9 +56,7 @@ export const ParagraphXl: React.FC<TypographyProps> = ({
 }) => (
   <>
     {markdown ? (
-      <p className="font-body text-xl sm:text-2xl">
-        <Markdown>{children}</Markdown>
-      </p>
+      <Markdown className="font-body text-xl sm:text-2xl">{children}</Markdown>
     ) : (
       <p className="font-body text-xl sm:text-2xl">{children}</p>
     )}
@@ -68,9 +69,7 @@ export const Paragraph2Xl: React.FC<TypographyProps> = ({
 }) => (
   <>
     {markdown ? (
-      <p className="font-body text-2xl sm:text-3xl">
-        <Markdown>{children}</Markdown>
-      </p>
+      <Markdown className="font-body text-2xl sm:text-3xl">{children}</Markdown>
     ) : (
       <p className="font-body text-2xl sm:text-3xl">{children}</p>
     )}
