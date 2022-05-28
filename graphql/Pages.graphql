@@ -1,3 +1,40 @@
+query HomePage {
+  homepage {
+    seo {
+      title
+      description
+    }
+    noindex
+    heroImage {
+      url
+    }
+    heroCtaLabel
+    whiteSectionHeading
+    whiteSectionBody
+    productsSectionCtaLabel
+    pinkSectionHeading
+    pinkSectionSubheading
+    pinkSectionLeftBody
+    pinkSectionLeftTitle
+    pinkSectionRightBody
+    pinkSectionRightTitle
+    topLeftImage {
+      alt
+      url
+    }
+    bottomLeftImage {
+      alt
+      url
+    }
+    rightImage {
+      alt
+      url
+    }
+    purpleSectionBody
+    purpleSectionHeading
+  }
+}
+
 query LegalPage {
   legalpage {
     body {

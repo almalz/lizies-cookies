@@ -1,51 +1,45 @@
-import { gql } from '@apollo/client'
-import * as Apollo from '@apollo/client'
-export type Maybe<T> = T | null
-export type InputMaybe<T> = Maybe<T>
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K]
-}
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>
-}
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>
-}
-const defaultOptions = {} as const
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string
-  String: string
-  Boolean: boolean
-  Int: number
-  Float: number
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
   /** Represents `true` or `false` values. */
-  BooleanType: any
-  CustomData: any
+  BooleanType: any;
+  CustomData: any;
   /** A ISO 8601 compliant date value */
-  Date: any
+  Date: any;
   /** A ISO 8601 compliant datetime value */
-  DateTime: any
+  DateTime: any;
   /** Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). */
-  FloatType: any
+  FloatType: any;
   /** Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
-  IntType: any
-  ItemId: any
-  JsonField: any
-  MetaTagAttributes: any
-  UploadId: any
-}
+  IntType: any;
+  ItemId: any;
+  JsonField: any;
+  MetaTagAttributes: any;
+  UploadId: any;
+};
 
 /** Specifies how to filter Boolean fields */
 export type BooleanFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['BooleanType']>
-}
+  eq?: InputMaybe<Scalars['BooleanType']>;
+};
 
 export type CollectionMetadata = {
-  __typename?: 'CollectionMetadata'
-  count: Scalars['IntType']
-}
+  __typename?: 'CollectionMetadata';
+  count: Scalars['IntType'];
+};
 
 export enum ColorBucketType {
   Black = 'black',
@@ -59,92 +53,92 @@ export enum ColorBucketType {
   Purple = 'purple',
   Red = 'red',
   White = 'white',
-  Yellow = 'yellow',
+  Yellow = 'yellow'
 }
 
 export type ColorField = {
-  __typename?: 'ColorField'
-  alpha?: Maybe<Scalars['IntType']>
-  blue?: Maybe<Scalars['IntType']>
-  green?: Maybe<Scalars['IntType']>
-  hex?: Maybe<Scalars['String']>
-  red?: Maybe<Scalars['IntType']>
-}
+  __typename?: 'ColorField';
+  alpha: Scalars['IntType'];
+  blue: Scalars['IntType'];
+  green: Scalars['IntType'];
+  hex: Scalars['String'];
+  red: Scalars['IntType'];
+};
 
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 /** Specifies how to filter Date fields */
 export type DateFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['Date']>
+  eq?: InputMaybe<Scalars['Date']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['Date']>
+  gt?: InputMaybe<Scalars['Date']>;
   /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['Date']>
+  gte?: InputMaybe<Scalars['Date']>;
   /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['Date']>
+  lt?: InputMaybe<Scalars['Date']>;
   /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['Date']>
+  lte?: InputMaybe<Scalars['Date']>;
   /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['Date']>
-}
+  neq?: InputMaybe<Scalars['Date']>;
+};
 
 /** Specifies how to filter DateTime fields */
 export type DateTimeFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 export type DropModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<DropModelFilter>>>
-  _createdAt?: InputMaybe<CreatedAtFilter>
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
-  _isValid?: InputMaybe<BooleanFilter>
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
-  _publishedAt?: InputMaybe<PublishedAtFilter>
-  _status?: InputMaybe<StatusFilter>
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
-  _updatedAt?: InputMaybe<UpdatedAtFilter>
-  createdAt?: InputMaybe<CreatedAtFilter>
-  deliveryDate?: InputMaybe<DateFilter>
-  endDate?: InputMaybe<DateTimeFilter>
-  id?: InputMaybe<ItemIdFilter>
-  pictures?: InputMaybe<GalleryFilter>
-  products?: InputMaybe<LinksFilter>
-  releaseDate?: InputMaybe<DateTimeFilter>
-  slug?: InputMaybe<StringFilter>
-  updatedAt?: InputMaybe<UpdatedAtFilter>
-}
+  OR?: InputMaybe<Array<InputMaybe<DropModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  deliveryDate?: InputMaybe<DateFilter>;
+  endDate?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  pictures?: InputMaybe<GalleryFilter>;
+  products?: InputMaybe<LinksFilter>;
+  releaseDate?: InputMaybe<DateTimeFilter>;
+  slug?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
 
 export enum DropModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
@@ -176,128 +170,133 @@ export enum DropModelOrderBy {
   Slug_ASC = 'slug_ASC',
   Slug_DESC = 'slug_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type Drop (drop) */
 export type DropRecord = {
-  __typename?: 'DropRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'DropRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  deliveryDate?: Maybe<Scalars['Date']>
-  endDate?: Maybe<Scalars['DateTime']>
-  id: Scalars['ItemId']
-  pictures: Array<FileField>
-  products: Array<ProductRecord>
-  releaseDate?: Maybe<Scalars['DateTime']>
-  slug?: Maybe<Scalars['String']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  deliveryDate?: Maybe<Scalars['Date']>;
+  endDate?: Maybe<Scalars['DateTime']>;
+  id: Scalars['ItemId'];
+  pictures: Array<FileField>;
+  products: Array<ProductRecord>;
+  releaseDate?: Maybe<Scalars['DateTime']>;
+  slug?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type Drop (drop) */
 export type DropRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecord = {
-  __typename?: 'DroppageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'DroppageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  deliveryDescription?: Maybe<Scalars['String']>
-  headline?: Maybe<Scalars['String']>
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  title?: Maybe<Scalars['String']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  deliveryDescription?: Maybe<Scalars['String']>;
+  headline?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecordDeliveryDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecordHeadlineArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
 
 export type ErrorpageModelBodyField = {
-  __typename?: 'ErrorpageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'ErrorpageModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 /** Record of type ErrorPage (errorpage) */
 export type ErrorpageRecord = {
-  __typename?: 'ErrorpageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'ErrorpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  body?: Maybe<ErrorpageModelBodyField>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<ErrorpageModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type ErrorPage (errorpage) */
 export type ErrorpageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 export type FaqcategoryModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<FaqcategoryModelFilter>>>
-  _createdAt?: InputMaybe<CreatedAtFilter>
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
-  _isValid?: InputMaybe<BooleanFilter>
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
-  _publishedAt?: InputMaybe<PublishedAtFilter>
-  _status?: InputMaybe<StatusFilter>
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
-  _updatedAt?: InputMaybe<UpdatedAtFilter>
-  createdAt?: InputMaybe<CreatedAtFilter>
-  id?: InputMaybe<ItemIdFilter>
-  name?: InputMaybe<StringFilter>
-  position?: InputMaybe<PositionFilter>
-  updatedAt?: InputMaybe<UpdatedAtFilter>
-}
+  OR?: InputMaybe<Array<InputMaybe<FaqcategoryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  name?: InputMaybe<StringFilter>;
+  position?: InputMaybe<PositionFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
 
 export enum FaqcategoryModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
@@ -325,60 +324,61 @@ export enum FaqcategoryModelOrderBy {
   Position_ASC = 'position_ASC',
   Position_DESC = 'position_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type FAQCategory (faqcategory) */
 export type FaqcategoryRecord = {
-  __typename?: 'FaqcategoryRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'FaqcategoryRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  name?: Maybe<Scalars['String']>
-  position?: Maybe<Scalars['IntType']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  name?: Maybe<Scalars['String']>;
+  position?: Maybe<Scalars['IntType']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type FAQCategory (faqcategory) */
 export type FaqcategoryRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 export type FaqitemModelAnswerField = {
-  __typename?: 'FaqitemModelAnswerField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'FaqitemModelAnswerField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 export type FaqitemModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<FaqitemModelFilter>>>
-  _createdAt?: InputMaybe<CreatedAtFilter>
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
-  _isValid?: InputMaybe<BooleanFilter>
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
-  _publishedAt?: InputMaybe<PublishedAtFilter>
-  _status?: InputMaybe<StatusFilter>
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
-  _updatedAt?: InputMaybe<UpdatedAtFilter>
-  answer?: InputMaybe<StructuredTextFilter>
-  category?: InputMaybe<LinkFilter>
-  createdAt?: InputMaybe<CreatedAtFilter>
-  id?: InputMaybe<ItemIdFilter>
-  order?: InputMaybe<IntegerFilter>
-  question?: InputMaybe<StringFilter>
-  updatedAt?: InputMaybe<UpdatedAtFilter>
-}
+  OR?: InputMaybe<Array<InputMaybe<FaqitemModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  answer?: InputMaybe<StructuredTextFilter>;
+  category?: InputMaybe<LinkFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  order?: InputMaybe<IntegerFilter>;
+  question?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
 
 export enum FaqitemModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
@@ -406,179 +406,255 @@ export enum FaqitemModelOrderBy {
   Question_ASC = 'question_ASC',
   Question_DESC = 'question_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type FAQItem (faqitem) */
 export type FaqitemRecord = {
-  __typename?: 'FaqitemRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'FaqitemRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  answer?: Maybe<FaqitemModelAnswerField>
-  category?: Maybe<FaqcategoryRecord>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  order?: Maybe<Scalars['IntType']>
-  question?: Maybe<Scalars['String']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  answer?: Maybe<FaqitemModelAnswerField>;
+  category?: Maybe<FaqcategoryRecord>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  order?: Maybe<Scalars['IntType']>;
+  question?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type FAQItem (faqitem) */
 export type FaqitemRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Record of type FAQPage (faqpage) */
 export type FaqpageRecord = {
-  __typename?: 'FaqpageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'FaqpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  items: Array<FaqitemRecord>
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  items: Array<FaqitemRecord>;
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type FAQPage (faqpage) */
 export type FaqpageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 export enum FaviconType {
   AppleTouchIcon = 'appleTouchIcon',
   Icon = 'icon',
-  MsApplication = 'msApplication',
+  MsApplication = 'msApplication'
 }
 
 export type FileField = {
-  __typename?: 'FileField'
-  _createdAt: Scalars['DateTime']
-  _updatedAt: Scalars['DateTime']
-  alt?: Maybe<Scalars['String']>
-  author?: Maybe<Scalars['String']>
-  basename: Scalars['String']
-  blurUpThumb?: Maybe<Scalars['String']>
-  blurhash?: Maybe<Scalars['String']>
-  colors: Array<Maybe<ColorField>>
-  copyright?: Maybe<Scalars['String']>
-  customData?: Maybe<Scalars['CustomData']>
-  exifInfo?: Maybe<Scalars['CustomData']>
-  filename: Scalars['String']
-  focalPoint?: Maybe<FocalPoint>
-  format: Scalars['String']
-  height?: Maybe<Scalars['IntType']>
-  id: Scalars['UploadId']
-  md5: Scalars['String']
-  mimeType: Scalars['String']
-  notes?: Maybe<Scalars['String']>
-  responsiveImage?: Maybe<ResponsiveImage>
-  size: Scalars['IntType']
-  smartTags: Array<Maybe<Scalars['String']>>
-  tags: Array<Maybe<Scalars['String']>>
-  title?: Maybe<Scalars['String']>
-  url: Scalars['String']
-  video?: Maybe<UploadVideoField>
-  width?: Maybe<Scalars['IntType']>
-}
+  __typename?: 'FileField';
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint?: Maybe<FocalPoint>;
+  format: Scalars['String'];
+  height?: Maybe<Scalars['IntType']>;
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage?: Maybe<ResponsiveImage>;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width?: Maybe<Scalars['IntType']>;
+};
+
 
 export type FileFieldAltArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 export type FileFieldBlurUpThumbArgs = {
-  imgixParams?: InputMaybe<ImgixParams>
-  punch?: InputMaybe<Scalars['Float']>
-  quality?: InputMaybe<Scalars['Int']>
-  size?: InputMaybe<Scalars['Int']>
-}
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
 
 export type FileFieldCustomDataArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 export type FileFieldFocalPointArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 export type FileFieldResponsiveImageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  imgixParams?: InputMaybe<ImgixParams>
-  locale?: InputMaybe<SiteLocale>
-  sizes?: InputMaybe<Scalars['String']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
 
 export type FileFieldTitleArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 export type FileFieldUrlArgs = {
-  imgixParams?: InputMaybe<ImgixParams>
-}
+  imgixParams?: InputMaybe<ImgixParams>;
+};
 
 /** Specifies how to filter Floating-point fields */
 export type FloatFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['FloatType']>
+  eq?: InputMaybe<Scalars['FloatType']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['FloatType']>
+  gt?: InputMaybe<Scalars['FloatType']>;
   /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['FloatType']>
+  gte?: InputMaybe<Scalars['FloatType']>;
   /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['FloatType']>
+  lt?: InputMaybe<Scalars['FloatType']>;
   /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['FloatType']>
+  lte?: InputMaybe<Scalars['FloatType']>;
   /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['FloatType']>
-}
+  neq?: InputMaybe<Scalars['FloatType']>;
+};
 
 /** Specifies how to filter Multiple files/images field */
 export type GalleryFilter = {
   /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
-  allIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  allIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
   /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
-  anyIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
   /** Search for records with an exact match. The specified values must be Upload IDs */
-  eq?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  eq?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+};
 
 export type GlobalSeoField = {
-  __typename?: 'GlobalSeoField'
-  facebookPageUrl?: Maybe<Scalars['String']>
-  fallbackSeo?: Maybe<SeoField>
-  siteName?: Maybe<Scalars['String']>
-  titleSuffix?: Maybe<Scalars['String']>
-  twitterAccount?: Maybe<Scalars['String']>
-}
+  __typename?: 'GlobalSeoField';
+  facebookPageUrl?: Maybe<Scalars['String']>;
+  fallbackSeo?: Maybe<SeoField>;
+  siteName?: Maybe<Scalars['String']>;
+  titleSuffix?: Maybe<Scalars['String']>;
+  twitterAccount?: Maybe<Scalars['String']>;
+};
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecord = {
+  __typename?: 'HomepageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  bottomLeftImage?: Maybe<FileField>;
+  createdAt: Scalars['DateTime'];
+  heroCtaLabel?: Maybe<Scalars['String']>;
+  heroImage?: Maybe<FileField>;
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  pinkSectionHeading?: Maybe<Scalars['String']>;
+  pinkSectionLeftBody?: Maybe<Scalars['String']>;
+  pinkSectionLeftTitle?: Maybe<Scalars['String']>;
+  pinkSectionRightBody?: Maybe<Scalars['String']>;
+  pinkSectionRightTitle?: Maybe<Scalars['String']>;
+  pinkSectionSubheading?: Maybe<Scalars['String']>;
+  productsSectionCtaLabel?: Maybe<Scalars['String']>;
+  purpleSectionBody?: Maybe<Scalars['String']>;
+  purpleSectionHeading?: Maybe<Scalars['String']>;
+  rightImage?: Maybe<FileField>;
+  seo?: Maybe<SeoField>;
+  topLeftImage?: Maybe<FileField>;
+  updatedAt: Scalars['DateTime'];
+  whiteSectionBody?: Maybe<Scalars['String']>;
+  whiteSectionHeading?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecordPinkSectionLeftBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecordPinkSectionRightBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecordPurpleSectionBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type HomePage (homepage) */
+export type HomepageRecordWhiteSectionBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
 
 export type ImgixParams = {
   /**
@@ -590,7 +666,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/ar)
    */
-  ar?: InputMaybe<Scalars['String']>
+  ar?: InputMaybe<Scalars['String']>;
   /**
    * Automatic
    *
@@ -598,7 +674,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/auto)
    */
-  auto?: InputMaybe<Array<ImgixParamsAuto>>
+  auto?: InputMaybe<Array<ImgixParamsAuto>>;
   /**
    * Background Color
    *
@@ -606,7 +682,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/bg)
    */
-  bg?: InputMaybe<Scalars['String']>
+  bg?: InputMaybe<Scalars['String']>;
   /**
    * Blend
    *
@@ -614,7 +690,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend)
    */
-  blend?: InputMaybe<Scalars['String']>
+  blend?: InputMaybe<Scalars['String']>;
   /**
    * Blend Align
    *
@@ -624,7 +700,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-align)
    */
-  blendAlign?: InputMaybe<Array<ImgixParamsBlendAlign>>
+  blendAlign?: InputMaybe<Array<ImgixParamsBlendAlign>>;
   /**
    * Blend Alpha
    *
@@ -634,7 +710,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-alpha)
    */
-  blendAlpha?: InputMaybe<Scalars['IntType']>
+  blendAlpha?: InputMaybe<Scalars['IntType']>;
   /**
    * Blend Color
    *
@@ -642,7 +718,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-color)
    */
-  blendColor?: InputMaybe<Scalars['String']>
+  blendColor?: InputMaybe<Scalars['String']>;
   /**
    * Blend Crop
    *
@@ -652,7 +728,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-crop)
    */
-  blendCrop?: InputMaybe<Array<ImgixParamsBlendCrop>>
+  blendCrop?: InputMaybe<Array<ImgixParamsBlendCrop>>;
   /**
    * Blend Fit
    *
@@ -662,7 +738,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-fit)
    */
-  blendFit?: InputMaybe<ImgixParamsBlendFit>
+  blendFit?: InputMaybe<ImgixParamsBlendFit>;
   /**
    * Blend Height
    *
@@ -672,7 +748,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-h)
    */
-  blendH?: InputMaybe<Scalars['FloatType']>
+  blendH?: InputMaybe<Scalars['FloatType']>;
   /**
    * Blend Mode
    *
@@ -682,7 +758,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-mode)
    */
-  blendMode?: InputMaybe<ImgixParamsBlendMode>
+  blendMode?: InputMaybe<ImgixParamsBlendMode>;
   /**
    * Blend Padding
    *
@@ -692,7 +768,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-pad)
    */
-  blendPad?: InputMaybe<Scalars['IntType']>
+  blendPad?: InputMaybe<Scalars['IntType']>;
   /**
    * Blend Size
    *
@@ -702,7 +778,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-size)
    */
-  blendSize?: InputMaybe<ImgixParamsBlendSize>
+  blendSize?: InputMaybe<ImgixParamsBlendSize>;
   /**
    * Blend Width
    *
@@ -712,7 +788,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-w)
    */
-  blendW?: InputMaybe<Scalars['FloatType']>
+  blendW?: InputMaybe<Scalars['FloatType']>;
   /**
    * Blend X Position
    *
@@ -722,7 +798,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-x)
    */
-  blendX?: InputMaybe<Scalars['IntType']>
+  blendX?: InputMaybe<Scalars['IntType']>;
   /**
    * Blend Y Position
    *
@@ -732,7 +808,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-y)
    */
-  blendY?: InputMaybe<Scalars['IntType']>
+  blendY?: InputMaybe<Scalars['IntType']>;
   /**
    * Gaussian Blur
    *
@@ -740,7 +816,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/blur)
    */
-  blur?: InputMaybe<Scalars['IntType']>
+  blur?: InputMaybe<Scalars['IntType']>;
   /**
    * Border Size & Color
    *
@@ -748,7 +824,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border)
    */
-  border?: InputMaybe<Scalars['String']>
+  border?: InputMaybe<Scalars['String']>;
   /**
    * Border Bottom
    *
@@ -758,7 +834,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-bottom)
    */
-  borderBottom?: InputMaybe<Scalars['IntType']>
+  borderBottom?: InputMaybe<Scalars['IntType']>;
   /**
    * Border Left
    *
@@ -768,7 +844,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-left)
    */
-  borderLeft?: InputMaybe<Scalars['IntType']>
+  borderLeft?: InputMaybe<Scalars['IntType']>;
   /**
    * Outer Border Radius
    *
@@ -778,7 +854,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius)
    */
-  borderRadius?: InputMaybe<Scalars['String']>
+  borderRadius?: InputMaybe<Scalars['String']>;
   /**
    * Inner Border Radius
    *
@@ -788,7 +864,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius-inner)
    */
-  borderRadiusInner?: InputMaybe<Scalars['String']>
+  borderRadiusInner?: InputMaybe<Scalars['String']>;
   /**
    * Border Right
    *
@@ -798,7 +874,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-right)
    */
-  borderRight?: InputMaybe<Scalars['IntType']>
+  borderRight?: InputMaybe<Scalars['IntType']>;
   /**
    * Border Top
    *
@@ -808,7 +884,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-top)
    */
-  borderTop?: InputMaybe<Scalars['IntType']>
+  borderTop?: InputMaybe<Scalars['IntType']>;
   /**
    * Brightness
    *
@@ -816,7 +892,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/bri)
    */
-  bri?: InputMaybe<Scalars['IntType']>
+  bri?: InputMaybe<Scalars['IntType']>;
   /**
    * Client Hints
    *
@@ -824,7 +900,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/ch)
    */
-  ch?: InputMaybe<Array<ImgixParamsCh>>
+  ch?: InputMaybe<Array<ImgixParamsCh>>;
   /**
    * Chroma Subsampling
    *
@@ -832,7 +908,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/chromasub)
    */
-  chromasub?: InputMaybe<Scalars['IntType']>
+  chromasub?: InputMaybe<Scalars['IntType']>;
   /**
    * Color Quantization
    *
@@ -840,7 +916,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/colorquant)
    */
-  colorquant?: InputMaybe<Scalars['IntType']>
+  colorquant?: InputMaybe<Scalars['IntType']>;
   /**
    * Palette Color Count
    *
@@ -850,7 +926,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/colors)
    */
-  colors?: InputMaybe<Scalars['IntType']>
+  colors?: InputMaybe<Scalars['IntType']>;
   /**
    * Contrast
    *
@@ -858,7 +934,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/con)
    */
-  con?: InputMaybe<Scalars['IntType']>
+  con?: InputMaybe<Scalars['IntType']>;
   /**
    * Mask Corner Radius
    *
@@ -868,7 +944,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/corner-radius)
    */
-  cornerRadius?: InputMaybe<Scalars['String']>
+  cornerRadius?: InputMaybe<Scalars['String']>;
   /**
    * Crop Mode
    *
@@ -878,7 +954,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/crop)
    */
-  crop?: InputMaybe<Array<ImgixParamsCrop>>
+  crop?: InputMaybe<Array<ImgixParamsCrop>>;
   /**
    * Color Space
    *
@@ -886,7 +962,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/cs)
    */
-  cs?: InputMaybe<ImgixParamsCs>
+  cs?: InputMaybe<ImgixParamsCs>;
   /**
    * Download
    *
@@ -894,7 +970,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dl)
    */
-  dl?: InputMaybe<Scalars['String']>
+  dl?: InputMaybe<Scalars['String']>;
   /**
    * Dots Per Inch
    *
@@ -902,7 +978,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dpi)
    */
-  dpi?: InputMaybe<Scalars['IntType']>
+  dpi?: InputMaybe<Scalars['IntType']>;
   /**
    * Device Pixel Ratio
    *
@@ -910,7 +986,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/dpr)
    */
-  dpr?: InputMaybe<Scalars['FloatType']>
+  dpr?: InputMaybe<Scalars['FloatType']>;
   /**
    * Duotone
    *
@@ -918,7 +994,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone)
    */
-  duotone?: InputMaybe<Scalars['String']>
+  duotone?: InputMaybe<Scalars['String']>;
   /**
    * Duotone Alpha
    *
@@ -928,7 +1004,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone-alpha)
    */
-  duotoneAlpha?: InputMaybe<Scalars['IntType']>
+  duotoneAlpha?: InputMaybe<Scalars['IntType']>;
   /**
    * Exposure
    *
@@ -936,7 +1012,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/exp)
    */
-  exp?: InputMaybe<Scalars['IntType']>
+  exp?: InputMaybe<Scalars['IntType']>;
   /**
    * Url Expiration Timestamp
    *
@@ -944,7 +1020,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/expires)
    */
-  expires?: InputMaybe<Scalars['IntType']>
+  expires?: InputMaybe<Scalars['IntType']>;
   /**
    * Face Index
    *
@@ -954,7 +1030,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faceindex)
    */
-  faceindex?: InputMaybe<Scalars['IntType']>
+  faceindex?: InputMaybe<Scalars['IntType']>;
   /**
    * Face Padding
    *
@@ -964,7 +1040,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/facepad)
    */
-  facepad?: InputMaybe<Scalars['FloatType']>
+  facepad?: InputMaybe<Scalars['FloatType']>;
   /**
    * Json Face Data
    *
@@ -974,7 +1050,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faces)
    */
-  faces?: InputMaybe<Scalars['IntType']>
+  faces?: InputMaybe<Scalars['IntType']>;
   /**
    * Fill Mode
    *
@@ -984,7 +1060,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill)
    */
-  fill?: InputMaybe<ImgixParamsFill>
+  fill?: InputMaybe<ImgixParamsFill>;
   /**
    * Fill Color
    *
@@ -994,7 +1070,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-color)
    */
-  fillColor?: InputMaybe<Scalars['String']>
+  fillColor?: InputMaybe<Scalars['String']>;
   /**
    * Resize Fit Mode
    *
@@ -1002,7 +1078,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/fit)
    */
-  fit?: InputMaybe<ImgixParamsFit>
+  fit?: InputMaybe<ImgixParamsFit>;
   /**
    * Flip Axis
    *
@@ -1010,7 +1086,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/flip)
    */
-  flip?: InputMaybe<ImgixParamsFlip>
+  flip?: InputMaybe<ImgixParamsFlip>;
   /**
    * Output Format
    *
@@ -1018,7 +1094,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/fm)
    */
-  fm?: InputMaybe<ImgixParamsFm>
+  fm?: InputMaybe<ImgixParamsFm>;
   /**
    * Focal Point Debug
    *
@@ -1028,7 +1104,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-debug)
    */
-  fpDebug?: InputMaybe<Scalars['BooleanType']>
+  fpDebug?: InputMaybe<Scalars['BooleanType']>;
   /**
    * Focal Point X Position
    *
@@ -1038,7 +1114,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-x)
    */
-  fpX?: InputMaybe<Scalars['FloatType']>
+  fpX?: InputMaybe<Scalars['FloatType']>;
   /**
    * Focal Point Y Position
    *
@@ -1048,7 +1124,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-y)
    */
-  fpY?: InputMaybe<Scalars['FloatType']>
+  fpY?: InputMaybe<Scalars['FloatType']>;
   /**
    * Focal Point Zoom
    *
@@ -1058,7 +1134,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-z)
    */
-  fpZ?: InputMaybe<Scalars['FloatType']>
+  fpZ?: InputMaybe<Scalars['FloatType']>;
   /**
    * Gamma
    *
@@ -1066,7 +1142,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/gam)
    */
-  gam?: InputMaybe<Scalars['IntType']>
+  gam?: InputMaybe<Scalars['IntType']>;
   /**
    * Grid Colors
    *
@@ -1074,7 +1150,7 @@ export type ImgixParams = {
    *
    * Depends on: `transparency`
    */
-  gridColors?: InputMaybe<Scalars['String']>
+  gridColors?: InputMaybe<Scalars['String']>;
   /**
    * Grid Size
    *
@@ -1082,7 +1158,7 @@ export type ImgixParams = {
    *
    * Depends on: `transparency`
    */
-  gridSize?: InputMaybe<Scalars['IntType']>
+  gridSize?: InputMaybe<Scalars['IntType']>;
   /**
    * Image Height
    *
@@ -1090,7 +1166,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/h)
    */
-  h?: InputMaybe<Scalars['FloatType']>
+  h?: InputMaybe<Scalars['FloatType']>;
   /**
    * Highlight
    *
@@ -1098,7 +1174,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/high)
    */
-  high?: InputMaybe<Scalars['IntType']>
+  high?: InputMaybe<Scalars['IntType']>;
   /**
    * Halftone
    *
@@ -1106,7 +1182,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/htn)
    */
-  htn?: InputMaybe<Scalars['IntType']>
+  htn?: InputMaybe<Scalars['IntType']>;
   /**
    * Hue Shift
    *
@@ -1114,7 +1190,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/hue)
    */
-  hue?: InputMaybe<Scalars['IntType']>
+  hue?: InputMaybe<Scalars['IntType']>;
   /**
    * Invert
    *
@@ -1122,13 +1198,13 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/invert)
    */
-  invert?: InputMaybe<Scalars['BooleanType']>
+  invert?: InputMaybe<Scalars['BooleanType']>;
   /**
    * Iptc Passthrough
    *
    * Determine if IPTC data should be passed for JPEG images.
    */
-  iptc?: InputMaybe<ImgixParamsIptc>
+  iptc?: InputMaybe<ImgixParamsIptc>;
   /**
    * Lossless Compression
    *
@@ -1138,7 +1214,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/lossless)
    */
-  lossless?: InputMaybe<Scalars['BooleanType']>
+  lossless?: InputMaybe<Scalars['BooleanType']>;
   /**
    * Watermark Image Url
    *
@@ -1146,7 +1222,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark)
    */
-  mark?: InputMaybe<Scalars['String']>
+  mark?: InputMaybe<Scalars['String']>;
   /**
    * Watermark Alignment Mode
    *
@@ -1156,7 +1232,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-align)
    */
-  markAlign?: InputMaybe<Array<ImgixParamsMarkAlign>>
+  markAlign?: InputMaybe<Array<ImgixParamsMarkAlign>>;
   /**
    * Watermark Alpha
    *
@@ -1166,7 +1242,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-alpha)
    */
-  markAlpha?: InputMaybe<Scalars['IntType']>
+  markAlpha?: InputMaybe<Scalars['IntType']>;
   /**
    * Watermark Base Url
    *
@@ -1176,7 +1252,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-base)
    */
-  markBase?: InputMaybe<Scalars['String']>
+  markBase?: InputMaybe<Scalars['String']>;
   /**
    * Watermark Fit Mode
    *
@@ -1186,7 +1262,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-fit)
    */
-  markFit?: InputMaybe<ImgixParamsMarkFit>
+  markFit?: InputMaybe<ImgixParamsMarkFit>;
   /**
    * Watermark Height
    *
@@ -1196,7 +1272,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-h)
    */
-  markH?: InputMaybe<Scalars['FloatType']>
+  markH?: InputMaybe<Scalars['FloatType']>;
   /**
    * Watermark Padding
    *
@@ -1206,7 +1282,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-pad)
    */
-  markPad?: InputMaybe<Scalars['IntType']>
+  markPad?: InputMaybe<Scalars['IntType']>;
   /**
    * Watermark Rotation
    *
@@ -1214,7 +1290,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-rot)
    */
-  markRot?: InputMaybe<Scalars['FloatType']>
+  markRot?: InputMaybe<Scalars['FloatType']>;
   /**
    * Watermark Scale
    *
@@ -1224,7 +1300,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-scale)
    */
-  markScale?: InputMaybe<Scalars['IntType']>
+  markScale?: InputMaybe<Scalars['IntType']>;
   /**
    * Watermark Tile
    *
@@ -1234,7 +1310,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-tile)
    */
-  markTile?: InputMaybe<ImgixParamsMarkTile>
+  markTile?: InputMaybe<ImgixParamsMarkTile>;
   /**
    * Watermark Width
    *
@@ -1244,7 +1320,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-w)
    */
-  markW?: InputMaybe<Scalars['FloatType']>
+  markW?: InputMaybe<Scalars['FloatType']>;
   /**
    * Watermark X Position
    *
@@ -1254,7 +1330,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-x)
    */
-  markX?: InputMaybe<Scalars['IntType']>
+  markX?: InputMaybe<Scalars['IntType']>;
   /**
    * Watermark Y Position
    *
@@ -1264,7 +1340,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-y)
    */
-  markY?: InputMaybe<Scalars['IntType']>
+  markY?: InputMaybe<Scalars['IntType']>;
   /**
    * Mask Type
    *
@@ -1272,7 +1348,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask)
    */
-  mask?: InputMaybe<Scalars['String']>
+  mask?: InputMaybe<Scalars['String']>;
   /**
    * Mask Background Color
    *
@@ -1282,7 +1358,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/mask-bg)
    */
-  maskBg?: InputMaybe<Scalars['String']>
+  maskBg?: InputMaybe<Scalars['String']>;
   /**
    * Maximum Height
    *
@@ -1292,7 +1368,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-height)
    */
-  maxH?: InputMaybe<Scalars['IntType']>
+  maxH?: InputMaybe<Scalars['IntType']>;
   /**
    * Maximum Width
    *
@@ -1302,7 +1378,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-width)
    */
-  maxW?: InputMaybe<Scalars['IntType']>
+  maxW?: InputMaybe<Scalars['IntType']>;
   /**
    * Minimum Height
    *
@@ -1312,7 +1388,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-height)
    */
-  minH?: InputMaybe<Scalars['IntType']>
+  minH?: InputMaybe<Scalars['IntType']>;
   /**
    * Minimum Width
    *
@@ -1322,7 +1398,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-width)
    */
-  minW?: InputMaybe<Scalars['IntType']>
+  minW?: InputMaybe<Scalars['IntType']>;
   /**
    * Monochrome
    *
@@ -1330,7 +1406,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/monochrome)
    */
-  monochrome?: InputMaybe<Scalars['String']>
+  monochrome?: InputMaybe<Scalars['String']>;
   /**
    * Noise Reduction Bound
    *
@@ -1338,7 +1414,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nr)
    */
-  nr?: InputMaybe<Scalars['IntType']>
+  nr?: InputMaybe<Scalars['IntType']>;
   /**
    * Noise Reduction Sharpen
    *
@@ -1346,7 +1422,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nrs)
    */
-  nrs?: InputMaybe<Scalars['IntType']>
+  nrs?: InputMaybe<Scalars['IntType']>;
   /**
    * Orientation
    *
@@ -1354,7 +1430,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/orient)
    */
-  orient?: InputMaybe<Scalars['IntType']>
+  orient?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding
    *
@@ -1362,7 +1438,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad)
    */
-  pad?: InputMaybe<Scalars['IntType']>
+  pad?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Bottom
    *
@@ -1370,7 +1446,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-bottom)
    */
-  padBottom?: InputMaybe<Scalars['IntType']>
+  padBottom?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Left
    *
@@ -1378,7 +1454,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-left)
    */
-  padLeft?: InputMaybe<Scalars['IntType']>
+  padLeft?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Right
    *
@@ -1386,7 +1462,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-right)
    */
-  padRight?: InputMaybe<Scalars['IntType']>
+  padRight?: InputMaybe<Scalars['IntType']>;
   /**
    * Padding Top
    *
@@ -1394,7 +1470,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-top)
    */
-  padTop?: InputMaybe<Scalars['IntType']>
+  padTop?: InputMaybe<Scalars['IntType']>;
   /**
    * Pdf Page Number
    *
@@ -1402,7 +1478,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/page)
    */
-  page?: InputMaybe<Scalars['IntType']>
+  page?: InputMaybe<Scalars['IntType']>;
   /**
    * Color Palette Extraction
    *
@@ -1410,7 +1486,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/palette)
    */
-  palette?: InputMaybe<ImgixParamsPalette>
+  palette?: InputMaybe<ImgixParamsPalette>;
   /**
    * Pdf Annotation
    *
@@ -1418,7 +1494,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/pdf-annotation)
    */
-  pdfAnnotation?: InputMaybe<Scalars['BooleanType']>
+  pdfAnnotation?: InputMaybe<Scalars['BooleanType']>;
   /**
    * Css Prefix
    *
@@ -1428,7 +1504,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/prefix)
    */
-  prefix?: InputMaybe<Scalars['String']>
+  prefix?: InputMaybe<Scalars['String']>;
   /**
    * Pixellate
    *
@@ -1436,7 +1512,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/px)
    */
-  px?: InputMaybe<Scalars['IntType']>
+  px?: InputMaybe<Scalars['IntType']>;
   /**
    * Output Quality
    *
@@ -1446,7 +1522,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/q)
    */
-  q?: InputMaybe<Scalars['IntType']>
+  q?: InputMaybe<Scalars['IntType']>;
   /**
    * Source Rectangle Region
    *
@@ -1454,7 +1530,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/rect)
    */
-  rect?: InputMaybe<Scalars['String']>
+  rect?: InputMaybe<Scalars['String']>;
   /**
    * Rotation
    *
@@ -1462,7 +1538,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/rot)
    */
-  rot?: InputMaybe<Scalars['FloatType']>
+  rot?: InputMaybe<Scalars['FloatType']>;
   /**
    * Saturation
    *
@@ -1470,7 +1546,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sat)
    */
-  sat?: InputMaybe<Scalars['IntType']>
+  sat?: InputMaybe<Scalars['IntType']>;
   /**
    * Sepia Tone
    *
@@ -1478,7 +1554,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/sepia)
    */
-  sepia?: InputMaybe<Scalars['IntType']>
+  sepia?: InputMaybe<Scalars['IntType']>;
   /**
    * Shadow
    *
@@ -1486,7 +1562,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/shad)
    */
-  shad?: InputMaybe<Scalars['FloatType']>
+  shad?: InputMaybe<Scalars['FloatType']>;
   /**
    * Sharpen
    *
@@ -1494,7 +1570,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sharp)
    */
-  sharp?: InputMaybe<Scalars['FloatType']>
+  sharp?: InputMaybe<Scalars['FloatType']>;
   /**
    * Transparency
    *
@@ -1502,7 +1578,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/transparency)
    */
-  transparency?: InputMaybe<ImgixParamsTransparency>
+  transparency?: InputMaybe<ImgixParamsTransparency>;
   /**
    * Trim Image
    *
@@ -1510,7 +1586,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim)
    */
-  trim?: InputMaybe<ImgixParamsTrim>
+  trim?: InputMaybe<ImgixParamsTrim>;
   /**
    * Trim Color
    *
@@ -1520,7 +1596,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-color)
    */
-  trimColor?: InputMaybe<Scalars['String']>
+  trimColor?: InputMaybe<Scalars['String']>;
   /**
    * Trim Mean Difference
    *
@@ -1530,7 +1606,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-md)
    */
-  trimMd?: InputMaybe<Scalars['FloatType']>
+  trimMd?: InputMaybe<Scalars['FloatType']>;
   /**
    * Trim Padding
    *
@@ -1540,7 +1616,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-pad)
    */
-  trimPad?: InputMaybe<Scalars['IntType']>
+  trimPad?: InputMaybe<Scalars['IntType']>;
   /**
    * Trim Standard Deviation
    *
@@ -1550,7 +1626,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-sd)
    */
-  trimSd?: InputMaybe<Scalars['FloatType']>
+  trimSd?: InputMaybe<Scalars['FloatType']>;
   /**
    * Trim Tolerance
    *
@@ -1560,7 +1636,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-tol)
    */
-  trimTol?: InputMaybe<Scalars['FloatType']>
+  trimTol?: InputMaybe<Scalars['FloatType']>;
   /**
    * Text String
    *
@@ -1568,7 +1644,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt)
    */
-  txt?: InputMaybe<Scalars['String']>
+  txt?: InputMaybe<Scalars['String']>;
   /**
    * Text Align
    *
@@ -1578,7 +1654,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-align)
    */
-  txtAlign?: InputMaybe<Array<ImgixParamsTxtAlign>>
+  txtAlign?: InputMaybe<Array<ImgixParamsTxtAlign>>;
   /**
    * Text Clipping Mode
    *
@@ -1588,7 +1664,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-clip)
    */
-  txtClip?: InputMaybe<Array<ImgixParamsTxtClip>>
+  txtClip?: InputMaybe<Array<ImgixParamsTxtClip>>;
   /**
    * Text Color
    *
@@ -1598,7 +1674,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-color)
    */
-  txtColor?: InputMaybe<Scalars['String']>
+  txtColor?: InputMaybe<Scalars['String']>;
   /**
    * Text Fit Mode
    *
@@ -1608,7 +1684,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-fit)
    */
-  txtFit?: InputMaybe<ImgixParamsTxtFit>
+  txtFit?: InputMaybe<ImgixParamsTxtFit>;
   /**
    * Text Font
    *
@@ -1618,7 +1694,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-font)
    */
-  txtFont?: InputMaybe<Scalars['String']>
+  txtFont?: InputMaybe<Scalars['String']>;
   /**
    * Text Leading
    *
@@ -1628,7 +1704,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-lead)
    */
-  txtLead?: InputMaybe<Scalars['IntType']>
+  txtLead?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Ligatures
    *
@@ -1638,7 +1714,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-lig)
    */
-  txtLig?: InputMaybe<Scalars['IntType']>
+  txtLig?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Outline
    *
@@ -1648,7 +1724,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line)
    */
-  txtLine?: InputMaybe<Scalars['IntType']>
+  txtLine?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Outline Color
    *
@@ -1658,7 +1734,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line-color)
    */
-  txtLineColor?: InputMaybe<Scalars['String']>
+  txtLineColor?: InputMaybe<Scalars['String']>;
   /**
    * Text Padding
    *
@@ -1668,7 +1744,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-pad)
    */
-  txtPad?: InputMaybe<Scalars['IntType']>
+  txtPad?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Shadow
    *
@@ -1678,7 +1754,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-shad)
    */
-  txtShad?: InputMaybe<Scalars['FloatType']>
+  txtShad?: InputMaybe<Scalars['FloatType']>;
   /**
    * Text Font Size
    *
@@ -1688,7 +1764,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-size)
    */
-  txtSize?: InputMaybe<Scalars['IntType']>
+  txtSize?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Tracking
    *
@@ -1698,7 +1774,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-track)
    */
-  txtTrack?: InputMaybe<Scalars['IntType']>
+  txtTrack?: InputMaybe<Scalars['IntType']>;
   /**
    * Text Width
    *
@@ -1708,7 +1784,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-width)
    */
-  txtWidth?: InputMaybe<Scalars['IntType']>
+  txtWidth?: InputMaybe<Scalars['IntType']>;
   /**
    * Unsharp Mask
    *
@@ -1716,7 +1792,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usm)
    */
-  usm?: InputMaybe<Scalars['IntType']>
+  usm?: InputMaybe<Scalars['IntType']>;
   /**
    * Unsharp Mask Radius
    *
@@ -1726,7 +1802,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usmrad)
    */
-  usmrad?: InputMaybe<Scalars['FloatType']>
+  usmrad?: InputMaybe<Scalars['FloatType']>;
   /**
    * Vibrance
    *
@@ -1734,7 +1810,7 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/vib)
    */
-  vib?: InputMaybe<Scalars['IntType']>
+  vib?: InputMaybe<Scalars['IntType']>;
   /**
    * Image Width
    *
@@ -1742,14 +1818,14 @@ export type ImgixParams = {
    *
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/w)
    */
-  w?: InputMaybe<Scalars['FloatType']>
-}
+  w?: InputMaybe<Scalars['FloatType']>;
+};
 
 export enum ImgixParamsAuto {
   Compress = 'compress',
   Enhance = 'enhance',
   Format = 'format',
-  Redeye = 'redeye',
+  Redeye = 'redeye'
 }
 
 export enum ImgixParamsBlendAlign {
@@ -1758,7 +1834,7 @@ export enum ImgixParamsBlendAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsBlendCrop {
@@ -1766,7 +1842,7 @@ export enum ImgixParamsBlendCrop {
   Faces = 'faces',
   Left = 'left',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsBlendFit {
@@ -1774,7 +1850,7 @@ export enum ImgixParamsBlendFit {
   Clip = 'clip',
   Crop = 'crop',
   Max = 'max',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsBlendMode {
@@ -1793,17 +1869,17 @@ export enum ImgixParamsBlendMode {
   Overlay = 'overlay',
   Saturation = 'saturation',
   Screen = 'screen',
-  Softlight = 'softlight',
+  Softlight = 'softlight'
 }
 
 export enum ImgixParamsBlendSize {
-  Inherit = 'inherit',
+  Inherit = 'inherit'
 }
 
 export enum ImgixParamsCh {
   Dpr = 'dpr',
   SaveData = 'saveData',
-  Width = 'width',
+  Width = 'width'
 }
 
 export enum ImgixParamsCrop {
@@ -1814,19 +1890,19 @@ export enum ImgixParamsCrop {
   Focalpoint = 'focalpoint',
   Left = 'left',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsCs {
   Adobergb1998 = 'adobergb1998',
   Srgb = 'srgb',
   Strip = 'strip',
-  Tinysrgb = 'tinysrgb',
+  Tinysrgb = 'tinysrgb'
 }
 
 export enum ImgixParamsFill {
   Blur = 'blur',
-  Solid = 'solid',
+  Solid = 'solid'
 }
 
 export enum ImgixParamsFit {
@@ -1838,13 +1914,13 @@ export enum ImgixParamsFit {
   Fillmax = 'fillmax',
   Max = 'max',
   Min = 'min',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsFlip {
   H = 'h',
   Hv = 'hv',
-  V = 'v',
+  V = 'v'
 }
 
 export enum ImgixParamsFm {
@@ -1861,12 +1937,12 @@ export enum ImgixParamsFm {
   Png8 = 'png8',
   Png32 = 'png32',
   Webm = 'webm',
-  Webp = 'webp',
+  Webp = 'webp'
 }
 
 export enum ImgixParamsIptc {
   Allow = 'allow',
-  Block = 'block',
+  Block = 'block'
 }
 
 export enum ImgixParamsMarkAlign {
@@ -1875,7 +1951,7 @@ export enum ImgixParamsMarkAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsMarkFit {
@@ -1883,25 +1959,25 @@ export enum ImgixParamsMarkFit {
   Crop = 'crop',
   Fill = 'fill',
   Max = 'max',
-  Scale = 'scale',
+  Scale = 'scale'
 }
 
 export enum ImgixParamsMarkTile {
-  Grid = 'grid',
+  Grid = 'grid'
 }
 
 export enum ImgixParamsPalette {
   Css = 'css',
-  Json = 'json',
+  Json = 'json'
 }
 
 export enum ImgixParamsTransparency {
-  Grid = 'grid',
+  Grid = 'grid'
 }
 
 export enum ImgixParamsTrim {
   Auto = 'auto',
-  Color = 'color',
+  Color = 'color'
 }
 
 export enum ImgixParamsTxtAlign {
@@ -1910,273 +1986,278 @@ export enum ImgixParamsTxtAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top',
+  Top = 'top'
 }
 
 export enum ImgixParamsTxtClip {
   Ellipsis = 'ellipsis',
   End = 'end',
   Middle = 'middle',
-  Start = 'start',
+  Start = 'start'
 }
 
 export enum ImgixParamsTxtFit {
-  Max = 'max',
+  Max = 'max'
 }
 
 /** Specifies how to filter by usage */
 export type InUseFilter = {
   /** Search uploads that are currently used by some record or not */
-  eq?: InputMaybe<Scalars['BooleanType']>
-}
+  eq?: InputMaybe<Scalars['BooleanType']>;
+};
 
 /** Specifies how to filter Integer fields */
 export type IntegerFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['IntType']>
+  eq?: InputMaybe<Scalars['IntType']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['IntType']>
+  gt?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['IntType']>
+  gte?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['IntType']>
+  lt?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['IntType']>
+  lte?: InputMaybe<Scalars['IntType']>;
   /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['IntType']>
-}
+  neq?: InputMaybe<Scalars['IntType']>;
+};
 
 /** Specifies how to filter by ID */
 export type ItemIdFilter = {
   /** Search the record with the specified ID */
-  eq?: InputMaybe<Scalars['ItemId']>
+  eq?: InputMaybe<Scalars['ItemId']>;
   /** Search records with the specified IDs */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
   /** Exclude the record with the specified ID */
-  neq?: InputMaybe<Scalars['ItemId']>
+  neq?: InputMaybe<Scalars['ItemId']>;
   /** Search records that do not have the specified IDs */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
 
 export enum ItemStatus {
   Draft = 'draft',
   Published = 'published',
-  Updated = 'updated',
+  Updated = 'updated'
 }
 
 export type LegalpageModelBodyField = {
-  __typename?: 'LegalpageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'LegalpageModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 /** Record of type LegalPage (legalpage) */
 export type LegalpageRecord = {
-  __typename?: 'LegalpageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'LegalpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  body?: Maybe<LegalpageModelBodyField>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<LegalpageModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type LegalPage (legalpage) */
 export type LegalpageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Specifies how to filter Single-link fields */
 export type LinkFilter = {
   /** Search for records with an exact match. The specified value must be a Record ID */
-  eq?: InputMaybe<Scalars['ItemId']>
+  eq?: InputMaybe<Scalars['ItemId']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records linked to one of the specified records */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
   /** Exclude records with an exact match. The specified value must be a Record ID */
-  neq?: InputMaybe<Scalars['ItemId']>
+  neq?: InputMaybe<Scalars['ItemId']>;
   /** Filter records not linked to one of the specified records */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
 
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
-  allIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  allIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
   /** Filter records linked to at least one of the specified records. The specified values must be Record IDs */
-  anyIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
   /** Search for records with an exact match. The specified values must be Record IDs */
-  eq?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
+  eq?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records not linked to any of the specified records. The specified values must be Record IDs */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']>>>;
+};
 
 export enum MuxThumbnailFormatType {
   Gif = 'gif',
   Jpg = 'jpg',
-  Png = 'png',
+  Png = 'png'
 }
 
 export type NodroppageModelBodyField = {
-  __typename?: 'NodroppageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'NodroppageModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 /** Record of type NoDropPage (nodroppage) */
 export type NodroppageRecord = {
-  __typename?: 'NodroppageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'NodroppageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  body?: Maybe<NodroppageModelBodyField>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<NodroppageModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type NoDropPage (nodroppage) */
 export type NodroppageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Specifies how to filter by image orientation */
 export type OrientationFilter = {
   /** Search uploads with the specified orientation */
-  eq?: InputMaybe<UploadOrientation>
+  eq?: InputMaybe<UploadOrientation>;
   /** Exclude uploads with the specified orientation */
-  neq?: InputMaybe<UploadOrientation>
-}
+  neq?: InputMaybe<UploadOrientation>;
+};
 
 /** Record of type PopperMessage (poppermessage) */
 export type PoppermessageRecord = {
-  __typename?: 'PoppermessageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'PoppermessageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  delay?: Maybe<Scalars['IntType']>
-  id: Scalars['ItemId']
-  message?: Maybe<Scalars['String']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  delay?: Maybe<Scalars['IntType']>;
+  id: Scalars['ItemId'];
+  message?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type PopperMessage (poppermessage) */
 export type PoppermessageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** Record of type PopperMessage (poppermessage) */
 export type PoppermessageRecordMessageArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
 
 /** Specifies how to filter by position (sorted and tree-like collections) */
 export type PositionFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['IntType']>
+  eq?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['IntType']>
+  gt?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['IntType']>
+  gte?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['IntType']>
+  lt?: InputMaybe<Scalars['IntType']>;
   /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['IntType']>
+  lte?: InputMaybe<Scalars['IntType']>;
   /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['IntType']>
-}
+  neq?: InputMaybe<Scalars['IntType']>;
+};
 
 export type PrivacypageModelBodyField = {
-  __typename?: 'PrivacypageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'PrivacypageModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 /** Record of type PrivacyPage (privacypage) */
 export type PrivacypageRecord = {
-  __typename?: 'PrivacypageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'PrivacypageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  body?: Maybe<PrivacypageModelBodyField>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<PrivacypageModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type PrivacyPage (privacypage) */
 export type PrivacypageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 export type ProductModelFilter = {
-  OR?: InputMaybe<Array<InputMaybe<ProductModelFilter>>>
-  _createdAt?: InputMaybe<CreatedAtFilter>
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>
-  _isValid?: InputMaybe<BooleanFilter>
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>
-  _publishedAt?: InputMaybe<PublishedAtFilter>
-  _status?: InputMaybe<StatusFilter>
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>
-  _updatedAt?: InputMaybe<UpdatedAtFilter>
-  allergens?: InputMaybe<TextFilter>
-  createdAt?: InputMaybe<CreatedAtFilter>
-  description?: InputMaybe<TextFilter>
-  id?: InputMaybe<ItemIdFilter>
-  ingredients?: InputMaybe<TextFilter>
-  name?: InputMaybe<StringFilter>
-  pictures?: InputMaybe<GalleryFilter>
-  unitPrice?: InputMaybe<FloatFilter>
-  updatedAt?: InputMaybe<UpdatedAtFilter>
-}
+  OR?: InputMaybe<Array<InputMaybe<ProductModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  allergens?: InputMaybe<TextFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  description?: InputMaybe<TextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  ingredients?: InputMaybe<TextFilter>;
+  name?: InputMaybe<StringFilter>;
+  pictures?: InputMaybe<GalleryFilter>;
+  unitPrice?: InputMaybe<FloatFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
 
 export enum ProductModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
@@ -2204,687 +2285,727 @@ export enum ProductModelOrderBy {
   UnitPrice_ASC = 'unitPrice_ASC',
   UnitPrice_DESC = 'unitPrice_DESC',
   UpdatedAt_ASC = 'updatedAt_ASC',
-  UpdatedAt_DESC = 'updatedAt_DESC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
 }
 
 /** Record of type Product (product) */
 export type ProductRecord = {
-  __typename?: 'ProductRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'ProductRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  allergens?: Maybe<Scalars['String']>
-  createdAt: Scalars['DateTime']
-  description?: Maybe<Scalars['String']>
-  id: Scalars['ItemId']
-  ingredients?: Maybe<Scalars['String']>
-  name?: Maybe<Scalars['String']>
-  pictures: Array<FileField>
-  unitPrice?: Maybe<Scalars['FloatType']>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  allergens?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  ingredients?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  pictures: Array<FileField>;
+  unitPrice?: Maybe<Scalars['FloatType']>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type Product (product) */
 export type ProductRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** Record of type Product (product) */
 export type ProductRecordAllergensArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 
 /** Record of type Product (product) */
 export type ProductRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 
 /** Record of type Product (product) */
 export type ProductRecordIngredientsArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']>
-}
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
 
 /** Specifies how to filter by publication datetime */
 export type PublishedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 /** The query root for this schema */
 export type Query = {
-  __typename?: 'Query'
+  __typename?: 'Query';
   /** Returns meta information regarding a record collection */
-  _allDropsMeta: CollectionMetadata
+  _allDropsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allFaqcategoriesMeta: CollectionMetadata
+  _allFaqcategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allFaqitemsMeta: CollectionMetadata
+  _allFaqitemsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allProductsMeta: CollectionMetadata
+  _allProductsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
-  _allUploadsMeta?: Maybe<CollectionMetadata>
+  _allUploadsMeta?: Maybe<CollectionMetadata>;
   /** Returns the single instance record */
-  _site: Site
+  _site: Site;
   /** Returns a collection of records */
-  allDrops: Array<DropRecord>
+  allDrops: Array<DropRecord>;
   /** Returns a collection of records */
-  allFaqcategories: Array<FaqcategoryRecord>
+  allFaqcategories: Array<FaqcategoryRecord>;
   /** Returns a collection of records */
-  allFaqitems: Array<FaqitemRecord>
+  allFaqitems: Array<FaqitemRecord>;
   /** Returns a collection of records */
-  allProducts: Array<ProductRecord>
+  allProducts: Array<ProductRecord>;
   /** Returns a collection of assets */
-  allUploads: Array<FileField>
+  allUploads: Array<FileField>;
   /** Returns a specific record */
-  drop?: Maybe<DropRecord>
+  drop?: Maybe<DropRecord>;
   /** Returns the single instance record */
-  droppage?: Maybe<DroppageRecord>
+  droppage?: Maybe<DroppageRecord>;
   /** Returns the single instance record */
-  errorpage?: Maybe<ErrorpageRecord>
+  errorpage?: Maybe<ErrorpageRecord>;
   /** Returns a specific record */
-  faqcategory?: Maybe<FaqcategoryRecord>
+  faqcategory?: Maybe<FaqcategoryRecord>;
   /** Returns a specific record */
-  faqitem?: Maybe<FaqitemRecord>
+  faqitem?: Maybe<FaqitemRecord>;
   /** Returns the single instance record */
-  faqpage?: Maybe<FaqpageRecord>
+  faqpage?: Maybe<FaqpageRecord>;
   /** Returns the single instance record */
-  legalpage?: Maybe<LegalpageRecord>
+  homepage?: Maybe<HomepageRecord>;
   /** Returns the single instance record */
-  nodroppage?: Maybe<NodroppageRecord>
+  legalpage?: Maybe<LegalpageRecord>;
   /** Returns the single instance record */
-  poppermessage?: Maybe<PoppermessageRecord>
+  nodroppage?: Maybe<NodroppageRecord>;
   /** Returns the single instance record */
-  privacypage?: Maybe<PrivacypageRecord>
+  poppermessage?: Maybe<PoppermessageRecord>;
+  /** Returns the single instance record */
+  privacypage?: Maybe<PrivacypageRecord>;
   /** Returns a specific record */
-  product?: Maybe<ProductRecord>
+  product?: Maybe<ProductRecord>;
   /** Returns the single instance record */
-  termspage?: Maybe<TermspageRecord>
+  termspage?: Maybe<TermspageRecord>;
   /** Returns a specific asset */
-  upload?: Maybe<FileField>
-}
+  upload?: Maybe<FileField>;
+};
+
 
 /** The query root for this schema */
 export type Query_AllDropsMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<DropModelFilter>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DropModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type Query_AllFaqcategoriesMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqcategoryModelFilter>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqcategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type Query_AllFaqitemsMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqitemModelFilter>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqitemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type Query_AllProductsMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<ProductModelFilter>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type Query_AllUploadsMetaArgs = {
-  filter?: InputMaybe<UploadFilter>
-  locale?: InputMaybe<SiteLocale>
-}
+  filter?: InputMaybe<UploadFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type Query_SiteArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryAllDropsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<DropModelFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DropModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
 
 /** The query root for this schema */
 export type QueryAllFaqcategoriesArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqcategoryModelFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqcategoryModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
 
 /** The query root for this schema */
 export type QueryAllFaqitemsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqitemModelFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqitemModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
 
 /** The query root for this schema */
 export type QueryAllProductsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<ProductModelFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
 
 /** The query root for this schema */
 export type QueryAllUploadsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<UploadFilter>
-  first?: InputMaybe<Scalars['IntType']>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>
-  skip?: InputMaybe<Scalars['IntType']>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<UploadFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
 
 /** The query root for this schema */
 export type QueryDropArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<DropModelFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DropModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>;
+};
+
 
 /** The query root for this schema */
 export type QueryDroppageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryErrorpageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryFaqcategoryArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqcategoryModelFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqcategoryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FaqcategoryModelOrderBy>>>;
+};
+
 
 /** The query root for this schema */
 export type QueryFaqitemArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<FaqitemModelFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FaqitemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FaqitemModelOrderBy>>>;
+};
+
 
 /** The query root for this schema */
 export type QueryFaqpageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryHomepageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryLegalpageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryNodroppageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryPoppermessageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryPrivacypageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryProductArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<ProductModelFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>;
+};
+
 
 /** The query root for this schema */
 export type QueryTermspageArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
 
 /** The query root for this schema */
 export type QueryUploadArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  filter?: InputMaybe<UploadFilter>
-  locale?: InputMaybe<SiteLocale>
-  orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<UploadFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+};
 
 /** Specifies how to filter by upload type */
 export type ResolutionFilter = {
   /** Search uploads with the specified resolution */
-  eq?: InputMaybe<ResolutionType>
+  eq?: InputMaybe<ResolutionType>;
   /** Search uploads with the specified resolutions */
-  in?: InputMaybe<Array<InputMaybe<ResolutionType>>>
+  in?: InputMaybe<Array<InputMaybe<ResolutionType>>>;
   /** Exclude uploads with the specified resolution */
-  neq?: InputMaybe<ResolutionType>
+  neq?: InputMaybe<ResolutionType>;
   /** Search uploads without the specified resolutions */
-  notIn?: InputMaybe<Array<InputMaybe<ResolutionType>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<ResolutionType>>>;
+};
 
 export enum ResolutionType {
   Icon = 'icon',
   Large = 'large',
   Medium = 'medium',
-  Small = 'small',
+  Small = 'small'
 }
 
 export type ResponsiveImage = {
-  __typename?: 'ResponsiveImage'
-  alt?: Maybe<Scalars['String']>
-  aspectRatio: Scalars['FloatType']
-  base64?: Maybe<Scalars['String']>
-  bgColor?: Maybe<Scalars['String']>
-  height: Scalars['IntType']
-  sizes: Scalars['String']
-  src: Scalars['String']
-  srcSet: Scalars['String']
-  title?: Maybe<Scalars['String']>
-  webpSrcSet: Scalars['String']
-  width: Scalars['IntType']
-}
+  __typename?: 'ResponsiveImage';
+  alt?: Maybe<Scalars['String']>;
+  aspectRatio: Scalars['FloatType'];
+  base64?: Maybe<Scalars['String']>;
+  bgColor?: Maybe<Scalars['String']>;
+  height: Scalars['IntType'];
+  sizes: Scalars['String'];
+  src: Scalars['String'];
+  srcSet: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  webpSrcSet: Scalars['String'];
+  width: Scalars['IntType'];
+};
 
 export type SeoField = {
-  __typename?: 'SeoField'
-  description?: Maybe<Scalars['String']>
-  image?: Maybe<FileField>
-  title?: Maybe<Scalars['String']>
-  twitterCard?: Maybe<Scalars['String']>
-}
+  __typename?: 'SeoField';
+  description?: Maybe<Scalars['String']>;
+  image?: Maybe<FileField>;
+  title?: Maybe<Scalars['String']>;
+  twitterCard?: Maybe<Scalars['String']>;
+};
 
 export type Site = {
-  __typename?: 'Site'
-  favicon?: Maybe<FileField>
-  faviconMetaTags: Array<Tag>
-  globalSeo?: Maybe<GlobalSeoField>
-  locales: Array<SiteLocale>
-}
+  __typename?: 'Site';
+  favicon?: Maybe<FileField>;
+  faviconMetaTags: Array<Tag>;
+  globalSeo?: Maybe<GlobalSeoField>;
+  locales: Array<SiteLocale>;
+};
+
 
 export type SiteFaviconMetaTagsArgs = {
-  variants?: InputMaybe<Array<InputMaybe<FaviconType>>>
-}
+  variants?: InputMaybe<Array<InputMaybe<FaviconType>>>;
+};
+
 
 export type SiteGlobalSeoArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
-}
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
 
 export enum SiteLocale {
-  Fr = 'fr',
+  Fr = 'fr'
 }
 
 /** Specifies how to filter by status */
 export type StatusFilter = {
   /** Search the record with the specified status */
-  eq?: InputMaybe<ItemStatus>
+  eq?: InputMaybe<ItemStatus>;
   /** Search records with the specified statuses */
-  in?: InputMaybe<Array<InputMaybe<ItemStatus>>>
+  in?: InputMaybe<Array<InputMaybe<ItemStatus>>>;
   /** Exclude the record with the specified status */
-  neq?: InputMaybe<ItemStatus>
+  neq?: InputMaybe<ItemStatus>;
   /** Search records without the specified statuses */
-  notIn?: InputMaybe<Array<InputMaybe<ItemStatus>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<ItemStatus>>>;
+};
 
 /** Specifies how to filter Single-line string fields */
 export type StringFilter = {
   /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records that equal one of the specified values */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter records with the specified field set as blank (null or empty string) */
-  isBlank?: InputMaybe<Scalars['BooleanType']>
+  isBlank?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Filter records that do not equal one of the specified values */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude records based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 export type StringMatchesFilter = {
-  caseSensitive?: InputMaybe<Scalars['BooleanType']>
-  pattern: Scalars['String']
-  regexp?: InputMaybe<Scalars['BooleanType']>
-}
+  caseSensitive?: InputMaybe<Scalars['BooleanType']>;
+  pattern: Scalars['String'];
+  regexp?: InputMaybe<Scalars['BooleanType']>;
+};
 
 /** Specifies how to filter Structured Text fields */
 export type StructuredTextFilter = {
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with the specified field set as blank (null or single empty paragraph) */
-  isBlank?: InputMaybe<Scalars['BooleanType']>
+  isBlank?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 export type Tag = {
-  __typename?: 'Tag'
-  attributes?: Maybe<Scalars['MetaTagAttributes']>
-  content?: Maybe<Scalars['String']>
-  tag: Scalars['String']
-}
+  __typename?: 'Tag';
+  attributes?: Maybe<Scalars['MetaTagAttributes']>;
+  content?: Maybe<Scalars['String']>;
+  tag: Scalars['String'];
+};
 
 export type TermspageModelBodyField = {
-  __typename?: 'TermspageModelBodyField'
-  blocks: Array<Scalars['String']>
-  links: Array<Scalars['String']>
-  value: Scalars['JsonField']
-}
+  __typename?: 'TermspageModelBodyField';
+  blocks: Array<Scalars['String']>;
+  links: Array<Scalars['String']>;
+  value: Scalars['JsonField'];
+};
 
 /** Record of type TermsPage (termspage) */
 export type TermspageRecord = {
-  __typename?: 'TermspageRecord'
-  _createdAt: Scalars['DateTime']
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>
-  _isValid: Scalars['BooleanType']
-  _modelApiKey: Scalars['String']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>
-  _publishedAt?: Maybe<Scalars['DateTime']>
+  __typename?: 'TermspageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
   /** SEO meta tags */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>
-  _updatedAt: Scalars['DateTime']
-  body?: Maybe<TermspageModelBodyField>
-  createdAt: Scalars['DateTime']
-  id: Scalars['ItemId']
-  noindex?: Maybe<Scalars['BooleanType']>
-  seo?: Maybe<SeoField>
-  updatedAt: Scalars['DateTime']
-}
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  body?: Maybe<TermspageModelBodyField>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  updatedAt: Scalars['DateTime'];
+};
+
 
 /** Record of type TermsPage (termspage) */
 export type TermspageRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Specifies how to filter text fields */
 export type TextFilter = {
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with the specified field set as blank (null or empty string) */
-  isBlank?: InputMaybe<Scalars['BooleanType']>
+  isBlank?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude records based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by upload type */
 export type TypeFilter = {
   /** Search uploads with the specified type */
-  eq?: InputMaybe<UploadType>
+  eq?: InputMaybe<UploadType>;
   /** Search uploads with the specified types */
-  in?: InputMaybe<Array<InputMaybe<UploadType>>>
+  in?: InputMaybe<Array<InputMaybe<UploadType>>>;
   /** Exclude uploads with the specified type */
-  neq?: InputMaybe<UploadType>
+  neq?: InputMaybe<UploadType>;
   /** Search uploads without the specified types */
-  notIn?: InputMaybe<Array<InputMaybe<UploadType>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<UploadType>>>;
+};
 
 /** Specifies how to filter by update datetime */
 export type UpdatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 /** Specifies how to filter by default alt */
 export type UploadAltFilter = {
   /** Search the uploads with the specified alt */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Filter uploads with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Search uploads with the specified values as default alt */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude the uploads with the specified alt */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Search uploads that do not have the specified values as default alt */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by auhtor */
 export type UploadAuthorFilter = {
   /** Filter uploads with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by basename */
 export type UploadBasenameFilter = {
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by colors */
 export type UploadColorsFilter = {
   /** Filter uploads that have all of the specified colors */
-  allIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>
+  allIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>;
   /** Filter uploads that have at least one of the specified colors */
-  anyIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>
+  anyIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>;
   /** Filter uploads that have the specified colors */
-  contains?: InputMaybe<ColorBucketType>
+  contains?: InputMaybe<ColorBucketType>;
   /** Search for uploads with an exact match */
-  eq?: InputMaybe<Array<InputMaybe<ColorBucketType>>>
+  eq?: InputMaybe<Array<InputMaybe<ColorBucketType>>>;
   /** Filter uploads that do not have any of the specified colors */
-  notIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<ColorBucketType>>>;
+};
 
 /** Specifies how to filter by copyright */
 export type UploadCopyrightFilter = {
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by creation datetime */
 export type UploadCreatedAtFilter = {
   /** Search for uploads with an exact match */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Exclude uploads with an exact match */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 /** Specifies how to filter by filename */
 export type UploadFilenameFilter = {
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 export type UploadFilter = {
-  OR?: InputMaybe<Array<InputMaybe<UploadFilter>>>
-  _createdAt?: InputMaybe<UploadCreatedAtFilter>
-  _updatedAt?: InputMaybe<UploadUpdatedAtFilter>
-  alt?: InputMaybe<UploadAltFilter>
-  author?: InputMaybe<UploadAuthorFilter>
-  basename?: InputMaybe<UploadBasenameFilter>
-  colors?: InputMaybe<UploadColorsFilter>
-  copyright?: InputMaybe<UploadCopyrightFilter>
-  filename?: InputMaybe<UploadFilenameFilter>
-  format?: InputMaybe<UploadFormatFilter>
-  height?: InputMaybe<UploadHeightFilter>
-  id?: InputMaybe<UploadIdFilter>
-  inUse?: InputMaybe<InUseFilter>
-  md5?: InputMaybe<UploadMd5Filter>
-  mimeType?: InputMaybe<UploadMimeTypeFilter>
-  notes?: InputMaybe<UploadNotesFilter>
-  orientation?: InputMaybe<OrientationFilter>
-  resolution?: InputMaybe<ResolutionFilter>
-  size?: InputMaybe<UploadSizeFilter>
-  smartTags?: InputMaybe<UploadTagsFilter>
-  tags?: InputMaybe<UploadTagsFilter>
-  title?: InputMaybe<UploadTitleFilter>
-  type?: InputMaybe<TypeFilter>
-  width?: InputMaybe<UploadWidthFilter>
-}
+  OR?: InputMaybe<Array<InputMaybe<UploadFilter>>>;
+  _createdAt?: InputMaybe<UploadCreatedAtFilter>;
+  _updatedAt?: InputMaybe<UploadUpdatedAtFilter>;
+  alt?: InputMaybe<UploadAltFilter>;
+  author?: InputMaybe<UploadAuthorFilter>;
+  basename?: InputMaybe<UploadBasenameFilter>;
+  colors?: InputMaybe<UploadColorsFilter>;
+  copyright?: InputMaybe<UploadCopyrightFilter>;
+  filename?: InputMaybe<UploadFilenameFilter>;
+  format?: InputMaybe<UploadFormatFilter>;
+  height?: InputMaybe<UploadHeightFilter>;
+  id?: InputMaybe<UploadIdFilter>;
+  inUse?: InputMaybe<InUseFilter>;
+  md5?: InputMaybe<UploadMd5Filter>;
+  mimeType?: InputMaybe<UploadMimeTypeFilter>;
+  notes?: InputMaybe<UploadNotesFilter>;
+  orientation?: InputMaybe<OrientationFilter>;
+  resolution?: InputMaybe<ResolutionFilter>;
+  size?: InputMaybe<UploadSizeFilter>;
+  smartTags?: InputMaybe<UploadTagsFilter>;
+  tags?: InputMaybe<UploadTagsFilter>;
+  title?: InputMaybe<UploadTitleFilter>;
+  type?: InputMaybe<TypeFilter>;
+  width?: InputMaybe<UploadWidthFilter>;
+};
 
 /** Specifies how to filter by format */
 export type UploadFormatFilter = {
   /** Search the asset with the specified format */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Search assets with the specified formats */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude the asset with the specified format */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Search assets that do not have the specified formats */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
 
 /** Specifies how to filter by height */
 export type UploadHeightFilter = {
   /** Search assets with the specified height */
-  eq?: InputMaybe<Scalars['IntType']>
+  eq?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger than the specified height */
-  gt?: InputMaybe<Scalars['IntType']>
+  gt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified height */
-  gte?: InputMaybe<Scalars['IntType']>
+  gte?: InputMaybe<Scalars['IntType']>;
   /** Search all assets smaller than the specified height */
-  lt?: InputMaybe<Scalars['IntType']>
+  lt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified height */
-  lte?: InputMaybe<Scalars['IntType']>
+  lte?: InputMaybe<Scalars['IntType']>;
   /** Search assets that do not have the specified height */
-  neq?: InputMaybe<Scalars['IntType']>
-}
+  neq?: InputMaybe<Scalars['IntType']>;
+};
 
 /** Specifies how to filter by ID */
 export type UploadIdFilter = {
   /** Search the asset with the specified ID */
-  eq?: InputMaybe<Scalars['UploadId']>
+  eq?: InputMaybe<Scalars['UploadId']>;
   /** Search assets with the specified IDs */
-  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
   /** Exclude the asset with the specified ID */
-  neq?: InputMaybe<Scalars['UploadId']>
+  neq?: InputMaybe<Scalars['UploadId']>;
   /** Search assets that do not have the specified IDs */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']>>>;
+};
 
 /** Specifies how to filter by MD5 */
 export type UploadMd5Filter = {
   /** Search the asset with the specified MD5 */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Search assets with the specified MD5s */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude the asset with the specified MD5 */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Search assets that do not have the specified MD5s */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
 
 /** Specifies how to filter by mime type */
 export type UploadMimeTypeFilter = {
   /** Search the asset with the specified mime type */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Search assets with the specified mime types */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude the asset with the specified mime type */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Search assets that do not have the specified mime types */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 /** Specifies how to filter by notes */
 export type UploadNotesFilter = {
   /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 export enum UploadOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
@@ -2904,62 +3025,62 @@ export enum UploadOrderBy {
   Resolution_ASC = 'resolution_ASC',
   Resolution_DESC = 'resolution_DESC',
   Size_ASC = 'size_ASC',
-  Size_DESC = 'size_DESC',
+  Size_DESC = 'size_DESC'
 }
 
 export enum UploadOrientation {
   Landscape = 'landscape',
   Portrait = 'portrait',
-  Square = 'square',
+  Square = 'square'
 }
 
 /** Specifies how to filter by size */
 export type UploadSizeFilter = {
   /** Search assets with the specified size (in bytes) */
-  eq?: InputMaybe<Scalars['IntType']>
+  eq?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger than the specified size (in bytes) */
-  gt?: InputMaybe<Scalars['IntType']>
+  gt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified size (in bytes) */
-  gte?: InputMaybe<Scalars['IntType']>
+  gte?: InputMaybe<Scalars['IntType']>;
   /** Search all assets smaller than the specified size (in bytes) */
-  lt?: InputMaybe<Scalars['IntType']>
+  lt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified size (in bytes) */
-  lte?: InputMaybe<Scalars['IntType']>
+  lte?: InputMaybe<Scalars['IntType']>;
   /** Search assets that do not have the specified size (in bytes) */
-  neq?: InputMaybe<Scalars['IntType']>
-}
+  neq?: InputMaybe<Scalars['IntType']>;
+};
 
 /** Specifies how to filter by tags */
 export type UploadTagsFilter = {
   /** Filter uploads linked to all of the specified tags */
-  allIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  allIn?: InputMaybe<Array<Scalars['String']>>;
   /** Filter uploads linked to at least one of the specified tags */
-  anyIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  anyIn?: InputMaybe<Array<Scalars['String']>>;
   /** Filter uploads linked to the specified tag */
-  contains?: InputMaybe<Scalars['String']>
+  contains?: InputMaybe<Scalars['String']>;
   /** Search for uploads with an exact match */
-  eq?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  eq?: InputMaybe<Array<Scalars['String']>>;
   /** Filter uploads not linked to any of the specified tags */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
+  notIn?: InputMaybe<Array<Scalars['String']>>;
+};
 
 /** Specifies how to filter by default title */
 export type UploadTitleFilter = {
   /** Search the asset with the specified title */
-  eq?: InputMaybe<Scalars['String']>
+  eq?: InputMaybe<Scalars['String']>;
   /** Filter assets with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']>
+  exists?: InputMaybe<Scalars['BooleanType']>;
   /** Search assets with the specified as default title */
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Filter uploads based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>
+  matches?: InputMaybe<StringMatchesFilter>;
   /** Exclude the asset with the specified title */
-  neq?: InputMaybe<Scalars['String']>
+  neq?: InputMaybe<Scalars['String']>;
   /** Search assets that do not have the specified as default title */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Exclude uploads based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>
-}
+  notMatches?: InputMaybe<StringMatchesFilter>;
+};
 
 export enum UploadType {
   Archive = 'archive',
@@ -2969,363 +3090,162 @@ export enum UploadType {
   Presentation = 'presentation',
   Richtext = 'richtext',
   Spreadsheet = 'spreadsheet',
-  Video = 'video',
+  Video = 'video'
 }
 
 /** Specifies how to filter by update datetime */
 export type UploadUpdatedAtFilter = {
   /** Search for uploads with an exact match */
-  eq?: InputMaybe<Scalars['DateTime']>
+  eq?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['DateTime']>
+  gt?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['DateTime']>
+  gte?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['DateTime']>
+  lt?: InputMaybe<Scalars['DateTime']>;
   /** Filter uploads with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['DateTime']>
+  lte?: InputMaybe<Scalars['DateTime']>;
   /** Exclude uploads with an exact match */
-  neq?: InputMaybe<Scalars['DateTime']>
-}
+  neq?: InputMaybe<Scalars['DateTime']>;
+};
 
 export type UploadVideoField = {
-  __typename?: 'UploadVideoField'
-  duration: Scalars['Int']
-  framerate: Scalars['Int']
-  mp4Url?: Maybe<Scalars['String']>
-  muxAssetId: Scalars['String']
-  muxPlaybackId: Scalars['String']
-  streamingUrl: Scalars['String']
-  thumbnailUrl: Scalars['String']
-}
+  __typename?: 'UploadVideoField';
+  duration: Scalars['Int'];
+  framerate: Scalars['Int'];
+  mp4Url?: Maybe<Scalars['String']>;
+  muxAssetId: Scalars['String'];
+  muxPlaybackId: Scalars['String'];
+  streamingUrl: Scalars['String'];
+  thumbnailUrl: Scalars['String'];
+};
+
 
 export type UploadVideoFieldMp4UrlArgs = {
-  exactRes?: InputMaybe<VideoMp4Res>
-  res?: InputMaybe<VideoMp4Res>
-}
+  exactRes?: InputMaybe<VideoMp4Res>;
+  res?: InputMaybe<VideoMp4Res>;
+};
+
 
 export type UploadVideoFieldThumbnailUrlArgs = {
-  format?: InputMaybe<MuxThumbnailFormatType>
-}
+  format?: InputMaybe<MuxThumbnailFormatType>;
+};
 
 /** Specifies how to filter by width */
 export type UploadWidthFilter = {
   /** Search assets with the specified width */
-  eq?: InputMaybe<Scalars['IntType']>
+  eq?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger than the specified width */
-  gt?: InputMaybe<Scalars['IntType']>
+  gt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified width */
-  gte?: InputMaybe<Scalars['IntType']>
+  gte?: InputMaybe<Scalars['IntType']>;
   /** Search all assets smaller than the specified width */
-  lt?: InputMaybe<Scalars['IntType']>
+  lt?: InputMaybe<Scalars['IntType']>;
   /** Search all assets larger or equal to the specified width */
-  lte?: InputMaybe<Scalars['IntType']>
+  lte?: InputMaybe<Scalars['IntType']>;
   /** Search assets that do not have the specified width */
-  neq?: InputMaybe<Scalars['IntType']>
-}
+  neq?: InputMaybe<Scalars['IntType']>;
+};
 
 export enum VideoMp4Res {
   High = 'high',
   Low = 'low',
-  Medium = 'medium',
+  Medium = 'medium'
 }
 
 export type FocalPoint = {
-  __typename?: 'focalPoint'
-  x?: Maybe<Scalars['FloatType']>
-  y?: Maybe<Scalars['FloatType']>
-}
+  __typename?: 'focalPoint';
+  x?: Maybe<Scalars['FloatType']>;
+  y?: Maybe<Scalars['FloatType']>;
+};
 
-export type DropsQueryVariables = Exact<{ [key: string]: never }>
+export type DropsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type DropsQuery = {
-  __typename?: 'Query'
-  allDrops: Array<{
-    __typename?: 'DropRecord'
-    id: any
-    slug?: string | null
-    releaseDate?: any | null
-    deliveryDate?: any | null
-    endDate?: any | null
-    pictures: Array<{
-      __typename?: 'FileField'
-      id: any
-      alt?: string | null
-      url: string
-    }>
-    products: Array<{
-      __typename?: 'ProductRecord'
-      id: any
-      description?: string | null
-      name?: string | null
-      unitPrice?: any | null
-      allergens?: string | null
-      ingredients?: string | null
-      pictures: Array<{
-        __typename?: 'FileField'
-        id: any
-        alt?: string | null
-        url: string
-      }>
-    }>
-  }>
-}
+
+export type DropsQuery = { __typename?: 'Query', allDrops: Array<{ __typename?: 'DropRecord', id: any, slug?: string | null, releaseDate?: any | null, deliveryDate?: any | null, endDate?: any | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }>, products: Array<{ __typename?: 'ProductRecord', id: any, description?: string | null, name?: string | null, unitPrice?: any | null, allergens?: string | null, ingredients?: string | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }> }> }> };
 
 export type DropByIdQueryVariables = Exact<{
-  dropId?: InputMaybe<Scalars['ItemId']>
-}>
+  dropId?: InputMaybe<Scalars['ItemId']>;
+}>;
 
-export type DropByIdQuery = {
-  __typename?: 'Query'
-  drop?: {
-    __typename?: 'DropRecord'
-    id: any
-    slug?: string | null
-    releaseDate?: any | null
-    endDate?: any | null
-    deliveryDate?: any | null
-    pictures: Array<{
-      __typename?: 'FileField'
-      id: any
-      alt?: string | null
-      url: string
-    }>
-    products: Array<{
-      __typename?: 'ProductRecord'
-      id: any
-      name?: string | null
-      description?: string | null
-      unitPrice?: any | null
-      allergens?: string | null
-      ingredients?: string | null
-      pictures: Array<{
-        __typename?: 'FileField'
-        id: any
-        alt?: string | null
-        url: string
-      }>
-    }>
-  } | null
-}
 
-export type DropPageQueryVariables = Exact<{ [key: string]: never }>
+export type DropByIdQuery = { __typename?: 'Query', drop?: { __typename?: 'DropRecord', id: any, slug?: string | null, releaseDate?: any | null, endDate?: any | null, deliveryDate?: any | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }>, products: Array<{ __typename?: 'ProductRecord', id: any, name?: string | null, description?: string | null, unitPrice?: any | null, allergens?: string | null, ingredients?: string | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }> }> } | null };
 
-export type DropPageQuery = {
-  __typename?: 'Query'
-  droppage?: {
-    __typename?: 'DroppageRecord'
-    title?: string | null
-    headline?: string | null
-    deliveryDescription?: string | null
-    noindex?: any | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-  poppermessage?: {
-    __typename?: 'PoppermessageRecord'
-    updatedAt: any
-    delay?: any | null
-    message?: string | null
-  } | null
-}
+export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type LegalPageQueryVariables = Exact<{ [key: string]: never }>
 
-export type LegalPageQuery = {
-  __typename?: 'Query'
-  legalpage?: {
-    __typename?: 'LegalpageRecord'
-    noindex?: any | null
-    body?: {
-      __typename?: 'LegalpageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
+export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, deliveryDescription?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null, poppermessage?: { __typename?: 'PoppermessageRecord', updatedAt: any, delay?: any | null, message?: string | null } | null };
 
-export type TermsPageQueryVariables = Exact<{ [key: string]: never }>
+export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type TermsPageQuery = {
-  __typename?: 'Query'
-  termspage?: {
-    __typename?: 'TermspageRecord'
-    noindex?: any | null
-    body?: {
-      __typename?: 'TermspageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
 
-export type PrivacyPageQueryVariables = Exact<{ [key: string]: never }>
+export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
 
-export type PrivacyPageQuery = {
-  __typename?: 'Query'
-  privacypage?: {
-    __typename?: 'PrivacypageRecord'
-    noindex?: any | null
-    body?: {
-      __typename?: 'PrivacypageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
+export type LegalPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FaqPageQueryVariables = Exact<{ [key: string]: never }>
 
-export type FaqPageQuery = {
-  __typename?: 'Query'
-  faqpage?: {
-    __typename?: 'FaqpageRecord'
-    noindex?: any | null
-    items: Array<{
-      __typename?: 'FaqitemRecord'
-      id: any
-      question?: string | null
-      updatedAt: any
-      answer?: {
-        __typename?: 'FaqitemModelAnswerField'
-        blocks: Array<string>
-        links: Array<string>
-        value: any
-      } | null
-      category?: {
-        __typename?: 'FaqcategoryRecord'
-        id: any
-        name?: string | null
-        position?: any | null
-      } | null
-    }>
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
+export type LegalPageQuery = { __typename?: 'Query', legalpage?: { __typename?: 'LegalpageRecord', noindex?: any | null, body?: { __typename?: 'LegalpageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
 
-export type ErrorPageQueryVariables = Exact<{ [key: string]: never }>
+export type TermsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type ErrorPageQuery = {
-  __typename?: 'Query'
-  errorpage?: {
-    __typename?: 'ErrorpageRecord'
-    noindex?: any | null
-    body?: {
-      __typename?: 'ErrorpageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
 
-export type NoDropPageQueryVariables = Exact<{ [key: string]: never }>
+export type TermsPageQuery = { __typename?: 'Query', termspage?: { __typename?: 'TermspageRecord', noindex?: any | null, body?: { __typename?: 'TermspageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
 
-export type NoDropPageQuery = {
-  __typename?: 'Query'
-  nodroppage?: {
-    __typename?: 'NodroppageRecord'
-    noindex?: any | null
-    body?: {
-      __typename?: 'NodroppageModelBodyField'
-      blocks: Array<string>
-      links: Array<string>
-      value: any
-    } | null
-    seo?: {
-      __typename?: 'SeoField'
-      title?: string | null
-      description?: string | null
-      twitterCard?: string | null
-      image?: { __typename?: 'FileField'; url: string } | null
-    } | null
-  } | null
-}
+export type PrivacyPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type ProductsQueryVariables = Exact<{ [key: string]: never }>
 
-export type ProductsQuery = {
-  __typename?: 'Query'
-  allProducts: Array<{
-    __typename?: 'ProductRecord'
-    id: any
-    name?: string | null
-    unitPrice?: any | null
-    createdAt: any
-  }>
-}
+export type PrivacyPageQuery = { __typename?: 'Query', privacypage?: { __typename?: 'PrivacypageRecord', noindex?: any | null, body?: { __typename?: 'PrivacypageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
+
+export type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FaqPageQuery = { __typename?: 'Query', faqpage?: { __typename?: 'FaqpageRecord', noindex?: any | null, items: Array<{ __typename?: 'FaqitemRecord', id: any, question?: string | null, updatedAt: any, answer?: { __typename?: 'FaqitemModelAnswerField', blocks: Array<string>, links: Array<string>, value: any } | null, category?: { __typename?: 'FaqcategoryRecord', id: any, name?: string | null, position?: any | null } | null }>, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
+
+export type ErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ErrorPageQuery = { __typename?: 'Query', errorpage?: { __typename?: 'ErrorpageRecord', noindex?: any | null, body?: { __typename?: 'ErrorpageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
+
+export type NoDropPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NoDropPageQuery = { __typename?: 'Query', nodroppage?: { __typename?: 'NodroppageRecord', noindex?: any | null, body?: { __typename?: 'NodroppageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
+
+export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, name?: string | null, unitPrice?: any | null, createdAt: any }> };
+
 
 export const DropsDocument = gql`
-  query Drops {
-    allDrops {
+    query Drops {
+  allDrops {
+    id
+    slug
+    releaseDate
+    deliveryDate
+    endDate
+    pictures {
       id
-      slug
-      releaseDate
-      deliveryDate
-      endDate
+      alt
+      url
+    }
+    products {
+      id
+      description
+      name
+      unitPrice
+      allergens
+      ingredients
       pictures {
         id
         alt
         url
       }
-      products {
-        id
-        description
-        name
-        unitPrice
-        allergens
-        ingredients
-        pictures {
-          id
-          alt
-          url
-        }
-      }
     }
   }
-`
+}
+    `;
 
 /**
  * __useDropsQuery__
@@ -3342,60 +3262,47 @@ export const DropsDocument = gql`
  *   },
  * });
  */
-export function useDropsQuery(
-  baseOptions?: Apollo.QueryHookOptions<DropsQuery, DropsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<DropsQuery, DropsQueryVariables>(
-    DropsDocument,
-    options
-  )
-}
-export function useDropsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<DropsQuery, DropsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<DropsQuery, DropsQueryVariables>(
-    DropsDocument,
-    options
-  )
-}
-export type DropsQueryHookResult = ReturnType<typeof useDropsQuery>
-export type DropsLazyQueryHookResult = ReturnType<typeof useDropsLazyQuery>
-export type DropsQueryResult = Apollo.QueryResult<
-  DropsQuery,
-  DropsQueryVariables
->
+export function useDropsQuery(baseOptions?: Apollo.QueryHookOptions<DropsQuery, DropsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DropsQuery, DropsQueryVariables>(DropsDocument, options);
+      }
+export function useDropsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DropsQuery, DropsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DropsQuery, DropsQueryVariables>(DropsDocument, options);
+        }
+export type DropsQueryHookResult = ReturnType<typeof useDropsQuery>;
+export type DropsLazyQueryHookResult = ReturnType<typeof useDropsLazyQuery>;
+export type DropsQueryResult = Apollo.QueryResult<DropsQuery, DropsQueryVariables>;
 export const DropByIdDocument = gql`
-  query dropById($dropId: ItemId) {
-    drop(filter: { id: { eq: $dropId } }) {
+    query dropById($dropId: ItemId) {
+  drop(filter: {id: {eq: $dropId}}) {
+    id
+    slug
+    releaseDate
+    endDate
+    deliveryDate
+    endDate
+    pictures {
       id
-      slug
-      releaseDate
-      endDate
-      deliveryDate
-      endDate
+      alt
+      url
+    }
+    products {
+      id
+      name
+      description
+      unitPrice
+      allergens
+      ingredients
       pictures {
         id
         alt
         url
       }
-      products {
-        id
-        name
-        description
-        unitPrice
-        allergens
-        ingredients
-        pictures {
-          id
-          alt
-          url
-        }
-      }
     }
   }
-`
+}
+    `;
 
 /**
  * __useDropByIdQuery__
@@ -3413,58 +3320,40 @@ export const DropByIdDocument = gql`
  *   },
  * });
  */
-export function useDropByIdQuery(
-  baseOptions?: Apollo.QueryHookOptions<DropByIdQuery, DropByIdQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<DropByIdQuery, DropByIdQueryVariables>(
-    DropByIdDocument,
-    options
-  )
-}
-export function useDropByIdLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    DropByIdQuery,
-    DropByIdQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<DropByIdQuery, DropByIdQueryVariables>(
-    DropByIdDocument,
-    options
-  )
-}
-export type DropByIdQueryHookResult = ReturnType<typeof useDropByIdQuery>
-export type DropByIdLazyQueryHookResult = ReturnType<
-  typeof useDropByIdLazyQuery
->
-export type DropByIdQueryResult = Apollo.QueryResult<
-  DropByIdQuery,
-  DropByIdQueryVariables
->
-export const DropPageDocument = gql`
-  query dropPage {
-    droppage {
-      title
-      headline
-      deliveryDescription
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
-        }
-        twitterCard
+export function useDropByIdQuery(baseOptions?: Apollo.QueryHookOptions<DropByIdQuery, DropByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DropByIdQuery, DropByIdQueryVariables>(DropByIdDocument, options);
       }
-    }
-    poppermessage {
-      updatedAt
-      delay
-      message
+export function useDropByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DropByIdQuery, DropByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DropByIdQuery, DropByIdQueryVariables>(DropByIdDocument, options);
+        }
+export type DropByIdQueryHookResult = ReturnType<typeof useDropByIdQuery>;
+export type DropByIdLazyQueryHookResult = ReturnType<typeof useDropByIdLazyQuery>;
+export type DropByIdQueryResult = Apollo.QueryResult<DropByIdQuery, DropByIdQueryVariables>;
+export const DropPageDocument = gql`
+    query dropPage {
+  droppage {
+    title
+    headline
+    deliveryDescription
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
     }
   }
-`
+  poppermessage {
+    updatedAt
+    delay
+    message
+  }
+}
+    `;
 
 /**
  * __useDropPageQuery__
@@ -3481,55 +3370,102 @@ export const DropPageDocument = gql`
  *   },
  * });
  */
-export function useDropPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(
-    DropPageDocument,
-    options
-  )
-}
-export function useDropPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    DropPageQuery,
-    DropPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(
-    DropPageDocument,
-    options
-  )
-}
-export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>
-export type DropPageLazyQueryHookResult = ReturnType<
-  typeof useDropPageLazyQuery
->
-export type DropPageQueryResult = Apollo.QueryResult<
-  DropPageQuery,
-  DropPageQueryVariables
->
-export const LegalPageDocument = gql`
-  query LegalPage {
-    legalpage {
-      body {
-        blocks
-        links
-        value
+export function useDropPageQuery(baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function useDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
         }
-        twitterCard
+export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>;
+export type DropPageLazyQueryHookResult = ReturnType<typeof useDropPageLazyQuery>;
+export type DropPageQueryResult = Apollo.QueryResult<DropPageQuery, DropPageQueryVariables>;
+export const HomePageDocument = gql`
+    query HomePage {
+  homepage {
+    seo {
+      title
+      description
+    }
+    noindex
+    heroImage {
+      url
+    }
+    heroCtaLabel
+    whiteSectionHeading
+    whiteSectionBody
+    productsSectionCtaLabel
+    pinkSectionHeading
+    pinkSectionSubheading
+    pinkSectionLeftBody
+    pinkSectionLeftTitle
+    pinkSectionRightBody
+    pinkSectionRightTitle
+    topLeftImage {
+      alt
+      url
+    }
+    bottomLeftImage {
+      alt
+      url
+    }
+    rightImage {
+      alt
+      url
+    }
+    purpleSectionBody
+    purpleSectionHeading
+  }
+}
+    `;
+
+/**
+ * __useHomePageQuery__
+ *
+ * To run a query within a React component, call `useHomePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHomePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHomePageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHomePageQuery(baseOptions?: Apollo.QueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, options);
       }
+export function useHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, options);
+        }
+export type HomePageQueryHookResult = ReturnType<typeof useHomePageQuery>;
+export type HomePageLazyQueryHookResult = ReturnType<typeof useHomePageLazyQuery>;
+export type HomePageQueryResult = Apollo.QueryResult<HomePageQuery, HomePageQueryVariables>;
+export const LegalPageDocument = gql`
+    query LegalPage {
+  legalpage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
     }
   }
-`
+}
+    `;
 
 /**
  * __useLegalPageQuery__
@@ -3546,55 +3482,37 @@ export const LegalPageDocument = gql`
  *   },
  * });
  */
-export function useLegalPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<LegalPageQuery, LegalPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<LegalPageQuery, LegalPageQueryVariables>(
-    LegalPageDocument,
-    options
-  )
-}
-export function useLegalPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    LegalPageQuery,
-    LegalPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<LegalPageQuery, LegalPageQueryVariables>(
-    LegalPageDocument,
-    options
-  )
-}
-export type LegalPageQueryHookResult = ReturnType<typeof useLegalPageQuery>
-export type LegalPageLazyQueryHookResult = ReturnType<
-  typeof useLegalPageLazyQuery
->
-export type LegalPageQueryResult = Apollo.QueryResult<
-  LegalPageQuery,
-  LegalPageQueryVariables
->
-export const TermsPageDocument = gql`
-  query TermsPage {
-    termspage {
-      body {
-        blocks
-        links
-        value
+export function useLegalPageQuery(baseOptions?: Apollo.QueryHookOptions<LegalPageQuery, LegalPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LegalPageQuery, LegalPageQueryVariables>(LegalPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function useLegalPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LegalPageQuery, LegalPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LegalPageQuery, LegalPageQueryVariables>(LegalPageDocument, options);
         }
-        twitterCard
+export type LegalPageQueryHookResult = ReturnType<typeof useLegalPageQuery>;
+export type LegalPageLazyQueryHookResult = ReturnType<typeof useLegalPageLazyQuery>;
+export type LegalPageQueryResult = Apollo.QueryResult<LegalPageQuery, LegalPageQueryVariables>;
+export const TermsPageDocument = gql`
+    query TermsPage {
+  termspage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
       }
+      twitterCard
     }
   }
-`
+}
+    `;
 
 /**
  * __useTermsPageQuery__
@@ -3611,55 +3529,37 @@ export const TermsPageDocument = gql`
  *   },
  * });
  */
-export function useTermsPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<TermsPageQuery, TermsPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<TermsPageQuery, TermsPageQueryVariables>(
-    TermsPageDocument,
-    options
-  )
-}
-export function useTermsPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    TermsPageQuery,
-    TermsPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<TermsPageQuery, TermsPageQueryVariables>(
-    TermsPageDocument,
-    options
-  )
-}
-export type TermsPageQueryHookResult = ReturnType<typeof useTermsPageQuery>
-export type TermsPageLazyQueryHookResult = ReturnType<
-  typeof useTermsPageLazyQuery
->
-export type TermsPageQueryResult = Apollo.QueryResult<
-  TermsPageQuery,
-  TermsPageQueryVariables
->
-export const PrivacyPageDocument = gql`
-  query PrivacyPage {
-    privacypage {
-      body {
-        blocks
-        links
-        value
+export function useTermsPageQuery(baseOptions?: Apollo.QueryHookOptions<TermsPageQuery, TermsPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TermsPageQuery, TermsPageQueryVariables>(TermsPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function useTermsPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TermsPageQuery, TermsPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TermsPageQuery, TermsPageQueryVariables>(TermsPageDocument, options);
         }
-        twitterCard
+export type TermsPageQueryHookResult = ReturnType<typeof useTermsPageQuery>;
+export type TermsPageLazyQueryHookResult = ReturnType<typeof useTermsPageLazyQuery>;
+export type TermsPageQueryResult = Apollo.QueryResult<TermsPageQuery, TermsPageQueryVariables>;
+export const PrivacyPageDocument = gql`
+    query PrivacyPage {
+  privacypage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
       }
+      twitterCard
     }
   }
-`
+}
+    `;
 
 /**
  * __usePrivacyPageQuery__
@@ -3676,68 +3576,47 @@ export const PrivacyPageDocument = gql`
  *   },
  * });
  */
-export function usePrivacyPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    PrivacyPageQuery,
-    PrivacyPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(
-    PrivacyPageDocument,
-    options
-  )
-}
-export function usePrivacyPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    PrivacyPageQuery,
-    PrivacyPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(
-    PrivacyPageDocument,
-    options
-  )
-}
-export type PrivacyPageQueryHookResult = ReturnType<typeof usePrivacyPageQuery>
-export type PrivacyPageLazyQueryHookResult = ReturnType<
-  typeof usePrivacyPageLazyQuery
->
-export type PrivacyPageQueryResult = Apollo.QueryResult<
-  PrivacyPageQuery,
-  PrivacyPageQueryVariables
->
-export const FaqPageDocument = gql`
-  query FaqPage {
-    faqpage {
-      items {
-        id
-        question
-        answer {
-          blocks
-          links
-          value
-        }
-        updatedAt
-        category {
-          id
-          name
-          position
-        }
+export function usePrivacyPageQuery(baseOptions?: Apollo.QueryHookOptions<PrivacyPageQuery, PrivacyPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(PrivacyPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function usePrivacyPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PrivacyPageQuery, PrivacyPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PrivacyPageQuery, PrivacyPageQueryVariables>(PrivacyPageDocument, options);
         }
-        twitterCard
+export type PrivacyPageQueryHookResult = ReturnType<typeof usePrivacyPageQuery>;
+export type PrivacyPageLazyQueryHookResult = ReturnType<typeof usePrivacyPageLazyQuery>;
+export type PrivacyPageQueryResult = Apollo.QueryResult<PrivacyPageQuery, PrivacyPageQueryVariables>;
+export const FaqPageDocument = gql`
+    query FaqPage {
+  faqpage {
+    items {
+      id
+      question
+      answer {
+        blocks
+        links
+        value
+      }
+      updatedAt
+      category {
+        id
+        name
+        position
       }
     }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
   }
-`
+}
+    `;
 
 /**
  * __useFaqPageQuery__
@@ -3754,50 +3633,37 @@ export const FaqPageDocument = gql`
  *   },
  * });
  */
-export function useFaqPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<FaqPageQuery, FaqPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<FaqPageQuery, FaqPageQueryVariables>(
-    FaqPageDocument,
-    options
-  )
-}
-export function useFaqPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<FaqPageQuery, FaqPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<FaqPageQuery, FaqPageQueryVariables>(
-    FaqPageDocument,
-    options
-  )
-}
-export type FaqPageQueryHookResult = ReturnType<typeof useFaqPageQuery>
-export type FaqPageLazyQueryHookResult = ReturnType<typeof useFaqPageLazyQuery>
-export type FaqPageQueryResult = Apollo.QueryResult<
-  FaqPageQuery,
-  FaqPageQueryVariables
->
-export const ErrorPageDocument = gql`
-  query ErrorPage {
-    errorpage {
-      body {
-        blocks
-        links
-        value
+export function useFaqPageQuery(baseOptions?: Apollo.QueryHookOptions<FaqPageQuery, FaqPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FaqPageQuery, FaqPageQueryVariables>(FaqPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function useFaqPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqPageQuery, FaqPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FaqPageQuery, FaqPageQueryVariables>(FaqPageDocument, options);
         }
-        twitterCard
+export type FaqPageQueryHookResult = ReturnType<typeof useFaqPageQuery>;
+export type FaqPageLazyQueryHookResult = ReturnType<typeof useFaqPageLazyQuery>;
+export type FaqPageQueryResult = Apollo.QueryResult<FaqPageQuery, FaqPageQueryVariables>;
+export const ErrorPageDocument = gql`
+    query ErrorPage {
+  errorpage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
       }
+      twitterCard
     }
   }
-`
+}
+    `;
 
 /**
  * __useErrorPageQuery__
@@ -3814,55 +3680,37 @@ export const ErrorPageDocument = gql`
  *   },
  * });
  */
-export function useErrorPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<ErrorPageQuery, ErrorPageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<ErrorPageQuery, ErrorPageQueryVariables>(
-    ErrorPageDocument,
-    options
-  )
-}
-export function useErrorPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ErrorPageQuery,
-    ErrorPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<ErrorPageQuery, ErrorPageQueryVariables>(
-    ErrorPageDocument,
-    options
-  )
-}
-export type ErrorPageQueryHookResult = ReturnType<typeof useErrorPageQuery>
-export type ErrorPageLazyQueryHookResult = ReturnType<
-  typeof useErrorPageLazyQuery
->
-export type ErrorPageQueryResult = Apollo.QueryResult<
-  ErrorPageQuery,
-  ErrorPageQueryVariables
->
-export const NoDropPageDocument = gql`
-  query NoDropPage {
-    nodroppage {
-      body {
-        blocks
-        links
-        value
+export function useErrorPageQuery(baseOptions?: Apollo.QueryHookOptions<ErrorPageQuery, ErrorPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ErrorPageQuery, ErrorPageQueryVariables>(ErrorPageDocument, options);
       }
-      noindex
-      seo {
-        title
-        description
-        image {
-          url
+export function useErrorPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ErrorPageQuery, ErrorPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ErrorPageQuery, ErrorPageQueryVariables>(ErrorPageDocument, options);
         }
-        twitterCard
+export type ErrorPageQueryHookResult = ReturnType<typeof useErrorPageQuery>;
+export type ErrorPageLazyQueryHookResult = ReturnType<typeof useErrorPageLazyQuery>;
+export type ErrorPageQueryResult = Apollo.QueryResult<ErrorPageQuery, ErrorPageQueryVariables>;
+export const NoDropPageDocument = gql`
+    query NoDropPage {
+  nodroppage {
+    body {
+      blocks
+      links
+      value
+    }
+    noindex
+    seo {
+      title
+      description
+      image {
+        url
       }
+      twitterCard
     }
   }
-`
+}
+    `;
 
 /**
  * __useNoDropPageQuery__
@@ -3879,48 +3727,27 @@ export const NoDropPageDocument = gql`
  *   },
  * });
  */
-export function useNoDropPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    NoDropPageQuery,
-    NoDropPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<NoDropPageQuery, NoDropPageQueryVariables>(
-    NoDropPageDocument,
-    options
-  )
-}
-export function useNoDropPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    NoDropPageQuery,
-    NoDropPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<NoDropPageQuery, NoDropPageQueryVariables>(
-    NoDropPageDocument,
-    options
-  )
-}
-export type NoDropPageQueryHookResult = ReturnType<typeof useNoDropPageQuery>
-export type NoDropPageLazyQueryHookResult = ReturnType<
-  typeof useNoDropPageLazyQuery
->
-export type NoDropPageQueryResult = Apollo.QueryResult<
-  NoDropPageQuery,
-  NoDropPageQueryVariables
->
+export function useNoDropPageQuery(baseOptions?: Apollo.QueryHookOptions<NoDropPageQuery, NoDropPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NoDropPageQuery, NoDropPageQueryVariables>(NoDropPageDocument, options);
+      }
+export function useNoDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NoDropPageQuery, NoDropPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NoDropPageQuery, NoDropPageQueryVariables>(NoDropPageDocument, options);
+        }
+export type NoDropPageQueryHookResult = ReturnType<typeof useNoDropPageQuery>;
+export type NoDropPageLazyQueryHookResult = ReturnType<typeof useNoDropPageLazyQuery>;
+export type NoDropPageQueryResult = Apollo.QueryResult<NoDropPageQuery, NoDropPageQueryVariables>;
 export const ProductsDocument = gql`
-  query products {
-    allProducts {
-      id
-      name
-      unitPrice
-      createdAt
-    }
+    query products {
+  allProducts {
+    id
+    name
+    unitPrice
+    createdAt
   }
-`
+}
+    `;
 
 /**
  * __useProductsQuery__
@@ -3937,32 +3764,14 @@ export const ProductsDocument = gql`
  *   },
  * });
  */
-export function useProductsQuery(
-  baseOptions?: Apollo.QueryHookOptions<ProductsQuery, ProductsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<ProductsQuery, ProductsQueryVariables>(
-    ProductsDocument,
-    options
-  )
-}
-export function useProductsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ProductsQuery,
-    ProductsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<ProductsQuery, ProductsQueryVariables>(
-    ProductsDocument,
-    options
-  )
-}
-export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>
-export type ProductsLazyQueryHookResult = ReturnType<
-  typeof useProductsLazyQuery
->
-export type ProductsQueryResult = Apollo.QueryResult<
-  ProductsQuery,
-  ProductsQueryVariables
->
+export function useProductsQuery(baseOptions?: Apollo.QueryHookOptions<ProductsQuery, ProductsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductsQuery, ProductsQueryVariables>(ProductsDocument, options);
+      }
+export function useProductsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductsQuery, ProductsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductsQuery, ProductsQueryVariables>(ProductsDocument, options);
+        }
+export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>;
+export type ProductsLazyQueryHookResult = ReturnType<typeof useProductsLazyQuery>;
+export type ProductsQueryResult = Apollo.QueryResult<ProductsQuery, ProductsQueryVariables>;

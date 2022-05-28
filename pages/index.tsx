@@ -1,64 +1,48 @@
-import { Flex, Box } from '@chakra-ui/react'
 import { NextPage, GetServerSideProps } from 'next'
-import { RBox, RFlex } from '../components/Breakpoints'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
-  DroppageRecord,
-  DropPageDocument,
-  DropPageQuery,
-  PoppermessageRecord,
+  HomepageRecord,
+  HomePageDocument,
+  HomePageQuery,
 } from '../types/generated/graphql'
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
-
-const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
-
-const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
-  ssr: false,
-})
+import { Hero } from '../components/Sections/Hero'
 
 export type DropPageProps = {
   drop: Drop
-  pageBody: DroppageRecord
-  popperMessage: PoppermessageRecord | null
+  pageContent: HomepageRecord
 }
 
-const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
+const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+  console.log(pageContent)
   return (
     <Layout
-      seo={pageBody.seo || undefined}
-      noIndex={pageBody.noindex}
+      seo={pageContent.seo || undefined}
+      noIndex={pageContent.noindex}
       slug=""
-    ></Layout>
+      hideNavbar
+    >
+      <Hero
+        heroImageUrl={pageContent.heroImage!.url}
+        heroCtaLabel={pageContent.heroCtaLabel!}
+      />
+    </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const drop = await Products.getNextIncommingDrop()
 
-  const { data } = await client.query<DropPageQuery>({
-    query: DropPageDocument,
-    fetchPolicy: 'no-cache',
+  const { data } = await client.query<HomePageQuery>({
+    query: HomePageDocument,
   })
-
-  if (!drop) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/nodrop',
-      },
-    }
-  }
 
   return {
     props: {
       drop: drop,
-      pageBody: data?.droppage,
-      popperMessage: data?.poppermessage,
+      pageContent: data?.homepage,
     },
   }
 }
