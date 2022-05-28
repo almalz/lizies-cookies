@@ -27,7 +27,7 @@ export default function Document() {
         />{' '}
         <link
           rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-BltIta.ttf"
+          href="/fonts/parmigiano/ParmigianoTextPro-BldIta.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
@@ -62,7 +62,7 @@ export default function Document() {
         />{' '}
         <link
           rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Mef.ttf"
+          href="/fonts/parmigiano/ParmigianoTextPro-Med.ttf"
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
