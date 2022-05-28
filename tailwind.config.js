@@ -42,6 +42,14 @@ module.exports = {
       borderWidth: {
         3: '3px',
       },
+      fontSize: {
+        '3xl': [
+          '2rem',
+          {
+            lineHeight: '2.25rem',
+          },
+        ],
+      },
     },
   },
   plugins: [],
