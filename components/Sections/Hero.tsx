@@ -20,6 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
             src={heroImageUrl}
             alt="image de fond naughty_cookies"
             layout="fill"
+            objectFit="cover"
           />
         </div>
         <div>
