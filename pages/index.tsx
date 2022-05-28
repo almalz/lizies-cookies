@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
@@ -9,6 +9,7 @@ import {
 import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
 import { Hero } from '../components/Sections/Hero'
+import { WhiteSection } from '../components/Sections/HomeWhiteSection'
 
 export type DropPageProps = {
   drop: Drop
@@ -16,7 +17,6 @@ export type DropPageProps = {
 }
 
 const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
-  console.log(pageContent)
   return (
     <Layout
       seo={pageContent.seo || undefined}
@@ -28,11 +28,15 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         heroImageUrl={pageContent.heroImage!.url}
         heroCtaLabel={pageContent.heroCtaLabel!}
       />
+      <WhiteSection
+        whiteSectionHeading={pageContent.whiteSectionHeading!}
+        whiteSectionBody={pageContent.whiteSectionBody!}
+      />
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const drop = await Products.getNextIncommingDrop()
 
   const { data } = await client.query<HomePageQuery>({
