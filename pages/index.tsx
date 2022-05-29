@@ -1,5 +1,4 @@
 import Layout from '../components/Layout'
-import Coundown from 'react-countdown'
 
 const Home = () => {
   return (
