@@ -17,8 +17,8 @@ export const PictureSection: React.FC<PictureSectionProps> = ({
   rightPicture,
 }) => {
   return (
-    <div className="flex w-full justify-center bg-white sm:max-h-section">
-      <div className="flex h-full w-full sm:max-w-6xl sm:gap-8 sm:p-40 ">
+    <div className="flex w-full justify-center bg-white ">
+      <div className="flex h-full w-full sm:max-w-7xl sm:gap-8 sm:p-20 ">
         <div className="flex h-full w-full flex-col items-stretch justify-between gap-8 p-4 sm:p-0">
           <div className="aspect-w-1 aspect-h-1 relative w-full sm:aspect-w-3 sm:aspect-h-2">
             <Image
