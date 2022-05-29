@@ -20,7 +20,9 @@ const Home = () => {
         <h1 className="font-body text-3xl font-bold text-purple-700 sm:text-6xl">
           Ouverture de la boutique
         </h1>
-        <Countdown date={COUNTDOWN_DATE} renderer={renderer} />
+        {typeof window !== 'undefined' && (
+          <Countdown date={COUNTDOWN_DATE} renderer={renderer} />
+        )}
       </div>
     </Layout>
   )

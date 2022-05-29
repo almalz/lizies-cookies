@@ -1,4 +1,3 @@
-import ProductItem from '../components/ProductItem'
 import {
   DropRecord,
   ProductRecord,
