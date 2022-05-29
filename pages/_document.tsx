@@ -4,104 +4,90 @@ export default function Document() {
   return (
     <Html lang="fr-FR">
       <Head>
-        <link
+        {/* <link
           rel="preload"
-          href="/fonts/chloe/Chloe-Regular.otf"
+          href="/fonts/chloe/Chloe-Regular.woff"
           as="font"
-          type="font/otf"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/gistesy/Gistesy.ttf"
+          href="/fonts/gistesy/Gistesy.woff"
           as="font"
-          type="font/ttf"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
+        <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-Bld.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        />
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-BldIta.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-Blk.woff"
+          as="font"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Bld.ttf"
+          href="/fonts/parmigiano/ParmigianoTextPro-BlkIta.woff"
           as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
-        />{' '}
+        /> */}
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-Lt.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-LtIta.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-Med.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-MedIta.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
         <link
           rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-BldIta.ttf"
+          href="/fonts/parmigiano/ParmigianoTextPro-Reg.woff"
           as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Blk.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-BlkIta.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Lt.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-LtIta.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Med.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-MedIta.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Reg.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-RegIta.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-Thin.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />{' '}
-        <link
-          rel="preload"
-          href="/fonts/parmigiano/ParmigianoTextPro-ThinIta.ttf"
-          as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
         />
+        {/* <link
+          rel="preload"
+          href="/fonts/parmigiano/ParmigianoTextPro-RegIta.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> */}
       </Head>
       <body>
         <Main />
