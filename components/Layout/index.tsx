@@ -8,6 +8,7 @@ export type LayoutProps = {
   noIndex?: boolean
   slug?: string
   hideNavbar?: boolean
+  className?: string
 }
 
 const BASE_URL = process.env.DOMAIN_NAME
@@ -17,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({
   seo,
   noIndex = false,
   slug,
+  className,
   hideNavbar = false,
 }) => {
   return (
@@ -32,9 +34,11 @@ const Layout: React.FC<LayoutProps> = ({
           type: 'website',
         }}
       />
-      {!hideNavbar && <Navbar />}
-      {children}
-      <Footer />
+      <div className={className}>
+        {!hideNavbar && <Navbar />}
+        {children}
+        <Footer />
+      </div>
     </>
   )
 }

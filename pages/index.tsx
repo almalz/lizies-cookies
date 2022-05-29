@@ -1,63 +1,29 @@
-import { NextPage, GetStaticProps } from 'next'
 import Layout from '../components/Layout'
-import client from '../lib/apolloClient'
-import {
-  HomepageRecord,
-  HomePageDocument,
-  HomePageQuery,
-} from '../types/generated/graphql'
-import { Products } from '../lib/store/products/api'
-import { Drop } from '../lib/store/products/types'
-import { Hero } from '../components/Sections/Hero'
-import { WhiteSection } from '../components/Sections/HomeWhiteSection'
-import { PinkSection } from '../components/Sections/HomePinkSection'
+import Countdown from 'react-countdown'
 
-export type DropPageProps = {
-  drop: Drop
-  pageContent: HomepageRecord
-}
+const COUNTDOWN_DATE = new Date('16 june 2022')
 
-const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+const renderer = ({ days, hours, minutes, seconds }: any) => {
   return (
-    <Layout
-      seo={pageContent.seo || undefined}
-      noIndex={pageContent.noindex}
-      slug=""
-      hideNavbar
-    >
-      <Hero
-        heroImageUrl={pageContent.heroImage!.url}
-        heroCtaLabel={pageContent.heroCtaLabel!}
-      />
-      <WhiteSection
-        whiteSectionHeading={pageContent.whiteSectionHeading!}
-        whiteSectionBody={pageContent.whiteSectionBody!}
-      />
-      <PinkSection
-        pinkSectionHeading={pageContent.pinkSectionHeading!}
-        pinkSectionSubheading={pageContent.pinkSectionSubheading!}
-        pinkSectionLeftTitle={pageContent.pinkSectionLeftTitle!}
-        pinkSectionLeftBody={pageContent.pinkSectionLeftBody!}
-        pinkSectionRightTitle={pageContent.pinkSectionRightTitle!}
-        pinkSectionRightBody={pageContent.pinkSectionRightBody!}
-      />
-    </Layout>
+    <div className="font-body text-3xl font-bold text-pink-500 sm:text-5xl">
+      <span>
+        {days}j {hours}h {minutes}min {seconds}s
+      </span>
+    </div>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const drop = await Products.getNextIncommingDrop()
-
-  const { data } = await client.query<HomePageQuery>({
-    query: HomePageDocument,
-  })
-
-  return {
-    props: {
-      drop: drop,
-      pageContent: data?.homepage,
-    },
-  }
+const Home = () => {
+  return (
+    <Layout seo={undefined} slug="" className="flex h-screen flex-col">
+      <div className="flex flex-1 flex-col items-center justify-center gap-y-16">
+        <h1 className="font-body text-3xl font-bold text-purple-700 sm:text-6xl">
+          Ouverture de la boutique
+        </h1>
+        <Countdown date={COUNTDOWN_DATE} renderer={renderer} />
+      </div>
+    </Layout>
+  )
 }
 
 export default Home

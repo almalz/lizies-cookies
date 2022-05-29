@@ -1,19 +1,6 @@
 import Link from 'next/link'
 import { FaInstagram, FaTiktok, FaFacebook } from 'react-icons/fa'
 
-type Link = {
-  label: string
-  href: string
-}
-
-const Links: Link[] = [
-  { label: 'contact', href: '/contact' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'mentions légales', href: '/legal' },
-  { label: 'CGV', href: '/terms' },
-  { label: 'confidentialité', href: '/privacy' },
-]
-
 export const Footer: React.FC = () => {
   return (
     <footer className="flex w-full flex-col items-center gap-y-8 bg-pink-gray py-6">
@@ -39,18 +26,6 @@ export const Footer: React.FC = () => {
             </a>
           </Link>
         </li>
-      </ul>
-      <ul className="flex gap-x-8">
-        {Links.map((link) => (
-          <li
-            key={link.label}
-            className="font-body text-sm  text-white hover:text-purple-200"
-          >
-            <Link href={link.href}>
-              <a>{link.label}</a>
-            </Link>
-          </li>
-        ))}
       </ul>
       <span className="font-body text-sm text-purple-800">
         © naugthy cookies 2022
