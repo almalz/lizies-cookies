@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
         </li>
       </ul>
       <span className="font-body text-sm text-purple-800">
-        © naugthy cookies 2022
+        © naughty cookies 2022
       </span>
     </footer>
   )
