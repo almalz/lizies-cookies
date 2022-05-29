@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Button } from '../Button'
+import { ButtonLink } from '../Button'
 import { Navbar } from '../Navbar'
 
 type HeroProps = {
@@ -24,9 +24,9 @@ export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
           />
         </div>
         <div>
-          <Button color="pink" onClick={() => router.push('/drop')}>
+          <ButtonLink color="pink" href="/drop">
             {heroCtaLabel}
-          </Button>
+          </ButtonLink>
         </div>
       </div>
     </div>
