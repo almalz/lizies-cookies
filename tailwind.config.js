@@ -53,8 +53,12 @@ module.exports = {
       spacing: {
         128: '32rem',
         192: '48rem',
+        section: '50rem',
       },
     },
+    corePlugins: {
+      aspectRatio: false,
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 }
