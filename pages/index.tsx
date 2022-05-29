@@ -12,6 +12,7 @@ import { Hero } from '../components/Sections/Hero'
 import { WhiteSection } from '../components/Sections/HomeWhiteSection'
 import { PinkSection } from '../components/Sections/HomePinkSection'
 import { PictureSection } from '../components/Sections/HomePicturesSection'
+import { PurpleSection } from '../components/Sections/HomePurpleSection'
 
 export type DropPageProps = {
   drop: Drop
@@ -55,6 +56,10 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           alt: pageContent.rightImage?.alt!,
           url: pageContent.rightImage?.url!,
         }}
+      />
+      <PurpleSection
+        purpleSectionHeading={pageContent.purpleSectionHeading!}
+        purpleSectionBody={pageContent.purpleSectionBody!}
       />
     </Layout>
   )
