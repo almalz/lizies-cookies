@@ -11,6 +11,7 @@ import { Drop } from '../lib/store/products/types'
 import { Hero } from '../components/Sections/Hero'
 import { WhiteSection } from '../components/Sections/HomeWhiteSection'
 import { PinkSection } from '../components/Sections/HomePinkSection'
+import { PictureSection } from '../components/Sections/HomePicturesSection'
 
 export type DropPageProps = {
   drop: Drop
@@ -40,6 +41,20 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         pinkSectionLeftBody={pageContent.pinkSectionLeftBody!}
         pinkSectionRightTitle={pageContent.pinkSectionRightTitle!}
         pinkSectionRightBody={pageContent.pinkSectionRightBody!}
+      />
+      <PictureSection
+        topLeftPicture={{
+          alt: pageContent.topLeftImage?.alt!,
+          url: pageContent.topLeftImage?.url!,
+        }}
+        bottomLeftPicture={{
+          alt: pageContent.bottomLeftImage?.alt!,
+          url: pageContent.bottomLeftImage?.url!,
+        }}
+        rightPicture={{
+          alt: pageContent.rightImage?.alt!,
+          url: pageContent.rightImage?.url!,
+        }}
       />
     </Layout>
   )
