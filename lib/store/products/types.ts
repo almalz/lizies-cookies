@@ -1,10 +1,20 @@
+export type SwellImage = {
+  id: string
+  file: {
+    height: number
+    md5: string
+    url: string
+    width: number
+  }
+}
+
 export type SwellCategory = {
   isDrop?: boolean
   releaseDate?: string
   expirationDate?: string
   deliveryDate?: string
   name: string
-  images?: any
+  images?: SwellImage[]
   description?: string
   metaDescription?: string
   parentId?: string
@@ -20,7 +30,7 @@ export type SwellProduct = {
   currency: string
   description: string
   bundle?: null
-  images?: any
+  images?: SwellImage[]
   name?: string
   options: string
   price: number
@@ -37,6 +47,7 @@ export type SwellProduct = {
   content?: {
     ingredients?: string
     allergens?: string
+    sliderText?: string
   }
 }
 

@@ -10,6 +10,7 @@ import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
 import { Hero } from '../components/Sections/Hero'
 import { WhiteSection } from '../components/Sections/HomeWhiteSection'
+import { ProductsSection } from '../components/Sections/HomeProductsSection'
 import { PinkSection } from '../components/Sections/HomePinkSection'
 import { PictureSection } from '../components/Sections/HomePicturesSection'
 import { PurpleSection } from '../components/Sections/HomePurpleSection'
@@ -20,6 +21,7 @@ export type DropPageProps = {
 }
 
 const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+  console.log(drop)
   return (
     <Layout
       seo={pageContent.seo || undefined}
@@ -34,6 +36,10 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
       <WhiteSection
         whiteSectionHeading={pageContent.whiteSectionHeading!}
         whiteSectionBody={pageContent.whiteSectionBody!}
+      />
+      <ProductsSection
+        products={drop.products!}
+        buttonLabel={pageContent.productsSectionCtaLabel!}
       />
       <PinkSection
         pinkSectionHeading={pageContent.pinkSectionHeading!}
@@ -66,7 +72,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const drop = await Products.getNextIncommingDrop()
+  const drop = await Products.getCurrentDrop()
 
   const { data } = await client.query<HomePageQuery>({
     query: HomePageDocument,

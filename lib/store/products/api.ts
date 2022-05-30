@@ -18,7 +18,7 @@ export const Products = {
     return product
   },
 
-  getNextIncommingDrop: async () => {
+  getCurrentDrop: async () => {
     const { results: categories }: { results: SwellCategory[] } =
       await swell.categories.list({
         limit: 100,

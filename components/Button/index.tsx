@@ -63,11 +63,11 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
         <Link href={href}>
           <a
             className={clsx([
-              'border-3 bg-transparent py-3 px-16 font-title text-lg hover:bg-opacity-10',
+              'border-3 bg-transparent py-3 px-16 font-title text-lg hover:bg-opacity-20',
               color === 'pink' &&
                 'border-pink-500 text-pink-500 hover:bg-pink-100',
               color === 'purple' &&
-                'border-purple-700 text-purple-700 hover:bg-purple-200',
+                'border-purple-700 text-purple-700 hover:bg-purple-300',
             ])}
             {...props}
           >

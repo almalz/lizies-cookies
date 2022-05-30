@@ -30,7 +30,7 @@ const ProductsProvider: React.FC = ({ children }) => {
   // fetch the next drop every REFRESH_INTERVAL
   useEffect(() => {
     const interval = setInterval(async () => {
-      const drop = await Products.getNextIncommingDrop()
+      const drop = await Products.getCurrentDrop()
       if (!drop) {
         if (currentDropId) {
           currentDropId !== undefined &&
