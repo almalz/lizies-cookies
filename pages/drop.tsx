@@ -1,6 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
 import { NextPage, GetServerSideProps } from 'next'
-import { RBox, RFlex } from '../components/Breakpoints'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
@@ -38,7 +36,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageBody, popperMessage }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const drop = await Products.getNextIncommingDrop()
+  const drop = await Products.getCurrentDrop()
 
   const { data } = await client.query<DropPageQuery>({
     query: DropPageDocument,

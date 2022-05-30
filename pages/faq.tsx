@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
-import BackButton from '../components/BackButton'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
@@ -32,7 +31,6 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage }) => {
       slug="faq"
     >
       <Box shadow={'inner'}>
-        <BackButton />
         <Box
           py={['32px', '32px', '32px', '120px']}
           px={['32px', '64px', '120px', '240px']}
