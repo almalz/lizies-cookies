@@ -35,7 +35,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
           {products.map((product) => (
             <div className="embla__slide h-full" key={product.id}>
               <div className="flex h-full w-full flex-col gap-10 pb-8 sm:flex-row sm:gap-4 sm:p-28">
-                <div className="relative h-1/2 w-full flex-[2] overflow-hidden sm:h-[35rem] ">
+                <div className="relative h-1/2 w-full overflow-hidden sm:h-[35rem] sm:flex-[2] ">
                   <Image
                     src={product.images![0].file.url}
                     alt={product.name!}

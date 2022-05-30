@@ -21,7 +21,6 @@ export type DropPageProps = {
 }
 
 const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
-  console.log(drop)
   return (
     <Layout
       seo={pageContent.seo || undefined}
