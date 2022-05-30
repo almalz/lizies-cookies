@@ -14,7 +14,10 @@ export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
   return (
     <div className="flex h-screen flex-col">
       <Navbar />
-      <div className="flex flex-1 flex-col items-center gap-y-12 bg-purple-700 px-6 pt-6 pb-12	">
+      <div
+        className="flex flex-1 flex-col items-center gap-y-12 bg-purple-700 px-6 pt-6 pb-12"
+        style={{ marginTop: '-1px' }}
+      >
         <div className="relative w-11/12 flex-1 overflow-hidden">
           <Image
             src={heroImageUrl}
