@@ -18,7 +18,7 @@ export const PinkSection: React.FC<PinkSectionProps> = ({
   pinkSectionRightBody,
 }) => {
   return (
-    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700">
+    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700 sm:py-36">
       <H2>{pinkSectionHeading}</H2>
       <ParagraphXl>{pinkSectionSubheading}</ParagraphXl>
       <div className="flex flex-col gap-16 px-8 sm:flex-row">
