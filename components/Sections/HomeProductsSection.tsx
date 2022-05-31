@@ -34,8 +34,8 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
         <div className="embla__container h-full">
           {products.map((product) => (
             <div className="embla__slide h-full" key={product.id}>
-              <div className="flex h-full w-full flex-col gap-10 pb-8 sm:flex-row sm:gap-4 sm:px-52 sm:py-32">
-                <div className="relative h-1/2 w-full overflow-hidden sm:h-[35rem] sm:flex-1 ">
+              <div className="flex h-full w-full flex-col gap-10 pb-8 sm:flex-row sm:gap-4 md:px-24 md:py-20 lg:px-52 lg:py-32">
+                <div className="relative h-1/2 w-full overflow-hidden sm:flex-1 md:h-[25rem] lg:h-[35rem] ">
                   <Image
                     src={product.images![0].file.url}
                     alt={product.name!}
@@ -43,7 +43,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                     objectFit="cover"
                   />
                 </div>
-                <div className="flex flex-1 flex-col gap-8 px-14 py-2 text-purple-700 sm:my-24 sm:ml-32 sm:mr-16 sm:gap-12">
+                <div className="flex flex-1 flex-col gap-8 px-14 py-2 text-purple-700 sm:gap-12 md:my-12 md:ml-8 md:mr-4 md:px-0 lg:my-24 lg:ml-32 lg:mr-16 lg:px-14">
                   <H2>{product.name!}</H2>
                   <ParagraphXl markdown>
                     {product.content?.sliderText || ''}
@@ -54,7 +54,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
           ))}
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-[10%] z-10 flex justify-center sm:left-auto sm:right-[25%] sm:bottom-[20%]">
+      <div className="absolute inset-x-0 bottom-[10%] z-10 flex justify-center sm:left-auto md:bottom-[15%] md:right-[10%] lg:bottom-[20%] lg:right-[25%]">
         <ButtonLink color="purple" href="/drop">
           {buttonLabel}
         </ButtonLink>

@@ -27,11 +27,11 @@ export const Navbar: React.FC = () => {
   const router = useRouter()
 
   return (
-    <Accordion as="nav" allowMultiple>
+    <Accordion as="nav" allowMultiple className="bg-purple-700">
       <AccordionItem border="0">
         {({ isExpanded }: { isExpanded: boolean }) => (
           <>
-            <div className="sm:hidden">
+            <div className="lg:hidden">
               <div className="flex w-full items-center justify-between bg-purple-700 px-8 py-4">
                 <Link href="/">
                   <a>
@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden sm:block">
+            <div className="hidden lg:block">
               <div className="flex w-full gap-x-16 bg-purple-700 px-16 pt-8 pb-4">
                 <Link href="/">
                   <a>
@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
                 </ul>
               </div>
             </div>
-            <AccordionPanel className="sm:hidden">
+            <AccordionPanel className="lg:hidden">
               <ul className="flex min-h-full flex-col gap-y-4 bg-purple-700 p-4">
                 {NAVITEMS.map((item) => (
                   <li
