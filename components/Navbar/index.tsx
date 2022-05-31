@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
                   {NAVITEMS.map((item) => (
                     <li key={item.label}>
                       <Link href={item.href}>
-                        <a className="font-body text-base font-bold text-white hover:text-pink-200">
+                        <a className="font-body text-base font-bold text-white hover:text-pink-500">
                           {item.label}
                         </a>
                       </Link>
@@ -81,21 +81,21 @@ export const Navbar: React.FC = () => {
                   <li>
                     <Link href="https://www.instagram.com/_naughtycookies/">
                       <a target="_blank">
-                        <FaInstagram className="text-white hover:text-pink-200" />
+                        <FaInstagram className="text-white hover:text-pink-500" />
                       </a>
                     </Link>
                   </li>
                   <li>
                     <Link href="https://www.tiktok.com/@naughtycookies">
                       <a target="_blank">
-                        <FaTiktok className="text-white hover:text-pink-200" />
+                        <FaTiktok className="text-white hover:text-pink-500" />
                       </a>
                     </Link>
                   </li>
                   <li>
                     <Link href="https://www.facebook.com/naughtycookies">
                       <a target="_blank">
-                        <FaFacebook className="text-white hover:text-pink-200" />
+                        <FaFacebook className="text-white hover:text-pink-500" />
                       </a>
                     </Link>
                   </li>
@@ -124,21 +124,21 @@ export const Navbar: React.FC = () => {
                     <li>
                       <Link href="https://www.instagram.com/_naughtycookies/">
                         <a target="_blank">
-                          <FaInstagram className="text-white hover:text-pink-200" />
+                          <FaInstagram className="text-white hover:text-pink-500" />
                         </a>
                       </Link>
                     </li>
                     <li>
                       <Link href="https://www.tiktok.com/@naughtycookies">
                         <a target="_blank">
-                          <FaTiktok className="text-white hover:text-pink-200" />
+                          <FaTiktok className="text-white hover:text-pink-500" />
                         </a>
                       </Link>
                     </li>
                     <li>
                       <Link href="https://www.facebook.com/naughtycookies">
                         <a target="_blank">
-                          <FaFacebook className="text-white hover:text-pink-200" />
+                          <FaFacebook className="text-white hover:text-pink-500" />
                         </a>
                       </Link>
                     </li>
