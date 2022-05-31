@@ -1,8 +1,9 @@
-import { Button, ButtonProps, Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 import { useCallback } from 'react'
 import { useCart } from '../../lib/store'
+import { Button } from '../Button'
 
-const CartButton: React.FC<ButtonProps> = (props) => {
+const CartButton: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
   const { loading, cartItemsCount, goToCheckout } = useCart()
 
   const handleClick = useCallback(() => {
@@ -10,14 +11,11 @@ const CartButton: React.FC<ButtonProps> = (props) => {
   }, [goToCheckout])
 
   return (
-    <Button
-      onClick={handleClick}
-      disabled={loading}
-      _hover={{ background: '#718096' }}
-      {...props}
-    >
+    <Button onClick={handleClick} disabled={loading} color="purple">
       {loading ? (
-        <Spinner color="White" size="xs" />
+        <div className="px-20">
+          <Spinner color="#2E1550" size="xs" />
+        </div>
       ) : (
         `Voir mon panier ${cartItemsCount ? `(${cartItemsCount || 0})` : ''}`
       )}

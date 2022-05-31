@@ -16,6 +16,9 @@ import Link from 'next/link'
 import ProductList from '../components/ProductList'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
+const CartButton = dynamic(() => import('../components/CartButton'), {
+  ssr: false,
+})
 
 const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
   ssr: false,
@@ -33,7 +36,10 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
       noIndex={pageContent.noindex}
       slug=""
     >
-      <div className="bg-white pb-8">
+      <div className="relative bg-white sm:pb-8">
+        <div className="absolute top-0 right-0 p-4 md:p-8 lg:p-16">
+          <Cart />
+        </div>
         <div className="px-4 pb-8 pt-12 text-purple-700 sm:px-16 lg:gap-4 lg:pt-16 lg:pb-4">
           <H1>{injectVariables(pageContent.title!, drop)}</H1>
           <h2 className="font-body text-lg font-bold italic ">
@@ -49,6 +55,9 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           </div>
         </div>
         <ProductList products={drop.products} />
+        <div className="flex items-center justify-center py-8 sm:hidden">
+          <CartButton />
+        </div>
       </div>
     </Layout>
   )

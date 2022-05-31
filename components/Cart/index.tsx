@@ -2,8 +2,9 @@ import { Circle, Spinner } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useCallback } from 'react'
 import { useCart } from '../../lib/store/cart/provider'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
 
-const Cart: React.FC = () => {
+const Cart: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
   const { loading, cartItemsCount, goToCheckout } = useCart()
 
   const handleClick = useCallback(() => {
@@ -17,9 +18,9 @@ const Cart: React.FC = () => {
         pos="relative"
         size="58px"
         border="solid 3px transparent"
-        _hover={{ border: 'solid rgba(32, 32, 32, 0.8) 3px' }}
+        _hover={{ backgroundColor: '#2E155011' }}
       >
-        <Image src={'/icons.cart.svg'} width={42} height={42} alt="cart_icon" />
+        <HiOutlineShoppingBag size={42} color="#2E1550" />
 
         <Circle
           pos="absolute"
@@ -27,7 +28,7 @@ const Cart: React.FC = () => {
           right="-1"
           size="28px"
           zIndex={2}
-          bg="gray.900"
+          bg="#2E1550"
           color="white"
           fontWeight={700}
           fontSize="md"

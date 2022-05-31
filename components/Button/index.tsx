@@ -5,6 +5,7 @@ export type ButtonProps = {
   color?: 'pink' | 'purple'
   onClick?: () => void
   className?: string
+  disabled?: boolean
 }
 
 export type ButtonLinkProps = {
@@ -17,6 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
   color = 'pink',
   onClick,
   className,
+  disabled = false,
   children,
   ...props
 }) => {
@@ -24,12 +26,13 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       className={clsx([
         className,
-        'border-3 bg-transparent py-3 px-16 font-title text-lg hover:bg-opacity-10',
+        'border-3 bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
+        disabled && 'opacity-50',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-100',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
       ])}
-      onClick={() => onClick && onClick()}
+      onClick={() => !disabled && onClick && onClick()}
       {...props}
     >
       {children}
