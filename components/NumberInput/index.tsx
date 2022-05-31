@@ -35,6 +35,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
             <Button
               onClick={handleRemoveClick}
               className="px-1.5 py-1.5 sm:px-2 sm:py-2"
+              disabled={!value}
             >
               <HiMinus />
             </Button>
