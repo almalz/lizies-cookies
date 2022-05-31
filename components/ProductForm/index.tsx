@@ -5,7 +5,6 @@ import NumberInput from '../NumberInput'
 
 export type ProductFormProps = {
   product: SwellProduct
-  zeroWhenNull?: boolean
 }
 
 const ProductForm: React.FC<ProductFormProps> = ({ product }) => {

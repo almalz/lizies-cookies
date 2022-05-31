@@ -35,6 +35,24 @@ query HomePage {
   }
 }
 
+query dropPage {
+  droppage {
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        url
+        alt
+      }
+    }
+    title
+    headline
+    instructions
+    callout
+  }
+}
+
 query LegalPage {
   legalpage {
     body {

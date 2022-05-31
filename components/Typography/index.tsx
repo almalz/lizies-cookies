@@ -1,4 +1,5 @@
 import { As, Heading } from '@chakra-ui/react'
+import clsx from 'clsx'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
@@ -6,6 +7,7 @@ import remarkBreaks from 'remark-breaks'
 export type TypographyProps = {
   as?: As
   markdown?: boolean
+  className?: string
 }
 
 export const Markdown: React.FC<{ className?: string }> = ({
@@ -24,7 +26,7 @@ export const Subtitle: React.FC<TypographyProps> = ({ children, as }) => (
 )
 
 export const H1: React.FC<TypographyProps> = ({ children }) => (
-  <h1 className="text-4xll font-title font-bold">{children}</h1>
+  <h1 className="font-title text-4xl">{children}</h1>
 )
 
 export const H2: React.FC<TypographyProps> = ({ children }) => (
@@ -38,14 +40,17 @@ export const H3: React.FC<TypographyProps> = ({ children }) => (
 export const Paragraph: React.FC<TypographyProps> = ({
   children,
   markdown,
+  className,
 }) => (
   <>
     {markdown ? (
-      <Markdown className="font-body text-base font-medium">
+      <Markdown className={clsx(className, 'font-body text-sm sm:text-base')}>
         {children}
       </Markdown>
     ) : (
-      <p className="font-body text-base font-medium">{children}</p>
+      <p className={clsx(className, 'font-body text-sm sm:text-base')}>
+        {children}
+      </p>
     )}
   </>
 )

@@ -55,25 +55,3 @@ query dropById($dropId: ItemId) {
     }
   }
 }
-
-query dropPage {
-  droppage {
-    title
-    headline
-    deliveryDescription
-    noindex
-    seo {
-      title
-      description
-      image {
-        url
-      }
-      twitterCard
-    }
-  }
-  poppermessage {
-    updatedAt
-    delay
-    message
-  }
-}

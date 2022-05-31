@@ -45,6 +45,7 @@ export type SwellProduct = {
   metaDescription: string
   categories?: SwellCategory[]
   content?: {
+    truncatedDescription?: string
     ingredients?: string
     allergens?: string
     sliderText?: string

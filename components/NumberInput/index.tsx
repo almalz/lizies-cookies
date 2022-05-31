@@ -1,12 +1,7 @@
 import { forwardRef, Ref, useCallback } from 'react'
-import {
-  Button,
-  HStack,
-  FormLabel,
-  FormControl,
-  Box,
-  Text,
-} from '@chakra-ui/react'
+import { FormLabel, FormControl } from '@chakra-ui/react'
+import { HiPlus, HiMinus } from 'react-icons/hi'
+import { Button } from '../Button'
 
 export type NumberInputProps = {
   value?: number | null
@@ -16,60 +11,51 @@ export type NumberInputProps = {
   disabled?: boolean
 }
 
-const NumberInput = forwardRef(
-  (
-    { value, label, onAdd, onRemove, disabled = false }: NumberInputProps,
-    ref: Ref<HTMLButtonElement>
-  ) => {
-    const handleAddClick = useCallback(() => {
-      onAdd && onAdd()
-    }, [onAdd])
+const NumberInput: React.FC<NumberInputProps> = ({
+  value,
+  label,
+  onAdd,
+  onRemove,
+  disabled = false,
+}) => {
+  const handleAddClick = useCallback(() => {
+    onAdd && onAdd()
+  }, [onAdd])
 
-    const handleRemoveClick = useCallback(() => {
-      onRemove && onRemove()
-    }, [onRemove])
+  const handleRemoveClick = useCallback(() => {
+    onRemove && onRemove()
+  }, [onRemove])
 
-    return (
-      <FormControl>
-        <FormLabel htmlFor={label} visibility="hidden" h={0} w={0} />
-        <HStack maxW="120px">
-          <Button
-            bg="gray.900"
-            color="white"
-            borderRadius={100}
-            fontWeight="700"
-            onClick={handleRemoveClick}
-            isDisabled={disabled}
-            _hover={{ background: '#718096' }}
-          >
-            -
-          </Button>
-          <Box
-            w="45px"
-            px={['0', '0', 'auto', 'auto']}
-            fontSize={['md', 'md', 'lg', 'lg']}
-            textAlign="center"
-          >
-            <Text fontWeight="300">{value}</Text>
-          </Box>
-          <Button
-            bg="gray.900"
-            color="white"
-            borderRadius={100}
-            fontWeight="700"
-            onClick={handleAddClick}
-            ref={ref}
-            isDisabled={disabled}
-            _hover={{ background: '#718096' }}
-          >
-            +
-          </Button>
-        </HStack>
+  return (
+    <div className="flex items-center">
+      <FormControl className="flex items-center justify-center">
+        <FormLabel htmlFor={label} visibility="hidden" margin={0} h={0} w={0} />
+        <div className="flex w-32 flex-row items-end justify-between sm:w-40">
+          <div>
+            <Button
+              onClick={handleRemoveClick}
+              className="px-1.5 py-1.5 sm:px-2 sm:py-2"
+            >
+              <HiMinus />
+            </Button>
+          </div>
+          <div className="flex flex-1 justify-center leading-4">
+            <span className="font-body text-2xl text-pink-500 sm:text-3xl">
+              {value}
+            </span>
+          </div>
+          <div>
+            <Button
+              onClick={handleAddClick}
+              className="px-1.5 py-1.5 sm:px-2 sm:py-2"
+            >
+              <HiPlus />
+            </Button>
+          </div>
+        </div>
       </FormControl>
-    )
-  }
-)
-
-NumberInput.displayName = 'NumberInput'
+    </div>
+  )
+}
 
 export default NumberInput

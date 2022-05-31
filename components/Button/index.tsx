@@ -4,6 +4,7 @@ import Link from 'next/link'
 export type ButtonProps = {
   color?: 'pink' | 'purple'
   onClick?: () => void
+  className?: string
 }
 
 export type ButtonLinkProps = {
@@ -15,12 +16,14 @@ export type ButtonLinkProps = {
 export const Button: React.FC<ButtonProps> = ({
   color = 'pink',
   onClick,
+  className,
   children,
   ...props
 }) => {
   return (
     <button
       className={clsx([
+        className,
         'border-3 bg-transparent py-3 px-16 font-title text-lg hover:bg-opacity-10',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-100',
         color === 'purple' &&

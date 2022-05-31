@@ -218,10 +218,11 @@ export type DroppageRecord = {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  callout?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
-  deliveryDescription?: Maybe<Scalars['String']>;
   headline?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
+  instructions?: Maybe<Scalars['String']>;
   noindex?: Maybe<Scalars['BooleanType']>;
   seo?: Maybe<SeoField>;
   title?: Maybe<Scalars['String']>;
@@ -236,7 +237,7 @@ export type DroppageRecord_SeoMetaTagsArgs = {
 
 
 /** Record of type DropPage (droppage) */
-export type DroppageRecordDeliveryDescriptionArgs = {
+export type DroppageRecordCalloutArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -3171,15 +3172,15 @@ export type DropByIdQueryVariables = Exact<{
 
 export type DropByIdQuery = { __typename?: 'Query', drop?: { __typename?: 'DropRecord', id: any, slug?: string | null, releaseDate?: any | null, endDate?: any | null, deliveryDate?: any | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }>, products: Array<{ __typename?: 'ProductRecord', id: any, name?: string | null, description?: string | null, unitPrice?: any | null, allergens?: string | null, ingredients?: string | null, pictures: Array<{ __typename?: 'FileField', id: any, alt?: string | null, url: string }> }> } | null };
 
-export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, deliveryDescription?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null, poppermessage?: { __typename?: 'PoppermessageRecord', updatedAt: any, delay?: any | null, message?: string | null } | null };
-
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
+
+export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, instructions?: string | null, callout?: string | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
 
 export type LegalPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3331,56 +3332,6 @@ export function useDropByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<D
 export type DropByIdQueryHookResult = ReturnType<typeof useDropByIdQuery>;
 export type DropByIdLazyQueryHookResult = ReturnType<typeof useDropByIdLazyQuery>;
 export type DropByIdQueryResult = Apollo.QueryResult<DropByIdQuery, DropByIdQueryVariables>;
-export const DropPageDocument = gql`
-    query dropPage {
-  droppage {
-    title
-    headline
-    deliveryDescription
-    noindex
-    seo {
-      title
-      description
-      image {
-        url
-      }
-      twitterCard
-    }
-  }
-  poppermessage {
-    updatedAt
-    delay
-    message
-  }
-}
-    `;
-
-/**
- * __useDropPageQuery__
- *
- * To run a query within a React component, call `useDropPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDropPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDropPageQuery(baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
-      }
-export function useDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
-        }
-export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>;
-export type DropPageLazyQueryHookResult = ReturnType<typeof useDropPageLazyQuery>;
-export type DropPageQueryResult = Apollo.QueryResult<DropPageQuery, DropPageQueryVariables>;
 export const HomePageDocument = gql`
     query HomePage {
   homepage {
@@ -3446,6 +3397,52 @@ export function useHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<H
 export type HomePageQueryHookResult = ReturnType<typeof useHomePageQuery>;
 export type HomePageLazyQueryHookResult = ReturnType<typeof useHomePageLazyQuery>;
 export type HomePageQueryResult = Apollo.QueryResult<HomePageQuery, HomePageQueryVariables>;
+export const DropPageDocument = gql`
+    query dropPage {
+  droppage {
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        url
+        alt
+      }
+    }
+    title
+    headline
+    instructions
+    callout
+  }
+}
+    `;
+
+/**
+ * __useDropPageQuery__
+ *
+ * To run a query within a React component, call `useDropPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDropPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDropPageQuery(baseOptions?: Apollo.QueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
+      }
+export function useDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DropPageQuery, DropPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DropPageQuery, DropPageQueryVariables>(DropPageDocument, options);
+        }
+export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>;
+export type DropPageLazyQueryHookResult = ReturnType<typeof useDropPageLazyQuery>;
+export type DropPageQueryResult = Apollo.QueryResult<DropPageQuery, DropPageQueryVariables>;
 export const LegalPageDocument = gql`
     query LegalPage {
   legalpage {
