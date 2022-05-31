@@ -47,6 +47,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         pinkSectionLeftBody={pageContent.pinkSectionLeftBody!}
         pinkSectionRightTitle={pageContent.pinkSectionRightTitle!}
         pinkSectionRightBody={pageContent.pinkSectionRightBody!}
+        pinkSectionCtaLabel={pageContent.pinkSectionCtaLabel!}
       />
       <PictureSection
         topLeftPicture={{

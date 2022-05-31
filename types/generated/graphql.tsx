@@ -610,6 +610,7 @@ export type HomepageRecord = {
   heroImage?: Maybe<FileField>;
   id: Scalars['ItemId'];
   noindex?: Maybe<Scalars['BooleanType']>;
+  pinkSectionCtaLabel?: Maybe<Scalars['String']>;
   pinkSectionHeading?: Maybe<Scalars['String']>;
   pinkSectionLeftBody?: Maybe<Scalars['String']>;
   pinkSectionLeftTitle?: Maybe<Scalars['String']>;
@@ -3175,7 +3176,7 @@ export type DropByIdQuery = { __typename?: 'Query', drop?: { __typename?: 'DropR
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, pinkSectionCtaLabel?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
 
 export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3353,6 +3354,7 @@ export const HomePageDocument = gql`
     pinkSectionLeftTitle
     pinkSectionRightBody
     pinkSectionRightTitle
+    pinkSectionCtaLabel
     topLeftImage {
       alt
       url

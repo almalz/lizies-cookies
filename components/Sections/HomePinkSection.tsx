@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+import { Button } from '../Button'
 import { H2, H3, ParagraphXl, Paragraph } from '../Typography'
 
 type PinkSectionProps = {
@@ -7,6 +9,7 @@ type PinkSectionProps = {
   pinkSectionLeftBody: string
   pinkSectionRightTitle: string
   pinkSectionRightBody: string
+  pinkSectionCtaLabel: string
 }
 
 export const PinkSection: React.FC<PinkSectionProps> = ({
@@ -16,9 +19,11 @@ export const PinkSection: React.FC<PinkSectionProps> = ({
   pinkSectionLeftBody,
   pinkSectionRightTitle,
   pinkSectionRightBody,
+  pinkSectionCtaLabel,
 }) => {
+  const router = useRouter()
   return (
-    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700 sm:py-36">
+    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700 sm:py-28">
       <H2>{pinkSectionHeading}</H2>
       <ParagraphXl>{pinkSectionSubheading}</ParagraphXl>
       <div className="flex flex-col gap-16 px-8 sm:flex-row">
@@ -30,6 +35,11 @@ export const PinkSection: React.FC<PinkSectionProps> = ({
           <H3>{pinkSectionRightTitle}</H3>
           <Paragraph markdown>{pinkSectionRightBody}</Paragraph>
         </div>
+      </div>
+      <div className="pt-8">
+        <Button color="purple" onClick={() => router.push('#')}>
+          {pinkSectionCtaLabel}
+        </Button>
       </div>
     </div>
   )
