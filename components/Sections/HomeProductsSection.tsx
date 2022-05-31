@@ -34,8 +34,8 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
         <div className="embla__container h-full">
           {products.map((product) => (
             <div className="embla__slide h-full" key={product.id}>
-              <div className="flex h-full w-full flex-col gap-10 pb-8 sm:flex-row sm:gap-4 sm:p-28">
-                <div className="relative h-1/2 w-full overflow-hidden sm:h-[35rem] sm:flex-[2] ">
+              <div className="flex h-full w-full flex-col gap-10 pb-8 sm:flex-row sm:gap-4 sm:px-52 sm:py-32">
+                <div className="relative h-1/2 w-full overflow-hidden sm:h-[35rem] sm:flex-1 ">
                   <Image
                     src={product.images![0].file.url}
                     alt={product.name!}
@@ -43,7 +43,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                     objectFit="cover"
                   />
                 </div>
-                <div className="flex flex-[3] flex-col gap-8 px-14 py-2 text-purple-700 sm:gap-12 sm:py-24 sm:pl-32 sm:pr-16">
+                <div className="flex flex-1 flex-col gap-8 px-14 py-2 text-purple-700 sm:my-24 sm:ml-32 sm:mr-16 sm:gap-12">
                   <H2>{product.name!}</H2>
                   <ParagraphXl markdown>
                     {product.content?.sliderText || ''}
