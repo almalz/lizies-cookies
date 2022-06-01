@@ -1,5 +1,6 @@
 import swell from '../swell'
-import { SimpleCartItem, SwellCart, SwellCartItem } from './types'
+import { SwellCart, SwellCartItem } from './types'
+import { simplifyCartItem } from './utils'
 
 export const Cart = {
   get: async () => {
@@ -37,9 +38,9 @@ export const Cart = {
     }
   },
 
-  updateAllItems: async (items: SimpleCartItem[]) => {
+  updateAllItems: async (items: SwellCartItem[]) => {
     try {
-      return await swell.cart.setItems(items)
+      return await swell.cart.setItems(simplifyCartItem(items))
     } catch (error) {
       console.error(error)
     }
@@ -58,6 +59,24 @@ export const Cart = {
       return await swell.cart.setItems([])
     } catch (error) {
       console.error(error)
+    }
+  },
+
+  applyCoupon: async (coupon: string) => {
+    try {
+      return await swell.cart.applyCoupon(coupon)
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  },
+
+  removeCoupon: async () => {
+    try {
+      return await swell.cart.removeCoupon()
+    } catch (error) {
+      console.error(error)
+      return false
     }
   },
 }

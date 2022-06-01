@@ -5,11 +5,11 @@ import { useCart } from '../../lib/store/cart/provider'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 
 const Cart: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
-  const { loading, cartItemsCount, goToCheckout } = useCart()
+  const { loading, cartItemsCount } = useCart()
 
   const handleClick = useCallback(() => {
-    goToCheckout()
-  }, [goToCheckout])
+    onClick && onClick()
+  }, [onClick])
 
   return (
     <button onClick={handleClick} disabled={loading}>

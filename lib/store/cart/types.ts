@@ -1,9 +1,9 @@
 import { SwellProduct } from '../products/types'
 
-export type SimpleCartItem = {
-  productId: string
-  quantity: number
-  options?: any
+export type SwellCoupon = {
+  description?: string | null
+  id: string
+  name: string
 }
 
 export type SwellCart = {
@@ -11,7 +11,7 @@ export type SwellCart = {
   billing: any
   checkoutId: string
   checkoutUrl: string
-  coupon?: any
+  coupon?: SwellCoupon
   currency: string
   dateAbandoned?: string
   dateCreated: string
@@ -40,16 +40,17 @@ export type SwellCart = {
 }
 
 export type SwellCartItem = {
-  discountEach: number
-  discountTotal: number
+  discountEach?: number
+  discountTotal?: number
   id?: string
-  price: number
-  priceTotal: number
+  price?: number
+  priceTotal?: number
   product: SwellProduct
+  shipmentWeight?: number
+  taxEach?: number
+  taxTotal?: number
+  variant?: any
+  options?: any
   productId: string
   quantity: number
-  shipmentWeight: number
-  taxEach: number
-  taxTotal: number
-  variant?: any
-} & SimpleCartItem
+}

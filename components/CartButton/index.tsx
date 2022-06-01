@@ -7,8 +7,8 @@ const CartButton: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
   const { loading, cartItemsCount, goToCheckout } = useCart()
 
   const handleClick = useCallback(() => {
-    goToCheckout()
-  }, [goToCheckout])
+    onClick && onClick()
+  }, [onClick])
 
   return (
     <Button onClick={handleClick} disabled={loading} color="purple">

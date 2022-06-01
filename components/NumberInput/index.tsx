@@ -30,7 +30,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     <div className="flex items-center">
       <FormControl className="flex items-center justify-center">
         <FormLabel htmlFor={label} visibility="hidden" margin={0} h={0} w={0} />
-        <div className="flex w-32 flex-row items-end justify-between sm:w-40">
+        <div className="flex w-32 flex-row items-end justify-between lg:w-36">
           <div>
             <Button
               onClick={handleRemoveClick}

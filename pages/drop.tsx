@@ -14,6 +14,7 @@ import { injectVariables } from '../lib/utils'
 import { GoInfo } from 'react-icons/go'
 import Link from 'next/link'
 import ProductList from '../components/ProductList'
+import { useRouter } from 'next/router'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const CartButton = dynamic(() => import('../components/CartButton'), {
@@ -30,6 +31,8 @@ export type DropPageProps = {
 }
 
 const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+  const router = useRouter()
+
   return (
     <Layout
       seo={pageContent.seo || undefined}
@@ -38,7 +41,7 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
     >
       <div className="relative bg-white sm:pb-8">
         <div className="absolute top-0 right-0 p-4 md:p-8 lg:p-16">
-          <Cart />
+          <Cart onClick={() => router.push('/cart')} />
         </div>
         <div className="px-4 pb-8 pt-12 text-purple-700 sm:px-16 lg:gap-4 lg:pt-16 lg:pb-4">
           <H1>{injectVariables(pageContent.title!, drop)}</H1>
@@ -56,7 +59,7 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         </div>
         <ProductList products={drop.products} />
         <div className="flex items-center justify-center py-8 sm:hidden">
-          <CartButton />
+          <CartButton onClick={() => router.push('/cart')} />
         </div>
       </div>
     </Layout>

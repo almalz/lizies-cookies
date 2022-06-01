@@ -36,6 +36,42 @@ export type BooleanFilter = {
   eq?: InputMaybe<Scalars['BooleanType']>;
 };
 
+/** Record of type CartPage (cartpage) */
+export type CartpageRecord = {
+  __typename?: 'CartpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  backButtonLabel?: Maybe<Scalars['String']>;
+  checkoutCtaLabel?: Maybe<Scalars['String']>;
+  couponButtonLabel?: Maybe<Scalars['String']>;
+  couponPlaceholder?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  discountLabel?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  seo?: Maybe<SeoField>;
+  shippingFeesInstructions?: Maybe<Scalars['String']>;
+  subtotalLabel?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  totalLabel?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type CartPage (cartpage) */
+export type CartpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType'];
@@ -2382,6 +2418,8 @@ export type Query = {
   allProducts: Array<ProductRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
+  /** Returns the single instance record */
+  cartpage?: Maybe<CartpageRecord>;
   /** Returns a specific record */
   drop?: Maybe<DropRecord>;
   /** Returns the single instance record */
@@ -2511,6 +2549,13 @@ export type QueryAllUploadsArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryCartpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -3183,6 +3228,11 @@ export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, instructions?: string | null, callout?: string | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
 
+export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+
 export type LegalPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3445,6 +3495,58 @@ export function useDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<D
 export type DropPageQueryHookResult = ReturnType<typeof useDropPageQuery>;
 export type DropPageLazyQueryHookResult = ReturnType<typeof useDropPageLazyQuery>;
 export type DropPageQueryResult = Apollo.QueryResult<DropPageQuery, DropPageQueryVariables>;
+export const CartPageDocument = gql`
+    query CartPage {
+  cartpage {
+    title
+    discountLabel
+    couponPlaceholder
+    couponButtonLabel
+    subtotalLabel
+    totalLabel
+    shippingFeesInstructions
+    checkoutCtaLabel
+    backButtonLabel
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        url
+        alt
+      }
+    }
+    noindex
+  }
+}
+    `;
+
+/**
+ * __useCartPageQuery__
+ *
+ * To run a query within a React component, call `useCartPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCartPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCartPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCartPageQuery(baseOptions?: Apollo.QueryHookOptions<CartPageQuery, CartPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CartPageQuery, CartPageQueryVariables>(CartPageDocument, options);
+      }
+export function useCartPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CartPageQuery, CartPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CartPageQuery, CartPageQueryVariables>(CartPageDocument, options);
+        }
+export type CartPageQueryHookResult = ReturnType<typeof useCartPageQuery>;
+export type CartPageLazyQueryHookResult = ReturnType<typeof useCartPageLazyQuery>;
+export type CartPageQueryResult = Apollo.QueryResult<CartPageQuery, CartPageQueryVariables>;
 export const LegalPageDocument = gql`
     query LegalPage {
   legalpage {

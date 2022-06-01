@@ -1,3 +1,4 @@
+import { Spinner } from '@chakra-ui/spinner'
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -6,6 +7,8 @@ export type ButtonProps = {
   onClick?: () => void
   className?: string
   disabled?: boolean
+  loading?: boolean
+  type?: 'button' | 'submit'
 }
 
 export type ButtonLinkProps = {
@@ -19,23 +22,27 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   className,
   disabled = false,
+  loading = false,
+  type = 'button',
   children,
   ...props
 }) => {
+  disabled = disabled || loading
   return (
     <button
+      type={type}
       className={clsx([
         className,
         'border-3 bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
         disabled && 'opacity-30',
-        color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-100',
+        color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
       ])}
       onClick={() => !disabled && onClick && onClick()}
       {...props}
     >
-      {children}
+      {loading ? <Spinner size="xs" /> : <>{children}</>}
     </button>
   )
 }

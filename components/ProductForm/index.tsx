@@ -14,15 +14,17 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
     updateItems({
       productId: product.id,
       quantity: getProductCartQuantity(product.id) + 1,
+      product,
     })
-  }, [getProductCartQuantity, product.id, updateItems])
+  }, [getProductCartQuantity, product, updateItems])
 
   const handleRemove = useCallback(async () => {
     updateItems({
       productId: product.id,
       quantity: getProductCartQuantity(product.id) - 1,
+      product,
     })
-  }, [getProductCartQuantity, product.id, updateItems])
+  }, [getProductCartQuantity, product, updateItems])
 
   return (
     <NumberInput

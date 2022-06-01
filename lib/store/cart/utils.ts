@@ -1,4 +1,4 @@
-import { SimpleCartItem, SwellCartItem } from './types'
+import { SwellCartItem } from './types'
 
 export const simplifyCartItem = (items: SwellCartItem[]) => {
   return items.map((item) => {
@@ -6,5 +6,5 @@ export const simplifyCartItem = (items: SwellCartItem[]) => {
       productId: item.productId,
       quantity: item.quantity,
     }
-  }) as SimpleCartItem[]
+  }) as SwellCartItem[]
 }

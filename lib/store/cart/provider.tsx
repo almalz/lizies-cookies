@@ -7,24 +7,30 @@ import {
   useMemo,
 } from 'react'
 import { Cart } from './api'
-import { SimpleCartItem } from './types'
-import { simplifyCartItem } from './utils'
+import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
 type CartContextProps = {
   loading: boolean
-  cartItems: SimpleCartItem[] | undefined
+  cart: SwellCart | undefined
+  cartItems: SwellCartItem[] | undefined
   cartItemsCount: number | undefined
-  updateItems: (product: SimpleCartItem) => void
+  updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
   goToCheckout: () => void
+  applyCoupon: (coupon: string) => any
+  removeCoupon: () => any
+  coupon: SwellCoupon | undefined
 }
 
 const CartContext = createContext<CartContextProps | null>(null)
 
 const CartProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
-  const [cartItems, setCartItems] = useState<SimpleCartItem[]>()
-  const [checkoutUrl, setCheckoutUrl] = useState<string | undefined>()
+  const [cart, setCart] = useState<SwellCart>()
+
+  const cartItems = useMemo(() => {
+    return cart?.items
+  }, [cart])
 
   const cartItemsCount = useMemo(() => {
     const res =
@@ -34,18 +40,25 @@ const CartProvider: React.FC = ({ children }) => {
     return res
   }, [cartItems])
 
+  const checkoutUrl = useMemo(() => {
+    return cart?.checkoutUrl
+  }, [cart])
+
+  const coupon = useMemo(() => {
+    return cart?.coupon
+  }, [cart])
+
+  const pullCart = async () => {
+    setLoading(true)
+    const cart = await Cart.get()
+    setCart(cart)
+    setLoading(false)
+  }
+
   //fetch current cart on mount
   useEffect(() => {
-    const pullCart = async () => {
-      setLoading(true)
-      const cart = await Cart.get()
-      if (cart?.items) setCartItems(simplifyCartItem(cart.items))
-      if (cart?.checkoutUrl && cart?.checkoutUrl !== checkoutUrl)
-        setCheckoutUrl(cart.checkoutUrl)
-      setLoading(false)
-    }
     pullCart()
-  }, [checkoutUrl])
+  }, [])
 
   useEffect(() => {
     const pushCart = async () => {
@@ -58,23 +71,46 @@ const CartProvider: React.FC = ({ children }) => {
     pushCart()
   }, [cartItems])
 
-  const updateItems = (product: SimpleCartItem) => {
+  const updateItems = (item: SwellCartItem) => {
+    // cart 1st element
     if (!cartItems) {
-      setCartItems([product])
+      setCart({ ...cart, items: [item] } as SwellCart)
       return
     }
 
-    if (product.quantity === 0) {
-      setCartItems([
-        ...cartItems.filter((item) => item.productId !== product.productId),
-      ])
+    // delete item if quantity = 0
+    if (item.quantity === 0) {
+      setCart({
+        ...cart,
+        items: [
+          ...cartItems.filter(
+            (cartItem) => item.productId !== cartItem.productId
+          ),
+        ],
+      } as SwellCart)
       return
     }
 
-    setCartItems([
-      ...cartItems.filter((item) => item.productId !== product.productId),
-      product,
-    ])
+    // spred current items list
+    let newItems = cart?.items && [...cart?.items]
+
+    // ts guard
+    if (!newItems || newItems.length < 1) return
+
+    const newItem = newItems.find((i) => i.productId === item.productId)
+
+    // for an existing item, we update its quantity
+    // if the item is new, we concat it
+    if (newItem) {
+      newItem.quantity = item.quantity
+    } else {
+      newItems = [...newItems, item]
+    }
+
+    setCart({
+      ...cart,
+      items: [...newItems],
+    } as SwellCart)
   }
 
   const getProductCartQuantity = useCallback(
@@ -100,13 +136,33 @@ const CartProvider: React.FC = ({ children }) => {
     }
   }, [checkoutUrl, cartItems])
 
+  const applyCoupon = useCallback(async (coupon: string) => {
+    setLoading(true)
+    await Cart.applyCoupon(coupon)
+    const cart = await Cart.get()
+    setCart(cart)
+    setLoading(false)
+  }, [])
+
+  const removeCoupon = useCallback(async () => {
+    setLoading(true)
+    await Cart.removeCoupon()
+    const cart = await Cart.get()
+    setCart(cart)
+    setLoading(false)
+  }, [])
+
   const value = {
     loading,
     cartItems,
+    cart,
     cartItemsCount,
     updateItems,
     getProductCartQuantity,
     goToCheckout,
+    applyCoupon,
+    removeCoupon,
+    coupon,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

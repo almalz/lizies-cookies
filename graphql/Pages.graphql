@@ -54,6 +54,30 @@ query dropPage {
   }
 }
 
+query CartPage {
+  cartpage {
+    title
+    discountLabel
+    couponPlaceholder
+    couponButtonLabel
+    subtotalLabel
+    totalLabel
+    shippingFeesInstructions
+    checkoutCtaLabel
+    backButtonLabel
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        url
+        alt
+      }
+    }
+    noindex
+  }
+}
+
 query LegalPage {
   legalpage {
     body {
