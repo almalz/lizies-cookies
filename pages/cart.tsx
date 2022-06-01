@@ -36,8 +36,6 @@ const CartItemsList: React.FC<{ cartItems: SwellCartItem[] }> = ({
 const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
   const { cart, loading } = useCart()
 
-  console.log(cart)
-
   return (
     <Layout
       seo={pageContent.seo || undefined}

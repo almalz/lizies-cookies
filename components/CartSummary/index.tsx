@@ -3,6 +3,8 @@ import { Button } from '../Button'
 import { SwellCart } from '../../lib/store/cart/types'
 import { CartpageRecord } from '../../types/generated/graphql'
 import { CouponsManager } from '../CouponsManager'
+import { useRouter } from 'next/router'
+import { useCart } from '../../lib/store'
 
 export type CartSummaryProps = {
   cart: SwellCart
@@ -20,6 +22,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   cart,
   pageContent,
 }) => {
+  const router = useRouter()
+  const { goToCheckout } = useCart()
+
   return (
     <div className="flex flex-col gap-8 py-8 px-12 lg:px-[20%]">
       <CouponsManager pageContent={pageContent} />
@@ -47,10 +52,18 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         </div>
       </div>
       <div className="flex w-full flex-col items-center gap-4">
-        <Button color="pink" className="px-2 py-2">
+        <Button
+          color="pink"
+          className="px-2 py-2"
+          onClick={() => goToCheckout()}
+        >
           {pageContent.checkoutCtaLabel}
         </Button>
-        <Button color="purple" className="border-0">
+        <Button
+          color="purple"
+          className="border-0"
+          onClick={() => router.push('/drop')}
+        >
           <span className="flex items-center gap-2">
             <HiArrowNarrowLeft />
             {pageContent.backButtonLabel}
