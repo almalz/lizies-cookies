@@ -5,9 +5,10 @@ import { H, HeadingTagType } from './Heading'
 
 export type MarkdownRenderer = {
   data: any
+  className?: string
 }
 
-const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data }) => {
+const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data, className }) => {
   return (
     <StructuredText
       data={data}
@@ -28,13 +29,14 @@ const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data }) => {
 
         renderNodeRule(isParagraph, ({ node, children, key }) => {
           return (
-            <Text
+            <p
               key={key}
-              mt={['4px', '4px', '8px', '8px']}
-              mb={['8px', '8px', '16px', '16px']}
+              // mt={['4px', '4px', '8px', '8px']}
+              // mb={['8px', '8px', '16px', '16px']}
+              className={className}
             >
               {children}
-            </Text>
+            </p>
           )
         }),
       ]}

@@ -18,6 +18,7 @@ import MarkdownRenderer from '../components/MarkdownRenderer'
 import { H1, H2 } from '../components/Typography'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export type FaqPageProps = {
   faqpage: FaqpageRecord
@@ -36,6 +37,16 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage, faqitems }) => {
     setDefaultIndex(index < 0 ? 0 : index)
   }, [faqitems, router.asPath])
 
+  useEffect(() => {
+    const path = window.location.hash
+    if (path && path.includes('#')) {
+      const id = path.replace('#', '')
+      if (id) {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  })
+
   return (
     <Layout
       seo={faqpage?.seo || undefined}
@@ -50,31 +61,53 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage, faqitems }) => {
                 <H1>FAQ</H1>
               </div>
               <Accordion
-                className="pt-8"
+                className="pt-4 sm:pt-8"
                 allowToggle
                 defaultIndex={defaultIndex}
               >
                 {faqitems.map((item) => (
-                  <AccordionItem key={item.id} border="0">
-                    <AccordionButton>
-                      <div className="flex-1 text-left">
-                        <a
-                          href={`#${item.id}`}
-                          className="hover:underline"
-                          aria-label="anchor"
-                        >
-                          <H2>{item.question}</H2>
+                  <AccordionItem
+                    key={item.id}
+                    border="0"
+                    className="pb-1 md:pb-4"
+                  >
+                    <div className="pt-4">
+                      <Link href={`/faq#${item.id}`}>
+                        <a className="flex hover:underline">
+                          <AccordionButton
+                            className="flex justify-between"
+                            paddingLeft={0}
+                            sx={{
+                              _focus: {
+                                boxShadow: '0 0 0 0px',
+                                background: 'transparent',
+                              },
+                              _hover: {
+                                boxShadow: '0 0 0 0px',
+                                background: 'transparent',
+                              },
+                            }}
+                          >
+                            <div className="text-left" id={item.id}>
+                              <h2 className="font-body text-xl font-bold sm:text-2xl lg:text-3xl">
+                                {item.question}
+                              </h2>
+                            </div>
+                            <AccordionIcon />
+                          </AccordionButton>
                         </a>
-                      </div>
-                      <AccordionIcon />
-                    </AccordionButton>
+                      </Link>
+                    </div>
                     <AccordionPanel
                       pb={4}
                       pl={8}
-                      className="text-body pb-2 pl-4"
+                      className="bg-purple-100 bg-opacity-30 pb-2 pl-4 font-body"
                     >
                       {item.answer && (
-                        <MarkdownRenderer data={item.answer?.value} />
+                        <MarkdownRenderer
+                          className="pt-2 pb-1 text-lg"
+                          data={item.answer?.value}
+                        />
                       )}
                     </AccordionPanel>
                   </AccordionItem>
