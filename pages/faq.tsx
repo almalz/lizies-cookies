@@ -54,11 +54,11 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage, faqitems }) => {
       slug="faq"
     >
       <div>
-        <div className="py-8 px-8 text-purple-700 sm:px-16 md:px-40 lg:px-60 lg:py-40">
+        <div className="py-8 px-8 text-purple-700 sm:px-16 md:px-40 lg:py-32 lg:px-60">
           {faqitems && defaultIndex !== undefined && (
             <>
               <div className="">
-                <H1>FAQ</H1>
+                <H1>{faqpage.title}</H1>
               </div>
               <Accordion
                 className="pt-4 sm:pt-8"
@@ -89,7 +89,7 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage, faqitems }) => {
                             }}
                           >
                             <div className="text-left" id={item.id}>
-                              <h2 className="font-body text-xl font-bold sm:text-2xl lg:text-3xl">
+                              <h2 className="font-body text-xl font-bold sm:text-2xl">
                                 {item.question}
                               </h2>
                             </div>

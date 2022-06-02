@@ -495,6 +495,7 @@ export type FaqpageRecord = {
   id: Scalars['ItemId'];
   noindex?: Maybe<Scalars['BooleanType']>;
   seo?: Maybe<SeoField>;
+  title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -3252,7 +3253,7 @@ export type PrivacyPageQuery = { __typename?: 'Query', privacypage?: { __typenam
 export type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FaqPageQuery = { __typename?: 'Query', faqpage?: { __typename?: 'FaqpageRecord', noindex?: any | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null, allFaqitems: Array<{ __typename?: 'FaqitemRecord', id: any, question?: string | null, updatedAt: any, answer?: { __typename?: 'FaqitemModelAnswerField', blocks: Array<string>, links: Array<string>, value: any } | null, category?: { __typename?: 'FaqcategoryRecord', id: any, name?: string | null, position?: any | null } | null }> };
+export type FaqPageQuery = { __typename?: 'Query', faqpage?: { __typename?: 'FaqpageRecord', title?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null, allFaqitems: Array<{ __typename?: 'FaqitemRecord', id: any, question?: string | null, updatedAt: any, answer?: { __typename?: 'FaqitemModelAnswerField', blocks: Array<string>, links: Array<string>, value: any } | null, category?: { __typename?: 'FaqcategoryRecord', id: any, name?: string | null, position?: any | null } | null }> };
 
 export type ErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3694,6 +3695,7 @@ export type PrivacyPageQueryResult = Apollo.QueryResult<PrivacyPageQuery, Privac
 export const FaqPageDocument = gql`
     query FaqPage {
   faqpage {
+    title
     noindex
     seo {
       title
@@ -3704,7 +3706,7 @@ export const FaqPageDocument = gql`
       twitterCard
     }
   }
-  allFaqitems {
+  allFaqitems(orderBy: order_ASC) {
     id
     question
     answer {

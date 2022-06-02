@@ -139,6 +139,7 @@ query PrivacyPage {
 
 query FaqPage {
   faqpage {
+    title
     noindex
     seo {
       title
@@ -149,7 +150,7 @@ query FaqPage {
       twitterCard
     }
   }
-  allFaqitems {
+  allFaqitems(orderBy: order_ASC) {
     id
     question
     answer {

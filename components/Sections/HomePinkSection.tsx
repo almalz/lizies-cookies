@@ -37,7 +37,7 @@ export const PinkSection: React.FC<PinkSectionProps> = ({
         </div>
       </div>
       <div className="pt-8">
-        <Button color="purple" onClick={() => router.push('#')}>
+        <Button color="purple" onClick={() => router.push('/faq')}>
           {pinkSectionCtaLabel}
         </Button>
       </div>
