@@ -15,6 +15,7 @@ import { GoInfo } from 'react-icons/go'
 import Link from 'next/link'
 import ProductList from '../components/ProductList'
 import { useRouter } from 'next/router'
+import { CalloutMessage } from '../components/Callout'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const CartButton = dynamic(() => import('../components/CartButton'), {
@@ -48,7 +49,12 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           <h2 className="font-body text-lg font-bold italic ">
             {injectVariables(pageContent.headline!, drop)}
           </h2>
-          <div className="flex items-center gap-1 pt-8 sm:pt-4">
+          <div className="mr-24 max-w-max pt-4">
+            {pageContent.callout && (
+              <CalloutMessage message={pageContent.callout} />
+            )}
+          </div>
+          <div className="flex items-center gap-1 pt-4 sm:pt-4">
             <GoInfo size="18" color="#a1a1a1" />
             <Link href="#">
               <a className="font-body text-base text-zinc-400 hover:underline">

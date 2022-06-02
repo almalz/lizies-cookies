@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
+import remarkGemoji from 'remark-gemoji'
 
 export type TypographyProps = {
   as?: As
@@ -14,7 +15,10 @@ export const Markdown: React.FC<{ className?: string }> = ({
   className,
   children,
 }) => (
-  <ReactMarkdown remarkPlugins={[remarkBreaks]} className={className}>
+  <ReactMarkdown
+    remarkPlugins={[remarkBreaks, remarkGemoji]}
+    className={className}
+  >
     {children as string}
   </ReactMarkdown>
 )
