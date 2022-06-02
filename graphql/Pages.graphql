@@ -57,6 +57,7 @@ query dropPage {
 query CartPage {
   cartpage {
     title
+    emptycartmessage
     discountLabel
     couponPlaceholder
     couponButtonLabel

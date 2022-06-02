@@ -12,13 +12,37 @@ import { Spinner } from '@chakra-ui/react'
 import { SwellCartItem } from '../lib/store/cart/types'
 import { CartItem } from '../components/CartItem'
 import { CartSummary } from '../components/CartSummary'
+import { Button } from '../components/Button'
+import { HiArrowNarrowLeft } from 'react-icons/hi'
+import { useRouter } from 'next/router'
 
 export type CartPageProps = {
   pageContent: CartpageRecord
 }
 
-const EmptyCart: React.FC = () => {
-  return <div>Panier vide</div>
+const EmptyCart: React.FC<{
+  emptycartmessage: string
+  backButtonLabel: string
+}> = ({ emptycartmessage, backButtonLabel }) => {
+  const router = useRouter()
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-8 py-12  sm:py-20">
+      <h2 className="font-body text-3xl font-bold text-pink-500 ">
+        {emptycartmessage}
+      </h2>
+      <Button
+        color="purple"
+        className="border-0 underline"
+        onClick={() => router.push('/drop')}
+      >
+        <span className="flex items-center gap-2">
+          <HiArrowNarrowLeft />
+          {backButtonLabel}
+        </span>
+      </Button>
+    </div>
+  )
 }
 
 const CartItemsList: React.FC<{ cartItems: SwellCartItem[] }> = ({
@@ -35,6 +59,7 @@ const CartItemsList: React.FC<{ cartItems: SwellCartItem[] }> = ({
 
 const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
   const { cart, loading } = useCart()
+  // console.log(pageContent.emptycartmessage)
 
   return (
     <Layout
@@ -42,19 +67,26 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
       noIndex={pageContent.noindex || true}
       slug=""
     >
-      <div className="sm:pt-16 md:px-24 lg:px-[20%]">
+      <div className="min-h-screen sm:pt-16 md:px-24 lg:px-[20%]">
         <div className="py-8 px-4 text-purple-700">
           <H1>{pageContent.title}</H1>
         </div>
         {loading && !cart ? (
-          <Spinner />
+          <div className="flex h-60 items-center justify-center ">
+            <Spinner size="xl" />
+          </div>
         ) : cart?.items && cart?.items.length > 0 ? (
           <>
             <CartItemsList cartItems={cart?.items as any} />
             <CartSummary cart={cart} pageContent={pageContent} />
           </>
         ) : (
-          <EmptyCart />
+          <EmptyCart
+            emptycartmessage={
+              pageContent.emptycartmessage || 'Ton panier est vide'
+            }
+            backButtonLabel={pageContent.backButtonLabel || 'retour au drop'}
+          />
         )}
       </div>
     </Layout>
