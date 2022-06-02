@@ -139,21 +139,6 @@ query PrivacyPage {
 
 query FaqPage {
   faqpage {
-    items {
-      id
-      question
-      answer {
-        blocks
-        links
-        value
-      }
-      updatedAt
-      category {
-        id
-        name
-        position
-      }
-    }
     noindex
     seo {
       title
@@ -162,6 +147,21 @@ query FaqPage {
         url
       }
       twitterCard
+    }
+  }
+  allFaqitems {
+    id
+    question
+    answer {
+      blocks
+      links
+      value
+    }
+    updatedAt
+    category {
+      id
+      name
+      position
     }
   }
 }

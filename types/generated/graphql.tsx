@@ -493,7 +493,6 @@ export type FaqpageRecord = {
   _updatedAt: Scalars['DateTime'];
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
-  items: Array<FaqitemRecord>;
   noindex?: Maybe<Scalars['BooleanType']>;
   seo?: Maybe<SeoField>;
   updatedAt: Scalars['DateTime'];
@@ -3253,7 +3252,7 @@ export type PrivacyPageQuery = { __typename?: 'Query', privacypage?: { __typenam
 export type FaqPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FaqPageQuery = { __typename?: 'Query', faqpage?: { __typename?: 'FaqpageRecord', noindex?: any | null, items: Array<{ __typename?: 'FaqitemRecord', id: any, question?: string | null, updatedAt: any, answer?: { __typename?: 'FaqitemModelAnswerField', blocks: Array<string>, links: Array<string>, value: any } | null, category?: { __typename?: 'FaqcategoryRecord', id: any, name?: string | null, position?: any | null } | null }>, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
+export type FaqPageQuery = { __typename?: 'Query', faqpage?: { __typename?: 'FaqpageRecord', noindex?: any | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null, allFaqitems: Array<{ __typename?: 'FaqitemRecord', id: any, question?: string | null, updatedAt: any, answer?: { __typename?: 'FaqitemModelAnswerField', blocks: Array<string>, links: Array<string>, value: any } | null, category?: { __typename?: 'FaqcategoryRecord', id: any, name?: string | null, position?: any | null } | null }> };
 
 export type ErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3695,21 +3694,6 @@ export type PrivacyPageQueryResult = Apollo.QueryResult<PrivacyPageQuery, Privac
 export const FaqPageDocument = gql`
     query FaqPage {
   faqpage {
-    items {
-      id
-      question
-      answer {
-        blocks
-        links
-        value
-      }
-      updatedAt
-      category {
-        id
-        name
-        position
-      }
-    }
     noindex
     seo {
       title
@@ -3718,6 +3702,21 @@ export const FaqPageDocument = gql`
         url
       }
       twitterCard
+    }
+  }
+  allFaqitems {
+    id
+    question
+    answer {
+      blocks
+      links
+      value
+    }
+    updatedAt
+    category {
+      id
+      name
+      position
     }
   }
 }
