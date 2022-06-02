@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { H1, ParagraphXl } from '../components/Typography'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Button } from '../components/Button'
 import { ContactFormValues } from './api/contact'
 
@@ -29,6 +29,9 @@ const extractObject = (objectsString: string) => {
 }
 
 const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
+  const [success, setSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+
   const {
     handleSubmit,
     register,
@@ -58,12 +61,12 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
       noIndex={contactpage?.noindex}
       slug="contact"
     >
-      <div className="px-12 pb-16 text-purple-700 md:px-[15%]">
+      <div className="px-12 pb-8 text-purple-700 sm:pb-16 md:px-[15%]">
         <div className="flex flex-col gap-8 pt-8 md:gap-16 md:pt-16">
           <H1 className="">{contactpage.title}</H1>
           <ParagraphXl>{contactpage.header}</ParagraphXl>
         </div>
-        <div className="py-4 md:px-8 lg:px-[20%]">
+        <div className="pt-8 sm:pb-4 sm:pt-16 md:px-8 lg:px-[20%]">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-2 pb-8 font-body text-pink-500"
@@ -184,7 +187,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
               {contactpage?.objects && (
                 <Select
                   id="object"
-                  {...register('phone', {
+                  {...register('object', {
                     required: 'Ce champ est requis',
                   })}
                   rounded="none"
@@ -206,7 +209,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
                 </Select>
               )}
               <FormErrorMessage>
-                {errors.phone && errors.phone.message}
+                {errors.object && errors.object.message}
               </FormErrorMessage>
             </FormControl>
             <FormControl
@@ -236,10 +239,20 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
                 {errors.message && errors.message.message}
               </FormErrorMessage>
             </FormControl>
-            <div className="flex justify-center">
+            <div className="flex flex-col justify-center pt-4">
               <Button loading={isSubmitting} type="submit">
                 {contactpage.ctaLabel}
               </Button>
+              {success && (
+                <span className="pt-2 font-body  text-emerald-400">
+                  Message envoyé avec succès
+                </span>
+              )}
+              {error && (
+                <span className="pt-2 font-body text-red-500">
+                  Erreur serveur : le message n&apos;a pas pu être envoyé
+                </span>
+              )}
             </div>
           </form>
         </div>
