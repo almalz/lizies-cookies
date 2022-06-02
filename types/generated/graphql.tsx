@@ -103,6 +103,55 @@ export type ColorField = {
   red: Scalars['IntType'];
 };
 
+/** Record of type ContactPage (contactpage) */
+export type ContactpageRecord = {
+  __typename?: 'ContactpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  ctaLabel?: Maybe<Scalars['String']>;
+  emailLabel?: Maybe<Scalars['String']>;
+  firstnameLabel?: Maybe<Scalars['String']>;
+  header?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  messageLabel?: Maybe<Scalars['String']>;
+  nameLabel?: Maybe<Scalars['String']>;
+  noindex?: Maybe<Scalars['BooleanType']>;
+  objectLabel?: Maybe<Scalars['String']>;
+  objects?: Maybe<Scalars['String']>;
+  phoneLabel?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type ContactPage (contactpage) */
+export type ContactpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type ContactPage (contactpage) */
+export type ContactpageRecordHeaderArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type ContactPage (contactpage) */
+export type ContactpageRecordObjectsArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -2422,6 +2471,8 @@ export type Query = {
   allUploads: Array<FileField>;
   /** Returns the single instance record */
   cartpage?: Maybe<CartpageRecord>;
+  /** Returns the single instance record */
+  contactpage?: Maybe<ContactpageRecord>;
   /** Returns a specific record */
   drop?: Maybe<DropRecord>;
   /** Returns the single instance record */
@@ -2556,6 +2607,13 @@ export type QueryAllUploadsArgs = {
 
 /** The query root for this schema */
 export type QueryCartpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryContactpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3265,6 +3323,11 @@ export type NoDropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type NoDropPageQuery = { __typename?: 'Query', nodroppage?: { __typename?: 'NodroppageRecord', noindex?: any | null, body?: { __typename?: 'NodroppageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
 
+export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactPageQuery = { __typename?: 'Query', contactpage?: { __typename?: 'ContactpageRecord', noindex?: any | null, title?: string | null, header?: string | null, nameLabel?: string | null, firstnameLabel?: string | null, emailLabel?: string | null, phoneLabel?: string | null, objectLabel?: string | null, objects?: string | null, messageLabel?: string | null, ctaLabel?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null } | null };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3844,6 +3907,59 @@ export function useNoDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type NoDropPageQueryHookResult = ReturnType<typeof useNoDropPageQuery>;
 export type NoDropPageLazyQueryHookResult = ReturnType<typeof useNoDropPageLazyQuery>;
 export type NoDropPageQueryResult = Apollo.QueryResult<NoDropPageQuery, NoDropPageQueryVariables>;
+export const ContactPageDocument = gql`
+    query ContactPage {
+  contactpage {
+    noindex
+    seo {
+      title
+      description
+      twitterCard
+      image {
+        alt
+        url
+      }
+    }
+    title
+    header
+    nameLabel
+    firstnameLabel
+    emailLabel
+    phoneLabel
+    objectLabel
+    objects
+    messageLabel
+    ctaLabel
+  }
+}
+    `;
+
+/**
+ * __useContactPageQuery__
+ *
+ * To run a query within a React component, call `useContactPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, options);
+      }
+export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, options);
+        }
+export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
+export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
+export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
 export const ProductsDocument = gql`
     query products {
   allProducts {

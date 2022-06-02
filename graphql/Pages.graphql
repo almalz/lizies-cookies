@@ -204,3 +204,28 @@ query NoDropPage {
     }
   }
 }
+
+query ContactPage {
+  contactpage {
+    noindex
+    seo {
+      title
+      description
+      twitterCard
+      image {
+        alt
+        url
+      }
+    }
+    title
+    header
+    nameLabel
+    firstnameLabel
+    emailLabel
+    phoneLabel
+    objectLabel
+    objects
+    messageLabel
+    ctaLabel
+  }
+}
