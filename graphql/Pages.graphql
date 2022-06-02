@@ -60,6 +60,7 @@ query CartPage {
     discountLabel
     couponPlaceholder
     couponButtonLabel
+    couponErrorMessage
     subtotalLabel
     totalLabel
     shippingFeesInstructions

@@ -26,13 +26,15 @@ export const CouponsManager: React.FC<CouponsManagerProps> = ({
       event.preventDefault()
       const apply = async () => {
         setCouponValue('')
+        if (error) setError(false)
         setLoading(true)
-        await applyCoupon(couponValue)
+        const res = await applyCoupon(couponValue)
+        if (!res) setError(true)
         setLoading(false)
       }
       apply()
     },
-    [applyCoupon, couponValue]
+    [applyCoupon, couponValue, error]
   )
 
   const handleRemove = useCallback(() => {
@@ -54,7 +56,8 @@ export const CouponsManager: React.FC<CouponsManagerProps> = ({
           <input
             className={clsx(
               'w-full rounded-none border-2 border-purple-700 py-1 px-2 font-body focus:border-pink-500 focus:outline-none focus:ring-pink-500',
-              !!coupon && 'opacity-20'
+              !!coupon && 'opacity-20',
+              error ? 'border-red-400' : 'border-purple-700'
             )}
             type="text"
             name="coupon"
@@ -63,30 +66,51 @@ export const CouponsManager: React.FC<CouponsManagerProps> = ({
             onChange={handleChange}
             disabled={!!coupon}
           />
+          <>
+            {error && (
+              <div className="-mt-3 flex sm:hidden">
+                <span className="flex font-body text-xs font-medium text-red-400 sm:text-base">
+                  {pageContent.couponErrorMessage}
+                </span>
+              </div>
+            )}
+          </>
           <div className="flex justify-center lg:w-80">
             <Button
               color="purple"
               className="w-full py-2 px-1 text-sm"
               loading={loading}
               type="submit"
+              disabled={!!coupon}
             >
               {pageContent.couponButtonLabel}
             </Button>
           </div>
         </div>
-        {coupon && (
-          <div>
-            <Tag
-              size="md"
-              borderRadius="full"
-              variant="solid"
-              sx={{ bg: '#D3C1C1' }}
-            >
-              <TagLabel>{coupon.name}</TagLabel>
-              <TagCloseButton onClick={handleRemove} />
-            </Tag>
-          </div>
-        )}
+        <>
+          {error && (
+            <div className="-mt-2 hidden sm:flex">
+              <span className="flex font-body text-xs font-medium text-red-400 sm:text-base">
+                {pageContent.couponErrorMessage}
+              </span>
+            </div>
+          )}
+        </>
+        <>
+          {coupon && (
+            <div>
+              <Tag
+                size="md"
+                borderRadius="full"
+                variant="solid"
+                sx={{ bg: '#D3C1C1' }}
+              >
+                <TagLabel>{coupon.name}</TagLabel>
+                <TagCloseButton onClick={handleRemove} />
+              </Tag>
+            </div>
+          )}
+        </>
       </form>
     </div>
   )

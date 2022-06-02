@@ -138,10 +138,11 @@ const CartProvider: React.FC = ({ children }) => {
 
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)
-    await Cart.applyCoupon(coupon)
+    const res = await Cart.applyCoupon(coupon)
     const cart = await Cart.get()
     setCart(cart)
     setLoading(false)
+    return res
   }, [])
 
   const removeCoupon = useCallback(async () => {

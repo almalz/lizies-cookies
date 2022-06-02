@@ -53,6 +53,7 @@ export type CartpageRecord = {
   backButtonLabel?: Maybe<Scalars['String']>;
   checkoutCtaLabel?: Maybe<Scalars['String']>;
   couponButtonLabel?: Maybe<Scalars['String']>;
+  couponErrorMessage?: Maybe<Scalars['String']>;
   couponPlaceholder?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   discountLabel?: Maybe<Scalars['String']>;
@@ -3231,7 +3232,7 @@ export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'D
 export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
 
 export type LegalPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3502,6 +3503,7 @@ export const CartPageDocument = gql`
     discountLabel
     couponPlaceholder
     couponButtonLabel
+    couponErrorMessage
     subtotalLabel
     totalLabel
     shippingFeesInstructions
