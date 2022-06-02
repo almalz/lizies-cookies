@@ -43,6 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       privacypage: data.privacypage,
     },
+    revalidate: 60,
   }
 }
 

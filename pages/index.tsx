@@ -83,6 +83,7 @@ export const getStaticProps: GetStaticProps = async () => {
       drop: drop,
       pageContent: data?.homepage,
     },
+    revalidate: 60,
   }
 }
 

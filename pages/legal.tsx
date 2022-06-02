@@ -41,6 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       legalpage: data.legalpage,
     },
+    revalidate: 60,
   }
 }
 
