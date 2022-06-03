@@ -1,19 +1,13 @@
 import Image from 'next/image'
 import { useCallback, useRef } from 'react'
 import { SwellProduct } from '../../lib/store/products/types'
+import { formatPrice } from '../../lib/utils'
 import ProductForm from '../ProductForm'
 import { Paragraph } from '../Typography'
 import { ProductModal, ProductModalRef } from './ProductModal'
 
 export type ProductItemProps = {
   product: SwellProduct
-}
-
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('de-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(price)
 }
 
 export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
@@ -26,7 +20,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   return (
     <div className="border-1 flex items-center border border-purple-700 sm:h-[35rem] sm:flex-col sm:p-2">
       <button
-        className="relative m-1 aspect-square w-1/2 hover:opacity-50 sm:m-0 sm:h-2/3 sm:w-full"
+        className="relative m-1 aspect-square w-full hover:opacity-50 sm:m-0 sm:h-2/3 sm:w-full"
         onClick={() => openProductModal()}
         type="button"
       >
@@ -41,6 +35,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <button
           className="text-left text-purple-700 hover:opacity-30 sm:p-2"
           onClick={() => openProductModal()}
+          type="button"
         >
           <h3 className="font-title text-2xl sm:text-4xl ">{product.name}</h3>
           <div className="flex-1">

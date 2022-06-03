@@ -33,3 +33,10 @@ export const injectVariables = (
 
 const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
+
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(price)
+}
