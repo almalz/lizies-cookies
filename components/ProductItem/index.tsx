@@ -26,7 +26,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   return (
     <div className="border-1 flex items-center border border-purple-700 sm:h-[35rem] sm:flex-col sm:p-2">
       <button
-        className="relative m-1 aspect-square w-1/2 sm:m-0 sm:h-2/3 sm:w-full"
+        className="relative m-1 aspect-square w-1/2 hover:opacity-50 sm:m-0 sm:h-2/3 sm:w-full"
         onClick={() => openProductModal()}
         type="button"
       >
