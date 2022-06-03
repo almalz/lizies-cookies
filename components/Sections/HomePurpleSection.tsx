@@ -5,7 +5,7 @@ type PurpleSectionProps = {
   purpleSectionBody: string
 }
 
-export const PurpleSection: React.FC<PurpleSectionProps> = ({
+const PurpleSection: React.FC<PurpleSectionProps> = ({
   purpleSectionHeading,
   purpleSectionBody,
 }) => {
@@ -20,3 +20,5 @@ export const PurpleSection: React.FC<PurpleSectionProps> = ({
     </div>
   )
 }
+
+export default PurpleSection

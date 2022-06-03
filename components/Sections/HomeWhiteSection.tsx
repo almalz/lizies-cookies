@@ -5,7 +5,7 @@ type WhiteSectionProps = {
   whiteSectionBody: string
 }
 
-export const WhiteSection: React.FC<WhiteSectionProps> = ({
+const WhiteSection: React.FC<WhiteSectionProps> = ({
   whiteSectionHeading,
   whiteSectionBody,
 }) => {
@@ -16,3 +16,5 @@ export const WhiteSection: React.FC<WhiteSectionProps> = ({
     </div>
   )
 }
+
+export default WhiteSection

@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps } from 'next'
-import Layout from '../components/Layout'
+import dynamic from 'next/dynamic'
+
 import client from '../lib/apolloClient'
 import {
   HomepageRecord,
@@ -8,12 +9,25 @@ import {
 } from '../types/generated/graphql'
 import { Products } from '../lib/store/products/api'
 import { Drop } from '../lib/store/products/types'
-import { Hero } from '../components/Sections/Hero'
-import { WhiteSection } from '../components/Sections/HomeWhiteSection'
-import { ProductsSection } from '../components/Sections/HomeProductsSection'
-import { PinkSection } from '../components/Sections/HomePinkSection'
-import { PictureSection } from '../components/Sections/HomePicturesSection'
-import { PurpleSection } from '../components/Sections/HomePurpleSection'
+
+const Layout = dynamic(() => import('../components/Layout'))
+const Hero = dynamic(() => import('../components/Sections/Hero'))
+
+const WhiteSection = dynamic(
+  () => import('../components/Sections/HomeWhiteSection')
+)
+const ProductsSection = dynamic(
+  () => import('../components/Sections/HomeProductsSection')
+)
+const PinkSection = dynamic(
+  () => import('../components/Sections/HomePinkSection')
+)
+const PictureSection = dynamic(
+  () => import('../components/Sections/HomePicturesSection')
+)
+const PurpleSection = dynamic(
+  () => import('../components/Sections/HomePurpleSection')
+)
 
 export type DropPageProps = {
   drop: Drop

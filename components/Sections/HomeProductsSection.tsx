@@ -12,7 +12,7 @@ type ProductsSectionProps = {
   buttonLabel: string
 }
 
-export const ProductsSection: React.FC<ProductsSectionProps> = ({
+const ProductsSection: React.FC<ProductsSectionProps> = ({
   products,
   buttonLabel,
 }) => {
@@ -70,3 +70,5 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
     </div>
   )
 }
+
+export default ProductsSection

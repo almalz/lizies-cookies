@@ -12,7 +12,7 @@ type PinkSectionProps = {
   pinkSectionCtaLabel: string
 }
 
-export const PinkSection: React.FC<PinkSectionProps> = ({
+const PinkSection: React.FC<PinkSectionProps> = ({
   pinkSectionHeading,
   pinkSectionSubheading,
   pinkSectionLeftTitle,
@@ -44,3 +44,5 @@ export const PinkSection: React.FC<PinkSectionProps> = ({
     </div>
   )
 }
+
+export default PinkSection

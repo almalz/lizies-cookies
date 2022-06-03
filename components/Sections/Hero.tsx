@@ -8,7 +8,7 @@ type HeroProps = {
   heroCtaLabel: string
 }
 
-export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
+const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
   const router = useRouter()
 
   return (
@@ -35,3 +35,5 @@ export const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
     </div>
   )
 }
+
+export default Hero

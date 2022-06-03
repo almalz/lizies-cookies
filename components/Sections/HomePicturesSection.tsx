@@ -11,7 +11,7 @@ type PictureSectionProps = {
   rightPicture: Picture
 }
 
-export const PictureSection: React.FC<PictureSectionProps> = ({
+const PictureSection: React.FC<PictureSectionProps> = ({
   topLeftPicture,
   bottomLeftPicture,
   rightPicture,
@@ -50,3 +50,5 @@ export const PictureSection: React.FC<PictureSectionProps> = ({
     </div>
   )
 }
+
+export default PictureSection
