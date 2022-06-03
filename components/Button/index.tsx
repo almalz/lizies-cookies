@@ -8,6 +8,7 @@ export type ButtonProps = {
   className?: string
   disabled?: boolean
   loading?: boolean
+  noBorders?: boolean
   type?: 'button' | 'submit'
 }
 
@@ -24,6 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   loading = false,
   type = 'button',
+  noBorders = false,
   children,
   ...props
 }) => {
@@ -33,7 +35,8 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       className={clsx([
         className,
-        'border-3 bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
+        !noBorders && 'border-3',
+        'bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
         disabled && 'opacity-30',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&

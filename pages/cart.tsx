@@ -9,12 +9,13 @@ import {
 } from '../types/generated/graphql'
 import { useCart } from '../lib/store'
 import { Spinner } from '@chakra-ui/react'
-import { SwellCartItem } from '../lib/store/cart/types'
+import { SwellCart, SwellCartItem } from '../lib/store/cart/types'
 import { CartItem } from '../components/CartItem'
 import { CartSummary } from '../components/CartSummary'
 import { Button } from '../components/Button'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 export type CartPageProps = {
   pageContent: CartpageRecord
@@ -58,8 +59,17 @@ const CartItemsList: React.FC<{ cartItems: SwellCartItem[] }> = ({
 }
 
 const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
-  const { cart, loading } = useCart()
-  // console.log(pageContent.emptycartmessage)
+  const { cartCache, loading, pullCart } = useCart()
+
+  const [cart, setCart] = useState<SwellCart | undefined>(cartCache)
+
+  useEffect(() => {
+    const syncCart = async () => {
+      const newCart = await pullCart()
+      if (newCart) setCart(newCart)
+    }
+    syncCart()
+  }, [pullCart])
 
   return (
     <Layout

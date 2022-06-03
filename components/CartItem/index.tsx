@@ -51,7 +51,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isFirst }) => {
         <div className="flex flex-col items-start justify-between gap-4 pt-2 sm:px-2 sm:pt-4">
           <div>
             <span className="font-body text-purple-700 sm:text-xl">
-              {formatPrice(item.priceTotal!)}
+              {item.priceTotal && formatPrice(item.priceTotal!)}
             </span>
           </div>
           <div className="self-end">
@@ -61,7 +61,8 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isFirst }) => {
       </div>
       <div className="absolute top-0 right-0 p-2 sm:p-4 lg:p-8">
         <Button
-          className="border-0 px-0 py-0"
+          className="px-0 py-0"
+          noBorders
           onClick={() =>
             updateItems({
               productId: item.product?.id,

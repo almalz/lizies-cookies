@@ -11,9 +11,10 @@ import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
 type CartContextProps = {
   loading: boolean
-  cart: SwellCart | undefined
+  cartCache: SwellCart | undefined
   cartItems: SwellCartItem[] | undefined
   cartItemsCount: number | undefined
+  pullCart: () => Promise<SwellCart | undefined>
   updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
   goToCheckout: () => void
@@ -48,12 +49,13 @@ const CartProvider: React.FC = ({ children }) => {
     return cart?.coupon
   }, [cart])
 
-  const pullCart = async () => {
+  const pullCart = useCallback(async () => {
     setLoading(true)
     const cart = await Cart.get()
     setCart(cart)
     setLoading(false)
-  }
+    return cart
+  }, [])
 
   //fetch current cart on mount
   useEffect(() => {
@@ -158,8 +160,9 @@ const CartProvider: React.FC = ({ children }) => {
   const value = {
     loading,
     cartItems,
-    cart,
+    cartCache: cart,
     cartItemsCount,
+    pullCart,
     updateItems,
     getProductCartQuantity,
     goToCheckout,
