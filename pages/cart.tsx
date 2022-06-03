@@ -96,7 +96,6 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query<CartPageQuery>({
     query: CartPageDocument,
-    fetchPolicy: 'no-cache',
   })
 
   return {

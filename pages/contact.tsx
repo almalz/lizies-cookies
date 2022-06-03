@@ -39,19 +39,24 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
   } = useForm<ContactFormValues>()
 
   const onSubmit = useCallback(async (formValues: any) => {
+    setSuccess(false)
+    setError(false)
+
     try {
       const res = await fetch(`/api/contact`, {
-        body: JSON.stringify({ ...formValues }),
+        body: JSON.stringify({ contact: formValues }),
         headers: {
           'Content-Type': 'application/json',
         },
         method: 'POST',
       })
-      setTimeout(() => {}, 3000)
       const data = await res.json()
-      console.log(data)
+      if (data) {
+        setSuccess(true)
+      }
     } catch (error) {
       console.error(error)
+      setError(true)
     }
   }, [])
 
