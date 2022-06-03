@@ -72,8 +72,10 @@ const CartProvider: React.FC = ({ children }) => {
   }, [cartItems])
 
   const updateItems = (item: SwellCartItem) => {
+    console.log(item, cartItems)
     // cart 1st element
-    if (!cartItems) {
+
+    if (!cartItems || cartItems.length < 1) {
       setCart({ ...cart, items: [item] } as SwellCart)
       return
     }
