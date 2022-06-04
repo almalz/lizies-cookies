@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useCart } from '../../lib/store'
 import { SwellProduct } from '../../lib/store/products/types'
 import NumberInput from '../NumberInput'

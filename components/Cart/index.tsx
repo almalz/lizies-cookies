@@ -1,5 +1,4 @@
 import { Circle, Spinner } from '@chakra-ui/react'
-import Image from 'next/image'
 import { useCallback } from 'react'
 import { useCart } from '../../lib/store/cart/provider'
 import { HiOutlineShoppingBag } from 'react-icons/hi'

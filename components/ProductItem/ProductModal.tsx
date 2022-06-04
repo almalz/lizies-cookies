@@ -9,7 +9,6 @@ import {
   ModalBody,
 } from '@chakra-ui/react'
 import { SwellProduct } from '../../lib/store/products/types'
-import { Button } from '../Button'
 import { formatPrice } from '../../lib/utils'
 import ProductForm from '../ProductForm'
 import { Paragraph } from '../Typography'

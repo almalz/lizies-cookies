@@ -60,6 +60,7 @@ const CartProvider: React.FC = ({ children }) => {
   //fetch current cart on mount
   useEffect(() => {
     pullCart()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

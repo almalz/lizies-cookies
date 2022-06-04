@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { ButtonLink } from '../Button'
 import { Navbar } from '../Navbar'
 
@@ -9,8 +8,6 @@ type HeroProps = {
 }
 
 const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
-  const router = useRouter()
-
   return (
     <div className="flex h-screen flex-col">
       <Navbar />
