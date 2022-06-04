@@ -35,12 +35,14 @@ export const Navbar: React.FC = () => {
               <div className="flex w-full items-center justify-between bg-purple-700 px-8 py-4">
                 <Link href="/">
                   <a>
-                    <Image
-                      src="/images/logo.svg"
-                      alt="logo"
-                      width="100px"
-                      height="40px"
-                    />
+                    <div className="imageContainer relative h-[40px] w-[100px]">
+                      <Image
+                        src="/images/logo.svg"
+                        alt="logo"
+                        layout="fill"
+                        className="image"
+                      />
+                    </div>
                   </a>
                 </Link>
                 <div>
@@ -58,12 +60,14 @@ export const Navbar: React.FC = () => {
               <div className="flex w-full gap-x-16 bg-purple-700 px-16 pt-8 pb-4">
                 <Link href="/">
                   <a>
-                    <Image
-                      src="/images/logo.svg"
-                      alt="logo"
-                      width="200px"
-                      height="80px"
-                    />
+                    <div className="imageContainer relative h-[80px] w-[200px]">
+                      <Image
+                        src="/images/logo.svg"
+                        alt="logo"
+                        layout="fill"
+                        className="image"
+                      />
+                    </div>
                   </a>
                 </Link>
                 <ul className="flex flex-1 items-center gap-x-8 px-8">
