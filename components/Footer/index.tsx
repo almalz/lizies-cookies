@@ -21,30 +21,30 @@ export const Footer: React.FC = () => {
         <li>
           <Link href="https://www.instagram.com/naughtycookies_/">
             <a target="_blank">
-              <FaInstagram className="text-white hover:text-purple-200" />
+              <FaInstagram className="text-purple-800 hover:text-purple-300" />
             </a>
           </Link>
         </li>
         <li>
           <Link href="http://www.tiktok.com/@naughtycookies_">
             <a target="_blank">
-              <FaTiktok className="text-white hover:text-purple-200" />
+              <FaTiktok className="text-purple-800 hover:text-purple-300" />
             </a>
           </Link>
         </li>
         <li>
           <Link href="https://www.facebook.com/ngtycookies">
             <a target="_blank">
-              <FaFacebook className="text-white hover:text-purple-200" />
+              <FaFacebook className="text-purple-800 hover:text-purple-300" />
             </a>
           </Link>
         </li>
       </ul>
-      <ul className="flex flex-wrap justify-center gap-x-8 px-12">
+      <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2 px-12">
         {Links.map((link) => (
           <li
             key={link.label}
-            className="font-body text-sm  text-white hover:text-purple-200"
+            className="font-body text-sm  text-purple-800 hover:text-purple-300"
           >
             <Link href={link.href}>
               <a>{link.label}</a>
@@ -52,9 +52,7 @@ export const Footer: React.FC = () => {
           </li>
         ))}
       </ul>
-      <span className="font-body text-sm text-purple-800">
-        © naughty cookies 2022
-      </span>
+      <span className="font-body text-white">© naughty cookies 2022</span>
     </footer>
   )
 }
