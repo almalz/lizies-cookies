@@ -30,7 +30,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     <div className="flex items-center">
       <FormControl className="flex items-center justify-center">
         <FormLabel htmlFor={label} visibility="hidden" margin={0} h={0} w={0} />
-        <div className="flex w-32 flex-row items-end justify-between lg:w-36">
+        <div className="flex w-28 flex-row items-center justify-between md:w-32 xl:w-32">
           <div>
             <Button
               onClick={handleRemoveClick}
@@ -41,7 +41,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
             </Button>
           </div>
           <div className="flex flex-1 justify-center leading-4">
-            <span className="font-body text-2xl text-pink-500 sm:text-3xl">
+            <span className="font-body text-xl text-pink-500 sm:text-2xl">
               {value}
             </span>
           </div>

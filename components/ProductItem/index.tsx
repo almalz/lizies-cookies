@@ -31,7 +31,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           objectFit="cover"
         />
       </button>
-      <div className="flex h-full w-full flex-col justify-between py-2 px-4 sm:h-1/3 sm:py-4">
+      <div className="flex h-full w-full flex-col justify-between py-2 px-4 sm:h-1/3 sm:py-4 lg:px-[3%]">
         <button
           className="text-left text-purple-700 hover:opacity-30 sm:p-2"
           onClick={() => openProductModal()}
