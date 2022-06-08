@@ -77,7 +77,13 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
           </div>
         ) : cart?.items && cart?.items.length > 0 ? (
           <>
-            <CartItemsList cartItems={cart?.items as any} />
+            <CartItemsList
+              cartItems={
+                cart?.items.sort((a, b) => {
+                  return a.productId > b.productId ? 1 : -1
+                }) as any
+              }
+            />
             <CartSummary cart={cart} pageContent={pageContent} />
           </>
         ) : (
