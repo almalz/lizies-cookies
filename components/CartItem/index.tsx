@@ -65,9 +65,10 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isFirst }) => {
           noBorders
           onClick={() =>
             updateItems({
-              productId: item.product?.id,
+              productId: item.productId,
               quantity: 0,
-            } as SwellCartItem)
+              product: item.product,
+            })
           }
         >
           <HiOutlineTrash size="24" color="#F3A1A2"></HiOutlineTrash>

@@ -11,9 +11,10 @@ import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
 type CartContextProps = {
   loading: boolean
-  cartCache: SwellCart | undefined
+  cartCache: CartCache | undefined
   cartItems: SwellCartItem[] | undefined
   cartItemsCount: number | undefined
+  cart: SwellCart | undefined
   pullCart: () => Promise<SwellCart | undefined>
   updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
@@ -23,11 +24,17 @@ type CartContextProps = {
   coupon: SwellCoupon | undefined
 }
 
+type CartCache = {
+  items: SwellCartItem[]
+  synced_at?: Date
+}
+
 const CartContext = createContext<CartContextProps | null>(null)
 
 const CartProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [cart, setCart] = useState<SwellCart>()
+  const [cartItemsCache, setCartItemsCache] = useState<CartCache | undefined>()
 
   const cartItems = useMemo(() => {
     return cart?.items
@@ -65,65 +72,59 @@ const CartProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const pushCart = async () => {
-      if (cartItems !== undefined) {
+      if (cartItemsCache?.items !== undefined) {
         setLoading(true)
-        await Cart.updateAllItems(cartItems || [])
+        const newCart: SwellCart = await Cart.updateAllItems(
+          cartItemsCache.items || []
+        )
         setLoading(false)
+        if (newCart) setCart(newCart)
       }
     }
     pushCart()
-  }, [cartItems])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItemsCache?.items])
 
   const updateItems = (item: SwellCartItem) => {
     // cart 1st element
 
-    if (!cartItems || cartItems.length < 1) {
-      setCart({ ...cart, items: [item] } as SwellCart)
+    if (!cartItemsCache?.items || cartItemsCache.items.length < 1) {
+      setCartItemsCache({ items: [item], synced_at: new Date() })
       return
     }
 
     // delete item if quantity = 0
     if (item.quantity === 0) {
-      setCart({
-        ...cart,
+      setCartItemsCache({
         items: [
-          ...cartItems.filter(
+          ...cartItemsCache?.items.filter(
             (cartItem) => item.productId !== cartItem.productId
           ),
         ],
-      } as SwellCart)
+        synced_at: new Date(),
+      })
       return
     }
 
-    // spred current items list
-    let newItems = cart?.items && [...cart?.items]
-
-    // ts guard
-    if (!newItems || newItems.length < 1) return
-
-    const newItem = newItems.find((i) => i.productId === item.productId)
-
-    // for an existing item, we update its quantity
-    // if the item is new, we concat it
-    if (newItem) {
-      newItem.quantity = item.quantity
-    } else {
-      newItems = [...newItems, item]
-    }
-
-    setCart({
-      ...cart,
-      items: [...newItems],
-    } as SwellCart)
+    setCartItemsCache({
+      items: [
+        ...cartItemsCache?.items.filter(
+          (cartItem) => item.productId !== cartItem.productId
+        ),
+        item,
+      ],
+      synced_at: new Date(),
+    })
   }
 
   const getProductCartQuantity = useCallback(
     (productId: string) => {
-      return cartItems
-        ? cartItems.find((item) => item.productId === productId)?.quantity || 0
+      return cartItemsCache?.items
+        ? cartItemsCache.items.find((item) => item.productId === productId)
+            ?.quantity || 0
         : 0
     },
-    [cartItems]
+    [cartItemsCache]
   )
 
   const goToCheckout = useCallback(async () => {
@@ -160,8 +161,9 @@ const CartProvider: React.FC = ({ children }) => {
   const value = {
     loading,
     cartItems,
-    cartCache: cart,
+    cartCache: cartItemsCache,
     cartItemsCount,
+    cart,
     pullCart,
     updateItems,
     getProductCartQuantity,

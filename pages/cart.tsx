@@ -59,17 +59,7 @@ const CartItemsList: React.FC<{ cartItems: SwellCartItem[] }> = ({
 }
 
 const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
-  const { cartCache, loading, pullCart } = useCart()
-
-  const [cart, setCart] = useState<SwellCart | undefined>(cartCache)
-
-  useEffect(() => {
-    const syncCart = async () => {
-      const newCart = await pullCart()
-      if (newCart) setCart(newCart)
-    }
-    syncCart()
-  }, [pullCart])
+  const { cart, loading } = useCart()
 
   return (
     <Layout
