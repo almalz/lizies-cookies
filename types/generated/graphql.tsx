@@ -30,6 +30,52 @@ export type Scalars = {
   UploadId: any;
 };
 
+/** Record of type AboutPage (aboutpage) */
+export type AboutpageRecord = RecordInterface & {
+  __typename?: 'AboutpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  firstsectionbody?: Maybe<Scalars['String']>;
+  firstsectionimage?: Maybe<FileField>;
+  firstsectiontitle?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  secondsectionbody?: Maybe<Scalars['String']>;
+  secondsectionimage?: Maybe<FileField>;
+  secondsectiontitle?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type AboutPage (aboutpage) */
+export type AboutpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type AboutPage (aboutpage) */
+export type AboutpageRecordFirstsectionbodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type AboutPage (aboutpage) */
+export type AboutpageRecordSecondsectionbodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Specifies how to filter Boolean fields */
 export type BooleanFilter = {
   /** Search for records with an exact match */
@@ -37,7 +83,7 @@ export type BooleanFilter = {
 };
 
 /** Record of type CartPage (cartpage) */
-export type CartpageRecord = {
+export type CartpageRecord = RecordInterface & {
   __typename?: 'CartpageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -104,7 +150,7 @@ export type ColorField = {
 };
 
 /** Record of type ContactPage (contactpage) */
-export type ContactpageRecord = {
+export type ContactpageRecord = RecordInterface & {
   __typename?: 'ContactpageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -261,7 +307,7 @@ export enum DropModelOrderBy {
 }
 
 /** Record of type Drop (drop) */
-export type DropRecord = {
+export type DropRecord = RecordInterface & {
   __typename?: 'DropRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -292,7 +338,7 @@ export type DropRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type DropPage (droppage) */
-export type DroppageRecord = {
+export type DroppageRecord = RecordInterface & {
   __typename?: 'DroppageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -342,7 +388,7 @@ export type ErrorpageModelBodyField = {
 };
 
 /** Record of type ErrorPage (errorpage) */
-export type ErrorpageRecord = {
+export type ErrorpageRecord = RecordInterface & {
   __typename?: 'ErrorpageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -416,7 +462,7 @@ export enum FaqcategoryModelOrderBy {
 }
 
 /** Record of type FAQCategory (faqcategory) */
-export type FaqcategoryRecord = {
+export type FaqcategoryRecord = RecordInterface & {
   __typename?: 'FaqcategoryRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -498,7 +544,7 @@ export enum FaqitemModelOrderBy {
 }
 
 /** Record of type FAQItem (faqitem) */
-export type FaqitemRecord = {
+export type FaqitemRecord = RecordInterface & {
   __typename?: 'FaqitemRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -527,7 +573,7 @@ export type FaqitemRecord_SeoMetaTagsArgs = {
 };
 
 /** Record of type FAQPage (faqpage) */
-export type FaqpageRecord = {
+export type FaqpageRecord = RecordInterface & {
   __typename?: 'FaqpageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -560,7 +606,7 @@ export enum FaviconType {
   MsApplication = 'msApplication'
 }
 
-export type FileField = {
+export type FileField = FileFieldInterface & {
   __typename?: 'FileField';
   _createdAt: Scalars['DateTime'];
   _updatedAt: Scalars['DateTime'];
@@ -636,6 +682,81 @@ export type FileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
+export type FileFieldInterface = {
+  _createdAt: Scalars['DateTime'];
+  _updatedAt: Scalars['DateTime'];
+  alt?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  basename: Scalars['String'];
+  blurUpThumb?: Maybe<Scalars['String']>;
+  blurhash?: Maybe<Scalars['String']>;
+  colors: Array<ColorField>;
+  copyright?: Maybe<Scalars['String']>;
+  customData: Scalars['CustomData'];
+  exifInfo: Scalars['CustomData'];
+  filename: Scalars['String'];
+  focalPoint?: Maybe<FocalPoint>;
+  format: Scalars['String'];
+  height?: Maybe<Scalars['IntType']>;
+  id: Scalars['UploadId'];
+  md5: Scalars['String'];
+  mimeType: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  responsiveImage?: Maybe<ResponsiveImage>;
+  size: Scalars['IntType'];
+  smartTags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  video?: Maybe<UploadVideoField>;
+  width?: Maybe<Scalars['IntType']>;
+};
+
+
+export type FileFieldInterfaceAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: InputMaybe<Scalars['Float']>;
+  quality?: InputMaybe<Scalars['Int']>;
+  size?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type FileFieldInterfaceCustomDataArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceFocalPointArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceResponsiveImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  imgixParams?: InputMaybe<ImgixParams>;
+  locale?: InputMaybe<SiteLocale>;
+  sizes?: InputMaybe<Scalars['String']>;
+};
+
+
+export type FileFieldInterfaceTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type FileFieldInterfaceUrlArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+};
+
 /** Specifies how to filter Floating-point fields */
 export type FloatFilter = {
   /** Search for records with an exact match */
@@ -678,7 +799,7 @@ export type GlobalSeoField = {
 };
 
 /** Record of type HomePage (homepage) */
-export type HomepageRecord = {
+export type HomepageRecord = RecordInterface & {
   __typename?: 'HomepageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2139,7 +2260,7 @@ export type LegalpageModelBodyField = {
 };
 
 /** Record of type LegalPage (legalpage) */
-export type LegalpageRecord = {
+export type LegalpageRecord = RecordInterface & {
   __typename?: 'LegalpageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2208,7 +2329,7 @@ export type NodroppageModelBodyField = {
 };
 
 /** Record of type NoDropPage (nodroppage) */
-export type NodroppageRecord = {
+export type NodroppageRecord = RecordInterface & {
   __typename?: 'NodroppageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2244,7 +2365,7 @@ export type OrientationFilter = {
 };
 
 /** Record of type PopperMessage (poppermessage) */
-export type PoppermessageRecord = {
+export type PoppermessageRecord = RecordInterface & {
   __typename?: 'PoppermessageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2300,7 +2421,7 @@ export type PrivacypageModelBodyField = {
 };
 
 /** Record of type PrivacyPage (privacypage) */
-export type PrivacypageRecord = {
+export type PrivacypageRecord = RecordInterface & {
   __typename?: 'PrivacypageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2378,7 +2499,7 @@ export enum ProductModelOrderBy {
 }
 
 /** Record of type Product (product) */
-export type ProductRecord = {
+export type ProductRecord = RecordInterface & {
   __typename?: 'ProductRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -2459,6 +2580,8 @@ export type Query = {
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   /** Returns the single instance record */
   _site: Site;
+  /** Returns the single instance record */
+  aboutpage?: Maybe<AboutpageRecord>;
   /** Returns a collection of records */
   allDrops: Array<DropRecord>;
   /** Returns a collection of records */
@@ -2545,6 +2668,13 @@ export type Query_AllUploadsMetaArgs = {
 
 /** The query root for this schema */
 export type Query_SiteArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryAboutpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2726,6 +2856,26 @@ export type QueryUploadArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
 };
 
+export type RecordInterface = {
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+};
+
+
+export type RecordInterface_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by upload type */
 export type ResolutionFilter = {
   /** Search uploads with the specified resolution */
@@ -2856,7 +3006,7 @@ export type TermspageModelBodyField = {
 };
 
 /** Record of type TermsPage (termspage) */
-export type TermspageRecord = {
+export type TermspageRecord = RecordInterface & {
   __typename?: 'TermspageRecord';
   _createdAt: Scalars['DateTime'];
   _firstPublishedAt?: Maybe<Scalars['DateTime']>;
@@ -3218,8 +3368,8 @@ export type UploadUpdatedAtFilter = {
 
 export type UploadVideoField = {
   __typename?: 'UploadVideoField';
-  duration: Scalars['Int'];
-  framerate: Scalars['Int'];
+  duration?: Maybe<Scalars['Int']>;
+  framerate?: Maybe<Scalars['Int']>;
   mp4Url?: Maybe<Scalars['String']>;
   muxAssetId: Scalars['String'];
   muxPlaybackId: Scalars['String'];
@@ -3262,8 +3412,8 @@ export enum VideoMp4Res {
 
 export type FocalPoint = {
   __typename?: 'focalPoint';
-  x?: Maybe<Scalars['FloatType']>;
-  y?: Maybe<Scalars['FloatType']>;
+  x: Scalars['FloatType'];
+  y: Scalars['FloatType'];
 };
 
 export type DropsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -3281,7 +3431,7 @@ export type DropByIdQuery = { __typename?: 'Query', drop?: { __typename?: 'DropR
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, pinkSectionCtaLabel?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', noindex?: any | null, heroCtaLabel?: string | null, whiteSectionHeading?: string | null, whiteSectionBody?: string | null, productsSectionCtaLabel?: string | null, pinkSectionHeading?: string | null, pinkSectionSubheading?: string | null, pinkSectionLeftBody?: string | null, pinkSectionLeftTitle?: string | null, pinkSectionRightBody?: string | null, pinkSectionRightTitle?: string | null, pinkSectionCtaLabel?: string | null, purpleSectionBody?: string | null, purpleSectionHeading?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null } | null, heroImage?: { __typename?: 'FileField', url: string, alt?: string | null } | null, topLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, bottomLeftImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, rightImage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
 
 export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3292,6 +3442,11 @@ export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, emptycartmessage?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+
+export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutPageQuery = { __typename?: 'Query', aboutpage?: { __typename?: 'AboutpageRecord', title?: string | null, firstsectiontitle?: string | null, firstsectionbody?: string | null, secondsectiontitle?: string | null, secondsectionbody?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null, firstsectionimage?: { __typename?: 'FileField', alt?: string | null, url: string } | null, secondsectionimage?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null };
 
 export type LegalPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3317,11 +3472,6 @@ export type ErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ErrorPageQuery = { __typename?: 'Query', errorpage?: { __typename?: 'ErrorpageRecord', noindex?: any | null, body?: { __typename?: 'ErrorpageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
-
-export type NoDropPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type NoDropPageQuery = { __typename?: 'Query', nodroppage?: { __typename?: 'NodroppageRecord', noindex?: any | null, body?: { __typename?: 'NodroppageModelBodyField', blocks: Array<string>, links: Array<string>, value: any } | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string } | null } | null } | null };
 
 export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3458,6 +3608,7 @@ export const HomePageDocument = gql`
     noindex
     heroImage {
       url
+      alt
     }
     heroCtaLabel
     whiteSectionHeading
@@ -3614,6 +3765,60 @@ export function useCartPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<C
 export type CartPageQueryHookResult = ReturnType<typeof useCartPageQuery>;
 export type CartPageLazyQueryHookResult = ReturnType<typeof useCartPageLazyQuery>;
 export type CartPageQueryResult = Apollo.QueryResult<CartPageQuery, CartPageQueryVariables>;
+export const AboutPageDocument = gql`
+    query AboutPage {
+  aboutpage {
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
+    title
+    firstsectiontitle
+    firstsectionbody
+    firstsectionimage {
+      alt
+      url
+    }
+    secondsectiontitle
+    secondsectionbody
+    secondsectionimage {
+      alt
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useAboutPageQuery__
+ *
+ * To run a query within a React component, call `useAboutPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAboutPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAboutPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAboutPageQuery(baseOptions?: Apollo.QueryHookOptions<AboutPageQuery, AboutPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AboutPageQuery, AboutPageQueryVariables>(AboutPageDocument, options);
+      }
+export function useAboutPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AboutPageQuery, AboutPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AboutPageQuery, AboutPageQueryVariables>(AboutPageDocument, options);
+        }
+export type AboutPageQueryHookResult = ReturnType<typeof useAboutPageQuery>;
+export type AboutPageLazyQueryHookResult = ReturnType<typeof useAboutPageLazyQuery>;
+export type AboutPageQueryResult = Apollo.QueryResult<AboutPageQuery, AboutPageQueryVariables>;
 export const LegalPageDocument = gql`
     query LegalPage {
   legalpage {
@@ -3860,53 +4065,6 @@ export function useErrorPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type ErrorPageQueryHookResult = ReturnType<typeof useErrorPageQuery>;
 export type ErrorPageLazyQueryHookResult = ReturnType<typeof useErrorPageLazyQuery>;
 export type ErrorPageQueryResult = Apollo.QueryResult<ErrorPageQuery, ErrorPageQueryVariables>;
-export const NoDropPageDocument = gql`
-    query NoDropPage {
-  nodroppage {
-    body {
-      blocks
-      links
-      value
-    }
-    noindex
-    seo {
-      title
-      description
-      image {
-        url
-      }
-      twitterCard
-    }
-  }
-}
-    `;
-
-/**
- * __useNoDropPageQuery__
- *
- * To run a query within a React component, call `useNoDropPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useNoDropPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useNoDropPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useNoDropPageQuery(baseOptions?: Apollo.QueryHookOptions<NoDropPageQuery, NoDropPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NoDropPageQuery, NoDropPageQueryVariables>(NoDropPageDocument, options);
-      }
-export function useNoDropPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NoDropPageQuery, NoDropPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NoDropPageQuery, NoDropPageQueryVariables>(NoDropPageDocument, options);
-        }
-export type NoDropPageQueryHookResult = ReturnType<typeof useNoDropPageQuery>;
-export type NoDropPageLazyQueryHookResult = ReturnType<typeof useNoDropPageLazyQuery>;
-export type NoDropPageQueryResult = Apollo.QueryResult<NoDropPageQuery, NoDropPageQueryVariables>;
 export const ContactPageDocument = gql`
     query ContactPage {
   contactpage {

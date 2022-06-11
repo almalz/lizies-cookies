@@ -7,6 +7,7 @@ query HomePage {
     noindex
     heroImage {
       url
+      alt
     }
     heroCtaLabel
     whiteSectionHeading
@@ -77,6 +78,32 @@ query CartPage {
       }
     }
     noindex
+  }
+}
+
+query AboutPage {
+  aboutpage {
+    seo {
+      title
+      description
+      image {
+        url
+      }
+      twitterCard
+    }
+    title
+    firstsectiontitle
+    firstsectionbody
+    firstsectionimage {
+      alt
+      url
+    }
+    secondsectiontitle
+    secondsectionbody
+    secondsectionimage {
+      alt
+      url
+    }
   }
 }
 
@@ -169,25 +196,6 @@ query FaqPage {
 
 query ErrorPage {
   errorpage {
-    body {
-      blocks
-      links
-      value
-    }
-    noindex
-    seo {
-      title
-      description
-      image {
-        url
-      }
-      twitterCard
-    }
-  }
-}
-
-query NoDropPage {
-  nodroppage {
     body {
       blocks
       links
