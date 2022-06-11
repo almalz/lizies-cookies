@@ -96,6 +96,7 @@ export type CartpageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  accepttermsmessage?: Maybe<Scalars['String']>;
   backButtonLabel?: Maybe<Scalars['String']>;
   checkoutCtaLabel?: Maybe<Scalars['String']>;
   couponButtonLabel?: Maybe<Scalars['String']>;
@@ -3441,7 +3442,7 @@ export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'D
 export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, emptycartmessage?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, emptycartmessage?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, accepttermsmessage?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
 
 export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3725,6 +3726,7 @@ export const CartPageDocument = gql`
     shippingFeesInstructions
     checkoutCtaLabel
     backButtonLabel
+    accepttermsmessage
     seo {
       description
       title

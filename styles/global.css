@@ -100,21 +100,12 @@
   src: url('/fonts/parmigiano/ParmigianoTextPro-ThinIta.woff') format('woff');
 }
 
-.cgv-link {
-  color: #0066dd;
-}
-
-.cgv-link:hover {
-  cursor: pointer;
-  color: #0022aa;
-}
-
 .markdown a {
-  color: #0066dd;
+  color: #584473;
   font-weight: 600;
 }
 .markdown a:hover {
-  color: #0022aa;
+  color: #aba1b9;
 }
 
 .markdown {

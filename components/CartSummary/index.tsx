@@ -5,6 +5,8 @@ import { CartpageRecord } from '../../types/generated/graphql'
 import { CouponsManager } from '../CouponsManager'
 import { useRouter } from 'next/router'
 import { useCart } from '../../lib/store'
+import { Paragraph } from '../Typography'
+import { useState } from 'react'
 
 export type CartSummaryProps = {
   cart: SwellCart
@@ -24,6 +26,8 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 }) => {
   const router = useRouter()
   const { goToCheckout } = useCart()
+
+  const [termsChecked, setTermsChecked] = useState<boolean>(false)
 
   return (
     <div className="flex flex-col gap-8 py-8 px-12 lg:px-[20%]">
@@ -51,11 +55,25 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           </span>
         </div>
       </div>
+      <div className="flex w-full items-center gap-4 font-body text-purple-700">
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          defaultChecked={termsChecked}
+          onChange={() => setTermsChecked(!termsChecked)}
+        />
+        <label htmlFor="terms" className="hidden">
+          {pageContent.accepttermsmessage}
+        </label>
+        <Paragraph markdown>{pageContent.accepttermsmessage}</Paragraph>
+      </div>
       <div className="flex w-full flex-col items-center gap-4">
         <Button
           color="pink"
           className="px-2 py-2"
           onClick={() => goToCheckout()}
+          disabled={termsChecked}
         >
           {pageContent.checkoutCtaLabel}
         </Button>
