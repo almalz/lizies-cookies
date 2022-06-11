@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
         className,
         !noBorders && 'border-3',
         'bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
-        disabled && 'opacity-30',
+        disabled && 'cursor-default opacity-30',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',

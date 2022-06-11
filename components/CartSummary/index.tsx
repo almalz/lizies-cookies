@@ -60,7 +60,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           type="checkbox"
           id="terms"
           name="terms"
-          defaultChecked={termsChecked}
+          defaultChecked={false}
           onChange={() => setTermsChecked(!termsChecked)}
         />
         <label htmlFor="terms" className="hidden">
@@ -73,7 +73,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           color="pink"
           className="px-2 py-2"
           onClick={() => goToCheckout()}
-          disabled={termsChecked}
+          disabled={!termsChecked}
         >
           {pageContent.checkoutCtaLabel}
         </Button>
