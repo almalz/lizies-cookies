@@ -117,6 +117,10 @@
   color: #0022aa;
 }
 
+.markdown {
+  white-space: break-spaces;
+}
+
 .embla {
   overflow: hidden;
 }

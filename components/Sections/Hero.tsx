@@ -4,10 +4,15 @@ import { Navbar } from '../Navbar'
 
 type HeroProps = {
   heroImageUrl: string
+  heroImageAlt: string
   heroCtaLabel: string
 }
 
-const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
+const Hero: React.FC<HeroProps> = ({
+  heroImageUrl,
+  heroImageAlt,
+  heroCtaLabel,
+}) => {
   return (
     <div className="flex h-screen flex-col">
       <Navbar />
@@ -18,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ heroImageUrl, heroCtaLabel }) => {
         <div className="relative w-11/12 flex-1 overflow-hidden">
           <Image
             src={heroImageUrl}
-            alt="image de fond naughty_cookies"
+            alt={heroImageAlt}
             layout="fill"
             objectFit="cover"
           />

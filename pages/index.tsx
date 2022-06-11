@@ -45,6 +45,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
       <Hero
         heroImageUrl={pageContent.heroImage!.url}
         heroCtaLabel={pageContent.heroCtaLabel!}
+        heroImageAlt={pageContent.heroImage!.alt!}
       />
       <WhiteSection
         whiteSectionHeading={pageContent.whiteSectionHeading!}

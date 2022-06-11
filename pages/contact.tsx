@@ -74,7 +74,7 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
       <div className="px-12 pb-8 text-purple-700 sm:pb-16 md:px-[15%]">
         <div className="flex flex-col gap-8 pt-8 md:gap-16 md:pt-16">
           <H1 className="">{contactpage.title}</H1>
-          <ParagraphXl>{contactpage.header}</ParagraphXl>
+          <ParagraphXl markdown>{contactpage.header}</ParagraphXl>
         </div>
         <div className="pt-8 sm:pb-4 sm:pt-16 md:px-8 lg:px-[20%]">
           <form

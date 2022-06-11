@@ -15,7 +15,7 @@ const PurpleSection: React.FC<PurpleSectionProps> = ({
         <H2>{purpleSectionHeading}</H2>
       </div>
       <div className="flex-1">
-        <ParagraphXl>{purpleSectionBody}</ParagraphXl>
+        <ParagraphXl markdown>{purpleSectionBody}</ParagraphXl>
       </div>
     </div>
   )
