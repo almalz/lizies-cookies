@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
 import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
@@ -20,14 +19,11 @@ const LegalPage: NextPage<LegalPageProps> = ({ legalpage }) => {
       noIndex={legalpage?.noindex}
       slug="legal"
     >
-      <Box shadow={'inner'}>
-        <Box
-          py={['32px', '32px', '32px', '120px']}
-          px={['32px', '64px', '120px', '240px']}
-        >
+      <div>
+        <div className="px-[20%] py-8 lg:py-20">
           {legalpage.body && <MarkdownRenderer data={legalpage.body.value} />}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Layout>
   )
 }

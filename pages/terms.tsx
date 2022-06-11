@@ -20,14 +20,11 @@ const TermsPage: NextPage<TermsPageProps> = ({ termspage }) => {
       noIndex={termspage?.noindex}
       slug="terms"
     >
-      <Box shadow={'inner'}>
-        <Box
-          py={['32px', '32px', '32px', '120px']}
-          px={['32px', '64px', '120px', '240px']}
-        >
+      <div>
+        <div className="px-[20%] py-8 lg:py-20">
           {termspage.body && <MarkdownRenderer data={termspage.body.value} />}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Layout>
   )
 }

@@ -18,18 +18,15 @@ const PrivacyPage: NextPage<PrivacyPageProps> = ({ privacypage }) => {
     <Layout
       seo={privacypage?.seo || undefined}
       noIndex={privacypage?.noindex}
-      slug="terms"
+      slug="privacy"
     >
-      <Box shadow={'inner'}>
-        <Box
-          py={['32px', '32px', '32px', '120px']}
-          px={['32px', '64px', '120px', '240px']}
-        >
+      <div>
+        <div className="px-[20%] py-8 lg:py-20">
           {privacypage.body && (
             <MarkdownRenderer data={privacypage.body.value} />
           )}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Layout>
   )
 }

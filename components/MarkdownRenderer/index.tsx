@@ -1,6 +1,6 @@
 import { StructuredText, renderNodeRule } from 'react-datocms'
 import { isHeading, isParagraph } from 'datocms-structured-text-utils'
-import { Text, As } from '@chakra-ui/react'
+import { As } from '@chakra-ui/react'
 import { H, HeadingTagType } from './Heading'
 
 export type MarkdownRenderer = {
@@ -21,6 +21,8 @@ const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data, className }) => {
               tag={HeadingTag as HeadingTagType}
               as={HeadingTag as As}
               key={key}
+              className="mt-16 font-title text-purple-700"
+              fontFamily="Chloé"
             >
               {children}
             </H>
@@ -31,9 +33,10 @@ const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data, className }) => {
           return (
             <p
               key={key}
-              // mt={['4px', '4px', '8px', '8px']}
-              // mb={['8px', '8px', '16px', '16px']}
-              className={className}
+              className={
+                'mt-1 mb-2 font-body text-purple-700 md:mt-2 md:mb-4 ' +
+                className
+              }
             >
               {children}
             </p>
