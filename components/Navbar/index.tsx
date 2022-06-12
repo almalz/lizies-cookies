@@ -83,21 +83,21 @@ export const Navbar: React.FC = () => {
                 </ul>
                 <ul className="flex items-center gap-x-8 px-4 py-4">
                   <li>
-                    <Link href="https://www.instagram.com/_naughtycookies/">
+                    <Link href="https://www.instagram.com/naughtycookies_/">
                       <a target="_blank">
                         <FaInstagram className="text-white hover:text-pink-500" />
                       </a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.tiktok.com/@naughtycookies">
+                    <Link href="http://www.tiktok.com/@naughtycookies_">
                       <a target="_blank">
                         <FaTiktok className="text-white hover:text-pink-500" />
                       </a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.facebook.com/naughtycookies">
+                    <Link href="https://www.facebook.com/ngtycookies">
                       <a target="_blank">
                         <FaFacebook className="text-white hover:text-pink-500" />
                       </a>
