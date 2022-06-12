@@ -38,7 +38,7 @@ const handler: NextApiHandler = async (
       },
     })
 
-    res.status(201).json({ datas: 'datas' })
+    res.status(201).json({ data })
   } catch (error) {
     res.status(500).send('Failed to send incomming contact email')
   }
