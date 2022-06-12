@@ -116,27 +116,3 @@ export type SwellOrderCreatedWebhook = {
   webhooks_pending: number
   id: string
 }
-
-export type SwellAccountsResponse = {
-  count: number
-  results?: [
-    {
-      email: string
-      email_optin: boolean
-      name: string
-      date_created: string
-      type: string
-      order_count: number
-      order_value: number
-      balance: number
-      billing: any
-      first_name: string
-      last_name: string
-      shipping: any
-      date_first_order: string
-      date_last_order: string
-      id: string
-    }
-  ]
-  page: 1
-}
