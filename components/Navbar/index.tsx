@@ -111,15 +111,15 @@ export const Navbar: React.FC = () => {
             <AccordionPanel className="lg:hidden">
               <ul className="flex min-h-full flex-col gap-y-4 bg-purple-700 p-4">
                 {NAVITEMS.map((item) => (
-                  <li
-                    key={item.label}
-                    className={clsx(
-                      'cursor-pointer rounded-md p-4 hover:bg-purple-600',
-                      router.pathname === item.href && 'bg-purple-800'
-                    )}
-                  >
+                  <li key={item.label} className="flex">
                     <Link href={item.href}>
-                      <a className="font-body text-base font-bold text-white">
+                      <a
+                        className={clsx(
+                          'w-full cursor-pointer rounded-md p-4 hover:bg-purple-600',
+                          'font-body text-base font-bold text-white',
+                          router.pathname === item.href && 'bg-purple-800'
+                        )}
+                      >
                         {item.label}
                       </a>
                     </Link>

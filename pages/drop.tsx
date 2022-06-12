@@ -22,10 +22,6 @@ const CartButton = dynamic(() => import('../components/CartButton'), {
   ssr: false,
 })
 
-const ThresholdModal = dynamic(() => import('../components/ThresholdModal'), {
-  ssr: false,
-})
-
 export type DropPageProps = {
   drop: Drop
   pageContent: DroppageRecord
