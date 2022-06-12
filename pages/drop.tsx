@@ -56,7 +56,7 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           </div>
           <div className="flex items-center gap-1 pt-4 sm:pt-4">
             <GoInfo size="18" color="#a1a1a1" />
-            <Link href="#">
+            <Link href="/faq#111365087">
               <a className="font-body text-base text-zinc-400 hover:underline">
                 {injectVariables(pageContent.instructions!, drop)}
               </a>
