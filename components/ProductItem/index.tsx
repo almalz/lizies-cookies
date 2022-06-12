@@ -29,6 +29,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           alt={product.name}
           layout="fill"
           objectFit="cover"
+          priority
         />
       </button>
       <div className="flex h-full w-full flex-col justify-between py-2 px-4 sm:h-1/3 sm:py-4 lg:px-[3%]">
