@@ -26,6 +26,7 @@ const Hero: React.FC<HeroProps> = ({
             alt={heroImageAlt}
             layout="fill"
             objectFit="cover"
+            priority
           />
         </div>
         <div>

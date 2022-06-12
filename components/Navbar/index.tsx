@@ -41,6 +41,7 @@ export const Navbar: React.FC = () => {
                         alt="logo"
                         layout="fill"
                         className="image"
+                        priority
                       />
                     </div>
                   </a>
@@ -66,6 +67,7 @@ export const Navbar: React.FC = () => {
                         alt="logo"
                         layout="fill"
                         className="image"
+                        priority
                       />
                     </div>
                   </a>
