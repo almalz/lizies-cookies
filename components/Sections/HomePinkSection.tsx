@@ -37,7 +37,7 @@ const PinkSection: React.FC<PinkSectionProps> = ({
         </div>
       </div>
       <div className="pt-8">
-        <Button color="purple" onClick={() => router.push('/faq')}>
+        <Button color="purple" onClick={() => router.push('/faq#111365087')}>
           {pinkSectionCtaLabel}
         </Button>
       </div>
