@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import Layout from '../components/Layout'
-import { H1, ParagraphXl } from '../components/Typography'
+import { H1, ParagraphLg } from '../components/Typography'
 import client from '../lib/apolloClient'
 import Image from 'next/image'
 
@@ -25,7 +25,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ pagecontent }) => {
         <div className="px-8 pt-16 text-purple-700 sm:px-[10%] md:pt-16">
           <H1>{pagecontent.title}</H1>
         </div>
-        <div className="flex flex-col-reverse items-center gap-10 py-16 px-10 sm:gap-24 sm:px-[10%] md:py-32 lg:flex-row lg:items-stretch lg:gap-[10%]">
+        <div className="flex flex-col-reverse items-center gap-10 py-16 px-10 sm:gap-24 sm:px-[10%] md:py-28 lg:flex-row lg:items-stretch lg:gap-[10%]">
           <div className="relative h-96 w-full lg:h-auto lg:flex-1">
             <Image
               src={pagecontent.firstsectionimage!.url}
@@ -38,12 +38,10 @@ const AboutPage: NextPage<AboutPageProps> = ({ pagecontent }) => {
             <h2 className="font-subtitle text-5xl text-pink-500">
               {pagecontent.firstsectiontitle}
             </h2>
-            <ParagraphXl className="text-xl md:text-2xl" markdown>
-              {pagecontent.firstsectionbody}
-            </ParagraphXl>
+            <ParagraphLg markdown>{pagecontent.firstsectionbody}</ParagraphLg>
           </div>
         </div>
-        <div className="flex flex-col-reverse items-center gap-10 bg-purple-700 py-16 px-10 sm:gap-24 sm:px-[10%] md:py-32 lg:flex-row-reverse lg:items-stretch lg:gap-[10%]">
+        <div className="flex flex-col-reverse items-center gap-10 bg-purple-700 py-16 px-10 sm:gap-24 sm:px-[10%] md:py-28 lg:flex-row-reverse lg:items-stretch lg:gap-[10%]">
           <div className="relative h-96 w-full lg:h-auto lg:flex-1">
             <Image
               src={pagecontent.secondsectionimage!.url}
@@ -56,9 +54,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ pagecontent }) => {
             <h2 className="font-subtitle text-5xl text-pink-500">
               {pagecontent.secondsectiontitle}
             </h2>
-            <ParagraphXl className="text-xl md:text-2xl" markdown>
-              {pagecontent.secondsectionbody}
-            </ParagraphXl>
+            <ParagraphLg markdown>{pagecontent.secondsectionbody}</ParagraphLg>
           </div>
         </div>
       </div>

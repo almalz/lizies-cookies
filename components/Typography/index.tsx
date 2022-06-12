@@ -59,6 +59,24 @@ export const Paragraph: React.FC<TypographyProps> = ({
   </>
 )
 
+export const ParagraphLg: React.FC<TypographyProps> = ({
+  children,
+  markdown,
+  className,
+}) => (
+  <>
+    {markdown ? (
+      <Markdown className={clsx(className, 'font-body text-base sm:text-lg')}>
+        {children}
+      </Markdown>
+    ) : (
+      <p className={clsx(className, 'font-body text-base sm:text-lg')}>
+        {children}
+      </p>
+    )}
+  </>
+)
+
 export const ParagraphXl: React.FC<TypographyProps> = ({
   children,
   markdown,
