@@ -79,4 +79,13 @@ export const Cart = {
       return false
     }
   },
+  addCartMetadata: async (metadata: any) => {
+    try {
+      await swell.cart.update({
+        metadata: metadata,
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
 }

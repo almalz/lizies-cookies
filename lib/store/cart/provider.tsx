@@ -22,6 +22,7 @@ type CartContextProps = {
   applyCoupon: (coupon: string) => any
   removeCoupon: () => any
   coupon: SwellCoupon | undefined
+  addCartMetadata: (metadata: any) => Promise<void>
 }
 
 type CartCache = {
@@ -171,6 +172,7 @@ const CartProvider: React.FC = ({ children }) => {
     applyCoupon,
     removeCoupon,
     coupon,
+    addCartMetadata: Cart.addCartMetadata,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

@@ -10,6 +10,15 @@ SibApi.setApiKey(
   process.env.SENDINBLUE_API_KEY!
 )
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('fr-fr', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+
 const fetchWholeOrder = async (id: string) => {
   try {
     const res: any = await swell.get('/orders/{id}', {
@@ -36,7 +45,10 @@ const handler: NextApiHandler = async (
   res: NextApiResponse
 ) => {
   const body: SwellOrderCreatedWebhook = req.body
+
   const order = await fetchWholeOrder(body.data.id)
+  console.log(order)
+
   try {
     const data = await SibApi.sendTransacEmail({
       to: [
@@ -48,6 +60,8 @@ const handler: NextApiHandler = async (
       templateId: 3,
       params: {
         ...order,
+        shipping_method: order.shipping.pickup ? 'pickup' : 'delivery',
+        delivery_date: formatDate(order.metadata.delivery_date) || '',
       },
     })
     res.status(201).json({ order })
@@ -55,6 +69,8 @@ const handler: NextApiHandler = async (
     console.error(error)
     res.status(500).send('Failed to send order confirmaition email')
   }
+
+  res.status(200).send('okokkok')
 }
 
 export default handler

@@ -1,55 +1,37 @@
-import id from 'date-fns/esm/locale/id/index.js'
 import {
   createContext,
   Dispatch,
   SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
 import { Products } from './api'
+import { Drop } from './types'
 
 type ProductsContextProps = {
   loading: boolean
   setLoading: Dispatch<SetStateAction<boolean>>
   Products: typeof Products
-  currentDropId: string | null | undefined
+  currentDrop: Drop | null | undefined
 }
-
-const REFRESH_INTERVAL =
-  Number(process.env.NEXT_PUBLIC_DROP_REFRESH_INTERVAL) || 30000
 
 const ProductsContext = createContext<ProductsContextProps | null>(null)
 
 const ProductsProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
-  const [currentDropId, setCurrentDropId] = useState<
-    string | null | undefined
-  >()
+  const [currentDrop, setCurrentDrop] = useState<Drop | undefined | null>()
 
-  // // fetch the next drop every REFRESH_INTERVAL
-  // useEffect(() => {
-  //   const interval = setInterval(async () => {
-  //     const drop = await Products.getCurrentDrop()
-  //     if (!drop) {
-  //       if (currentDropId) {
-  //         currentDropId !== undefined &&
-  //           console.info('Drop update : no current drop anymore ')
-  //         setCurrentDropId(null)
-  //       }
-  //       return
-  //     }
+  useEffect(() => {
+    const fetchCurrentDrop = async () => {
+      const drop = await Products.getCurrentDrop()
+      setCurrentDrop(drop)
+    }
+    fetchCurrentDrop()
+  }, [])
 
-  //     if (drop.id === currentDropId) return
-
-  //     setCurrentDropId(drop.id)
-  //     currentDropId !== undefined &&
-  //       console.info('Drop update : another drop has started')
-  //   }, REFRESH_INTERVAL)
-  //   return () => clearInterval(interval)
-  // }, [currentDropId])
-
-  const value = { loading, setLoading, Products, currentDropId }
+  const value = { loading, setLoading, Products, currentDrop }
   return (
     <ProductsContext.Provider value={value}>
       {children}
