@@ -68,8 +68,6 @@ const handler: NextApiHandler = async (
     console.error(error)
     res.status(500).send('Failed to send order confirmaition email')
   }
-
-  res.status(500).send('Failed to send order confirmaition email')
 }
 
 export default handler
