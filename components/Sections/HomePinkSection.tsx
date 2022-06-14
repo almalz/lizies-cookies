@@ -23,7 +23,7 @@ const PinkSection: React.FC<PinkSectionProps> = ({
 }) => {
   const router = useRouter()
   return (
-    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700 sm:py-28 sm:px-60">
+    <div className="flex flex-col items-center gap-y-10 bg-pink-500 py-16 px-14 text-center text-purple-700 sm:px-28 sm:py-28 md:px-40 lg:px-60">
       <H2>{pinkSectionHeading}</H2>
       <ParagraphXl>{pinkSectionSubheading}</ParagraphXl>
       <div className="flex flex-col gap-16 px-8 sm:flex-row">
