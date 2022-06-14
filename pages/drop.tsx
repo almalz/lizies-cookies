@@ -60,7 +60,7 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           </div>
         </div>
         <ProductList products={drop.products} />
-        <div className="flex items-center justify-center py-8 sm:hidden">
+        <div className="flex items-center justify-center py-8 ">
           <CartButton onClick={() => router.push('/cart')} />
         </div>
       </div>
