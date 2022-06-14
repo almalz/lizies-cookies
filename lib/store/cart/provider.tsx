@@ -26,7 +26,7 @@ type CartContextProps = {
 }
 
 type CartCache = {
-  items: SwellCartItem[]
+  items?: SwellCartItem[]
   synced_at?: Date
 }
 
@@ -61,6 +61,7 @@ const CartProvider: React.FC = ({ children }) => {
     setLoading(true)
     const cart = await Cart.get()
     setCart(cart)
+    setCartItemsCache({ items: cart?.items })
     setLoading(false)
     return cart
   }, [])
