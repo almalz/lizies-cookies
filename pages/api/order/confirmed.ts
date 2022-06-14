@@ -47,7 +47,6 @@ const handler: NextApiHandler = async (
   const body: SwellOrderCreatedWebhook = req.body
 
   const order = await fetchWholeOrder(body.data.id)
-  console.log(order)
 
   try {
     const data = await SibApi.sendTransacEmail({
@@ -64,13 +63,13 @@ const handler: NextApiHandler = async (
         delivery_date: formatDate(order.metadata.delivery_date) || '',
       },
     })
-    res.status(201).json({ order })
+    res.status(200).json({ data })
   } catch (error) {
     console.error(error)
     res.status(500).send('Failed to send order confirmaition email')
   }
 
-  res.status(200).send('okokkok')
+  res.status(500).send('Failed to send order confirmaition email')
 }
 
 export default handler
