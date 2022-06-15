@@ -63,8 +63,6 @@ const handler: NextApiHandler = async (
 
   const currentDrop = await fetchDropDeliveryDate()
 
-  console.log(currentDrop)
-
   console.info(
     `sending confirmation email for order ${body.data.id} - ${order?.number}`
   )
