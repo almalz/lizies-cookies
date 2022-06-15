@@ -43,7 +43,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                     objectFit="cover"
                   />
                 </div>
-                <div className="flex flex-1 flex-col gap-8 px-10 py-2 text-purple-700 sm:gap-12 sm:px-8 md:my-12 md:ml-8 md:mr-4 md:px-0 lg:my-24 lg:ml-32 lg:mr-16 lg:px-14">
+                <div className="flex flex-1 flex-col gap-8 px-10 py-2 text-purple-700 sm:gap-12 sm:px-8 md:my-12 md:ml-8 md:mr-4 md:px-0 lg:my-24 lg:ml-16 lg:mr-16 lg:px-14">
                   <H2>{product.name!}</H2>
                   <ParagraphXl markdown>
                     {product.content?.sliderText || ''}
