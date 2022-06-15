@@ -47,7 +47,7 @@ const ProductModal = forwardRef(
           >
             <ModalCloseButton color="pink" size="lg" />
             <ModalBody>
-              <div className="flex flex-col items-center pt-4 sm:flex-row sm:items-start">
+              <div className="flex flex-col items-center py-4 sm:flex-row sm:items-start">
                 <div className="relative m-1 aspect-square w-[80%] self-center sm:w-full">
                   <Image
                     src={product.images![0].file.url}
@@ -84,7 +84,7 @@ const ProductModal = forwardRef(
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col items-start justify-between gap-1 pt-2 sm:flex-none sm:flex-row sm:items-center sm:pt-4">
+                  <div className="flex flex-1 flex-col items-start justify-between gap-1 py-2  sm:flex-none sm:flex-row sm:items-center sm:pt-4">
                     <div>
                       <span className="font-body text-xl text-purple-700 sm:text-3xl">
                         {formatPrice(product.price)}
