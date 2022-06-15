@@ -21,6 +21,8 @@ const formatDate = (dateString: string) => {
 
 const fetchWholeOrder = async (id: string) => {
   try {
+    console.info(`trying to fetch whole order for id ${id}`)
+
     const res: any = await swell.get('/orders/{id}', {
       id: id,
       expand: ['items.product', 'account'],
@@ -33,6 +35,7 @@ const fetchWholeOrder = async (id: string) => {
         name: item.product.name,
       }
     })
+    console.info(`sucessfully fetched whole order for id ${id}`)
     return res
   } catch (error) {
     console.error(error)
@@ -47,6 +50,10 @@ const handler: NextApiHandler = async (
   const body: SwellOrderCreatedWebhook = req.body
 
   const order = await fetchWholeOrder(body.data.id)
+
+  console.info(
+    `sending confirmation email for order ${body.data.id} - ${order?.number}`
+  )
 
   try {
     const data = await SibApi.sendTransacEmail({
@@ -63,6 +70,8 @@ const handler: NextApiHandler = async (
         delivery_date: formatDate(order.metadata.delivery_date) || '',
       },
     })
+
+    console.info(`sucessfully sent confirmation email`)
     res.status(200).json({ data })
   } catch (error) {
     console.error(error)
