@@ -51,7 +51,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
             </div>
             <div className="flex flex-row font-bold">
               <span className="flex-1">{pageContent.totalLabel} :</span>
-              <span>{formatPrice(cart.grandTotal || cart.subTotal)}</span>
+              <span>{formatPrice(cart.grandTotal ?? cart.subTotal)}</span>
             </div>
           </>
         )}
