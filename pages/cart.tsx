@@ -9,13 +9,12 @@ import {
 } from '../types/generated/graphql'
 import { useCart } from '../lib/store'
 import { Spinner } from '@chakra-ui/react'
-import { SwellCart, SwellCartItem } from '../lib/store/cart/types'
+import { SwellCartItem } from '../lib/store/cart/types'
 import { CartItem } from '../components/CartItem'
 import { CartSummary } from '../components/CartSummary'
 import { Button } from '../components/Button'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 
 export type CartPageProps = {
   pageContent: CartpageRecord

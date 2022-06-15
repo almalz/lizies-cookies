@@ -121,6 +121,12 @@ export type CartpageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+
+/** Record of type CartPage (cartpage) */
+export type CartpageRecordAccepttermsmessageArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType'];
@@ -378,6 +384,39 @@ export type DroppageRecordCalloutArgs = {
 
 /** Record of type DropPage (droppage) */
 export type DroppageRecordHeadlineArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Record of type DroppagePopup (droppagepopup) */
+export type DroppagepopupRecord = RecordInterface & {
+  __typename?: 'DroppagepopupRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ItemId'];
+  message?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type DroppagePopup (droppagepopup) */
+export type DroppagepopupRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type DroppagePopup (droppagepopup) */
+export type DroppagepopupRecordMessageArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1997,6 +2036,26 @@ export type ImgixParams = {
    */
   txtWidth?: InputMaybe<Scalars['IntType']>;
   /**
+   * Text X Position
+   *
+   * Sets the horizontal (x) position of the text in pixels relative to the left edge of the base image.
+   *
+   * Depends on: `txt`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-x)
+   */
+  txtX?: InputMaybe<Scalars['IntType']>;
+  /**
+   * Text Y Position
+   *
+   * Sets the vertical (y) position of the text in pixels relative to the top edge of the base image.
+   *
+   * Depends on: `txt`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-y)
+   */
+  txtY?: InputMaybe<Scalars['IntType']>;
+  /**
    * Unsharp Mask
    *
    * Sharpens the source image using an unsharp mask.
@@ -2602,6 +2661,8 @@ export type Query = {
   /** Returns the single instance record */
   droppage?: Maybe<DroppageRecord>;
   /** Returns the single instance record */
+  droppagepopup?: Maybe<DroppagepopupRecord>;
+  /** Returns the single instance record */
   errorpage?: Maybe<ErrorpageRecord>;
   /** Returns a specific record */
   faqcategory?: Maybe<FaqcategoryRecord>;
@@ -2761,6 +2822,13 @@ export type QueryDropArgs = {
 
 /** The query root for this schema */
 export type QueryDroppageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryDroppagepopupArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3437,7 +3505,7 @@ export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'H
 export type DropPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, instructions?: string | null, callout?: string | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'DroppageRecord', title?: string | null, headline?: string | null, instructions?: string | null, callout?: string | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null, droppagepopup?: { __typename?: 'DroppagepopupRecord', title?: string | null, message?: string | null } | null };
 
 export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3682,6 +3750,10 @@ export const DropPageDocument = gql`
     headline
     instructions
     callout
+  }
+  droppagepopup {
+    title
+    message
   }
 }
     `;

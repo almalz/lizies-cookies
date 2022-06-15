@@ -16,6 +16,7 @@ import Link from 'next/link'
 import ProductList from '../components/ProductList'
 import { useRouter } from 'next/router'
 import { CalloutMessage } from '../components/Callout'
+import PagePopup from '../components/PagePopup'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const CartButton = dynamic(() => import('../components/CartButton'), {
@@ -25,9 +26,16 @@ const CartButton = dynamic(() => import('../components/CartButton'), {
 export type DropPageProps = {
   drop: Drop
   pageContent: DroppageRecord
+  popupMessage?: string
+  popupTitle?: string
 }
 
-const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+const Drop: NextPage<DropPageProps> = ({
+  drop,
+  pageContent,
+  popupMessage,
+  popupTitle,
+}) => {
   const router = useRouter()
 
   return (
@@ -64,6 +72,7 @@ const Drop: NextPage<DropPageProps> = ({ drop, pageContent }) => {
           <CartButton onClick={() => router.push('/cart')} />
         </div>
       </div>
+      {popupMessage && <PagePopup message={popupMessage} title={popupTitle} />}
     </Layout>
   )
 }
@@ -80,6 +89,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       drop: drop,
       pageContent: data?.droppage,
+      popupMessage: data?.droppagepopup?.message,
+      popupTitle: data?.droppagepopup?.title,
     },
   }
 }

@@ -53,6 +53,10 @@ query dropPage {
     instructions
     callout
   }
+  droppagepopup {
+    title
+    message
+  }
 }
 
 query CartPage {
