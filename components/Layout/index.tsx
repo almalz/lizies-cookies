@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { SeoField } from '../../types/generated/graphql'
+import { DebugIndicatior } from '../DebugIndicator'
 import { Footer } from '../Footer'
 import { Navbar } from '../Navbar'
 
@@ -32,6 +33,7 @@ const Layout: React.FC<LayoutProps> = ({
           type: 'website',
         }}
       />
+      <DebugIndicatior />
       {!hideNavbar && <Navbar />}
       {children}
       <Footer />
