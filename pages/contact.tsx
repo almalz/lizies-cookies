@@ -12,11 +12,11 @@ import {
   FormErrorMessage,
   Input,
   Textarea,
-  Select,
+  useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { H1, ParagraphXl } from '../components/Typography'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import { ContactFormValues } from './api/contact'
 
@@ -24,9 +24,7 @@ export type ContactPageProps = {
   contactpage: ContactpageRecord
 }
 
-const extractObject = (objectsString: string) => {
-  return objectsString.split('\n')
-}
+const TOAST_DURATION = 5000
 
 const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
   const [success, setSuccess] = useState<boolean>(false)
@@ -38,6 +36,37 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormValues>()
+
+  const toast = useToast()
+
+  useEffect(() => {
+    success &&
+      toast({
+        title: 'Message envoyé',
+        description: 'Promis on te répond rapidement',
+        status: 'success',
+        duration: TOAST_DURATION,
+        isClosable: true,
+      })
+    setTimeout(() => {
+      setSuccess(false), TOAST_DURATION
+    })
+  }, [success, toast])
+
+  useEffect(() => {
+    error &&
+      toast({
+        title: 'Erreur serveur',
+        description: "Le message n'a pas pu être envoyé",
+        status: 'error',
+        duration: TOAST_DURATION,
+        isClosable: true,
+      })
+
+    setTimeout(() => {
+      setError(false), TOAST_DURATION
+    })
+  }, [error, toast])
 
   const onSubmit = useCallback(
     async (formValues: any) => {
@@ -191,33 +220,23 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
               className="flex flex-col gap-1"
               isInvalid={!!errors.object}
             >
-              <FormLabel htmlFor="object" m="0" fontWeight="400">
+              <FormLabel htmlFor="phone" m="0" fontWeight="400">
                 {contactpage.objectLabel}*
               </FormLabel>
-              {contactpage?.objects && (
-                <Select
-                  id="object"
-                  {...register('object', {
-                    required: 'Ce champ est requis',
-                  })}
-                  rounded="none"
-                  borderColor="#F3A1A2"
-                  border="2px solid"
-                  focusBorderColor="#f8c7c7"
-                  _hover={{ borderColor: '#F3A1A2' }}
-                  _focus={{
-                    background: '#F3A1A211',
-                  }}
-                >
-                  {extractObject(contactpage?.objects).map((object) => {
-                    return (
-                      <option key={object} value={object}>
-                        {object}
-                      </option>
-                    )
-                  })}
-                </Select>
-              )}
+              <Input
+                id="object"
+                {...register('object', {
+                  required: 'Ce champ est requis',
+                })}
+                rounded="none"
+                borderColor="#F3A1A2"
+                border="2px solid"
+                focusBorderColor="#f8c7c7"
+                _hover={{ borderColor: '#F3A1A2' }}
+                _focus={{
+                  background: '#F3A1A211',
+                }}
+              />
               <FormErrorMessage>
                 {errors.object && errors.object.message}
               </FormErrorMessage>
@@ -253,16 +272,6 @@ const ContactPage: NextPage<ContactPageProps> = ({ contactpage }) => {
               <Button loading={isSubmitting} type="submit">
                 {contactpage.ctaLabel}
               </Button>
-              {success && (
-                <span className="pt-2 font-body  text-emerald-400">
-                  Message envoyé avec succès
-                </span>
-              )}
-              {error && (
-                <span className="pt-2 font-body text-red-500">
-                  Erreur serveur : le message n&apos;a pas pu être envoyé
-                </span>
-              )}
             </div>
           </form>
         </div>
