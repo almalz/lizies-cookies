@@ -57,17 +57,17 @@ const handler: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const body: SwellOrderCreatedWebhook = req.body
-
-  const order = await fetchWholeOrder(body.data.id)
-
-  const currentDrop = await fetchDropDeliveryDate()
-
-  console.info(
-    `sending confirmation email for order ${body.data.id} - ${order?.number}`
-  )
-
   try {
+    const body: SwellOrderCreatedWebhook = req.body
+
+    const order = await fetchWholeOrder(body.data.id)
+
+    const currentDrop = await fetchDropDeliveryDate()
+
+    console.info(
+      `sending confirmation email for order ${body.data.id} - ${order?.number}`
+    )
+
     const data = await SibApi.sendTransacEmail({
       to: [
         {
@@ -87,7 +87,10 @@ const handler: NextApiHandler = async (
     res.status(200).json({ data })
   } catch (error) {
     console.error(error)
-    res.status(500).send('Failed to send order confirmaition email')
+    res.status(500).json({
+      errorMessage: 'Failed to send order confirmaition email',
+      error,
+    })
   }
 }
 
