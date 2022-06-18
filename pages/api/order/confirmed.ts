@@ -87,7 +87,7 @@ const handler: NextApiHandler = async (
     res.status(200).json({ data })
   } catch (error) {
     console.error(error)
-    res.status(500).json({
+    res.status(202).json({
       errorMessage: 'Failed to send order confirmaition email',
       error,
     })
