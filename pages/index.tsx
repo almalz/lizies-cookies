@@ -51,10 +51,12 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         whiteSectionHeading={pageContent.whiteSectionHeading!}
         whiteSectionBody={pageContent.whiteSectionBody!}
       />
-      <ProductsSection
-        products={drop?.products}
-        buttonLabel={pageContent.productsSectionCtaLabel!}
-      />
+      {drop && (
+        <ProductsSection
+          products={drop?.products}
+          buttonLabel={pageContent.productsSectionCtaLabel!}
+        />
+      )}
       <PinkSection
         pinkSectionHeading={pageContent.pinkSectionHeading!}
         pinkSectionSubheading={pageContent.pinkSectionSubheading!}
