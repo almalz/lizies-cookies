@@ -52,7 +52,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         whiteSectionBody={pageContent.whiteSectionBody!}
       />
       <ProductsSection
-        products={drop.products!}
+        products={drop?.products}
         buttonLabel={pageContent.productsSectionCtaLabel!}
       />
       <PinkSection
