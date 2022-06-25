@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import { GetStaticProps, NextPage } from 'next'
 import Layout from '../components/Layout'
 import MarkdownRenderer from '../components/MarkdownRenderer'
