@@ -18,9 +18,9 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   }, [])
 
   return (
-    <div className="border-1 flex items-center border border-purple-700 sm:h-[40rem] sm:flex-col sm:p-2">
+    <div className="border-1 group flex items-center border border-purple-700 sm:h-[40rem] sm:flex-col sm:p-2">
       <button
-        className="relative m-1 aspect-square w-full hover:opacity-50 sm:m-0 sm:h-2/3 sm:w-full"
+        className="relative m-1 aspect-square w-full group-hover:opacity-50 sm:m-0 sm:h-2/3 sm:w-full"
         onClick={() => openProductModal()}
         type="button"
       >
@@ -34,7 +34,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
       </button>
       <div className="flex h-full w-full flex-col justify-between py-2 px-4 sm:h-1/3 sm:py-4 lg:px-[3%]">
         <button
-          className="text-left text-purple-700 hover:opacity-30 sm:p-2"
+          className="text-left text-purple-700 group-hover:opacity-30 sm:p-2"
           onClick={() => openProductModal()}
           type="button"
         >
