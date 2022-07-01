@@ -7,6 +7,7 @@ import {
 } from 'datocms-structured-text-utils'
 import { As } from '@chakra-ui/react'
 import { H, HeadingTagType } from './Heading'
+import clsx from 'clsx'
 
 export type MarkdownRenderer = {
   data: any
@@ -58,8 +59,8 @@ const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data, className }) => {
 
         renderNodeRule(isListItem, ({ node, children, key }) => {
           return (
-            <li className="list-disc pl-2 sm:pl-4" key={key}>
-              <p className={className}>{children}</p>
+            <li className={clsx('list-disc pl-2 sm:pl-4', className)} key={key}>
+              {children}
             </li>
           )
         }),

@@ -3,8 +3,19 @@ import fr from 'date-fns/locale/fr'
 
 export const injectVariables = (
   text: string,
-  variableSource: Record<string, any>
+  variableSource: Record<string, any> | undefined
 ) => {
+  if (!variableSource || Object.keys(variableSource).length === 0) {
+    return (
+      <span
+        className="animate-pulse"
+        style={{ backgroundColor: ' rgb(229 231 235)', color: 'transparent' }}
+      >
+        {text}
+      </span>
+    )
+  }
+
   const keys = Object.keys(variableSource)
 
   keys.forEach((key) => {

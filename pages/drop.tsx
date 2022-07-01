@@ -17,6 +17,8 @@ import ProductList from '../components/ProductList'
 import { useRouter } from 'next/router'
 import { CalloutMessage } from '../components/Callout'
 import PagePopup from '../components/PagePopup'
+import { ProductSkeleton } from '../components/ProductsSkeleton'
+import { useEffect, useState } from 'react'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const CartButton = dynamic(() => import('../components/CartButton'), {
@@ -24,19 +26,27 @@ const CartButton = dynamic(() => import('../components/CartButton'), {
 })
 
 export type DropPageProps = {
-  drop: Drop
   pageContent: DroppageRecord
   popupMessage?: string
   popupTitle?: string
 }
 
 const Drop: NextPage<DropPageProps> = ({
-  drop,
   pageContent,
   popupMessage,
   popupTitle,
 }) => {
+  const [drop, setDrop] = useState<Drop>()
+
   const router = useRouter()
+
+  useEffect(() => {
+    const fetchDrop = async () => {
+      const drop = await Products.getCurrentDrop()
+      if (drop) setDrop(drop)
+    }
+    fetchDrop()
+  }, [])
 
   return (
     <Layout
@@ -50,6 +60,7 @@ const Drop: NextPage<DropPageProps> = ({
         </div>
         <div className="px-4 pb-8 pt-12 text-purple-700 sm:px-16 lg:gap-4 lg:pt-16 lg:pb-4">
           <H1>{injectVariables(pageContent.title!, drop)}</H1>
+
           <h2 className="font-body text-lg font-bold italic ">
             {injectVariables(pageContent.headline!, drop)}
           </h2>
@@ -67,7 +78,7 @@ const Drop: NextPage<DropPageProps> = ({
             </Link>
           </div>
         </div>
-        <ProductList products={drop.products} />
+        {drop ? <ProductList products={drop.products} /> : <ProductSkeleton />}
         <div className="flex items-center justify-center py-8 ">
           <CartButton onClick={() => router.push('/cart')} />
         </div>
@@ -77,9 +88,7 @@ const Drop: NextPage<DropPageProps> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const drop = await Products.getCurrentDrop()
-
+export const getStaticProps: GetServerSideProps = async () => {
   const { data } = await client.query<DropPageQuery>({
     query: DropPageDocument,
     fetchPolicy: 'no-cache',
@@ -87,7 +96,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      drop: drop,
       pageContent: data?.droppage,
       popupMessage: data?.droppagepopup?.message,
       popupTitle: data?.droppagepopup?.title,
