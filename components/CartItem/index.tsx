@@ -61,7 +61,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isFirst }) => {
       </div>
       <div className="absolute top-0 right-0 p-2 sm:p-4 lg:p-8">
         <Button
-          className="px-0 py-0"
+          className="group px-0 py-0 hover:bg-transparent"
           noBorders
           onClick={() =>
             updateItems({
@@ -71,7 +71,11 @@ export const CartItem: React.FC<CartItemProps> = ({ item, isFirst }) => {
             })
           }
         >
-          <HiOutlineTrash size="24" color="#F3A1A2"></HiOutlineTrash>
+          <HiOutlineTrash
+            size="24"
+            color="#F3A1A2"
+            className="group-hover:stroke-pink-300"
+          ></HiOutlineTrash>
         </Button>
       </div>
     </div>

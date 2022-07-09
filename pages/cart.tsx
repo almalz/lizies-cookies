@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import Layout from '../components/Layout'
 import { H1 } from '../components/Typography'
 import client from '../lib/apolloClient'
@@ -77,11 +77,9 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
         ) : cart?.items && cart?.items.length > 0 ? (
           <>
             <CartItemsList
-              cartItems={
-                cart?.items.sort((a, b) => {
-                  return a.productId > b.productId ? 1 : -1
-                }) as any
-              }
+              cartItems={cart?.items.sort((a, b) => {
+                return a.productId > b.productId ? 1 : -1
+              })}
             />
             <CartSummary cart={cart} pageContent={pageContent} />
           </>
@@ -98,7 +96,7 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<CartPageQuery>({
     query: CartPageDocument,
   })
