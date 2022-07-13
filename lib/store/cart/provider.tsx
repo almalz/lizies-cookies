@@ -6,6 +6,7 @@ import {
   useState,
   useMemo,
 } from 'react'
+import { setCookiesExpiration } from '../../cookies'
 import { Cart } from './api'
 import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
@@ -80,6 +81,7 @@ const CartProvider: React.FC = ({ children }) => {
           cartItemsCache.items || []
         )
         setLoading(false)
+        setCartExpiration()
         if (newCart) setCart(newCart)
       }
     }
@@ -184,6 +186,12 @@ const useCart = () => {
     throw new Error('useCart must be used within a CartProvider')
   }
   return context
+}
+
+export const setCartExpiration = () => {
+  const d = new Date()
+  d.setHours(23, 59)
+  setCookiesExpiration('swell-session', d)
 }
 
 export { CartProvider, useCart }
