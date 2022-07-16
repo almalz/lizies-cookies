@@ -37,7 +37,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 
   return (
     <div className="flex flex-col gap-8 py-8 px-12 lg:px-[20%]">
-      <CouponsManager pageContent={pageContent} />
+      {/* <CouponsManager pageContent={pageContent} /> */}
       <div className="flex flex-col gap-2 font-body text-xl text-purple-700">
         <div className={`flex flex-row ${!cart.coupon && 'font-bold'}`}>
           <span className="flex-1">{pageContent.subtotalLabel} :</span>
