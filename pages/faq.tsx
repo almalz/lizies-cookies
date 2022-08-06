@@ -99,9 +99,10 @@ const FaqPage: NextPage<FaqPageProps> = ({ faqpage, faqitems }) => {
                       </Link>
                     </div>
                     <AccordionPanel
-                      pb={4}
-                      pl={8}
-                      className="bg-purple-100 bg-opacity-30 pb-2 pl-4 font-body"
+                      py={8}
+                      px={12}
+                      my={4}
+                      className="my-4 bg-purple-100 bg-opacity-30 font-body"
                     >
                       {item.answer && (
                         <MarkdownRenderer

@@ -40,7 +40,7 @@ const MarkdownRenderer: React.FC<MarkdownRenderer> = ({ data, className }) => {
             <p
               key={key}
               className={
-                'mt-1 mb-2 font-body text-purple-700 md:mt-2 md:mb-4 ' +
+                'mt-1 mb-2 font-body text-purple-700 md:mt-1 md:mb-1' +
                 className
               }
             >
