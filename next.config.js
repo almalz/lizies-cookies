@@ -4,6 +4,15 @@ const nextConfig = {
   images: {
     domains: ['www.datocms-assets.com', 'cdn.schema.io'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/drop',
+        destination: '/shop',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

@@ -17,7 +17,7 @@ type NavItem = {
 }
 
 const NAVITEMS: NavItem[] = [
-  { label: 'drop du moment', href: '/drop' },
+  { label: 'shop', href: '/shop' },
   { label: 'à propos', href: '/about' },
   { label: 'faq', href: '/faq' },
   { label: 'contact', href: '/contact' },

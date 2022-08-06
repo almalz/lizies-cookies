@@ -31,7 +31,7 @@ export type DropPageProps = {
   popupTitle?: string
 }
 
-const Drop: NextPage<DropPageProps> = ({
+const Shop: NextPage<DropPageProps> = ({
   pageContent,
   popupMessage,
   popupTitle,
@@ -79,7 +79,7 @@ const Drop: NextPage<DropPageProps> = ({
           </div>
         </div>
         {drop ? <ProductList products={drop.products} /> : <ProductSkeleton />}
-        <div className="flex items-center justify-center py-8 ">
+        <div className="flex items-center justify-center py-8 md:py-12 ">
           <CartButton onClick={() => router.push('/cart')} />
         </div>
       </div>
@@ -103,4 +103,4 @@ export const getStaticProps: GetServerSideProps = async () => {
   }
 }
 
-export default Drop
+export default Shop
