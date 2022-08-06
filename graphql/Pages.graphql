@@ -182,7 +182,7 @@ query FaqPage {
       twitterCard
     }
   }
-  allFaqitems(orderBy: order_ASC) {
+  allFaqitems(filter: {isActive: {eq: true}}, orderBy: order_ASC) {
     id
     question
     answer {

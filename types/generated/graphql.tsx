@@ -549,6 +549,7 @@ export type FaqitemModelFilter = {
   category?: InputMaybe<LinkFilter>;
   createdAt?: InputMaybe<CreatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  isActive?: InputMaybe<BooleanFilter>;
   order?: InputMaybe<IntegerFilter>;
   question?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<UpdatedAtFilter>;
@@ -575,6 +576,8 @@ export enum FaqitemModelOrderBy {
   CreatedAt_DESC = 'createdAt_DESC',
   Id_ASC = 'id_ASC',
   Id_DESC = 'id_DESC',
+  IsActive_ASC = 'isActive_ASC',
+  IsActive_DESC = 'isActive_DESC',
   Order_ASC = 'order_ASC',
   Order_DESC = 'order_DESC',
   Question_ASC = 'question_ASC',
@@ -601,6 +604,7 @@ export type FaqitemRecord = RecordInterface & {
   category?: Maybe<FaqcategoryRecord>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ItemId'];
+  isActive?: Maybe<Scalars['BooleanType']>;
   order?: Maybe<Scalars['IntType']>;
   question?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
@@ -4048,7 +4052,7 @@ export const FaqPageDocument = gql`
       twitterCard
     }
   }
-  allFaqitems(orderBy: order_ASC) {
+  allFaqitems(filter: {isActive: {eq: true}}, orderBy: order_ASC) {
     id
     question
     answer {
