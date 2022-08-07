@@ -69,14 +69,6 @@ const Shop: NextPage<DropPageProps> = ({
               <CalloutMessage message={pageContent.callout} />
             )}
           </div>
-          <div className="flex items-center gap-1 pt-4 sm:pt-4">
-            <GoInfo size="18" color="#a1a1a1" />
-            <Link href="/faq#111365087">
-              <a className="font-body text-base text-zinc-400 hover:underline">
-                {injectVariables(pageContent.instructions!, drop)}
-              </a>
-            </Link>
-          </div>
         </div>
         {drop ? <ProductList products={drop.products} /> : <ProductSkeleton />}
         <div className="flex items-center justify-center py-8 md:py-12 ">
