@@ -16,7 +16,7 @@ export const Markdown: React.FC<{ className?: string }> = ({
   children,
 }) => (
   <ReactMarkdown
-    remarkPlugins={[remarkBreaks, remarkGemoji]}
+    remarkPlugins={[remarkGemoji]}
     className={'markdown ' + className}
   >
     {(children as string).replaceAll('<br>', '')}

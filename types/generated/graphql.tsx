@@ -127,6 +127,65 @@ export type CartpageRecordAccepttermsmessageArgs = {
   markdown?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** Record of type CateringPage (cateringpage) */
+export type CateringpageRecord = RecordInterface & {
+  __typename?: 'CateringpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  contactCallout?: Maybe<Scalars['String']>;
+  contactCtaLabel?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  headline?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  noindex?: Maybe<Scalars['BooleanType']>;
+  purpleSectionBody?: Maybe<Scalars['String']>;
+  purpleSectionCtaLabel?: Maybe<Scalars['String']>;
+  purpleSectionFile?: Maybe<FileField>;
+  purpleSectionImage?: Maybe<FileField>;
+  purpleSectionTitle?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+  whiteSectionBody?: Maybe<Scalars['String']>;
+  whiteSectionCtaLabel?: Maybe<Scalars['String']>;
+  whiteSectionFile?: Maybe<FileField>;
+  whiteSectionImage?: Maybe<FileField>;
+  whiteSectionTitle?: Maybe<Scalars['String']>;
+};
+
+
+/** Record of type CateringPage (cateringpage) */
+export type CateringpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type CateringPage (cateringpage) */
+export type CateringpageRecordHeadlineArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type CateringPage (cateringpage) */
+export type CateringpageRecordPurpleSectionBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type CateringPage (cateringpage) */
+export type CateringpageRecordWhiteSectionBodyArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType'];
@@ -2659,6 +2718,8 @@ export type Query = {
   /** Returns the single instance record */
   cartpage?: Maybe<CartpageRecord>;
   /** Returns the single instance record */
+  cateringpage?: Maybe<CateringpageRecord>;
+  /** Returns the single instance record */
   contactpage?: Maybe<ContactpageRecord>;
   /** Returns a specific record */
   drop?: Maybe<DropRecord>;
@@ -2803,6 +2864,13 @@ export type QueryAllUploadsArgs = {
 
 /** The query root for this schema */
 export type QueryCartpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryCateringpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3551,6 +3619,11 @@ export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ContactPageQuery = { __typename?: 'Query', contactpage?: { __typename?: 'ContactpageRecord', noindex?: any | null, title?: string | null, header?: string | null, nameLabel?: string | null, firstnameLabel?: string | null, emailLabel?: string | null, phoneLabel?: string | null, objectLabel?: string | null, objects?: string | null, messageLabel?: string | null, ctaLabel?: string | null, seo?: { __typename?: 'SeoField', title?: string | null, description?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null } | null };
 
+export type CateringPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CateringPageQuery = { __typename?: 'Query', cateringpage?: { __typename?: 'CateringpageRecord', title?: string | null, headline?: string | null, whiteSectionTitle?: string | null, whiteSectionBody?: string | null, whiteSectionCtaLabel?: string | null, purpleSectionTitle?: string | null, purpleSectionBody?: string | null, purpleSectionCtaLabel?: string | null, contactCtaLabel?: string | null, contactCallout?: string | null, noindex?: any | null, whiteSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, whiteSectionFile?: { __typename?: 'FileField', url: string } | null, purpleSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, purpleSectionFile?: { __typename?: 'FileField', url: string } | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null } | null };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4196,6 +4269,75 @@ export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
 export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
 export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
+export const CateringPageDocument = gql`
+    query CateringPage {
+  cateringpage {
+    title
+    headline
+    whiteSectionTitle
+    whiteSectionBody
+    whiteSectionCtaLabel
+    whiteSectionImage {
+      alt
+      url
+      author
+    }
+    whiteSectionFile {
+      url
+    }
+    purpleSectionTitle
+    purpleSectionBody
+    purpleSectionCtaLabel
+    purpleSectionImage {
+      alt
+      url
+      author
+    }
+    purpleSectionFile {
+      url
+    }
+    contactCtaLabel
+    contactCallout
+    noindex
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        alt
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useCateringPageQuery__
+ *
+ * To run a query within a React component, call `useCateringPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCateringPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCateringPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCateringPageQuery(baseOptions?: Apollo.QueryHookOptions<CateringPageQuery, CateringPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CateringPageQuery, CateringPageQueryVariables>(CateringPageDocument, options);
+      }
+export function useCateringPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CateringPageQuery, CateringPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CateringPageQuery, CateringPageQueryVariables>(CateringPageDocument, options);
+        }
+export type CateringPageQueryHookResult = ReturnType<typeof useCateringPageQuery>;
+export type CateringPageLazyQueryHookResult = ReturnType<typeof useCateringPageLazyQuery>;
+export type CateringPageQueryResult = Apollo.QueryResult<CateringPageQuery, CateringPageQueryVariables>;
 export const ProductsDocument = gql`
     query products {
   allProducts {

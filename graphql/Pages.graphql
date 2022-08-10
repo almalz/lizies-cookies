@@ -242,3 +242,44 @@ query ContactPage {
     ctaLabel
   }
 }
+
+query CateringPage {
+  cateringpage {
+    title
+    headline
+    whiteSectionTitle
+    whiteSectionBody
+    whiteSectionCtaLabel
+    whiteSectionImage {
+      alt
+      url
+      author
+    }
+    whiteSectionFile {
+      url
+    }
+    purpleSectionTitle
+    purpleSectionBody
+    purpleSectionCtaLabel
+    purpleSectionImage {
+      alt
+      url
+      author
+    }
+    purpleSectionFile {
+      url
+    }
+    contactCtaLabel
+    contactCallout
+    noindex
+    seo {
+      description
+      title
+      twitterCard
+      image {
+        alt
+        url
+      }
+    }
+  }
+}
