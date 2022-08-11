@@ -85,11 +85,11 @@ const CateringPage: NextPage<CateringPageProps> = ({ pagecontent }) => {
             </div>
           </div>
           <div className="bg-purple-700 px-8 py-8 sm:px-16 md:px-24 lg:px-32 lg:py-12 xl:px-60 xl:py-20">
-            <div className="flex flex-col items-center gap-y-6 bg-pink-500 py-8 xl:py-16 2xl:gap-y-12 2xl:px-60">
-              <h3 className="font-subtitle text-4xl text-purple-500 lg:text-5xl">
+            <div className="flex flex-col items-center gap-y-6 border-2 border-white py-8 xl:py-16 2xl:gap-y-12 2xl:px-60">
+              <h3 className="font-subtitle text-4xl text-white lg:text-5xl">
                 {pagecontent.contactCallout}
               </h3>
-              <ButtonLink color="purple" href="/contact">
+              <ButtonLink color="white" href="/contact">
                 {pagecontent.contactCtaLabel}
               </ButtonLink>
             </div>

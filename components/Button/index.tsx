@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 export type ButtonProps = {
-  color?: 'pink' | 'purple'
+  color?: 'pink' | 'purple' | 'white'
   onClick?: () => void
   className?: string
   disabled?: boolean
@@ -13,7 +13,7 @@ export type ButtonProps = {
 }
 
 export type ButtonLinkProps = {
-  color?: 'pink' | 'purple'
+  color?: 'pink' | 'purple' | 'white'
   href: string
   isExtrenal?: boolean
 }
@@ -41,6 +41,8 @@ export const Button: React.FC<ButtonProps> = ({
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
+        color === 'white' && 'border-white text-white hover:bg-neutral-100',
+        ,
       ])}
       onClick={() => !disabled && onClick && onClick()}
       {...props}
@@ -67,6 +69,7 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
               'border-pink-500 text-pink-500 hover:bg-pink-100',
             color === 'purple' &&
               'border-purple-700 text-purple-700 hover:bg-purple-200',
+            color === 'white' && 'border-white text-white hover:bg-neutral-100',
           ])}
           href={href}
           target="_blank"
@@ -84,6 +87,8 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
                 'border-pink-500 text-pink-500 hover:bg-pink-100',
               color === 'purple' &&
                 'border-purple-700 text-purple-700 hover:bg-purple-300',
+              color === 'white' &&
+                'border-white text-white hover:bg-neutral-100',
             ])}
             {...props}
           >
