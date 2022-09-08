@@ -1,8 +1,14 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import * as SibApiV3Sdk from '@sendinblue/client'
 import { SwellOrderCreatedWebhook } from '../../../types/orders'
-import swell from '../../../lib/store/swell'
+// @ts-ignore
+import swell from 'swell-node'
 import { Products } from '../../../lib/store/products/api'
+
+swell.init(
+  process.env.NEXT_PUBLIC_SWELL_STORE_ID,
+  process.env.SWELL_SECRET_KEY
+)
 
 const SibApi = new SibApiV3Sdk.TransactionalEmailsApi()
 
