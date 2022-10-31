@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({
   hideNavbar = false,
 }) => {
   return (
-    <>
+    <div className="relative flex min-h-screen flex-col">
       <NextSeo
         noindex={noIndex}
         title={seo?.title || 'Naughty cookies'}
@@ -35,9 +35,9 @@ const Layout: React.FC<LayoutProps> = ({
       />
       <DebugIndicatior />
       {!hideNavbar && <Navbar />}
-      {children}
+      <div className="pb-[220px]">{children}</div>
       <Footer />
-    </>
+    </div>
   )
 }
 

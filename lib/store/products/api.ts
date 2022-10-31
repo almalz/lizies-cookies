@@ -6,11 +6,11 @@ const TODAY = new Date(Date.now())
 
 export const Products = {
   getAllProducts: async () => {
-    const products = await swell.products.list({
-      limit: 25,
+    const {results} = await swell.products.list({
+      limit: 50,
       page: 1,
     })
-    return products
+    return results
   },
 
   getProduct: async () => {

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useCart, useProducts } from '../../lib/store'
 import { Paragraph } from '../Typography'
 import { useCallback, useState } from 'react'
+import { Cart } from '../../lib/store/cart/api'
 
 export type CartSummaryProps = {
   cart: SwellCart
