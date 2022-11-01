@@ -318,6 +318,33 @@ export type DateTimeFilter = {
   neq?: InputMaybe<Scalars['DateTime']>;
 };
 
+/** Record of type DeliveryConfig (deliveryconfig) */
+export type DeliveryconfigRecord = RecordInterface & {
+  __typename?: 'DeliveryconfigRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  deliveryRange?: Maybe<Scalars['IntType']>;
+  id: Scalars['ItemId'];
+  nbDaysBeforeDelivery?: Maybe<Scalars['IntType']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type DeliveryConfig (deliveryconfig) */
+export type DeliveryconfigRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type DropModelFilter = {
   OR?: InputMaybe<Array<InputMaybe<DropModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
@@ -511,6 +538,75 @@ export type ErrorpageRecord = RecordInterface & {
 
 /** Record of type ErrorPage (errorpage) */
 export type ErrorpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type ExcludeddeliverydateModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  date?: InputMaybe<DateFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum ExcludeddeliverydateModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Date_ASC = 'date_ASC',
+  Date_DESC = 'date_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+/** Record of type ExcludedDeliveryDate (excludeddeliverydate) */
+export type ExcludeddeliverydateRecord = RecordInterface & {
+  __typename?: 'ExcludeddeliverydateRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  date?: Maybe<Scalars['Date']>;
+  id: Scalars['ItemId'];
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type ExcludedDeliveryDate (excludeddeliverydate) */
+export type ExcludeddeliverydateRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2694,6 +2790,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allDropsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allExcludeddeliverydatesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allFaqcategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFaqitemsMeta: CollectionMetadata;
@@ -2708,6 +2806,8 @@ export type Query = {
   /** Returns a collection of records */
   allDrops: Array<DropRecord>;
   /** Returns a collection of records */
+  allExcludeddeliverydates: Array<ExcludeddeliverydateRecord>;
+  /** Returns a collection of records */
   allFaqcategories: Array<FaqcategoryRecord>;
   /** Returns a collection of records */
   allFaqitems: Array<FaqitemRecord>;
@@ -2721,6 +2821,8 @@ export type Query = {
   cateringpage?: Maybe<CateringpageRecord>;
   /** Returns the single instance record */
   contactpage?: Maybe<ContactpageRecord>;
+  /** Returns the single instance record */
+  deliveryconfig?: Maybe<DeliveryconfigRecord>;
   /** Returns a specific record */
   drop?: Maybe<DropRecord>;
   /** Returns the single instance record */
@@ -2729,6 +2831,8 @@ export type Query = {
   droppagepopup?: Maybe<DroppagepopupRecord>;
   /** Returns the single instance record */
   errorpage?: Maybe<ErrorpageRecord>;
+  /** Returns a specific record */
+  excludeddeliverydate?: Maybe<ExcludeddeliverydateRecord>;
   /** Returns a specific record */
   faqcategory?: Maybe<FaqcategoryRecord>;
   /** Returns a specific record */
@@ -2758,6 +2862,14 @@ export type Query = {
 export type Query_AllDropsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<DropModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllExcludeddeliverydatesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2814,6 +2926,17 @@ export type QueryAllDropsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllExcludeddeliverydatesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2884,6 +3007,13 @@ export type QueryContactpageArgs = {
 
 
 /** The query root for this schema */
+export type QueryDeliveryconfigArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 export type QueryDropArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<DropModelFilter>;
@@ -2910,6 +3040,15 @@ export type QueryDroppagepopupArgs = {
 export type QueryErrorpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryExcludeddeliverydateArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelOrderBy>>>;
 };
 
 
@@ -3557,6 +3696,11 @@ export type FocalPoint = {
   y: Scalars['FloatType'];
 };
 
+export type DeliveryConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DeliveryConfigQuery = { __typename?: 'Query', allExcludeddeliverydates: Array<{ __typename?: 'ExcludeddeliverydateRecord', date?: any | null }>, deliveryconfig?: { __typename?: 'DeliveryconfigRecord', nbDaysBeforeDelivery?: any | null, deliveryRange?: any | null } | null };
+
 export type DropsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3630,6 +3774,44 @@ export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 export type ProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, name?: string | null, unitPrice?: any | null, createdAt: any }> };
 
 
+export const DeliveryConfigDocument = gql`
+    query DeliveryConfig {
+  allExcludeddeliverydates(orderBy: date_ASC) {
+    date
+  }
+  deliveryconfig {
+    nbDaysBeforeDelivery
+    deliveryRange
+  }
+}
+    `;
+
+/**
+ * __useDeliveryConfigQuery__
+ *
+ * To run a query within a React component, call `useDeliveryConfigQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDeliveryConfigQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDeliveryConfigQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDeliveryConfigQuery(baseOptions?: Apollo.QueryHookOptions<DeliveryConfigQuery, DeliveryConfigQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DeliveryConfigQuery, DeliveryConfigQueryVariables>(DeliveryConfigDocument, options);
+      }
+export function useDeliveryConfigLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DeliveryConfigQuery, DeliveryConfigQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DeliveryConfigQuery, DeliveryConfigQueryVariables>(DeliveryConfigDocument, options);
+        }
+export type DeliveryConfigQueryHookResult = ReturnType<typeof useDeliveryConfigQuery>;
+export type DeliveryConfigLazyQueryHookResult = ReturnType<typeof useDeliveryConfigLazyQuery>;
+export type DeliveryConfigQueryResult = Apollo.QueryResult<DeliveryConfigQuery, DeliveryConfigQueryVariables>;
 export const DropsDocument = gql`
     query Drops {
   allDrops {

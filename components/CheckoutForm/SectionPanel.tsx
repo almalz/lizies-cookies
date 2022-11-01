@@ -13,7 +13,6 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
   value,
   isOpen,
 }) => {
-  console.log({ isOpen, value })
   return (
     <AccordionButton
       disabled={isOpen}
