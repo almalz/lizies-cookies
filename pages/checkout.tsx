@@ -20,6 +20,8 @@ const Checkout: React.FC = () => {
     setValue,
   } = useCheckout()
 
+  const filteredSection = sections.slice(0, currentSectionId + 1)
+
   return (
     <Layout hideNavbar noIndex={true} slug="checkout">
       <div className="my-8 px-8 pb-8 sm:px-[20%] sm:pb-16 lg:px-[25%]">
@@ -45,7 +47,7 @@ const Checkout: React.FC = () => {
             index={[currentSectionId]}
             onChange={(index) => setCurrentSectionId(index as number)}
           >
-            {sections.map(({ label, value, id }) => {
+            {filteredSection.map(({ label, value, id }) => {
               const Section = SectionComponent[id]
               return (
                 Section && (
