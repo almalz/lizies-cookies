@@ -48,13 +48,11 @@ export const stringifyAccount = ({
   email,
   shipping: { address1, address2, city, zip, phone },
 }: SwellAccount) => {
-  const formatedAddress = `${firstName} ${lastName}
-  ${email}
-  ${phone}
-  ${address1}
-  ${address2}
-  ${city} ${zip}
-  `
+  const formatedAddress = `${firstName || ''} ${lastName || ''}\n${
+    email ? email + '\n' : ''
+  }${phone ? phone + '\n' : ''}${address1 ? address1 + '\n' : ''}${
+    address2 ? address2 + '\n' : ''
+  }${zip} ${city}`
 
   return formatedAddress
 }

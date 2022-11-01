@@ -28,11 +28,11 @@ export type Section = {
 }
 
 export const SectionComponent: Record<
-  number,
+  string,
   React.ComponentType<{ onComplete: (value: string) => void }>
 > = {
-  0: CheckoutForm,
-  1: DeliveryDatePicker,
+  '0': CheckoutForm,
+  '1': DeliveryDatePicker,
 }
 
 const SECTIONS: Section[] = [
@@ -54,7 +54,6 @@ const CheckoutStateContext = createContext<
       currentSectionId: number
       setCurrentSectionId: Dispatch<SetStateAction<number>>
       nextSection: () => void
-      getSection: (id: number) => Section | undefined
       setValue: (sectionId: number, value: Section['value']) => void
     }
   | undefined
@@ -65,21 +64,16 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
   const [sections, setSections] = useState(SECTIONS)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const existingCheckout = sessionStorage.getItem('checkout')
+    const existingCheckout = sessionStorage.getItem('checkout')
 
-      if (existingCheckout) {
-        const s = JSON.parse(existingCheckout) as Section[]
-        console.log({ s })
-        setSections(s)
-      }
+    if (existingCheckout) {
+      const s = JSON.parse(existingCheckout) as Section[]
+      setSections(s)
     }
   }, [])
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('checkout', JSON.stringify(sections))
-    }
+    sessionStorage.setItem('checkout', JSON.stringify(sections))
   }, [sections])
 
   const nextSection = useCallback(() => {
@@ -88,21 +82,16 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setValue = useCallback(
     (sectionId: number, value: Section['value']) => {
-      const section = sections.find((section) => section.id === sectionId)
+      const section = sections.find((s) => s.id === sectionId)
       if (!section) return
       section.value = value
 
-      setSections([
+      const newSections = [
         ...sections.filter((section) => section.id !== sectionId),
         section,
-      ])
-    },
-    [sections]
-  )
+      ]
 
-  const getSection = useCallback(
-    (id: number) => {
-      return sections.find((section) => (section.id = id))
+      setSections(newSections.sort((a, b) => a.id - b.id))
     },
     [sections]
   )
@@ -113,17 +102,9 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
       setCurrentSectionId,
       currentSectionId,
       nextSection,
-      getSection,
       setValue,
     }),
-    [
-      sections,
-      setCurrentSectionId,
-      currentSectionId,
-      getSection,
-      nextSection,
-      setValue,
-    ]
+    [sections, setCurrentSectionId, currentSectionId, nextSection, setValue]
   )
   return (
     <CheckoutStateContext.Provider value={value}>

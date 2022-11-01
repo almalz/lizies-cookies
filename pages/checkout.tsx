@@ -10,7 +10,6 @@ import {
 } from '../lib/checkout/provider'
 import { SectionPanel } from '../components/CheckoutForm/SectionPanel'
 import clsx from 'clsx'
-import swell from '../lib/store/swell'
 
 const Checkout: React.FC = () => {
   const {
@@ -18,7 +17,6 @@ const Checkout: React.FC = () => {
     currentSectionId,
     setCurrentSectionId,
     nextSection,
-    getSection,
     setValue,
   } = useCheckout()
 
@@ -44,6 +42,7 @@ const Checkout: React.FC = () => {
           </a>
           <Accordion
             defaultIndex={[0]}
+            index={[currentSectionId]}
             onChange={(index) => setCurrentSectionId(index as number)}
           >
             {sections.map(({ label, value, id }) => {

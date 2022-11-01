@@ -13,6 +13,7 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
   value,
   isOpen,
 }) => {
+  console.log({ isOpen, value })
   return (
     <AccordionButton
       disabled={isOpen}
@@ -27,7 +28,11 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
       >
         {label}
       </Box>
-      {!isOpen ?? value}
+      {!isOpen && (
+        <pre className="my-4 ml-8 text-left font-sans text-xs font-bold">
+          {value}
+        </pre>
+      )}
     </AccordionButton>
   )
 }

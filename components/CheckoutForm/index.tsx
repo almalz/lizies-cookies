@@ -6,6 +6,7 @@ import {
   checkoutFormToSwellAccount,
   stringifyAccount,
 } from '../../lib/checkout/utils'
+import { useCallback, useEffect } from 'react'
 
 export type CheckoutFormValues = {
   firstName: string
@@ -22,11 +23,28 @@ export type CheckoutFormValues = {
 const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
   onComplete,
 }) => {
+  const getInitialValues = useCallback(() => {
+    let data = sessionStorage.getItem('checkoutForm')
+    if (data) {
+      try {
+        data = JSON.parse(data)
+      } catch (err) {
+        console.error(err)
+      }
+      return data as CheckoutFormValues | null
+    }
+    return
+  }, [])
+
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
-  } = useForm<CheckoutFormValues>()
+  } = useForm<CheckoutFormValues>({
+    defaultValues: getInitialValues() || undefined,
+  })
+
   const onSubmit = async (values: CheckoutFormValues) => {
     const res = await fetch('/api/account', {
       method: 'POST',
@@ -35,6 +53,20 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
     const account = await res.json()
     onComplete(stringifyAccount(account))
   }
+
+  const formValues = getValues()
+
+  useEffect(() => {
+    const currentValues = sessionStorage.getItem('checkoutForm')
+
+    if (currentValues) {
+      const s = JSON.parse(currentValues)
+    }
+  }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('checkoutForm', JSON.stringify(formValues))
+  }, [formValues])
 
   return (
     <form
