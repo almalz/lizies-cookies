@@ -1,13 +1,19 @@
 import { Select } from '@chakra-ui/react'
 import { useDeliveryConfigQuery } from '../../types/generated/graphql'
-import { addDays, format } from 'date-fns'
+import { addDays, format, isSameDay } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 
 const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
 
-
-
+const includesDate = (d: Date, dateArray: Date[]) => {
+  for (const date of dateArray) {
+    if (isSameDay(date, d)) {
+      return true
+    }
+  }
+  return false
+}
 
 const generateAllDates = (
   dateRange: number,
@@ -18,19 +24,23 @@ const generateAllDates = (
 
   const daysWithOffset = addDays(today, offset || 0)
 
-  const dates = [
-    { date: daysWithOffset, dateString: formatDate(daysWithOffset) },
-  ]
-  
-  const index = 1
+  let dateBuffer = daysWithOffset
+  let index = 0
+
+  const result = []
 
   while (index < dateRange) {
-    const dateToAdd = addDays(dates[dates.length - 1].date, 1)
-    if()
-    dates.push({ date: dateToAdd, dateString: formatDate(dateToAdd) })
+    const dateToAdd = addDays(dateBuffer, 1)
+    dateBuffer = dateToAdd
+    if (excludedDates && excludedDates.length > 0) {
+      if (!includesDate(dateToAdd, excludedDates)) {
+        result.push({ date: dateToAdd, dateString: formatDate(dateToAdd) })
+      }
+    }
+    index++
   }
 
-  return dates
+  return result
 }
 
 const DeliveryDatePicker: React.FC<{
@@ -46,10 +56,9 @@ const DeliveryDatePicker: React.FC<{
 
   const dates = generateAllDates(
     deliveryconfig!.deliveryRange,
-    deliveryconfig!.nbDaysBeforeDelivery
+    deliveryconfig!.nbDaysBeforeDelivery,
+    allExcludeddeliverydates.map((d) => new Date(d.date))
   )
-
-  console.log(dates)
 
   return (
     <Select variant="filled" placeholder="Select option">
