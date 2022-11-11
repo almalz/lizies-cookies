@@ -78,6 +78,12 @@ const DeliveryDatePicker: React.FC<{
       placeholder="Select option"
       onChange={handleDateSelect}
       value={selectedDate}
+      color="#2E1550"
+      bg="#fdecec"
+      cursor="pointer"
+      _hover={{ background: '#fad9da' }}
+      fontFamily="Chloé"
+      fontWeight="500"
     >
       {dates.map(({ dateString, date }) => (
         <option value={dateString} key={date.toString()}>

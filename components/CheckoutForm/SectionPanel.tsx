@@ -17,8 +17,10 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
     <AccordionButton
       disabled={isOpen}
       as={isOpen ? 'div' : 'button'}
-      className={clsx(isOpen ? 'hover:bg-white' : 'hover:bg-slate-400')}
-      _hover={{ background: isOpen ? '#fff' : '#fdecec' }}
+      bg={!isOpen ? '#fdecec' : 'transparent'}
+      color="#2E1550"
+      _hover={{ background: !isOpen && '#fad9da' }}
+      rounded="md"
     >
       <Box
         flex="1"

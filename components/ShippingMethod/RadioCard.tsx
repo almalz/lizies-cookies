@@ -14,8 +14,8 @@ export const RadioCard: React.FC<UseRadioProps> = (props) => {
       <div
         {...checkbox}
         className={clsx(
-          'flex h-24 cursor-pointer flex-row items-center gap-2 rounded-md  border-2 px-5 py-3 hover:bg-pink-100',
-          props.isChecked ? 'border-pink-500 bg-pink-100' : 'border-gray-200'
+          'flex h-24 cursor-pointer flex-row items-center gap-2 rounded-md border-2 border-pink-500 px-5 py-3 text-purple-500 hover:bg-pink-100',
+          props.isChecked && 'bg-pink-100'
         )}
       >
         <HiCheckCircle
@@ -25,5 +25,11 @@ export const RadioCard: React.FC<UseRadioProps> = (props) => {
         <div>{props.children}</div>
       </div>
     </Box>
+  )
+}
+
+export const RadioCardSkeleton: React.FC = () => {
+  return (
+    <div className="flex h-24 animate-pulse flex-row items-center gap-2 rounded-md bg-gray-100 px-5 py-3" />
   )
 }

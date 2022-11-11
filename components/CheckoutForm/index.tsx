@@ -6,7 +6,7 @@ import {
   checkoutFormToSwellAccount,
   stringifyAccount,
 } from '../../lib/checkout/utils'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Cart } from '../../lib/store/cart/api'
 import { SwellAccount } from '../../lib/store/account/types'
 
@@ -25,6 +25,8 @@ export type CheckoutFormValues = {
 const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
   onComplete,
 }) => {
+  const [loading, setLoading] = useState(false)
+
   const getInitialValues = useCallback(() => {
     let data = sessionStorage.getItem('checkoutForm')
     if (data) {
@@ -48,6 +50,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
   })
 
   const onSubmit = async (values: CheckoutFormValues) => {
+    setLoading(true)
     const res = await fetch('/api/account', {
       method: 'POST',
       body: JSON.stringify({ account: checkoutFormToSwellAccount(values) }),
@@ -58,8 +61,8 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
     } catch (error) {
       console.error(error)
     }
-
     onComplete(stringifyAccount(account))
+    setLoading(false)
   }
 
   const formValues = getValues()
@@ -160,6 +163,8 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
         bgColor="#2E1550"
         color="#fff"
         type="submit"
+        isLoading={loading}
+        isDisabled={loading}
         _disabled={{ background: '#2E1550', opacity: 0.7 }}
         _hover={{ background: '#2E1550', opacity: 0.5 }}
         disabled={Object.keys(errors).length > 0}
