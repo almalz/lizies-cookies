@@ -7,6 +7,8 @@ import {
   stringifyAccount,
 } from '../../lib/checkout/utils'
 import { useCallback, useEffect } from 'react'
+import { Cart } from '../../lib/store/cart/api'
+import { SwellAccount } from '../../lib/store/account/types'
 
 export type CheckoutFormValues = {
   firstName: string
@@ -50,19 +52,17 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
       method: 'POST',
       body: JSON.stringify({ account: checkoutFormToSwellAccount(values) }),
     })
-    const account = await res.json()
+    const account: SwellAccount = await res.json()
+    try {
+      await Cart.updateCartAccount(account)
+    } catch (error) {
+      console.error(error)
+    }
+
     onComplete(stringifyAccount(account))
   }
 
   const formValues = getValues()
-
-  useEffect(() => {
-    const currentValues = sessionStorage.getItem('checkoutForm')
-
-    if (currentValues) {
-      const s = JSON.parse(currentValues)
-    }
-  }, [])
 
   useEffect(() => {
     sessionStorage.setItem('checkoutForm', JSON.stringify(formValues))
@@ -140,8 +140,8 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
 
         <Input
           type="text"
-          label="33000"
-          placeholder="Code postal"
+          label="Code postal"
+          placeholder="33000"
           autoComplete="postal-code"
           isInvalid={!!errors.zip}
           {...register('zip', { required: true })}

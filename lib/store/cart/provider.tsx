@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import {
   createContext,
   useCallback,
@@ -37,6 +38,7 @@ const CartProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [cart, setCart] = useState<SwellCart>()
   const [cartItemsCache, setCartItemsCache] = useState<CartCache | undefined>()
+  const router = useRouter()
 
   const cartItems = useMemo(() => {
     return cart?.items
@@ -49,10 +51,6 @@ const CartProvider: React.FC = ({ children }) => {
         .reduce((prev, curr) => prev + curr, 0) || 0
     return res
   }, [cartItems])
-
-  const checkoutUrl = useMemo(() => {
-    return cart?.checkoutUrl
-  }, [cart])
 
   const coupon = useMemo(() => {
     return cart?.coupon
@@ -133,17 +131,8 @@ const CartProvider: React.FC = ({ children }) => {
 
   const goToCheckout = useCallback(async () => {
     await Cart.updateAllItems(cartItems || [])
-    if (checkoutUrl) {
-      window.location.href = checkoutUrl
-    } else {
-      setLoading(true)
-      const cart = await Cart.get()
-      if (cart?.checkoutUrl) {
-        window.location.href
-      }
-      setLoading(false)
-    }
-  }, [checkoutUrl, cartItems])
+    router.push('/checkout')
+  }, [cartItems])
 
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)

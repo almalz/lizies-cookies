@@ -54,3 +54,17 @@ export type SwellCartItem = {
   productId: string
   quantity: number
 }
+
+export type SwellShippingService = {
+  description?: string
+  id: string
+  name: string
+  pickup: boolean
+  price: number
+}
+
+export type SwellShippingServices = {
+  dateCreated: string
+  fingerprint: string
+  services: SwellShippingService[]
+}

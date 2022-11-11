@@ -1,7 +1,8 @@
 import { Select } from '@chakra-ui/react'
 import { useDeliveryConfigQuery } from '../../types/generated/graphql'
-import { addDays, format, isSameDay } from 'date-fns'
+import { addDays, format, isSameDay, isValid } from 'date-fns'
 import fr from 'date-fns/locale/fr'
+import { ChangeEvent, useState } from 'react'
 
 const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
@@ -48,6 +49,8 @@ const DeliveryDatePicker: React.FC<{
 }> = ({ onComplete }) => {
   const { data, loading } = useDeliveryConfigQuery()
 
+  const [selectedDate, setSelectedDate] = useState<string | undefined>()
+
   if (loading || !data) {
     return null
   }
@@ -60,10 +63,24 @@ const DeliveryDatePicker: React.FC<{
     allExcludeddeliverydates.map((d) => new Date(d.date))
   )
 
+  const handleDateSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    const date = e.target.value
+    setSelectedDate(date)
+    if (isValid(new Date(date))) {
+      onComplete(date)
+      setSelectedDate(undefined)
+    }
+  }
+
   return (
-    <Select variant="filled" placeholder="Select option">
+    <Select
+      variant="filled"
+      placeholder="Select option"
+      onChange={handleDateSelect}
+      value={selectedDate}
+    >
       {dates.map(({ dateString, date }) => (
-        <option value="date" key={date.toString()}>
+        <option value={dateString} key={date.toString()}>
           {dateString}
         </option>
       ))}

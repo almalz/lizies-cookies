@@ -3,24 +3,25 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Accordion, AccordionItem, AccordionPanel } from '@chakra-ui/react'
-import {
-  CheckoutProvider,
-  SectionComponent,
-  useCheckout,
-} from '../lib/checkout/provider'
+import { SectionComponent, useCheckout } from '../lib/checkout/provider'
 import { SectionPanel } from '../components/CheckoutForm/SectionPanel'
 import clsx from 'clsx'
+import dynamic from 'next/dynamic'
+const CheckoutProvider = dynamic(() => import('../lib/checkout/provider'), {
+  ssr: false,
+})
 
 const Checkout: React.FC = () => {
   const {
     sections,
     currentSectionId,
+
     setCurrentSectionId,
     nextSection,
     setValue,
   } = useCheckout()
 
-  const filteredSection = sections.slice(0, currentSectionId + 1)
+  const filteredSections = sections.slice(0, currentSectionId + 1)
 
   return (
     <Layout hideNavbar noIndex={true} slug="checkout">
@@ -47,7 +48,7 @@ const Checkout: React.FC = () => {
             index={[currentSectionId]}
             onChange={(index) => setCurrentSectionId(index as number)}
           >
-            {filteredSection.map(({ label, value, id }) => {
+            {filteredSections.map(({ label, value, id }) => {
               const Section = SectionComponent[id]
               return (
                 Section && (

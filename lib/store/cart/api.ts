@@ -1,3 +1,4 @@
+import { SwellAccount } from '../account/types'
 import swell from '../swell'
 import { SwellCart, SwellCartItem } from './types'
 import { simplifyCartItem } from './utils'
@@ -67,7 +68,6 @@ export const Cart = {
       return await swell.cart.applyCoupon(coupon)
     } catch (error) {
       console.error(error)
-      return false
     }
   },
 
@@ -76,7 +76,6 @@ export const Cart = {
       return await swell.cart.removeCoupon()
     } catch (error) {
       console.error(error)
-      return false
     }
   },
   addCartMetadata: async (metadata: any) => {
@@ -88,12 +87,42 @@ export const Cart = {
       console.error(error)
     }
   },
+  updateCartAccount: async ({ email, shipping, billing }: SwellAccount) => {
+    try {
+      await swell.cart.update({
+        account: {
+          email,
+        },
+        shipping,
+        billing,
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  getShippingMethods: async () => {
+    try {
+      return swell.cart.getShippingRates()
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  applyShipping: async (shippingService: string) => {
+    try {
+      return await await swell.cart.update({
+        shipping: {
+          service: shippingService,
+        },
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
   submitOrder: async () => {
     try {
       return await swell.cart.submitOrder()
     } catch (error) {
       console.error(error)
-      return false
     }
-  }
+  },
 }
