@@ -10,7 +10,7 @@ export type ButtonProps = {
   loading?: boolean
   noBorders?: boolean
   type?: 'button' | 'submit'
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonLinkProps = {
   color?: 'pink' | 'purple' | 'white'

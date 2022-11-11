@@ -116,7 +116,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
       >
         <Input
           type="text"
-          label="Address"
+          label="Adresse"
           placeholder="12 rue St-Catherine"
           autoComplete="address-line1"
           isInvalid={!!errors.address1}
@@ -126,7 +126,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
       <Input
         type="text"
         label="Apt, étage, batiment, ..."
-        placeholder="apt 34, étage 3"
+        placeholder="Complément d'adresse"
         autoComplete="address-line2"
         isInvalid={!!errors.address2}
         {...register('address2')}

@@ -3635,6 +3635,18 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
+"@stripe/react-stripe-js@^1.14.2":
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.14.2.tgz#4030f1723b4c58003bfbe38189129955f6fff764"
+  integrity sha512-8dGBdSFldq6dyiYgv3r4tOwS5PGAO/446hodegSKlmWg7NkAl0McopszXJd11A9otGi47v5OzCsljyfHJgnLhw==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@stripe/stripe-js@^1.43.0":
+  version "1.43.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.43.0.tgz#fe015a9092ee9a92869bba2d179871b7ce180899"
+  integrity sha512-sAct4DlbiZYWYjzco83O9O0Ph/kHdIBBi8+hlywLrbcZcgCxrD8hcJW7QTtftxjpZff8y1VYLi8qoadBeKa8Ew==
+
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"

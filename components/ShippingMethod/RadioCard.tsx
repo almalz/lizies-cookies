@@ -1,8 +1,10 @@
-import { Box, useRadio, UseRadioProps } from '@chakra-ui/react'
+import { Box, Spinner, useRadio, UseRadioProps } from '@chakra-ui/react'
 import clsx from 'clsx'
 import { HiCheckCircle } from 'react-icons/hi'
 
-export const RadioCard: React.FC<UseRadioProps> = (props) => {
+export const RadioCard: React.FC<UseRadioProps & { loading?: boolean }> = (
+  props
+) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
@@ -18,11 +20,16 @@ export const RadioCard: React.FC<UseRadioProps> = (props) => {
           props.isChecked && 'bg-pink-100'
         )}
       >
-        <HiCheckCircle
-          className={clsx('fill-purple-500', !props.isChecked && 'opacity-0')}
-          size={24}
-        />
-        <div>{props.children}</div>
+        {props.loading && props.isChecked && (
+          <Spinner color="#584473" size="sm" />
+        )}
+        {!props.loading && props.isChecked && (
+          <HiCheckCircle
+            className={clsx('fill-purple-500', !props.isChecked && 'opacity-0')}
+            size={18}
+          />
+        )}
+        <div className="w-full">{props.children}</div>
       </div>
     </Box>
   )

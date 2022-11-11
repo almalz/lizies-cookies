@@ -75,7 +75,7 @@ const DeliveryDatePicker: React.FC<{
   return (
     <Select
       variant="filled"
-      placeholder="Select option"
+      placeholder="Choisir une date"
       onChange={handleDateSelect}
       value={selectedDate}
       color="#2E1550"

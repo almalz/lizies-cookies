@@ -1,4 +1,4 @@
-import { Spinner, useRadioGroup } from '@chakra-ui/react'
+import { useRadioGroup } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Cart } from '../../lib/store/cart/api'
 import {
@@ -30,14 +30,15 @@ const ShippingMethod: React.FC<{
   const handleSelect = async (value: string) => {
     const shippingMethodsId = shippingMethods?.find((s) => s.name === value)?.id
     if (shippingMethodsId) {
-      Cart.applyShipping(shippingMethodsId)
+      setLoading(true)
+      await Cart.applyShipping(shippingMethodsId)
       onComplete(value)
+      setLoading(false)
     }
   }
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'shippingMethods',
-    onChange: handleSelect,
   })
 
   const group = getRootProps()
@@ -45,12 +46,20 @@ const ShippingMethod: React.FC<{
   return (
     <div className="grid grid-cols-2 gap-2" {...group}>
       {shippingMethods
-        ? shippingMethods.map(({ name, description }) => {
+        ? shippingMethods.map(({ name, description, price }) => {
             const radio = getRadioProps({ value: name })
             return (
-              <RadioCard key={name} {...radio}>
-                <span className="mb-4 font-body font-bold">{name}</span>
-                <p className="font-body text-sm">{description}</p>
+              <RadioCard key={name} {...radio} loading={loading}>
+                <div
+                  className="flex items-center"
+                  onClick={() => handleSelect(name)}
+                >
+                  <div className="flex-1">
+                    <span className="mb-4 font-body font-bold">{name}</span>
+                    <p className="font-body text-sm">{description}</p>
+                  </div>
+                  <span className="ml-4 font-body font-semibold">{`${price}€`}</span>
+                </div>
               </RadioCard>
             )
           })

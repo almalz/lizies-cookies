@@ -8,6 +8,13 @@ export type SwellCoupon = {
 
 export type SwellCart = {
   accountLoggedIn?: any
+  account?: {
+    email: string
+    firstName: string
+    id: string
+    lastName: string
+    name: string
+  }
   billing: any
   checkoutId: string
   checkoutUrl: string

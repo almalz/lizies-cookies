@@ -132,7 +132,7 @@ const CartProvider: React.FC = ({ children }) => {
   const goToCheckout = useCallback(async () => {
     await Cart.updateAllItems(cartItems || [])
     router.push('/checkout')
-  }, [cartItems])
+  }, [cartItems, router])
 
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)

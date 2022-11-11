@@ -30,6 +30,10 @@ const ShippingMethod = dynamic(
   }
 )
 
+const PaymentForm = dynamic(() => import('../../components/PaymentForm'), {
+  ssr: false,
+})
+
 export type Section = {
   id: number
   label: string
@@ -43,6 +47,7 @@ export const SectionComponent: Record<
   '0': CheckoutForm,
   '1': DeliveryDatePicker,
   '2': ShippingMethod,
+  '3': PaymentForm,
 }
 
 const SECTIONS: Section[] = [
@@ -58,7 +63,12 @@ const SECTIONS: Section[] = [
   },
   {
     id: 2,
-    label: 'Methode de livraison',
+    label: 'Méthode de livraison',
+    value: undefined,
+  },
+  {
+    id: 3,
+    label: 'Paiement',
     value: undefined,
   },
 ]
