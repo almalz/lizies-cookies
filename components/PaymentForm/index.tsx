@@ -105,9 +105,6 @@ const PaymentForm: React.FC<{
           options={cardStyle}
           onChange={handleChange}
         />
-        {/* <button disabled={processing || disabled || succeeded} id="submit">
-        <span id="button-text">{processing ? <Spinner /> : 'Pay now'}</span>
-      </button> */}
         <div className="flex justify-center pt-8">
           <Button
             disabled={disabled || succeeded}
@@ -121,13 +118,11 @@ const PaymentForm: React.FC<{
             Procéder au paiement
           </Button>
         </div>
-        {/* Show any error that happens when processing the payment */}
         {error && (
           <div className={clsx('card-error', 'text-[#fa655a]')} role="alert">
             {error}
           </div>
         )}
-        {/* Show a success message upon completion */}
         <p className={succeeded ? 'result-message' : 'result-message hidden'}>
           Payment succeeded, see the result in your
           <a href={`https://dashboard.stripe.com/test/payments`}>
