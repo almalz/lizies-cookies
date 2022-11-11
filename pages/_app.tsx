@@ -7,7 +7,9 @@ import client from '../lib/apolloClient'
 import '../styles/global.css'
 import { StoreProvider } from '../lib/store'
 
-const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!, {
+  locale: 'fr',
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

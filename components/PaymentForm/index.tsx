@@ -5,6 +5,7 @@ import { Button } from '@chakra-ui/react'
 import { useCart } from '../../lib/store'
 import { useCartPageQuery } from '../../types/generated/graphql'
 import { OrderSummary } from './OrderSummary'
+import clsx from 'clsx'
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -60,6 +61,7 @@ const PaymentForm: React.FC<{
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
     setDisabled(event.empty)
+    console.log(event.error)
     setError(event.error ? event.error.message : '')
   }
 
@@ -93,7 +95,11 @@ const PaymentForm: React.FC<{
   return (
     <>
       <OrderSummary />
-      <form id="payment-form" onSubmit={handleSubmit}>
+      <form
+        id="payment-form"
+        onSubmit={handleSubmit}
+        className="my-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 text-white"
+      >
         <CardElement
           id="card-element"
           options={cardStyle}
@@ -107,14 +113,17 @@ const PaymentForm: React.FC<{
             disabled={disabled || succeeded}
             isLoading={processing}
             id="submit"
-            color="purple"
+            color="white"
+            bg="purple.700"
+            _hover={{ background: '#805AD5' }}
+            mb="16px"
           >
             Procéder au paiement
           </Button>
         </div>
         {/* Show any error that happens when processing the payment */}
         {error && (
-          <div className="card-error" role="alert">
+          <div className={clsx('card-error', 'text-[#fa655a]')} role="alert">
             {error}
           </div>
         )}
