@@ -86,7 +86,25 @@ const CheckoutStateContext = createContext<
 >(undefined)
 
 const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
-  const { cart } = useCart()
+  const { cart, goToCart, pullCart } = useCart()
+
+  const checkCartSession = useCallback(async () => {
+    await pullCart()
+    if (!cart || !cart?.items || cart?.items.length < 1) {
+      goToCart(), 1000 * 60 * 5
+    }
+  }, [cart, goToCart, pullCart])
+
+  useEffect(() => {
+    const checkCartSessionInterval = setInterval(
+      checkCartSession,
+      1000 * 60 * 5
+    )
+
+    return () => {
+      clearInterval(checkCartSessionInterval)
+    }
+  }, [cart, checkCartSession, goToCart])
 
   const getSectionFromHash = () => {
     if (typeof window !== undefined) {

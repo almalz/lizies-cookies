@@ -9,6 +9,7 @@ import {
 import { useCallback, useEffect, useState } from 'react'
 import { Cart } from '../../lib/store/cart/api'
 import { SwellAccount } from '../../lib/store/account/types'
+import { useCart } from '../../lib/store'
 
 export type CheckoutFormValues = {
   firstName: string
@@ -26,6 +27,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
   onComplete,
 }) => {
   const [loading, setLoading] = useState(false)
+  const { goToCart } = useCart()
 
   const getInitialValues = useCallback(() => {
     let data = sessionStorage.getItem('checkoutForm')
@@ -60,6 +62,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
       await Cart.updateCartAccount(account)
     } catch (error) {
       console.error(error)
+      goToCart()
     }
     onComplete(stringifyAccount(account))
     setLoading(false)

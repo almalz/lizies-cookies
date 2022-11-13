@@ -1,5 +1,6 @@
 import { useRadioGroup } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { useCart } from '../../lib/store'
 import { Cart } from '../../lib/store/cart/api'
 import {
   SwellShippingService,
@@ -16,16 +17,23 @@ const ShippingMethod: React.FC<{
     SwellShippingService[] | undefined
   >()
   const [loading, setLoading] = useState<boolean>(false)
+  const { goToCart } = useCart()
 
   useEffect(() => {
     const getOptions = async () => {
       setLoading(true)
-      const res = (await Cart.getShippingMethods()) as SwellShippingServices
-      setshippingMethods(res.services)
+      let res
+      try {
+        res = (await Cart.getShippingMethods()) as SwellShippingServices
+        setshippingMethods(res.services)
+      } catch (error) {
+        console.error(error)
+        goToCart()
+      }
       setLoading(false)
     }
     getOptions()
-  }, [])
+  }, [goToCart])
 
   const handleSelect = async (value: string) => {
     const shippingMethodsId = shippingMethods?.find((s) => s.name === value)?.id

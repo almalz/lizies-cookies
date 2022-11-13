@@ -3,6 +3,7 @@ import { useDeliveryConfigQuery } from '../../types/generated/graphql'
 import { addDays, format, isSameDay, isValid } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 import { ChangeEvent, useState } from 'react'
+import { useCart } from '../../lib/store'
 
 const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
@@ -48,6 +49,7 @@ const DeliveryDatePicker: React.FC<{
   onComplete: (value: string) => void
 }> = ({ onComplete }) => {
   const { data, loading } = useDeliveryConfigQuery()
+  const { goToCart, addCartMetadata } = useCart()
 
   const [selectedDate, setSelectedDate] = useState<string | undefined>()
 
@@ -63,12 +65,19 @@ const DeliveryDatePicker: React.FC<{
     allExcludeddeliverydates.map((d) => new Date(d.date))
   )
 
-  const handleDateSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleDateSelect = async (e: ChangeEvent<HTMLSelectElement>) => {
     const date = e.target.value
-    setSelectedDate(date)
-    if (isValid(new Date(date))) {
-      onComplete(date)
-      setSelectedDate(undefined)
+    const formatedDate = new Date(date)
+    if (isValid(formatedDate)) {
+      try {
+        setSelectedDate(date)
+        await addCartMetadata({ delivery_date: formatedDate })
+        onComplete(date)
+        setSelectedDate(undefined)
+      } catch (error) {
+        console.error(error)
+        goToCart()
+      }
     }
   }
 

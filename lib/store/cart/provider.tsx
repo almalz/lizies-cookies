@@ -20,6 +20,7 @@ type CartContextProps = {
   pullCart: () => Promise<SwellCart | undefined>
   updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
+  goToCart: () => void
   goToCheckout: () => void
   applyCoupon: (coupon: string) => any
   removeCoupon: () => any
@@ -134,6 +135,11 @@ const CartProvider: React.FC = ({ children }) => {
     router.push('/checkout')
   }, [cartItems, router])
 
+  const goToCart = useCallback(async () => {
+    await Cart.updateAllItems(cartItems || [])
+    router.push('/cart')
+  }, [cartItems, router])
+
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)
     const res = await Cart.applyCoupon(coupon)
@@ -160,6 +166,7 @@ const CartProvider: React.FC = ({ children }) => {
     pullCart,
     updateItems,
     getProductCartQuantity,
+    goToCart,
     goToCheckout,
     applyCoupon,
     removeCoupon,

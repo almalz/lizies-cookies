@@ -26,15 +26,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   pageContent,
 }) => {
   const router = useRouter()
-  const { goToCheckout, addCartMetadata } = useCart()
-  const { currentDrop } = useProducts()
+  const { goToCheckout } = useCart()
 
   const [termsChecked, setTermsChecked] = useState<boolean>(false)
-
-  const handleCheckout = useCallback(() => {
-    addCartMetadata({ delivery_date: currentDrop?.deliveryDate })
-    goToCheckout()
-  }, [addCartMetadata, currentDrop, goToCheckout])
 
   return (
     <div className="flex flex-col gap-8 py-8 px-12 lg:px-[20%]">
@@ -79,7 +73,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         <Button
           color="pink"
           className="px-2 py-2"
-          onClick={() => handleCheckout()}
+          onClick={() => goToCheckout()}
           disabled={!termsChecked}
         >
           {pageContent.checkoutCtaLabel}
