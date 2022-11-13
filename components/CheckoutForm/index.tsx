@@ -62,7 +62,7 @@ const CheckoutForm: React.FC<{ onComplete: (value: string) => void }> = ({
       await Cart.updateCartAccount(account)
     } catch (error) {
       console.error(error)
-      goToCart()
+      goToCart(true)
     }
     onComplete(stringifyAccount(account))
     setLoading(false)

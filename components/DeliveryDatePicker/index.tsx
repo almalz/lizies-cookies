@@ -76,7 +76,7 @@ const DeliveryDatePicker: React.FC<{
         setSelectedDate(undefined)
       } catch (error) {
         console.error(error)
-        goToCart()
+        goToCart(true)
       }
     }
   }

@@ -91,7 +91,7 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
   const checkCartSession = useCallback(async () => {
     await pullCart()
     if (!cart || !cart?.items || cart?.items.length < 1) {
-      goToCart(), 1000 * 60 * 5
+      goToCart(true), 1000 * 60 * 5
     }
   }, [cart, goToCart, pullCart])
 
@@ -104,7 +104,7 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       clearInterval(checkCartSessionInterval)
     }
-  }, [cart, checkCartSession, goToCart])
+  }, [cart, checkCartSession])
 
   const getSectionFromHash = () => {
     if (typeof window !== undefined) {

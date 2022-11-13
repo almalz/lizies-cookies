@@ -28,7 +28,7 @@ const ShippingMethod: React.FC<{
         setshippingMethods(res.services)
       } catch (error) {
         console.error(error)
-        goToCart()
+        goToCart(true)
       }
       setLoading(false)
     }

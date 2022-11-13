@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import {
   createContext,
@@ -20,7 +21,7 @@ type CartContextProps = {
   pullCart: () => Promise<SwellCart | undefined>
   updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
-  goToCart: () => void
+  goToCart: (sessionExpired?: boolean) => void
   goToCheckout: () => void
   applyCoupon: (coupon: string) => any
   removeCoupon: () => any
@@ -40,6 +41,7 @@ const CartProvider: React.FC = ({ children }) => {
   const [cart, setCart] = useState<SwellCart>()
   const [cartItemsCache, setCartItemsCache] = useState<CartCache | undefined>()
   const router = useRouter()
+  const toast = useToast()
 
   const cartItems = useMemo(() => {
     return cart?.items
@@ -135,10 +137,24 @@ const CartProvider: React.FC = ({ children }) => {
     router.push('/checkout')
   }, [cartItems, router])
 
-  const goToCart = useCallback(async () => {
-    await Cart.updateAllItems(cartItems || [])
-    router.push('/cart')
-  }, [cartItems, router])
+  const goToCart = useCallback(
+    async (sessionExpired: boolean = false) => {
+      await Cart.updateAllItems(cartItems || [])
+      router.push('/cart')
+      if (sessionExpired) {
+        console.log({ toast })
+        toast({
+          title: 'Session expirée',
+          description:
+            'Vous avez été redirigé car votre session de paiement a expiré.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      }
+    },
+    [cartItems, router, toast]
+  )
 
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)
