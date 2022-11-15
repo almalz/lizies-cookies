@@ -48,7 +48,10 @@ export const Navbar: React.FC = () => {
                   </a>
                 </Link>
                 <div>
-                  <AccordionButton>
+                  <AccordionButton
+                    sx={{ boxShadow: 'none' }}
+                    _focus={{ boxShadow: 'none' }}
+                  >
                     {isExpanded ? (
                       <HiX className="text-white" size="24px" />
                     ) : (
