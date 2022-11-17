@@ -3,14 +3,17 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Accordion, AccordionItem, AccordionPanel } from '@chakra-ui/react'
-import { SectionComponent, useCheckout } from '../lib/checkout/provider'
+import { SectionComponent, useCheckout } from '../lib/store/checkout/provider'
 import { SectionPanel } from '../components/CheckoutForm/SectionPanel'
 import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import { H1 } from '../components/Typography'
-const CheckoutProvider = dynamic(() => import('../lib/checkout/provider'), {
-  ssr: false,
-})
+const CheckoutProvider = dynamic(
+  () => import('../lib/store/checkout/provider'),
+  {
+    ssr: false,
+  }
+)
 
 const Checkout: React.FC = () => {
   const {
@@ -63,7 +66,9 @@ const Checkout: React.FC = () => {
                     key={label}
                     border="none"
                     className={clsx(
-                      id === currentSectionId ? 'border-none' : 'rounded-md'
+                      id === currentSectionId
+                        ? 'my-8 border-none'
+                        : 'rounded-md'
                     )}
                   >
                     <h2>

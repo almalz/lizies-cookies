@@ -1,5 +1,5 @@
-import { CheckoutFormValues } from '../../components/CheckoutForm'
-import { SwellAccount } from '../store/account/types'
+import { CheckoutFormValues } from '../../../components/CheckoutForm'
+import { SwellAccount } from '../account/types'
 
 export const checkoutFormToSwellAccount = ({
   firstName,

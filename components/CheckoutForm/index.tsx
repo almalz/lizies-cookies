@@ -5,7 +5,7 @@ import { Button } from '@chakra-ui/react'
 import {
   checkoutFormToSwellAccount,
   stringifyAccount,
-} from '../../lib/checkout/utils'
+} from '../../lib/store/checkout/utils'
 import { useCallback, useEffect, useState } from 'react'
 import { Cart } from '../../lib/store/cart/api'
 import { SwellAccount } from '../../lib/store/account/types'

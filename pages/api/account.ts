@@ -38,10 +38,9 @@ const handler: NextApiHandler = async (
   } catch (error) {
     console.error(error)
     res.status(500).json({
-      message: 'Failed to upsert account for',
+      message: `Failed to upsert account for email ${account.email}`,
       error,
     })
   }
 }
-
 export default handler

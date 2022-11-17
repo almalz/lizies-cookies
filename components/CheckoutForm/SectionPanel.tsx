@@ -1,6 +1,5 @@
-import { AccordionButton, Box, AccordionIcon } from '@chakra-ui/react'
-import clsx from 'clsx'
-import { Section } from '../../lib/checkout/provider'
+import { AccordionButton, Box } from '@chakra-ui/react'
+import { Section } from '../../lib/store/checkout/provider'
 
 type SectionPanelProps = {
   label: string

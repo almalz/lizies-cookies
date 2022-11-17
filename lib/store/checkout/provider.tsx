@@ -9,28 +9,28 @@ import {
   SetStateAction,
   useEffect,
 } from 'react'
-import { useCart } from '../store'
-import { SwellCart } from '../store/cart/types'
+import { useCart } from '..'
+import { SwellCart } from '../cart/types'
 
-const CheckoutForm = dynamic(() => import('../../components/CheckoutForm'), {
+const CheckoutForm = dynamic(() => import('../../../components/CheckoutForm'), {
   ssr: false,
 })
 
 const DeliveryDatePicker = dynamic(
-  () => import('../../components/DeliveryDatePicker'),
+  () => import('../../../components/DeliveryDatePicker'),
   {
     ssr: false,
   }
 )
 
 const ShippingMethod = dynamic(
-  () => import('../../components/ShippingMethod'),
+  () => import('../../../components/ShippingMethod'),
   {
     ssr: false,
   }
 )
 
-const PaymentForm = dynamic(() => import('../../components/PaymentForm'), {
+const PaymentForm = dynamic(() => import('../../../components/PaymentForm'), {
   ssr: false,
 })
 
