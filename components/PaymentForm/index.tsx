@@ -1,11 +1,11 @@
-import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
+import { PaymentMethod, StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { useState, useEffect, FormEventHandler } from 'react'
 import { Button } from '@chakra-ui/react'
 import { useCart } from '../../lib/store'
-import { useCartPageQuery } from '../../types/generated/graphql'
 import { OrderSummary } from './OrderSummary'
 import clsx from 'clsx'
+import { handleConfirmOrderPayement } from '../../lib/store/checkout/order'
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -18,42 +18,45 @@ const PaymentForm: React.FC<{
   const stripe = useStripe()
   const elements = useElements()
   const { cart } = useCart()
-  const { data } = useCartPageQuery()
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    window
-      .fetch('/create-payment-intent', {
+    const createPaymentIntent = async () => {
+      await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
+        body: JSON.stringify({ cart }),
       })
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setClientSecret(data.clientSecret)
-      })
-  }, [])
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          setClientSecret(data.clientSecret)
+        })
+        .catch((error) => {
+          console.error(error)
+          // setError(error)
+        })
+    }
+
+    createPaymentIntent()
+  }, [cart])
 
   const cardStyle = {
-    style: {
-      base: {
+    base: {
+      color: '#32325d',
+      fontFamily: 'Arial, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
         color: '#32325d',
-        fontFamily: 'Arial, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#32325d',
-        },
       },
-      invalid: {
-        fontFamily: 'Arial, sans-serif',
-        color: '#fa755a',
-        iconColor: '#fa755a',
-      },
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: '#fa755a',
+      iconColor: '#fa755a',
     },
   }
 
@@ -73,22 +76,40 @@ const PaymentForm: React.FC<{
 
     let payload
 
-    if (card && cart?.account?.email) {
-      payload = await stripe?.confirmCardPayment(clientSecret, {
-        receipt_email: cart.account.email,
-        payment_method: {
-          card,
-        },
-      })
+    if (stripe && card && cart?.account?.email && elements) {
+      try {
+        payload = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: elements.getElement(CardElement)!,
+          },
+        })
+      } catch (error) {
+        setError(`Payment failed : ${error}`)
+        console.error(error)
+      }
     }
 
     if (payload?.error) {
       setError(`Payment failed ${payload?.error.message}`)
       setProcessing(false)
-    } else {
-      setError(undefined)
-      setProcessing(false)
-      setSucceeded(true)
+    } else if (
+      payload?.paymentIntent &&
+      payload.paymentIntent.status === 'succeeded'
+    ) {
+      try {
+        await handleConfirmOrderPayement({
+          paymentIntentId: payload?.paymentIntent.id,
+          paymentMethodId: (
+            payload?.paymentIntent.payment_method as PaymentMethod
+          ).id,
+        })
+        setProcessing(false)
+        setSucceeded(true)
+        setError(undefined)
+      } catch (error) {
+        setError(`Payment failed ${error}`)
+        setProcessing(false)
+      }
     }
   }
 
@@ -102,11 +123,15 @@ const PaymentForm: React.FC<{
       >
         <CardElement
           id="card-element"
-          options={cardStyle}
+          options={{
+            style: cardStyle,
+            hidePostalCode: true,
+          }}
           onChange={handleChange}
         />
         <div className="flex justify-center pt-8">
           <Button
+            type="submit"
             disabled={disabled || succeeded}
             isLoading={processing}
             id="submit"

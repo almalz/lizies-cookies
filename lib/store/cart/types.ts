@@ -1,3 +1,4 @@
+import { SwellBilling } from '../account/types'
 import { SwellProduct } from '../products/types'
 
 export type SwellCoupon = {
@@ -15,7 +16,7 @@ export type SwellCart = {
     lastName: string
     name: string
   }
-  billing: any
+  billing: SwellBilling
   checkoutId: string
   checkoutUrl: string
   coupon?: SwellCoupon

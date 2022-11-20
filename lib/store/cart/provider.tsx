@@ -9,6 +9,7 @@ import {
   useMemo,
 } from 'react'
 import { setCookiesExpiration } from '../../cookies'
+import swell from '../swell'
 import { Cart } from './api'
 import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
@@ -134,6 +135,8 @@ const CartProvider: React.FC = ({ children }) => {
 
   const goToCheckout = useCallback(async () => {
     await Cart.updateAllItems(cartItems || [])
+
+    // await swell.cart.submitOrder()
     router.push('/checkout')
   }, [cartItems, router])
 
@@ -142,7 +145,6 @@ const CartProvider: React.FC = ({ children }) => {
       await Cart.updateAllItems(cartItems || [])
       router.push('/cart')
       if (sessionExpired) {
-        console.log({ toast })
         toast({
           title: 'Session expirée',
           description:
