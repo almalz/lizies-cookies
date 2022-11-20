@@ -17,7 +17,7 @@ const PaymentForm: React.FC<{
   const [clientSecret, setClientSecret] = useState('')
   const stripe = useStripe()
   const elements = useElements()
-  const { cart } = useCart()
+  const { cart, clearCart } = useCart()
 
   useEffect(() => {
     const createPaymentIntent = async () => {
@@ -64,7 +64,6 @@ const PaymentForm: React.FC<{
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
     setDisabled(event.empty)
-    console.log(event.error)
     setError(event.error ? event.error.message : '')
   }
 
@@ -99,12 +98,11 @@ const PaymentForm: React.FC<{
       try {
         await handleConfirmOrderPayement({
           paymentIntentId: payload?.paymentIntent.id,
-          paymentMethodId: (
-            payload?.paymentIntent.payment_method as PaymentMethod
-          ).id,
         })
         setProcessing(false)
         setSucceeded(true)
+        console.log({ payload })
+        // clearCart()
         setError(undefined)
       } catch (error) {
         setError(`Payment failed ${error}`)

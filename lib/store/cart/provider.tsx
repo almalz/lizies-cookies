@@ -28,6 +28,7 @@ type CartContextProps = {
   removeCoupon: () => any
   coupon: SwellCoupon | undefined
   addCartMetadata: (metadata: any) => Promise<void>
+  clearCart: () => void
 }
 
 type CartCache = {
@@ -175,6 +176,11 @@ const CartProvider: React.FC = ({ children }) => {
     setLoading(false)
   }, [])
 
+  const clearCart = useCallback(async () => {
+    setCart(undefined)
+    setCartItemsCache(undefined)
+  }, [])
+
   const value = {
     loading,
     cartItems,
@@ -190,6 +196,7 @@ const CartProvider: React.FC = ({ children }) => {
     removeCoupon,
     coupon,
     addCartMetadata: Cart.addCartMetadata,
+    clearCart,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
