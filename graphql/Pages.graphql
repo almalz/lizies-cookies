@@ -284,3 +284,13 @@ query CateringPage {
     }
   }
 }
+
+query ConfirmOrderPage {
+  confirmorderpage {
+    title
+    bodyDelivery
+    bodyPickup
+    headlineDelivery
+    headlinePickup
+  }
+}

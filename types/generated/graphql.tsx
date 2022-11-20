@@ -216,6 +216,48 @@ export type ColorField = {
   red: Scalars['IntType'];
 };
 
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecord = RecordInterface & {
+  __typename?: 'ConfirmorderpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  bodyDelivery?: Maybe<Scalars['String']>;
+  bodyPickup?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  headlineDelivery?: Maybe<Scalars['String']>;
+  headlinePickup?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecordBodyDeliveryArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecordBodyPickupArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Record of type ContactPage (contactpage) */
 export type ContactpageRecord = RecordInterface & {
   __typename?: 'ContactpageRecord';
@@ -2821,6 +2863,8 @@ export type Query = {
   /** Returns the single instance record */
   cateringpage?: Maybe<CateringpageRecord>;
   /** Returns the single instance record */
+  confirmorderpage?: Maybe<ConfirmorderpageRecord>;
+  /** Returns the single instance record */
   contactpage?: Maybe<ContactpageRecord>;
   /** Returns the single instance record */
   deliveryconfig?: Maybe<DeliveryconfigRecord>;
@@ -2995,6 +3039,13 @@ export type QueryCartpageArgs = {
 
 /** The query root for this schema */
 export type QueryCateringpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryConfirmorderpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -3769,6 +3820,11 @@ export type CateringPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CateringPageQuery = { __typename?: 'Query', cateringpage?: { __typename?: 'CateringpageRecord', title?: string | null, headline?: string | null, whiteSectionTitle?: string | null, whiteSectionBody?: string | null, whiteSectionCtaLabel?: string | null, purpleSectionTitle?: string | null, purpleSectionBody?: string | null, purpleSectionCtaLabel?: string | null, contactCtaLabel?: string | null, contactCallout?: string | null, noindex?: any | null, whiteSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, whiteSectionFile?: { __typename?: 'FileField', url: string } | null, purpleSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, purpleSectionFile?: { __typename?: 'FileField', url: string } | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null } | null };
 
+export type ConfirmOrderPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ConfirmOrderPageQuery = { __typename?: 'Query', confirmorderpage?: { __typename?: 'ConfirmorderpageRecord', title?: string | null, bodyDelivery?: string | null, bodyPickup?: string | null, headlineDelivery?: string | null, headlinePickup?: string | null } | null };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4522,6 +4578,44 @@ export function useCateringPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type CateringPageQueryHookResult = ReturnType<typeof useCateringPageQuery>;
 export type CateringPageLazyQueryHookResult = ReturnType<typeof useCateringPageLazyQuery>;
 export type CateringPageQueryResult = Apollo.QueryResult<CateringPageQuery, CateringPageQueryVariables>;
+export const ConfirmOrderPageDocument = gql`
+    query ConfirmOrderPage {
+  confirmorderpage {
+    title
+    bodyDelivery
+    bodyPickup
+    headlineDelivery
+    headlinePickup
+  }
+}
+    `;
+
+/**
+ * __useConfirmOrderPageQuery__
+ *
+ * To run a query within a React component, call `useConfirmOrderPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useConfirmOrderPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useConfirmOrderPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useConfirmOrderPageQuery(baseOptions?: Apollo.QueryHookOptions<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>(ConfirmOrderPageDocument, options);
+      }
+export function useConfirmOrderPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>(ConfirmOrderPageDocument, options);
+        }
+export type ConfirmOrderPageQueryHookResult = ReturnType<typeof useConfirmOrderPageQuery>;
+export type ConfirmOrderPageLazyQueryHookResult = ReturnType<typeof useConfirmOrderPageLazyQuery>;
+export type ConfirmOrderPageQueryResult = Apollo.QueryResult<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>;
 export const ProductsDocument = gql`
     query products {
   allProducts {
