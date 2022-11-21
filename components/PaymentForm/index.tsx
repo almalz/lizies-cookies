@@ -101,8 +101,7 @@ const PaymentForm: React.FC<{
         })
         setProcessing(false)
         setSucceeded(true)
-        console.log({ payload })
-        // clearCart()
+        clearCart()
         setError(undefined)
       } catch (error) {
         setError(`Payment failed ${error}`)

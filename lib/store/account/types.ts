@@ -43,4 +43,5 @@ export type SwellShipping = {
   zip?: string
   state?: string
   country?: string
+  service_name?: string
 }
