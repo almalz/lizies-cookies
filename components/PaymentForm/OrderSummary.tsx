@@ -31,10 +31,10 @@ export const OrderSummary: React.FC = () => {
   })
 
   return (
-    <div className="flex flex-col gap-8 py-2 sm:py-8 sm:px-12 lg:px-[20%]">
+    <div className="flex flex-col gap-8 py-2 sm:py-8 sm:px-12">
       {items.map((item) => (
         <div key={item.id}>
-          <div className="flex flex-1  gap-2 px-4">
+          <div className="flex flex-1 gap-2 sm:px-4">
             <div className="relative m-1 aspect-square h-20 w-20 sm:m-0 ">
               {item?.product?.images ? (
                 <Image
@@ -48,7 +48,9 @@ export const OrderSummary: React.FC = () => {
               )}
             </div>
             <div className="flex-1 text-purple-700">
-              <h3 className="font-title text-xl ">{item.product.name}</h3>
+              <h3 className="font-title text-lg sm:text-xl">
+                {item.product.name}
+              </h3>
               <Paragraph>quantité: {item.quantity}</Paragraph>
             </div>
             <span className="sm:text-md font-body text-purple-700">

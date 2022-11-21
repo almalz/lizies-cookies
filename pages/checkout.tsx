@@ -29,7 +29,7 @@ const Checkout: React.FC = () => {
 
   return (
     <Layout hideNavbar noIndex={true} slug="checkout">
-      <div className="my-8 px-8 pb-8 sm:px-[20%] sm:pb-16 lg:px-[25%]">
+      <div className="my-8 px-8 pb-8 sm:px-[20%] sm:pb-16">
         <div className="flex flex-col pt-8 md:pt-16">
           <div className="pt-16">
             <Link href="/cart">

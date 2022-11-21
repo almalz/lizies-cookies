@@ -53,6 +53,7 @@ export type SwellCartItem = {
   id?: string
   price?: number
   priceTotal?: number
+  price_total?: number
   product: SwellProduct
   shipmentWeight?: number
   taxEach?: number
