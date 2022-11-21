@@ -106,7 +106,6 @@ const PaymentForm: React.FC<{
         setProcessing(false)
         setSucceeded(true)
         router.push('/confirmOrder', { query: { orderId: order.number } })
-        clearCart()
         setError(undefined)
       } catch (error) {
         setError(`Payment failed ${error}`)
