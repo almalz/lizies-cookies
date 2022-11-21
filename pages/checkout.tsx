@@ -67,7 +67,7 @@ const Checkout: React.FC = () => {
                     border="none"
                     className={clsx(
                       id === currentSectionId
-                        ? 'my-8 border-none'
+                        ? 'my-4 border-none sm:my-8'
                         : 'rounded-md'
                     )}
                   >

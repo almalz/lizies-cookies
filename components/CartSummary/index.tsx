@@ -72,7 +72,6 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       <div className="flex w-full flex-col items-center gap-4">
         <Button
           color="pink"
-          className="px-2 py-2"
           onClick={() => goToCheckout()}
           disabled={!termsChecked}
         >

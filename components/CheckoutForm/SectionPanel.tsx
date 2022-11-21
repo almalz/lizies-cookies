@@ -21,11 +21,11 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
       _hover={{ background: !isOpen && '#fad9da' }}
       rounded="md"
     >
-      <Box flex="1" textAlign="left" className="font-body text-xl font-bold">
+      <Box flex="1" textAlign="left" className="font-body font-bold sm:text-xl">
         {label}
       </Box>
       {!isOpen && (
-        <pre className="my-6 ml-8 text-left font-sans text-xs font-bold leading-5 tracking-wide">
+        <pre className="my-6 ml-4 text-left font-sans text-xs font-bold leading-5 tracking-wide sm:ml-8">
           {value}
         </pre>
       )}
