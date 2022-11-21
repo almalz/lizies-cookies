@@ -6,6 +6,8 @@ import { useCart } from '../../lib/store'
 import { OrderSummary } from './OrderSummary'
 import clsx from 'clsx'
 import { handleConfirmOrderPayement } from '../../lib/store/checkout/order'
+import { useRouter } from 'next/router'
+import { SwellOrder } from '../../lib/store/cart/types'
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -18,6 +20,7 @@ const PaymentForm: React.FC<{
   const stripe = useStripe()
   const elements = useElements()
   const { cart, clearCart } = useCart()
+  const router = useRouter()
 
   useEffect(() => {
     const createPaymentIntent = async () => {
@@ -96,11 +99,13 @@ const PaymentForm: React.FC<{
       payload.paymentIntent.status === 'succeeded'
     ) {
       try {
-        await handleConfirmOrderPayement({
+        const order: SwellOrder = await handleConfirmOrderPayement({
           paymentIntentId: payload?.paymentIntent.id,
         })
+        console.log({ order })
         setProcessing(false)
         setSucceeded(true)
+        router.push('/confirmOrder', { query: { orderId: order.number } })
         clearCart()
         setError(undefined)
       } catch (error) {

@@ -13,8 +13,8 @@ import {
   ConfirmorderpageRecord,
 } from '../types/generated/graphql'
 import { add, isBefore } from 'date-fns'
-import { formatPrice } from '../lib/utils'
 import { useEffect } from 'react'
+import { useCart } from '../lib/store'
 
 type ShippingCategory = 'pickup' | 'delivery'
 
@@ -28,8 +28,13 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
   pageContent,
 }) => {
   const shippingService: ShippingCategory = 'pickup'
+  const { clearCart } = useCart()
 
   let headline, body
+
+  useEffect(() => {
+    clearCart()
+  }, [clearCart])
 
   if (shippingService === 'delivery') {
     headline = pageContent.headlineDelivery

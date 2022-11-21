@@ -6,7 +6,7 @@ export const handleConfirmOrderPayement = async ({
 }: {
   paymentIntentId: string
 }) => {
-  await Cart.submitOrder()
+  const order = await Cart.submitOrder()
   const billing = {
     method: 'card',
     intent: {
@@ -16,4 +16,5 @@ export const handleConfirmOrderPayement = async ({
     },
   }
   await swell.cart.update({ billing: { ...billing } })
+  return order
 }
