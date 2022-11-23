@@ -1,6 +1,6 @@
 import { PaymentMethod, StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useState, useEffect, FormEventHandler } from 'react'
+import { useState, useEffect, FormEventHandler, useCallback } from 'react'
 import { Button } from '@chakra-ui/react'
 import { useCart } from '../../lib/store'
 import { OrderSummary } from './OrderSummary'
@@ -22,6 +22,21 @@ const PaymentForm: React.FC<{
   const { cart, clearCart } = useCart()
   const router = useRouter()
 
+  const getInitialIntent = useCallback(() => {
+    let data = sessionStorage.getItem('paymentIntentId')
+    if (data) {
+      try {
+        data = JSON.parse(data)
+      } catch (err) {
+        console.error(err)
+      }
+      return data as string | undefined
+    }
+    return
+  }, [])
+
+  const [paymentIntentId, setPaymentIntentId] = useState(getInitialIntent())
+
   useEffect(() => {
     const createPaymentIntent = async () => {
       await fetch('/api/create-payment-intent', {
@@ -29,22 +44,26 @@ const PaymentForm: React.FC<{
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cart }),
+        body: JSON.stringify({ cart, paymentIntentId }),
       })
         .then((res) => {
           return res.json()
         })
         .then((data) => {
+          setPaymentIntentId(data.id)
           setClientSecret(data.clientSecret)
         })
         .catch((error) => {
           console.error(error)
-          // setError(error)
         })
     }
 
     createPaymentIntent()
-  }, [cart])
+  }, [cart, paymentIntentId])
+
+  useEffect(() => {
+    sessionStorage.setItem('paymentIntentId', JSON.stringify(paymentIntentId))
+  }, [paymentIntentId])
 
   const cardStyle = {
     base: {

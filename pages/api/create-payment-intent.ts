@@ -18,8 +18,8 @@ export default async function handler(
   }
   const {
     cart,
-    payment_intent_id,
-  }: { cart: SwellCart; payment_intent_id?: string } = req.body
+    paymentIntentId,
+  }: { cart: SwellCart; paymentIntentId?: string } = req.body
   // Validate the amount that was passed from the client.
   if (!cart.grandTotal) {
     res.status(500).json({ statusCode: 400, message: 'Invalid amount.' })
@@ -28,15 +28,15 @@ export default async function handler(
 
   const amount = cart.grandTotal * 100
 
-  if (payment_intent_id) {
+  if (paymentIntentId) {
     try {
       const current_intent = await stripe.paymentIntents.retrieve(
-        payment_intent_id
+        paymentIntentId
       )
       // If PaymentIntent has been created, just update the amount.
       if (current_intent) {
         const updated_intent = await stripe.paymentIntents.update(
-          payment_intent_id,
+          paymentIntentId,
           {
             amount,
           }
@@ -67,6 +67,7 @@ export default async function handler(
 
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id,
     })
   } catch (err) {
     const errorMessage =
