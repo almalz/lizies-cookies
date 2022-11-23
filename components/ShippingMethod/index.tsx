@@ -52,7 +52,10 @@ const ShippingMethod: React.FC<{
   const group = getRootProps()
 
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2" {...group}>
+    <div
+      className="grid grid auto-rows-min grid-cols-1 gap-2 sm:grid-cols-2"
+      {...group}
+    >
       {shippingMethods
         ? shippingMethods.map(({ name, description, price }) => {
             const radio = getRadioProps({ value: name })

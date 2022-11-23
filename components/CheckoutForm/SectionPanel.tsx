@@ -20,12 +20,13 @@ export const SectionPanel: React.FC<SectionPanelProps> = ({
       color="#2E1550"
       _hover={{ background: !isOpen && '#fad9da' }}
       rounded="md"
+      justifyContent="space-between"
     >
       <Box flex="1" textAlign="left" className="font-body font-bold sm:text-xl">
         {label}
       </Box>
       {!isOpen && (
-        <pre className="my-6 ml-4 text-left font-sans text-xs font-bold leading-5 tracking-wide sm:ml-8">
+        <pre className="my-6 ml-4 whitespace-pre-wrap text-left font-sans text-xs font-bold leading-5 tracking-wide sm:ml-8">
           {value}
         </pre>
       )}

@@ -12,11 +12,11 @@ export const RadioCard: React.FC<UseRadioProps & { loading?: boolean }> = (
 
   return (
     <Box as="label">
-      <input {...input} />
+      <input {...input} className="flex" />
       <div
         {...checkbox}
         className={clsx(
-          'flex h-24 cursor-pointer flex-row items-center gap-2 rounded-md border-2 border-pink-500 px-5 py-3 text-purple-500 hover:bg-pink-100',
+          'flex cursor-pointer flex-row gap-2 rounded-md border-2 border-pink-500 px-4 py-4 text-purple-500 hover:bg-pink-100',
           props.isChecked && 'bg-pink-100'
         )}
       >
