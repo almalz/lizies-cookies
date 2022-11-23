@@ -102,7 +102,6 @@ const PaymentForm: React.FC<{
         const order: SwellOrder = await handleConfirmOrderPayement({
           paymentIntentId: payload?.paymentIntent.id,
         })
-        console.log({ order })
         setProcessing(false)
         setSucceeded(true)
         router.push({

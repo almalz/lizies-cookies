@@ -138,7 +138,6 @@ const CartProvider: React.FC = ({ children }) => {
     await Cart.updateAllItems(cartItems || [])
 
     if (cart) {
-      console.log({ cart })
       router.push({ pathname: '/checkout', query: { cartId: cart.id } })
     }
   }, [cart, cartItems, router])

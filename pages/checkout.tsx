@@ -114,8 +114,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     process.env.SWELL_SECRET_KEY
   )
 
-  console.log({ query })
-
   const { cartId } = query
 
   if (!cartId) {

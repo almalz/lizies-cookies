@@ -20,6 +20,8 @@ const handler: NextApiHandler = async (
       email: account.email,
     })
 
+    console.log({ results })
+
     if (results.length > 1) {
       return res.status(404).json({
         error: `Multiple account found with the email ${account.email}. Not able to proceed`,
