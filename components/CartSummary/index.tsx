@@ -2,12 +2,10 @@ import { HiArrowNarrowLeft } from 'react-icons/hi'
 import { Button } from '../Button'
 import { SwellCart } from '../../lib/store/cart/types'
 import { CartpageRecord } from '../../types/generated/graphql'
-import { CouponsManager } from '../CouponsManager'
 import { useRouter } from 'next/router'
-import { useCart, useProducts } from '../../lib/store'
+import { useCart } from '../../lib/store'
 import { Paragraph } from '../Typography'
-import { useCallback, useState } from 'react'
-import { Cart } from '../../lib/store/cart/api'
+import { useState } from 'react'
 
 export type CartSummaryProps = {
   cart: SwellCart

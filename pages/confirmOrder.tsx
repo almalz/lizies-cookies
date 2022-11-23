@@ -1,10 +1,9 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
-import swell from '../lib/store/swell'
 // @ts-ignore
 import swellNode from 'swell-node'
 import Layout from '../components/Layout'
 import { SwellOrder } from '../lib/store/cart/types'
-import { H1, H3, Paragraph, ParagraphXl } from '../components/Typography'
+import { H1, H3, Paragraph } from '../components/Typography'
 import Image from 'next/image'
 import client from '../lib/apolloClient'
 import {
@@ -134,8 +133,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }: GetServerSidePropsContext) => {
   swellNode.init(
     process.env.NEXT_PUBLIC_SWELL_STORE_ID,
-    process.env.SWELL_SECRET_KEY,
-    { useCamelCase: true }
+    process.env.SWELL_SECRET_KEY
   )
 
   if (!orderId) {

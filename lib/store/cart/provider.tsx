@@ -137,9 +137,11 @@ const CartProvider: React.FC = ({ children }) => {
   const goToCheckout = useCallback(async () => {
     await Cart.updateAllItems(cartItems || [])
 
-    // await swell.cart.submitOrder()
-    router.push('/checkout')
-  }, [cartItems, router])
+    if (cart) {
+      console.log({ cart })
+      router.push({ pathname: '/checkout', query: { cartId: cart.id } })
+    }
+  }, [cart, cartItems, router])
 
   const goToCart = useCallback(
     async (sessionExpired: boolean = false) => {

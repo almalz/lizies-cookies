@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 import Layout from '../components/Layout'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,6 +8,10 @@ import { SectionPanel } from '../components/CheckoutForm/SectionPanel'
 import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import { H1 } from '../components/Typography'
+// @ts-ignore
+import swellNode from 'swell-node'
+import { SwellCart } from '../lib/store/cart/types'
+
 const CheckoutProvider = dynamic(
   () => import('../lib/store/checkout/provider'),
   {
@@ -19,7 +23,6 @@ const Checkout: React.FC = () => {
   const {
     sections,
     currentSectionId,
-
     setCurrentSectionId,
     nextSection,
     setValue,
@@ -102,5 +105,44 @@ const CheckoutPage: NextPage = () => (
     <Checkout />
   </CheckoutProvider>
 )
+
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+}: GetServerSidePropsContext) => {
+  swellNode.init(
+    process.env.NEXT_PUBLIC_SWELL_STORE_ID,
+    process.env.SWELL_SECRET_KEY
+  )
+
+  console.log({ query })
+
+  const { cartId } = query
+
+  if (!cartId) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/cart',
+      },
+    }
+  }
+
+  const cart: SwellCart = await swellNode.get('/carts/{id}', {
+    id: cartId,
+  })
+
+  if (!cart || !cart.items || (cart.items && cart.items.length < 1)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/cart',
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
+}
 
 export default CheckoutPage

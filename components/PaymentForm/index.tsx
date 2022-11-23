@@ -105,7 +105,10 @@ const PaymentForm: React.FC<{
         console.log({ order })
         setProcessing(false)
         setSucceeded(true)
-        router.push('/confirmOrder', { query: { orderId: order.number } })
+        router.push({
+          pathname: '/confirmOrder',
+          query: { orderId: order.number },
+        })
         setError(undefined)
       } catch (error) {
         setError(`Payment failed ${error}`)

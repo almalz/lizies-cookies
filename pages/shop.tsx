@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
@@ -74,7 +74,7 @@ const Shop: NextPage<DropPageProps> = ({
   )
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<DropPageQuery>({
     query: DropPageDocument,
     fetchPolicy: 'no-cache',
