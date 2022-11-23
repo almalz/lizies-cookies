@@ -24,11 +24,11 @@ const Layout: React.FC<LayoutProps> = ({
     <div className="relative flex min-h-screen flex-col">
       <NextSeo
         noindex={noIndex}
-        title={seo?.title || 'Naughty cookies'}
-        description={seo?.description || 'Naughty cookies'}
+        title={seo?.title || 'Naughty Cookies'}
+        description={seo?.description || 'Naughty Cookies'}
         openGraph={{
-          title: seo?.title || 'Naughty cookies',
-          description: seo?.description || 'Naughty cookies',
+          title: seo?.title || 'Naughty Cookies',
+          description: seo?.description || 'Naughty Cookies',
           url: `${BASE_URL}/${slug}`,
           type: 'website',
         }}
