@@ -11,8 +11,8 @@ export const RadioCard: React.FC<UseRadioProps & { loading?: boolean }> = (
   const checkbox = getCheckboxProps()
 
   return (
-    <Box as="label">
-      <input {...input} className="flex" />
+    <Box as="label" className="flex">
+      <input {...input} />
       <div
         {...checkbox}
         className={clsx(
