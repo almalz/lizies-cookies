@@ -44,4 +44,5 @@ export type SwellShipping = {
   state?: string
   country?: string
   service_name?: string
+  pickup?: boolean
 }

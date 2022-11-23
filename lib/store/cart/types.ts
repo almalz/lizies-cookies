@@ -61,8 +61,8 @@ export type SwellCartItem = {
   variant?: any
   options?: any
   productId: string
-  productName: string
-  product_name: string
+  productName?: string
+  product_name?: string
   quantity: number
 }
 

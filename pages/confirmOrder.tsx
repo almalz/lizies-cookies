@@ -40,7 +40,7 @@ const fetchWholeOrder = async (id: string) => {
   }
 }
 
-type ShippingCategory = 'pickup' | 'delivery'
+type DeliveryCategory = 'pickup' | 'shipment'
 
 type ConfirmOrderPageProps = {
   order: SwellOrder
@@ -51,7 +51,7 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
   order,
   pageContent,
 }) => {
-  const shippingService: ShippingCategory = 'pickup'
+  const isPickup = order.shipping?.pickup || false
   const { clearCart } = useCart()
 
   let headline, body
@@ -60,11 +60,11 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
     clearCart()
   }, [clearCart])
 
-  if (shippingService === 'delivery') {
-    headline = pageContent.headlineDelivery
-    body = pageContent.bodyDelivery
-  } else {
+  if (isPickup) {
     headline = pageContent.headlinePickup
+    body = pageContent.bodyPickup
+  } else {
+    headline = pageContent.headlineDelivery
     body = pageContent.bodyDelivery
   }
 

@@ -6,6 +6,17 @@ const nextConfig = {
   images: {
     domains: ['www.datocms-assets.com', 'cdn.schema.io'],
   },
+  webpack: (config, { webpack }) => {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __SENTRY_DEBUG__: false,
+        __SENTRY_TRACING__: false,
+      })
+    )
+
+    // return the modified config
+    return config
+  },
   async redirects() {
     return [
       {
