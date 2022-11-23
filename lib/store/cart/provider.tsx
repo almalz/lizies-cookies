@@ -180,6 +180,7 @@ const CartProvider: React.FC = ({ children }) => {
   const clearCart = useCallback(async () => {
     setCart(undefined)
     setCartItemsCache(undefined)
+    sessionStorage.clear()
   }, [])
 
   const value = {

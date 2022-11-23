@@ -3,18 +3,21 @@ import swell from '../swell'
 
 export const handleConfirmOrderPayement = async ({
   paymentIntentId,
+  paymentMethodId,
 }: {
   paymentIntentId: string
+  paymentMethodId: string
 }) => {
-  const order = await Cart.submitOrder()
   const billing = {
-    method: 'card',
+    method: paymentMethodId,
     intent: {
       stripe: {
         id: paymentIntentId,
       },
     },
   }
-  await swell.cart.update({ billing: { ...billing } })
+  const cart = await swell.cart.update({ billing: { ...billing } })
+  const order = await Cart.submitOrder()
+  console.log({ order, billing, cart })
   return order
 }

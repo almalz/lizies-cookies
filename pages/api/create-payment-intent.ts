@@ -21,12 +21,12 @@ export default async function handler(
     paymentIntentId,
   }: { cart: SwellCart; paymentIntentId?: string } = req.body
   // Validate the amount that was passed from the client.
-  if (!cart.grandTotal) {
+  if (!cart || !cart.grandTotal) {
     res.status(500).json({ statusCode: 400, message: 'Invalid amount.' })
     return
   }
 
-  const amount = cart.grandTotal * 100
+  const amount = Number((cart.grandTotal * 100).toFixed(0))
 
   if (paymentIntentId) {
     try {

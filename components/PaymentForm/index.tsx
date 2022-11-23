@@ -1,6 +1,12 @@
 import { PaymentMethod, StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useState, useEffect, FormEventHandler, useCallback } from 'react'
+import {
+  useState,
+  useEffect,
+  FormEventHandler,
+  useCallback,
+  useMemo,
+} from 'react'
 import { Button } from '@chakra-ui/react'
 import { useCart } from '../../lib/store'
 import { OrderSummary } from './OrderSummary'
@@ -62,7 +68,9 @@ const PaymentForm: React.FC<{
   }, [cart, paymentIntentId])
 
   useEffect(() => {
-    sessionStorage.setItem('paymentIntentId', JSON.stringify(paymentIntentId))
+    if (paymentIntentId) {
+      sessionStorage.setItem('paymentIntentId', JSON.stringify(paymentIntentId))
+    }
   }, [paymentIntentId])
 
   const cardStyle = {
@@ -85,6 +93,7 @@ const PaymentForm: React.FC<{
   const handleChange = async (event: StripeCardElementChangeEvent) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
+    console.log()
     setDisabled(event.empty)
     setError(event.error ? event.error.message : '')
   }
@@ -120,20 +129,39 @@ const PaymentForm: React.FC<{
       try {
         const order: SwellOrder = await handleConfirmOrderPayement({
           paymentIntentId: payload?.paymentIntent.id,
+          paymentMethodId: payload.paymentIntent.payment_method as string,
         })
-        setProcessing(false)
-        setSucceeded(true)
-        router.push({
-          pathname: '/confirmOrder',
-          query: { orderId: order.number },
-        })
-        setError(undefined)
+        if (order) {
+          setProcessing(false)
+          setSucceeded(true)
+          router.push({
+            pathname: '/confirmOrder',
+            query: { orderId: order.number },
+          })
+          setError(undefined)
+        } else {
+          throw new Error()
+        }
       } catch (error) {
         setError(`Payment failed ${error}`)
         setProcessing(false)
       }
     }
   }
+
+  const Card = useMemo(
+    () => (
+      <CardElement
+        id="card-element"
+        options={{
+          style: cardStyle,
+          hidePostalCode: true,
+        }}
+        onChange={handleChange}
+      />
+    ),
+    [cardStyle]
+  )
 
   return (
     <>
@@ -143,14 +171,7 @@ const PaymentForm: React.FC<{
         onSubmit={handleSubmit}
         className="my-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 text-white"
       >
-        <CardElement
-          id="card-element"
-          options={{
-            style: cardStyle,
-            hidePostalCode: true,
-          }}
-          onChange={handleChange}
-        />
+        {Card}
         <div className="flex justify-center pt-8">
           <Button
             type="submit"
