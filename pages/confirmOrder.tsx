@@ -14,7 +14,7 @@ import {
 import { add, isBefore } from 'date-fns'
 import { useEffect } from 'react'
 import { useCart } from '../lib/store'
-import { formatPrice } from '../lib/utils'
+import { formatPrice, injectVariables } from '../lib/utils'
 
 const fetchWholeOrder = async (id: string) => {
   try {
@@ -24,23 +24,23 @@ const fetchWholeOrder = async (id: string) => {
       id: id,
       expand: ['items.product', 'account'],
     })
-
-    res.items = res.items.map((item: any) => {
-      return {
-        ...item,
-        image_url: item.product.images[0].file.url + '?height=1500&width=1500',
-        name: item.product.name,
-      }
-    })
-    console.info(`sucessfully fetched whole order for id ${id}`)
-    return res
+    if (res.items) {
+      res.items = res.items.map((item: any) => {
+        return {
+          ...item,
+          image_url:
+            item.product.images[0].file.url + '?height=1500&width=1500',
+          name: item.product.name,
+        }
+      })
+      console.info(`sucessfully fetched whole order for id ${id}`)
+      return res
+    }
   } catch (error) {
     console.error(error)
     return null
   }
 }
-
-type DeliveryCategory = 'pickup' | 'shipment'
 
 type ConfirmOrderPageProps = {
   order: SwellOrder
@@ -71,9 +71,11 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
   return (
     <Layout seo={undefined} noIndex={true} slug="">
       <div className="flex flex-col gap-8 px-8 py-12 text-purple-700 sm:px-[20%] lg:py-20">
-        <H1>{pageContent.title}</H1>
-        <h2 className="font-body text-2xl font-bold">{headline}</h2>
-        <Paragraph markdown>{body}</Paragraph>
+        <H1>{injectVariables(pageContent.title!, order)}</H1>
+        <h2 className="font-body text-2xl font-bold">
+          {injectVariables(headline!, { ...order, ...order.metadata })}
+        </h2>
+        <Paragraph markdown>{injectVariables(body!, order)}</Paragraph>
         <div className="flex flex-col gap-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 sm:p-8">
           <H3>Résumé de la commande</H3>
           <div>
