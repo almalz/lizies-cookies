@@ -38,8 +38,10 @@ export const injectVariables = (
           isValid(new Date(variableSource[key]))
         ) {
           replaceWith = formatDate(variableSource[key])
+          console.log({ replaceWith })
+        } else {
+          replaceWith = variableSource[key]
         }
-        replaceWith = variableSource[key]
       } else {
         replaceWith = variableSource[key]
       }
