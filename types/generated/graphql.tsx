@@ -378,7 +378,7 @@ export type DeliveryconfigRecord = RecordInterface & {
   createdAt: Scalars['DateTime'];
   deliveryRange?: Maybe<Scalars['IntType']>;
   id: Scalars['ItemId'];
-  nbDaysBeforeDelivery?: Maybe<Scalars['IntType']>;
+  nbHoursBeforeDelivery?: Maybe<Scalars['IntType']>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -3751,7 +3751,7 @@ export type FocalPoint = {
 export type DeliveryConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DeliveryConfigQuery = { __typename?: 'Query', allExcludeddeliverydates: Array<{ __typename?: 'ExcludeddeliverydateRecord', date?: any | null }>, deliveryconfig?: { __typename?: 'DeliveryconfigRecord', nbDaysBeforeDelivery?: any | null, deliveryRange?: any | null } | null };
+export type DeliveryConfigQuery = { __typename?: 'Query', allExcludeddeliverydates: Array<{ __typename?: 'ExcludeddeliverydateRecord', date?: any | null }>, deliveryconfig?: { __typename?: 'DeliveryconfigRecord', nbHoursBeforeDelivery?: any | null, deliveryRange?: any | null } | null };
 
 export type DropsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3837,7 +3837,7 @@ export const DeliveryConfigDocument = gql`
     date
   }
   deliveryconfig {
-    nbDaysBeforeDelivery
+    nbHoursBeforeDelivery
     deliveryRange
   }
 }

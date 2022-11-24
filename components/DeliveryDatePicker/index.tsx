@@ -1,6 +1,6 @@
 import { Select } from '@chakra-ui/react'
 import { useDeliveryConfigQuery } from '../../types/generated/graphql'
-import { addDays, format, isSameDay, isValid } from 'date-fns'
+import { addDays, addHours, format, isSameDay, isValid } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 import { ChangeEvent, useState } from 'react'
 import { useCart } from '../../lib/store'
@@ -19,12 +19,12 @@ const includesDate = (d: Date, dateArray: Date[]) => {
 
 const generateAllDates = (
   dateRange: number,
-  offset: number,
+  offsetHours: number,
   excludedDates?: Date[]
 ) => {
   const today = new Date()
 
-  const daysWithOffset = addDays(today, offset || 0)
+  const daysWithOffset = addHours(today, offsetHours || 0)
 
   let dateBuffer = daysWithOffset
   let index = 0
@@ -61,7 +61,7 @@ const DeliveryDatePicker: React.FC<{
 
   const dates = generateAllDates(
     deliveryconfig!.deliveryRange,
-    deliveryconfig!.nbDaysBeforeDelivery,
+    deliveryconfig!.nbHoursBeforeDelivery,
     allExcludeddeliverydates.map((d) => new Date(d.date))
   )
 
