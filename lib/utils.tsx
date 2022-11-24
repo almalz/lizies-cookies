@@ -30,8 +30,16 @@ export const injectVariables = (
       const searchRegExp = new RegExp(placeholder, 'g')
       let replaceWith: any
 
-      if (isValid(new Date(variableSource[key]))) {
-        replaceWith = formatDate(variableSource[key])
+      if (typeof variableSource[key] === 'string') {
+        if (
+          (variableSource[key] as string).includes('-') &&
+          (variableSource[key] as string).includes(':') &&
+          (variableSource[key] as string).includes('.') &&
+          isValid(new Date(variableSource[key]))
+        ) {
+          replaceWith = formatDate(variableSource[key])
+        }
+        replaceWith = variableSource[key]
       } else {
         replaceWith = variableSource[key]
       }
