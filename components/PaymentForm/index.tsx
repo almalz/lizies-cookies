@@ -152,6 +152,7 @@ const PaymentForm: React.FC<{
   const Card = useMemo(
     () => (
       <CardElement
+        className="my-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 text-white"
         id="card-element"
         options={{
           style: cardStyle,
@@ -166,11 +167,7 @@ const PaymentForm: React.FC<{
   return (
     <>
       <OrderSummary />
-      <form
-        id="payment-form"
-        onSubmit={handleSubmit}
-        className="my-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 text-white"
-      >
+      <form id="payment-form" onSubmit={handleSubmit}>
         {Card}
         <div className="flex justify-center pt-8">
           <Button
