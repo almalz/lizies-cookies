@@ -11,24 +11,26 @@ export const RadioCard: React.FC<UseRadioProps & { loading?: boolean }> = (
   const checkbox = getCheckboxProps()
 
   return (
-    <Box as="label" className="flex">
+    <Box as="label" className="flex w-full">
       <input {...input} />
       <div
         {...checkbox}
         className={clsx(
-          'flex cursor-pointer flex-row gap-2 rounded-md border-2 border-pink-500 px-4 py-4 text-purple-500 hover:bg-pink-100',
+          'flex min-h-[130px] w-full cursor-pointer flex-row items-center gap-2 rounded-md border-2 border-pink-500 px-4 py-4 text-purple-500 hover:bg-pink-100 md:min-h-[160px]',
           props.isChecked && 'bg-pink-100'
         )}
       >
-        {props.loading && props.isChecked && (
+        {props.isChecked && props.loading && (
           <Spinner color="#584473" size="sm" />
         )}
-        {!props.loading && props.isChecked && (
-          <HiCheckCircle
-            className={clsx('fill-purple-500', !props.isChecked && 'opacity-0')}
-            size={18}
-          />
-        )}
+        <HiCheckCircle
+          className={clsx(
+            'fill-purple-500 opacity-0',
+            props.isChecked && props.loading && 'hidden',
+            props.isChecked && !props.loading && 'opacity-100'
+          )}
+          size={18}
+        />
         <div className="w-full">{props.children}</div>
       </div>
     </Box>
