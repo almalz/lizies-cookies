@@ -25,11 +25,11 @@ export const CouponsManager: React.FC<CouponsManagerProps> = ({
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       const apply = async () => {
-        setCouponValue('')
         if (error) setError(false)
         setLoading(true)
         const res = await applyCoupon(couponValue)
         if (!res) setError(true)
+        setCouponValue('')
         setLoading(false)
       }
       apply()
@@ -78,7 +78,8 @@ export const CouponsManager: React.FC<CouponsManagerProps> = ({
           <div className="flex justify-center lg:w-80">
             <Button
               color="purple"
-              className="w-full py-2 px-1 text-sm"
+              className="w-full text-sm"
+              padding="py-2 px-2 lg:py-4"
               loading={loading}
               type="submit"
               disabled={!!coupon}

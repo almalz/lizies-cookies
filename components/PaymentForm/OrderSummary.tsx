@@ -73,7 +73,9 @@ export const OrderSummary: React.FC = () => {
         {cart.coupon && (
           <div className="flex flex-row">
             <span className="flex-1">{pageContent.discountLabel} :</span>
-            <span>{formatPrice(-cart.discountTotal)}</span>
+            <span>
+              {formatPrice(-(cart.discountTotal + cart.shipmentDiscount))}
+            </span>
           </div>
         )}
         <div className="flex flex-row font-bold">

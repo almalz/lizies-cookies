@@ -6,6 +6,7 @@ export type ButtonProps = {
   color?: 'pink' | 'purple' | 'white'
   onClick?: () => void
   className?: string
+  padding?: string
   disabled?: boolean
   loading?: boolean
   noBorders?: boolean
@@ -26,6 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   type = 'button',
   noBorders = false,
+  padding,
   children,
   ...props
 }) => {
@@ -35,8 +37,9 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       className={clsx([
         !noBorders && 'border-3',
-        'bg-transparent py-3 px-8 font-body text-lg font-bold hover:bg-opacity-10 sm:px-16',
+        'bg-transparent font-body text-lg font-bold hover:bg-opacity-10 ',
         disabled && 'cursor-default opacity-30',
+        padding ? padding : 'py-3 px-8 sm:px-16',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
