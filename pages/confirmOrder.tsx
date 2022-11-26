@@ -89,7 +89,9 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
             </Paragraph>
             <p className="mt-4 font-body text-lg">
               {'Montant total: '}
-              <span className="font-bold">{order.grand_total + '€'}</span>
+              <span className="font-bold">
+                {formatPrice(order.grand_total)}
+              </span>
             </p>
           </div>
           <div className="mt-4 flex flex-col divide-y ">

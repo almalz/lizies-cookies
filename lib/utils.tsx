@@ -38,7 +38,6 @@ export const injectVariables = (
           isValid(new Date(variableSource[key]))
         ) {
           replaceWith = formatDate(variableSource[key])
-          console.log({ replaceWith })
         } else {
           replaceWith = variableSource[key]
         }
@@ -56,7 +55,7 @@ const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
 
 export const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('de-DE', {
+  return new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency: 'EUR',
   }).format(price)
