@@ -66,17 +66,22 @@ const DeliveryDatePicker: React.FC<{
   )
 
   const handleDateSelect = async (e: ChangeEvent<HTMLSelectElement>) => {
-    const date = e.target.value
-    const formatedDate = new Date(date)
-    if (isValid(formatedDate)) {
-      try {
-        setSelectedDate(date)
-        await addCartMetadata({ delivery_date: formatedDate })
-        onComplete(date)
-        setSelectedDate(undefined)
-      } catch (error) {
-        console.error(error)
-        goToCart(true)
+    const dateString = e.target.value
+
+    const date = dates.find((d) => d.dateString === dateString)?.date
+
+    if (date) {
+      const formatedDate = new Date(date)
+      if (isValid(formatedDate)) {
+        try {
+          setSelectedDate(dateString)
+          await addCartMetadata({ delivery_date: date })
+          onComplete(dateString)
+          setSelectedDate(undefined)
+        } catch (error) {
+          console.error(error)
+          goToCart(true)
+        }
       }
     }
   }

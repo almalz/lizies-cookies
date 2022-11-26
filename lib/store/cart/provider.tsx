@@ -9,7 +9,6 @@ import {
   useMemo,
 } from 'react'
 import { setCookiesExpiration } from '../../cookies'
-import swell from '../swell'
 import { Cart } from './api'
 import { SwellCart, SwellCartItem, SwellCoupon } from './types'
 
