@@ -70,11 +70,13 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
 
   return (
     <Layout seo={undefined} noIndex={true} slug="">
-      <div className="flex flex-col gap-8 px-8 py-12 text-purple-700 sm:px-[20%] lg:py-20">
-        <H1>{injectVariables(pageContent.title!, order)}</H1>
-        <h2 className="font-body text-2xl font-bold">
-          {injectVariables(headline!, { ...order, ...order.metadata })}
-        </h2>
+      <div className="flex flex-col gap-8 px-8 py-12 text-purple-700 sm:gap-12 sm:px-[20%] lg:py-20">
+        <div>
+          <H1>{injectVariables(pageContent.title!, order)}</H1>
+          <h2 className="mt-4 font-body text-2xl font-bold">
+            {injectVariables(headline!, { ...order, ...order.metadata })}
+          </h2>
+        </div>
         <Paragraph markdown>{injectVariables(body!, order)}</Paragraph>
         <div className="flex flex-col gap-4 rounded-md border-2 border-pink-500 bg-pink-100 p-4 sm:p-8">
           <H3>Résumé de la commande</H3>

@@ -1,4 +1,4 @@
-import { PaymentMethod, StripeCardElementChangeEvent } from '@stripe/stripe-js'
+import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import {
   useState,
@@ -25,7 +25,8 @@ const PaymentForm: React.FC<{
   const [clientSecret, setClientSecret] = useState('')
   const stripe = useStripe()
   const elements = useElements()
-  const { cart, clearCart } = useCart()
+  elements?.update({ locale: 'fr' })
+  const { cart } = useCart()
   const router = useRouter()
 
   const getInitialIntent = useCallback(() => {
@@ -143,7 +144,7 @@ const PaymentForm: React.FC<{
           throw new Error()
         }
       } catch (error) {
-        setError(`Payment failed ${error}`)
+        setError(`Le paiement a échoué : ${error}`)
         setProcessing(false)
       }
     }
