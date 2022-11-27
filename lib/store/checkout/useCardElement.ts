@@ -18,7 +18,6 @@ export const useCardElement = ({
     await swell.payment.tokenize({
       card: {
         onSuccess: (result) => {
-          console.log('tokenize success')
           onSuccess && onSuccess(result)
         },
         onError: (err) => {
