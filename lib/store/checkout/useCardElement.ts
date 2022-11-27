@@ -22,7 +22,7 @@ export const useCardElement = ({
           onSuccess && onSuccess(result)
         },
         onError: (err) => {
-          console.log(err)
+          onError && onError(err)
         },
       },
     })

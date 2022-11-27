@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { useCardElement } from '../../lib/store/checkout/useCardElement'
 import { useRouter } from 'next/router'
 import { Cart } from '../../lib/store/cart/api'
+import { useCheckout } from '../../lib/store/checkout/provider'
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -16,39 +17,19 @@ const PaymentForm: React.FC<{
   const [processing, setProcessing] = useState(false)
   const [disabled, setDisabled] = useState(true)
   const router = useRouter()
+  const { deliveryDate } = useCheckout()
+
   const handleChange = useCallback(
     async (event: StripeCardElementChangeEvent) => {
-      // Listen for changes in the CardElement
-      // and display any errors as the customer types their card details
       setDisabled(event.empty)
       console.log(event.error)
-      setError(event.error ? event.error.message : '')
+      setError(event.error ? event.error.message : undefined)
     },
     []
   )
 
-  const { CARD_ELEMENT_ID, onTokenize } = useCardElement({
-    onChange: handleChange,
-  })
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault()
-    setProcessing(true)
-    onTokenize()
-
-    try {
-      // const order: SwellOrder = await handleConfirmOrderPayement({
-      //   paymentIntentId: payload?.paymentIntent.id,
-      //   paymentMethodId: payload.paymentIntent.payment_method as string,
-      //   onSuccess: async (order) => {
-      //     if (deliveryDate) {
-      //       await addOrderContent(
-      //         { delivery_date: formatDate(deliveryDate) },
-      //         order.id
-      //       )
-      //     }
-      //   },
-      // })
+  const handleSucess = useCallback(
+    async (result) => {
       const order = await Cart.submitOrder()
 
       if (order) {
@@ -58,13 +39,30 @@ const PaymentForm: React.FC<{
           pathname: '/confirmOrder',
           query: { orderId: order.number },
         })
-        setError(undefined)
-      } else {
-        throw new Error()
       }
+    },
+    [router]
+  )
+
+  const handleError = useCallback(async (error) => {
+    console.log({ error })
+    setError(`Le paiement a échoué : votre carte a été refusée`)
+    setProcessing(false)
+  }, [])
+
+  const { CARD_ELEMENT_ID, onTokenize } = useCardElement({
+    onChange: handleChange,
+    onSuccess: handleSucess,
+    onError: handleError,
+  })
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
+    setProcessing(true)
+    try {
+      await onTokenize()
     } catch (error) {
-      setError(`Le paiement a échoué : ${error}`)
-      setProcessing(false)
+      handleError(error)
     }
   }
 
