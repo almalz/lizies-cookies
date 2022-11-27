@@ -18,6 +18,7 @@ const PaymentForm: React.FC<{
   const [disabled, setDisabled] = useState(true)
   const router = useRouter()
   const { deliveryDate } = useCheckout()
+  const { addOrderContent } = useCart()
 
   const handleChange = useCallback(
     async (event: StripeCardElementChangeEvent) => {
@@ -28,27 +29,31 @@ const PaymentForm: React.FC<{
     []
   )
 
-  const handleSucess = useCallback(
-    async (result) => {
-      const order = await Cart.submitOrder()
-
-      if (order) {
-        setProcessing(false)
-        setSucceeded(true)
-        router.push({
-          pathname: '/confirmOrder',
-          query: { orderId: order.number },
-        })
-      }
-    },
-    [router]
-  )
-
   const handleError = useCallback(async (error) => {
     console.log({ error })
     setError(`Le paiement a échoué : votre carte a été refusée`)
     setProcessing(false)
   }, [])
+
+  const handleSucess = useCallback(
+    async (result) => {
+      try {
+        const order = await Cart.submitOrder()
+        await addOrderContent({ delivery_date: deliveryDate }, order.id)
+        if (order) {
+          setProcessing(false)
+          setSucceeded(true)
+          router.push({
+            pathname: '/confirmOrder',
+            query: { orderId: order.number },
+          })
+        }
+      } catch (error) {
+        handleError(error)
+      }
+    },
+    [addOrderContent, deliveryDate, router, handleError]
+  )
 
   const { CARD_ELEMENT_ID, onTokenize } = useCardElement({
     onChange: handleChange,
