@@ -111,6 +111,7 @@ export type SwellOrder = {
   gift: any
   gift_message: any
   metadata: { delivery_date: string }
+  content: any
   shipment_delivery: boolean
   date_trial_end: any
   sub_total: number

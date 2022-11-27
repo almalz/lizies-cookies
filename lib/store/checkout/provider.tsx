@@ -81,12 +81,15 @@ const CheckoutStateContext = createContext<
       nextSection: () => void
       setValue: (sectionId: number, value: Section['value']) => void
       cart?: SwellCart
+      deliveryDate: Date | undefined
+      setDeliveryDate: Dispatch<SetStateAction<Date | undefined>>
     }
   | undefined
 >(undefined)
 
 const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
   const { cart, goToCart, pullCart } = useCart()
+  const [deliveryDate, setDeliveryDate] = useState<Date | undefined>()
 
   const checkCartSession = useCallback(async () => {
     await pullCart()
@@ -185,6 +188,8 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
       nextSection,
       setValue,
       cart,
+      deliveryDate,
+      setDeliveryDate,
     }),
     [
       sections,
@@ -193,6 +198,8 @@ const CheckoutProvider = ({ children }: { children: React.ReactNode }) => {
       nextSection,
       setValue,
       cart,
+      deliveryDate,
+      setDeliveryDate,
     ]
   )
   return (

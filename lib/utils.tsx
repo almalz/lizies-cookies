@@ -51,7 +51,7 @@ export const injectVariables = (
   return text
 }
 
-const formatDate = (date: Date) =>
+export const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
 
 export const formatPrice = (price: number) => {

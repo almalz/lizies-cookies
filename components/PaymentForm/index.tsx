@@ -14,6 +14,25 @@ import clsx from 'clsx'
 import { handleConfirmOrderPayement } from '../../lib/store/checkout/order'
 import { useRouter } from 'next/router'
 import { SwellOrder } from '../../lib/store/cart/types'
+import { useCheckout } from '../../lib/store/checkout/provider'
+import { formatDate } from '../../lib/utils'
+
+const cardStyle = {
+  base: {
+    color: '#32325d',
+    fontFamily: 'Arial, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#32325d',
+    },
+  },
+  invalid: {
+    fontFamily: 'Arial, sans-serif',
+    color: '#fa755a',
+    iconColor: '#fa755a',
+  },
+}
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -26,8 +45,9 @@ const PaymentForm: React.FC<{
   const stripe = useStripe()
   const elements = useElements()
   elements?.update({ locale: 'fr' })
-  const { cart } = useCart()
+  const { cart, addOrderContent } = useCart()
   const router = useRouter()
+  const { deliveryDate } = useCheckout()
 
   const getInitialIntent = useCallback(() => {
     let data = sessionStorage.getItem('paymentIntentId')
@@ -74,23 +94,6 @@ const PaymentForm: React.FC<{
     }
   }, [paymentIntentId])
 
-  const cardStyle = {
-    base: {
-      color: '#32325d',
-      fontFamily: 'Arial, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#32325d',
-      },
-    },
-    invalid: {
-      fontFamily: 'Arial, sans-serif',
-      color: '#fa755a',
-      iconColor: '#fa755a',
-    },
-  }
-
   const handleChange = async (event: StripeCardElementChangeEvent) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
@@ -131,6 +134,14 @@ const PaymentForm: React.FC<{
         const order: SwellOrder = await handleConfirmOrderPayement({
           paymentIntentId: payload?.paymentIntent.id,
           paymentMethodId: payload.paymentIntent.payment_method as string,
+          onSuccess: async (order) => {
+            if (deliveryDate) {
+              await addOrderContent(
+                { delivery_date: formatDate(deliveryDate) },
+                order.id
+              )
+            }
+          },
         })
         if (order) {
           setProcessing(false)
@@ -162,7 +173,7 @@ const PaymentForm: React.FC<{
         onChange={handleChange}
       />
     ),
-    [cardStyle]
+    []
   )
 
   return (

@@ -1,12 +1,15 @@
 import { Cart } from '../cart/api'
+import { SwellOrder } from '../cart/types'
 import swell from '../swell'
 
 export const handleConfirmOrderPayement = async ({
   paymentIntentId,
   paymentMethodId,
+  onSuccess,
 }: {
   paymentIntentId: string
   paymentMethodId: string
+  onSuccess: (order: SwellOrder) => void
 }) => {
   const billing = {
     method: paymentMethodId,
@@ -16,8 +19,8 @@ export const handleConfirmOrderPayement = async ({
       },
     },
   }
-  const cart = await swell.cart.update({ billing: { ...billing } })
+  await swell.cart.update({ billing: { ...billing } })
   const order = await Cart.submitOrder()
-  console.log({ order, billing, cart })
+  if (order) onSuccess(order)
   return order
 }

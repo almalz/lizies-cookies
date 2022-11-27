@@ -78,10 +78,11 @@ export const Cart = {
       console.error(error)
     }
   },
-  addCartMetadata: async (metadata: any) => {
+  addOrderContent: async (content: any, orderId: string, accountId: string) => {
     try {
-      await swell.cart.update({
-        metadata: metadata,
+      fetch(`/api/order/${orderId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ content, accountId }),
       })
     } catch (error) {
       console.error(error)

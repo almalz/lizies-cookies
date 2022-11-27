@@ -3,12 +3,8 @@ import * as SibApiV3Sdk from '@sendinblue/client'
 import { SwellOrderCreatedWebhook } from '../../../types/orders'
 // @ts-ignore
 import swell from 'swell-node'
-import { Products } from '../../../lib/store/products/api'
 
-swell.init(
-  process.env.NEXT_PUBLIC_SWELL_STORE_ID,
-  process.env.SWELL_SECRET_KEY
-)
+swell.init(process.env.NEXT_PUBLIC_SWELL_STORE_ID, process.env.SWELL_SECRET_KEY)
 
 const SibApi = new SibApiV3Sdk.TransactionalEmailsApi()
 
@@ -50,15 +46,6 @@ const fetchWholeOrder = async (id: string) => {
   }
 }
 
-const fetchDropDeliveryDate = async () => {
-  try {
-    const drop = await Products.getCurrentDrop()
-    return drop
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 const handler: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
@@ -67,8 +54,6 @@ const handler: NextApiHandler = async (
     const body: SwellOrderCreatedWebhook = req.body
 
     const order = await fetchWholeOrder(body.data.id)
-
-    const currentDrop = await fetchDropDeliveryDate()
 
     console.info(
       `sending confirmation email for order ${body.data.id} - ${order?.number}`
@@ -85,7 +70,7 @@ const handler: NextApiHandler = async (
       params: {
         ...order,
         shipping_method: order.shipping.pickup ? 'pickup' : 'delivery',
-        delivery_date: formatDate(currentDrop?.deliveryDate || ''),
+        delivery_date: formatDate(order.content.deliveryDate || ''),
       },
     })
 

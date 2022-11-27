@@ -4,6 +4,7 @@ import { addDays, addHours, format, isSameDay, isValid } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 import { ChangeEvent, useState } from 'react'
 import { useCart } from '../../lib/store'
+import { useCheckout } from '../../lib/store/checkout/provider'
 
 const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
@@ -49,7 +50,8 @@ const DeliveryDatePicker: React.FC<{
   onComplete: (value: string) => void
 }> = ({ onComplete }) => {
   const { data, loading } = useDeliveryConfigQuery()
-  const { goToCart, addCartMetadata } = useCart()
+  const { goToCart } = useCart()
+  const { setDeliveryDate } = useCheckout()
 
   const [selectedDate, setSelectedDate] = useState<string | undefined>()
 
@@ -75,7 +77,7 @@ const DeliveryDatePicker: React.FC<{
       if (isValid(formatedDate)) {
         try {
           setSelectedDate(dateString)
-          await addCartMetadata({ delivery_date: date })
+          setDeliveryDate(date)
           onComplete(dateString)
           setSelectedDate(undefined)
         } catch (error) {

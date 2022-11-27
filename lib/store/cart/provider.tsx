@@ -26,7 +26,7 @@ type CartContextProps = {
   applyCoupon: (coupon: string) => any
   removeCoupon: () => any
   coupon: SwellCoupon | undefined
-  addCartMetadata: (metadata: any) => Promise<void>
+  addOrderContent: (content: any, orderId: string) => Promise<void>
   clearCart: () => void
 }
 
@@ -182,6 +182,15 @@ const CartProvider: React.FC = ({ children }) => {
     sessionStorage.clear()
   }, [])
 
+  const addOrderContent = useCallback(
+    async (content: any, orderId: string) => {
+      if (cart && cart.account) {
+        await Cart.addOrderContent(content, orderId, cart.account?.id)
+      }
+    },
+    [cart]
+  )
+
   const value = {
     loading,
     cartItems,
@@ -196,7 +205,7 @@ const CartProvider: React.FC = ({ children }) => {
     applyCoupon,
     removeCoupon,
     coupon,
-    addCartMetadata: Cart.addCartMetadata,
+    addOrderContent: addOrderContent,
     clearCart,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
