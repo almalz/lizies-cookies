@@ -121,7 +121,7 @@ export const Cart = {
   },
   submitOrder: async () => {
     try {
-      return await swell.cart.submitOrder()
+      return swell.cart.submitOrder()
     } catch (error) {
       console.error(error)
     }
