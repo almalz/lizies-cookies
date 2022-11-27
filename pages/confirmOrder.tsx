@@ -18,8 +18,6 @@ import { formatPrice, injectVariables } from '../lib/utils'
 
 const fetchWholeOrder = async (id: string) => {
   try {
-    console.info(`trying to fetch whole order for id ${id}`)
-
     const res: any = await swellNode.get('/orders/{id}', {
       id: id,
       expand: ['items.product', 'account'],
@@ -33,7 +31,6 @@ const fetchWholeOrder = async (id: string) => {
           name: item.product.name,
         }
       })
-      console.info(`sucessfully fetched whole order for id ${id}`)
       return res
     }
   } catch (error) {

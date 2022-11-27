@@ -28,7 +28,7 @@ const fetchWholeOrder = async (id: string) => {
 
     const res: any = await swell.get('/orders/{id}', {
       id: id,
-      expand: ['items.product', 'account'],
+      expand: ['items.product', 'account', 'content'],
     })
 
     res.items = res.items.map((item: any) => {
@@ -53,7 +53,10 @@ const handler: NextApiHandler = async (
   try {
     const body: SwellOrderCreatedWebhook = req.body
 
+    console.log({ body })
+
     const order = await fetchWholeOrder(body.data.id)
+    console.log({ order })
 
     console.info(
       `sending confirmation email for order ${body.data.id} - ${order?.number}`
