@@ -24,7 +24,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   pageContent,
 }) => {
   const router = useRouter()
-  const { goToCheckout } = useCart()
+  const { goToCheckout, loading } = useCart()
 
   const [termsChecked, setTermsChecked] = useState<boolean>(false)
 
@@ -71,7 +71,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         <Button
           color="pink"
           onClick={() => goToCheckout()}
-          disabled={!termsChecked}
+          disabled={!termsChecked || loading}
         >
           {pageContent.checkoutCtaLabel}
         </Button>

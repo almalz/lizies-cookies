@@ -134,7 +134,9 @@ const CartProvider: React.FC = ({ children }) => {
   )
 
   const goToCheckout = useCallback(async () => {
+    setLoading(true)
     await Cart.updateAllItems(cartItems || [])
+    setLoading(false)
 
     if (cart) {
       router.push({ pathname: '/checkout', query: { cartId: cart.id } })
