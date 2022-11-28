@@ -60,11 +60,13 @@ const ShippingMethod: React.FC<{
         ? shippingMethods.map(({ name, description, price }) => {
             const radio = getRadioProps({ value: name })
             return (
-              <RadioCard key={name} {...radio} loading={loading}>
-                <div
-                  className="flex items-center"
-                  onClick={() => handleSelect(name)}
-                >
+              <RadioCard
+                key={name}
+                {...radio}
+                loading={loading}
+                onClick={() => handleSelect(name)}
+              >
+                <div className="flex items-center">
                   <div className="flex-1">
                     <span className="mb-4 font-body font-bold">{name}</span>
                     <p className="font-body text-sm">{description}</p>

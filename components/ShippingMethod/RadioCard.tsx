@@ -2,16 +2,16 @@ import { Box, Spinner, useRadio, UseRadioProps } from '@chakra-ui/react'
 import clsx from 'clsx'
 import { HiCheckCircle } from 'react-icons/hi'
 
-export const RadioCard: React.FC<UseRadioProps & { loading?: boolean }> = (
-  props
-) => {
+export const RadioCard: React.FC<
+  UseRadioProps & { loading?: boolean; onClick?: () => void }
+> = (props) => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
   const checkbox = getCheckboxProps()
 
   return (
-    <Box as="label" className="flex w-full">
+    <Box as="label" className="flex w-full" onClick={props.onClick}>
       <input {...input} />
       <div
         {...checkbox}
