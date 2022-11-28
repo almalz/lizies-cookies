@@ -65,8 +65,6 @@ const ConfirmOrderPage: NextPage<ConfirmOrderPageProps> = ({
     body = pageContent.bodyDelivery
   }
 
-  console.log({ order })
-
   return (
     <Layout seo={undefined} noIndex={true} slug="">
       <div className="flex flex-col gap-8 px-8 py-12 text-purple-700 sm:gap-12 sm:px-[20%] lg:py-20">

@@ -56,7 +56,6 @@ export const useCardElement = ({
         },
         onSuccess: (result) => {
           // Optional, called on card payment success
-          console.log('success')
         },
 
         onError: (err) => {
