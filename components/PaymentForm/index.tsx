@@ -24,14 +24,13 @@ const PaymentForm: React.FC<{
   const handleChange = useCallback(
     async (event: StripeCardElementChangeEvent) => {
       setDisabled(event.empty)
-      console.log(event.error)
       setError(event.error ? event.error.message : undefined)
     },
     []
   )
 
   const handleError = useCallback(async (error) => {
-    console.log({ error })
+    console.error({ error })
     setError(`Le paiement a échoué : votre carte a été refusée`)
     setProcessing(false)
   }, [])
