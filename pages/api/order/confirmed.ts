@@ -51,15 +51,13 @@ const handler: NextApiHandler = async (
   res: NextApiResponse
 ) => {
   try {
-    const body: SwellOrderCreatedWebhook = req.body
+    const body = JSON.parse(req.body)
+    const { orderId, deliveryDate } = body
 
-    console.log({ body })
-
-    const order = await fetchWholeOrder(body.data.id)
-    console.log({ order })
+    const order = await fetchWholeOrder(orderId)
 
     console.info(
-      `sending confirmation email for order ${body.data.id} - ${order?.number}`
+      `sending confirmation email for order ${orderId} - ${order?.number}`
     )
 
     const data = await SibApi.sendTransacEmail({
@@ -73,7 +71,7 @@ const handler: NextApiHandler = async (
       params: {
         ...order,
         shipping_method: order.shipping.pickup ? 'pickup' : 'delivery',
-        delivery_date: formatDate(order.content.deliveryDate || ''),
+        delivery_date: formatDate(deliveryDate || ''),
       },
     })
 

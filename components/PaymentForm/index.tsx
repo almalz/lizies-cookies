@@ -8,6 +8,7 @@ import { useCardElement } from '../../lib/store/checkout/useCardElement'
 import { useRouter } from 'next/router'
 import { Cart } from '../../lib/store/cart/api'
 import { useCheckout } from '../../lib/store/checkout/provider'
+import { sendOrderConfirmationEmail } from '../../lib/mailer'
 
 const PaymentForm: React.FC<{
   onComplete: (value: string) => void
@@ -39,9 +40,10 @@ const PaymentForm: React.FC<{
     async (result) => {
       try {
         const order = await Cart.submitOrder()
-        await addOrderContent({ delivery_date: deliveryDate }, order.id)
-        if (order) {
+        if (order && deliveryDate) {
+          await addOrderContent({ delivery_date: deliveryDate }, order.id)
           setProcessing(false)
+          await sendOrderConfirmationEmail(order.id, deliveryDate)
           setSucceeded(true)
           router.push({
             pathname: '/confirmOrder',
