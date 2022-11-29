@@ -103,6 +103,7 @@ export type CartpageRecord = RecordInterface & {
   couponErrorMessage?: Maybe<Scalars['String']>;
   couponPlaceholder?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
+  deliveryLabel?: Maybe<Scalars['String']>;
   discountLabel?: Maybe<Scalars['String']>;
   emptycartmessage?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
@@ -215,6 +216,48 @@ export type ColorField = {
   red: Scalars['IntType'];
 };
 
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecord = RecordInterface & {
+  __typename?: 'ConfirmorderpageRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  bodyDelivery?: Maybe<Scalars['String']>;
+  bodyPickup?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  headlineDelivery?: Maybe<Scalars['String']>;
+  headlinePickup?: Maybe<Scalars['String']>;
+  id: Scalars['ItemId'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecordBodyDeliveryArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** Record of type ConfirmOrderPage (confirmorderpage) */
+export type ConfirmorderpageRecordBodyPickupArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']>;
+};
+
 /** Record of type ContactPage (contactpage) */
 export type ContactpageRecord = RecordInterface & {
   __typename?: 'ContactpageRecord';
@@ -316,6 +359,33 @@ export type DateTimeFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
   neq?: InputMaybe<Scalars['DateTime']>;
+};
+
+/** Record of type DeliveryConfig (deliveryconfig) */
+export type DeliveryconfigRecord = RecordInterface & {
+  __typename?: 'DeliveryconfigRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  deliveryRange?: Maybe<Scalars['IntType']>;
+  id: Scalars['ItemId'];
+  nbHoursBeforeDelivery?: Maybe<Scalars['IntType']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type DeliveryConfig (deliveryconfig) */
+export type DeliveryconfigRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type DropModelFilter = {
@@ -511,6 +581,75 @@ export type ErrorpageRecord = RecordInterface & {
 
 /** Record of type ErrorPage (errorpage) */
 export type ErrorpageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type ExcludeddeliverydateModelFilter = {
+  OR?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  createdAt?: InputMaybe<CreatedAtFilter>;
+  date?: InputMaybe<DateFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  updatedAt?: InputMaybe<UpdatedAtFilter>;
+};
+
+export enum ExcludeddeliverydateModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  CreatedAt_ASC = 'createdAt_ASC',
+  CreatedAt_DESC = 'createdAt_DESC',
+  Date_ASC = 'date_ASC',
+  Date_DESC = 'date_DESC',
+  Id_ASC = 'id_ASC',
+  Id_DESC = 'id_DESC',
+  UpdatedAt_ASC = 'updatedAt_ASC',
+  UpdatedAt_DESC = 'updatedAt_DESC'
+}
+
+/** Record of type ExcludedDeliveryDate (excludeddeliverydate) */
+export type ExcludeddeliverydateRecord = RecordInterface & {
+  __typename?: 'ExcludeddeliverydateRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
+  _updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
+  date?: Maybe<Scalars['Date']>;
+  id: Scalars['ItemId'];
+  updatedAt: Scalars['DateTime'];
+};
+
+
+/** Record of type ExcludedDeliveryDate (excludeddeliverydate) */
+export type ExcludeddeliverydateRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2694,6 +2833,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allDropsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allExcludeddeliverydatesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allFaqcategoriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFaqitemsMeta: CollectionMetadata;
@@ -2708,6 +2849,8 @@ export type Query = {
   /** Returns a collection of records */
   allDrops: Array<DropRecord>;
   /** Returns a collection of records */
+  allExcludeddeliverydates: Array<ExcludeddeliverydateRecord>;
+  /** Returns a collection of records */
   allFaqcategories: Array<FaqcategoryRecord>;
   /** Returns a collection of records */
   allFaqitems: Array<FaqitemRecord>;
@@ -2720,7 +2863,11 @@ export type Query = {
   /** Returns the single instance record */
   cateringpage?: Maybe<CateringpageRecord>;
   /** Returns the single instance record */
+  confirmorderpage?: Maybe<ConfirmorderpageRecord>;
+  /** Returns the single instance record */
   contactpage?: Maybe<ContactpageRecord>;
+  /** Returns the single instance record */
+  deliveryconfig?: Maybe<DeliveryconfigRecord>;
   /** Returns a specific record */
   drop?: Maybe<DropRecord>;
   /** Returns the single instance record */
@@ -2729,6 +2876,8 @@ export type Query = {
   droppagepopup?: Maybe<DroppagepopupRecord>;
   /** Returns the single instance record */
   errorpage?: Maybe<ErrorpageRecord>;
+  /** Returns a specific record */
+  excludeddeliverydate?: Maybe<ExcludeddeliverydateRecord>;
   /** Returns a specific record */
   faqcategory?: Maybe<FaqcategoryRecord>;
   /** Returns a specific record */
@@ -2758,6 +2907,14 @@ export type Query = {
 export type Query_AllDropsMetaArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<DropModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllExcludeddeliverydatesMetaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2814,6 +2971,17 @@ export type QueryAllDropsArgs = {
   first?: InputMaybe<Scalars['IntType']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<DropModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllExcludeddeliverydatesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
+  first?: InputMaybe<Scalars['IntType']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']>;
 };
 
@@ -2877,7 +3045,21 @@ export type QueryCateringpageArgs = {
 
 
 /** The query root for this schema */
+export type QueryConfirmorderpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
 export type QueryContactpageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryDeliveryconfigArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2910,6 +3092,15 @@ export type QueryDroppagepopupArgs = {
 export type QueryErrorpageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryExcludeddeliverydateArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ExcludeddeliverydateModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ExcludeddeliverydateModelOrderBy>>>;
 };
 
 
@@ -3557,6 +3748,11 @@ export type FocalPoint = {
   y: Scalars['FloatType'];
 };
 
+export type DeliveryConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DeliveryConfigQuery = { __typename?: 'Query', allExcludeddeliverydates: Array<{ __typename?: 'ExcludeddeliverydateRecord', date?: any | null }>, deliveryconfig?: { __typename?: 'DeliveryconfigRecord', nbHoursBeforeDelivery?: any | null, deliveryRange?: any | null } | null };
+
 export type DropsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3582,7 +3778,7 @@ export type DropPageQuery = { __typename?: 'Query', droppage?: { __typename?: 'D
 export type CartPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, emptycartmessage?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, accepttermsmessage?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
+export type CartPageQuery = { __typename?: 'Query', cartpage?: { __typename?: 'CartpageRecord', title?: string | null, emptycartmessage?: string | null, discountLabel?: string | null, couponPlaceholder?: string | null, couponButtonLabel?: string | null, couponErrorMessage?: string | null, deliveryLabel?: string | null, subtotalLabel?: string | null, totalLabel?: string | null, shippingFeesInstructions?: string | null, checkoutCtaLabel?: string | null, backButtonLabel?: string | null, accepttermsmessage?: string | null, noindex?: any | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', url: string, alt?: string | null } | null } | null } | null };
 
 export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3624,12 +3820,55 @@ export type CateringPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CateringPageQuery = { __typename?: 'Query', cateringpage?: { __typename?: 'CateringpageRecord', title?: string | null, headline?: string | null, whiteSectionTitle?: string | null, whiteSectionBody?: string | null, whiteSectionCtaLabel?: string | null, purpleSectionTitle?: string | null, purpleSectionBody?: string | null, purpleSectionCtaLabel?: string | null, contactCtaLabel?: string | null, contactCallout?: string | null, noindex?: any | null, whiteSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, whiteSectionFile?: { __typename?: 'FileField', url: string } | null, purpleSectionImage?: { __typename?: 'FileField', alt?: string | null, url: string, author?: string | null } | null, purpleSectionFile?: { __typename?: 'FileField', url: string } | null, seo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', alt?: string | null, url: string } | null } | null } | null };
 
+export type ConfirmOrderPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ConfirmOrderPageQuery = { __typename?: 'Query', confirmorderpage?: { __typename?: 'ConfirmorderpageRecord', title?: string | null, bodyDelivery?: string | null, bodyPickup?: string | null, headlineDelivery?: string | null, headlinePickup?: string | null } | null };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, name?: string | null, unitPrice?: any | null, createdAt: any }> };
 
 
+export const DeliveryConfigDocument = gql`
+    query DeliveryConfig {
+  allExcludeddeliverydates(orderBy: date_ASC) {
+    date
+  }
+  deliveryconfig {
+    nbHoursBeforeDelivery
+    deliveryRange
+  }
+}
+    `;
+
+/**
+ * __useDeliveryConfigQuery__
+ *
+ * To run a query within a React component, call `useDeliveryConfigQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDeliveryConfigQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDeliveryConfigQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDeliveryConfigQuery(baseOptions?: Apollo.QueryHookOptions<DeliveryConfigQuery, DeliveryConfigQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DeliveryConfigQuery, DeliveryConfigQueryVariables>(DeliveryConfigDocument, options);
+      }
+export function useDeliveryConfigLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DeliveryConfigQuery, DeliveryConfigQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DeliveryConfigQuery, DeliveryConfigQueryVariables>(DeliveryConfigDocument, options);
+        }
+export type DeliveryConfigQueryHookResult = ReturnType<typeof useDeliveryConfigQuery>;
+export type DeliveryConfigLazyQueryHookResult = ReturnType<typeof useDeliveryConfigLazyQuery>;
+export type DeliveryConfigQueryResult = Apollo.QueryResult<DeliveryConfigQuery, DeliveryConfigQueryVariables>;
 export const DropsDocument = gql`
     query Drops {
   allDrops {
@@ -3870,6 +4109,7 @@ export const CartPageDocument = gql`
     couponPlaceholder
     couponButtonLabel
     couponErrorMessage
+    deliveryLabel
     subtotalLabel
     totalLabel
     shippingFeesInstructions
@@ -4338,6 +4578,44 @@ export function useCateringPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type CateringPageQueryHookResult = ReturnType<typeof useCateringPageQuery>;
 export type CateringPageLazyQueryHookResult = ReturnType<typeof useCateringPageLazyQuery>;
 export type CateringPageQueryResult = Apollo.QueryResult<CateringPageQuery, CateringPageQueryVariables>;
+export const ConfirmOrderPageDocument = gql`
+    query ConfirmOrderPage {
+  confirmorderpage {
+    title
+    bodyDelivery
+    bodyPickup
+    headlineDelivery
+    headlinePickup
+  }
+}
+    `;
+
+/**
+ * __useConfirmOrderPageQuery__
+ *
+ * To run a query within a React component, call `useConfirmOrderPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useConfirmOrderPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useConfirmOrderPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useConfirmOrderPageQuery(baseOptions?: Apollo.QueryHookOptions<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>(ConfirmOrderPageDocument, options);
+      }
+export function useConfirmOrderPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>(ConfirmOrderPageDocument, options);
+        }
+export type ConfirmOrderPageQueryHookResult = ReturnType<typeof useConfirmOrderPageQuery>;
+export type ConfirmOrderPageLazyQueryHookResult = ReturnType<typeof useConfirmOrderPageLazyQuery>;
+export type ConfirmOrderPageQueryResult = Apollo.QueryResult<ConfirmOrderPageQuery, ConfirmOrderPageQueryVariables>;
 export const ProductsDocument = gql`
     query products {
   allProducts {

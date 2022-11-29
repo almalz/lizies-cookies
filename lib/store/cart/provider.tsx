@@ -1,3 +1,5 @@
+import { useToast } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import {
   createContext,
   useCallback,
@@ -19,11 +21,13 @@ type CartContextProps = {
   pullCart: () => Promise<SwellCart | undefined>
   updateItems: (product: SwellCartItem) => void
   getProductCartQuantity: (productId: string) => number
+  goToCart: (sessionExpired?: boolean) => void
   goToCheckout: () => void
   applyCoupon: (coupon: string) => any
   removeCoupon: () => any
   coupon: SwellCoupon | undefined
-  addCartMetadata: (metadata: any) => Promise<void>
+  addOrderContent: (content: any, orderId: string) => Promise<void>
+  clearCart: () => void
 }
 
 type CartCache = {
@@ -37,6 +41,8 @@ const CartProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [cart, setCart] = useState<SwellCart>()
   const [cartItemsCache, setCartItemsCache] = useState<CartCache | undefined>()
+  const router = useRouter()
+  const toast = useToast()
 
   const cartItems = useMemo(() => {
     return cart?.items
@@ -49,10 +55,6 @@ const CartProvider: React.FC = ({ children }) => {
         .reduce((prev, curr) => prev + curr, 0) || 0
     return res
   }, [cartItems])
-
-  const checkoutUrl = useMemo(() => {
-    return cart?.checkoutUrl
-  }, [cart])
 
   const coupon = useMemo(() => {
     return cart?.coupon
@@ -132,18 +134,32 @@ const CartProvider: React.FC = ({ children }) => {
   )
 
   const goToCheckout = useCallback(async () => {
+    setLoading(true)
     await Cart.updateAllItems(cartItems || [])
-    if (checkoutUrl) {
-      window.location.href = checkoutUrl
-    } else {
-      setLoading(true)
-      const cart = await Cart.get()
-      if (cart?.checkoutUrl) {
-        window.location.href
-      }
-      setLoading(false)
+    setLoading(false)
+
+    if (cart) {
+      router.push({ pathname: '/checkout', query: { cartId: cart.id } })
     }
-  }, [checkoutUrl, cartItems])
+  }, [cart, cartItems, router])
+
+  const goToCart = useCallback(
+    async (sessionExpired: boolean = false) => {
+      await Cart.updateAllItems(cartItems || [])
+      router.push('/cart')
+      if (sessionExpired) {
+        toast({
+          title: 'Session expirée',
+          description:
+            'Vous avez été redirigé car votre session de paiement a expiré.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        })
+      }
+    },
+    [cartItems, router, toast]
+  )
 
   const applyCoupon = useCallback(async (coupon: string) => {
     setLoading(true)
@@ -162,6 +178,21 @@ const CartProvider: React.FC = ({ children }) => {
     setLoading(false)
   }, [])
 
+  const clearCart = useCallback(async () => {
+    setCart(undefined)
+    setCartItemsCache(undefined)
+    sessionStorage.clear()
+  }, [])
+
+  const addOrderContent = useCallback(
+    async (content: any, orderId: string) => {
+      if (cart && cart.account) {
+        await Cart.addOrderContent(content, orderId, cart.account?.id)
+      }
+    },
+    [cart]
+  )
+
   const value = {
     loading,
     cartItems,
@@ -171,11 +202,13 @@ const CartProvider: React.FC = ({ children }) => {
     pullCart,
     updateItems,
     getProductCartQuantity,
+    goToCart,
     goToCheckout,
     applyCoupon,
     removeCoupon,
     coupon,
-    addCartMetadata: Cart.addCartMetadata,
+    addOrderContent: addOrderContent,
+    clearCart,
   }
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

@@ -6,11 +6,12 @@ export type ButtonProps = {
   color?: 'pink' | 'purple' | 'white'
   onClick?: () => void
   className?: string
+  padding?: string
   disabled?: boolean
   loading?: boolean
   noBorders?: boolean
   type?: 'button' | 'submit'
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonLinkProps = {
   color?: 'pink' | 'purple' | 'white'
@@ -26,6 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   type = 'button',
   noBorders = false,
+  padding,
   children,
   ...props
 }) => {
@@ -34,15 +36,16 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       className={clsx([
-        className,
         !noBorders && 'border-3',
-        'bg-transparent py-3 px-16 font-body text-lg font-bold hover:bg-opacity-10',
+        'bg-transparent font-body text-lg font-bold hover:bg-opacity-10 ',
         disabled && 'cursor-default opacity-30',
+        padding ? padding : 'py-3 px-8 sm:px-16',
         color === 'pink' && 'border-pink-500 text-pink-500 hover:bg-pink-300',
         color === 'purple' &&
           'border-purple-700 text-purple-700 hover:bg-purple-200',
         color === 'white' && 'border-white text-white hover:bg-neutral-100',
         ,
+        className,
       ])}
       onClick={() => !disabled && onClick && onClick()}
       {...props}

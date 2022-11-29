@@ -67,6 +67,7 @@ query CartPage {
     couponPlaceholder
     couponButtonLabel
     couponErrorMessage
+    deliveryLabel
     subtotalLabel
     totalLabel
     shippingFeesInstructions
@@ -182,7 +183,7 @@ query FaqPage {
       twitterCard
     }
   }
-  allFaqitems(filter: {isActive: {eq: true}}, orderBy: order_ASC) {
+  allFaqitems(filter: { isActive: { eq: true } }, orderBy: order_ASC) {
     id
     question
     answer {
@@ -281,5 +282,15 @@ query CateringPage {
         url
       }
     }
+  }
+}
+
+query ConfirmOrderPage {
+  confirmorderpage {
+    title
+    bodyDelivery
+    bodyPickup
+    headlineDelivery
+    headlinePickup
   }
 }

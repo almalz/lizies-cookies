@@ -16,7 +16,7 @@ const Links: Link[] = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="flex w-full flex-col items-center gap-y-6 bg-pink-gray py-6 md:py-12">
+    <footer className="absolute bottom-0 mt-auto flex h-[220px] w-full flex-col items-center gap-y-6 bg-pink-gray py-6 md:py-12">
       <ul className="flex items-center gap-x-8 px-2 py-2">
         <li>
           <Link href="https://www.instagram.com/naughtycookies_/">

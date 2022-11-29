@@ -1,0 +1,9 @@
+query DeliveryConfig {
+  allExcludeddeliverydates(orderBy: date_ASC) {
+    date
+  }
+  deliveryconfig {
+    nbHoursBeforeDelivery
+    deliveryRange
+  }
+}

@@ -30,8 +30,17 @@ export const injectVariables = (
       const searchRegExp = new RegExp(placeholder, 'g')
       let replaceWith: any
 
-      if (isValid(new Date(variableSource[key]))) {
-        replaceWith = formatDate(variableSource[key])
+      if (typeof variableSource[key] === 'string') {
+        if (
+          (variableSource[key] as string).includes('-') &&
+          (variableSource[key] as string).includes(':') &&
+          (variableSource[key] as string).includes('.') &&
+          isValid(new Date(variableSource[key]))
+        ) {
+          replaceWith = formatDate(variableSource[key])
+        } else {
+          replaceWith = variableSource[key]
+        }
       } else {
         replaceWith = variableSource[key]
       }
@@ -42,11 +51,11 @@ export const injectVariables = (
   return text
 }
 
-const formatDate = (date: Date) =>
+export const formatDate = (date: Date) =>
   format(new Date(date), 'EEEE dd MMM yyyy', { locale: fr })
 
 export const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('de-DE', {
+  return new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency: 'EUR',
   }).format(price)

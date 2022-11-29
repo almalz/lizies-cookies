@@ -1,6 +1,5 @@
 import { CloseIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
   Modal,
   ModalContent,
@@ -37,7 +36,6 @@ const PagePopup: React.FC<PopperMessageProps> = ({ delay, message, title }) => {
     }
 
     if (true) {
-      console.log('ooo')
       setTimeout(() => onOpen(), INITIAL_DELAY)
     }
   }, [onOpen])

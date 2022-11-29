@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import client from '../lib/apolloClient'
 import {
@@ -8,17 +8,15 @@ import {
 } from '../types/generated/graphql'
 import dynamic from 'next/dynamic'
 import { Products } from '../lib/store/products/api'
-import { Drop } from '../lib/store/products/types'
 import { H1 } from '../components/Typography'
 import { injectVariables } from '../lib/utils'
-import { GoInfo } from 'react-icons/go'
-import Link from 'next/link'
 import ProductList from '../components/ProductList'
 import { useRouter } from 'next/router'
 import { CalloutMessage } from '../components/Callout'
 import PagePopup from '../components/PagePopup'
 import { ProductSkeleton } from '../components/ProductsSkeleton'
 import { useEffect, useState } from 'react'
+import { SwellProduct } from '../lib/store/products/types'
 
 const Cart = dynamic(() => import('../components/Cart'), { ssr: false })
 const CartButton = dynamic(() => import('../components/CartButton'), {
@@ -36,16 +34,16 @@ const Shop: NextPage<DropPageProps> = ({
   popupMessage,
   popupTitle,
 }) => {
-  const [drop, setDrop] = useState<Drop>()
+  const [products, setProducts] = useState<SwellProduct[]>()
 
   const router = useRouter()
 
   useEffect(() => {
-    const fetchDrop = async () => {
-      const drop = await Products.getCurrentDrop()
-      if (drop) setDrop(drop)
+    const fetchProducts = async () => {
+      const drop = await Products.getAllProducts()
+      if (drop) setProducts(drop)
     }
-    fetchDrop()
+    fetchProducts()
   }, [])
 
   return (
@@ -59,18 +57,14 @@ const Shop: NextPage<DropPageProps> = ({
           <Cart onClick={() => router.push('/cart')} />
         </div>
         <div className="px-4 pb-8 pt-12 text-purple-700 sm:px-16 lg:gap-4 lg:pt-16 lg:pb-4">
-          <H1>{injectVariables(pageContent.title!, drop)}</H1>
-
-          <h2 className="font-body text-lg font-bold italic ">
-            {injectVariables(pageContent.headline!, drop)}
-          </h2>
+          <H1>{injectVariables(pageContent.title!, products)}</H1>
           <div className="mr-24 max-w-max pt-4">
             {pageContent.callout && (
               <CalloutMessage message={pageContent.callout} />
             )}
           </div>
         </div>
-        {drop ? <ProductList products={drop.products} /> : <ProductSkeleton />}
+        {products ? <ProductList products={products} /> : <ProductSkeleton />}
         <div className="flex items-center justify-center py-8 md:py-12 ">
           <CartButton onClick={() => router.push('/cart')} />
         </div>
@@ -80,7 +74,7 @@ const Shop: NextPage<DropPageProps> = ({
   )
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query<DropPageQuery>({
     query: DropPageDocument,
     fetchPolicy: 'no-cache',

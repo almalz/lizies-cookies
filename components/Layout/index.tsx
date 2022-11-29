@@ -21,23 +21,23 @@ const Layout: React.FC<LayoutProps> = ({
   hideNavbar = false,
 }) => {
   return (
-    <>
+    <div className="relative flex min-h-screen flex-col">
       <NextSeo
         noindex={noIndex}
-        title={seo?.title || 'Naughty cookies'}
-        description={seo?.description || 'Naughty cookies'}
+        title={seo?.title || 'Naughty Cookies'}
+        description={seo?.description || 'Naughty Cookies'}
         openGraph={{
-          title: seo?.title || 'Naughty cookies',
-          description: seo?.description || 'Naughty cookies',
+          title: seo?.title || 'Naughty Cookies',
+          description: seo?.description || 'Naughty Cookies',
           url: `${BASE_URL}/${slug}`,
           type: 'website',
         }}
       />
       <DebugIndicatior />
       {!hideNavbar && <Navbar />}
-      {children}
+      <div className="pb-[220px]">{children}</div>
       <Footer />
-    </>
+    </div>
   )
 }
 

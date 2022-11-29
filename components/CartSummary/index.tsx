@@ -2,11 +2,10 @@ import { HiArrowNarrowLeft } from 'react-icons/hi'
 import { Button } from '../Button'
 import { SwellCart } from '../../lib/store/cart/types'
 import { CartpageRecord } from '../../types/generated/graphql'
-import { CouponsManager } from '../CouponsManager'
 import { useRouter } from 'next/router'
-import { useCart, useProducts } from '../../lib/store'
+import { useCart } from '../../lib/store'
 import { Paragraph } from '../Typography'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 export type CartSummaryProps = {
   cart: SwellCart
@@ -25,15 +24,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   pageContent,
 }) => {
   const router = useRouter()
-  const { goToCheckout, addCartMetadata } = useCart()
-  const { currentDrop } = useProducts()
+  const { goToCheckout, loading } = useCart()
 
   const [termsChecked, setTermsChecked] = useState<boolean>(false)
-
-  const handleCheckout = useCallback(() => {
-    addCartMetadata({ delivery_date: currentDrop?.deliveryDate })
-    goToCheckout()
-  }, [addCartMetadata, currentDrop, goToCheckout])
 
   return (
     <div className="flex flex-col gap-8 py-8 px-12 lg:px-[20%]">
@@ -77,9 +70,8 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       <div className="flex w-full flex-col items-center gap-4">
         <Button
           color="pink"
-          className="px-2 py-2"
-          onClick={() => handleCheckout()}
-          disabled={!termsChecked}
+          onClick={() => goToCheckout()}
+          disabled={!termsChecked || loading}
         >
           {pageContent.checkoutCtaLabel}
         </Button>

@@ -1,3 +1,4 @@
+import { SwellAccount } from '../account/types'
 import swell from '../swell'
 import { SwellCart, SwellCartItem } from './types'
 import { simplifyCartItem } from './utils'
@@ -67,7 +68,6 @@ export const Cart = {
       return await swell.cart.applyCoupon(coupon)
     } catch (error) {
       console.error(error)
-      return false
     }
   },
 
@@ -76,14 +76,52 @@ export const Cart = {
       return await swell.cart.removeCoupon()
     } catch (error) {
       console.error(error)
-      return false
     }
   },
-  addCartMetadata: async (metadata: any) => {
+  addOrderContent: async (content: any, orderId: string, accountId: string) => {
+    try {
+      fetch(`/api/order/${orderId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ content, accountId }),
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  updateCartAccount: async ({ email, shipping, billing }: SwellAccount) => {
     try {
       await swell.cart.update({
-        metadata: metadata,
+        account: {
+          email,
+        },
+        shipping,
+        billing,
       })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  getShippingMethods: async () => {
+    try {
+      return swell.cart.getShippingRates()
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  applyShipping: async (shippingService: string) => {
+    try {
+      return await await swell.cart.update({
+        shipping: {
+          service: shippingService,
+        },
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  submitOrder: async () => {
+    try {
+      return swell.cart.submitOrder()
     } catch (error) {
       console.error(error)
     }

@@ -88,7 +88,9 @@ const Cart: NextPage<CartPageProps> = ({ pageContent }) => {
             emptycartmessage={
               pageContent.emptycartmessage || 'Ton panier est vide'
             }
-            backButtonLabel={pageContent.backButtonLabel || 'retour au drop'}
+            backButtonLabel={
+              pageContent.backButtonLabel || 'retour aux produits'
+            }
           />
         )}
       </div>
