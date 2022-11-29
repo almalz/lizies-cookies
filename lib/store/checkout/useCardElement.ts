@@ -17,10 +17,10 @@ export const useCardElement = ({
   const onTokenize = async () => {
     await swell.payment.tokenize({
       card: {
-        onSuccess: (result) => {
+        onSuccess: (result: any) => {
           onSuccess && onSuccess(result)
         },
-        onError: (err) => {
+        onError: (err: any) => {
           onError && onError(err)
         },
       },
@@ -39,26 +39,7 @@ export const useCardElement = ({
           hidePostalCode: true,
         },
         onChange: onChange,
-        onReady: (event) => {
-          // Optional, called when the Element is fully rendered
-        },
-        onFocus: (event) => {
-          // Optional, called when the Element gains focus
-        },
-        onBlur: (event) => {
-          // Optional, called when the Element loses focus
-        },
-        onEscape: (event) => {
-          // Optional, called when the escape key is pressed within an Element
-        },
-        onClick: (event) => {
-          // Optional, called when the Element is clicked
-        },
-        onSuccess: (result) => {
-          // Optional, called on card payment success
-        },
-
-        onError: (err) => {
+        onError: (err: any) => {
           console.error(err)
         },
       },
