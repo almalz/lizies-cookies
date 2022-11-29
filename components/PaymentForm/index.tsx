@@ -1,4 +1,3 @@
-import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { useState, useEffect, FormEventHandler, useCallback } from 'react'
 import { Button } from '@chakra-ui/react'
 import { useCart } from '../../lib/store'
@@ -21,13 +20,10 @@ const PaymentForm: React.FC<{
   const { deliveryDate } = useCheckout()
   const { addOrderContent } = useCart()
 
-  const handleChange = useCallback(
-    async (event: StripeCardElementChangeEvent) => {
-      setDisabled(event.empty)
-      setError(event.error ? event.error.message : undefined)
-    },
-    []
-  )
+  const handleChange = useCallback(async (event) => {
+    setDisabled(event.empty)
+    setError(event.error ? event.error.message : undefined)
+  }, [])
 
   const handleError = useCallback(async (error) => {
     console.error({ error })

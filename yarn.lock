@@ -3772,18 +3772,6 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
-"@stripe/react-stripe-js@^1.14.2":
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.14.2.tgz#4030f1723b4c58003bfbe38189129955f6fff764"
-  integrity sha512-8dGBdSFldq6dyiYgv3r4tOwS5PGAO/446hodegSKlmWg7NkAl0McopszXJd11A9otGi47v5OzCsljyfHJgnLhw==
-  dependencies:
-    prop-types "^15.7.2"
-
-"@stripe/stripe-js@^1.43.0":
-  version "1.43.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.43.0.tgz#fe015a9092ee9a92869bba2d179871b7ce180899"
-  integrity sha512-sAct4DlbiZYWYjzco83O9O0Ph/kHdIBBi8+hlywLrbcZcgCxrD8hcJW7QTtftxjpZff8y1VYLi8qoadBeKa8Ew==
-
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"
@@ -3980,11 +3968,6 @@
   version "17.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.14.tgz#33b9b94f789a8fedd30a68efdbca4dbb06b61f20"
   integrity sha512-SbjLmERksKOGzWzPNuW7fJM7fk3YXVTFiZWB/Hs99gwhk+/dnrQRPBQjPW9aO+fi1tAffi9PrwFvsmOKmDTyng==
-
-"@types/node@>=8.1.0":
-  version "18.11.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
-  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
 
 "@types/node@^14.0.10":
   version "14.18.10"
@@ -12084,13 +12067,6 @@ qs@^6.10.0:
   dependencies:
     side-channel "^1.0.4"
 
-qs@^6.11.0:
-  version "6.11.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.0.tgz#fd0d963446f7a65e1367e01abd85429453f0c37a"
-  integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
-  dependencies:
-    side-channel "^1.0.4"
-
 qs@~6.5.2:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
@@ -13692,14 +13668,6 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
-
-stripe@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.0.0.tgz#0ba35e662913a39da994773e38453169641b2726"
-  integrity sha512-ljfa9bmXfn1CPBdYLk2FoGmSpTlx0TQz3AWOu0Xh2Gikafu5DID8e+Aq5/Tz40Ebx1C+zXq8jj7E64vDIx6JeA==
-  dependencies:
-    "@types/node" ">=8.1.0"
-    qs "^6.11.0"
 
 style-loader@^1.3.0:
   version "1.3.0"
