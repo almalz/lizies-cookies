@@ -12,7 +12,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ChakraProvider>
           <StoreProvider>
             <Component {...pageProps} />
-            {/* /Elements> */}
           </StoreProvider>
         </ChakraProvider>
       </ApolloProvider>
