@@ -1,6 +1,8 @@
 import { VscDebugConsole } from 'react-icons/vsc'
 
-const IS_DEV_ENV = process.env.NEXT_PUBLIC_ENV === ('developement' || 'local')
+const IS_DEV_ENV =
+  process.env.NEXT_PUBLIC_ENV === 'developement' ||
+  process.env.NEXT_PUBLIC_ENV === 'localhost'
 
 export const DebugIndicatior: React.FC = () => {
   return IS_DEV_ENV ? (
