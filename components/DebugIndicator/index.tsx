@@ -7,7 +7,5 @@ export const DebugIndicatior: React.FC = () => {
     <div className="fixed top-0 right-0 m-4 text-green-600">
       <VscDebugConsole size={16} />
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }
