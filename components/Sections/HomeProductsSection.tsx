@@ -50,7 +50,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
                   </ParagraphXl>
                   <div className="z-10 flex flex-1 items-center justify-center sm:left-auto md:bottom-[15%] md:right-[10%] md:hidden lg:bottom-[20%] lg:right-[25%]">
                     <div className="flex h-fit w-max flex-row items-center justify-center">
-                      <ButtonLink color="purple" href="/drop">
+                      <ButtonLink color="purple" href="/shop">
                         {buttonLabel}
                       </ButtonLink>
                     </div>
@@ -62,7 +62,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-[10%] z-10 hidden items-center justify-center sm:left-auto md:bottom-[15%] md:right-[10%] md:flex lg:bottom-[20%] lg:right-[25%]">
-        <ButtonLink color="purple" href="/drop">
+        <ButtonLink color="purple" href="/shop">
           {buttonLabel}
         </ButtonLink>
       </div>

@@ -40,8 +40,8 @@ const Shop: NextPage<DropPageProps> = ({
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const drop = await Products.getAllProducts()
-      if (drop) setProducts(drop)
+      const products = await Products.getAllProducts()
+      if (products) setProducts(products)
     }
     fetchProducts()
   }, [])

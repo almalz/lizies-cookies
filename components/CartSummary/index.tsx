@@ -78,7 +78,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         <Button
           color="purple"
           className="border-0"
-          onClick={() => router.push('/drop')}
+          onClick={() => router.push('/shop')}
         >
           <span className="flex items-center gap-2">
             <HiArrowNarrowLeft />

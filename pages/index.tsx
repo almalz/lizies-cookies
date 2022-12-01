@@ -8,7 +8,7 @@ import {
   HomePageQuery,
 } from '../types/generated/graphql'
 import { Products } from '../lib/store/products/api'
-import { Drop } from '../lib/store/products/types'
+import { SwellProduct } from '../lib/store/products/types'
 
 const Layout = dynamic(() => import('../components/Layout'))
 const Hero = dynamic(() => import('../components/Sections/Hero'))
@@ -29,12 +29,12 @@ const PurpleSection = dynamic(
   () => import('../components/Sections/HomePurpleSection')
 )
 
-export type DropPageProps = {
-  drop: Drop
+export type HomePageProps = {
+  products: SwellProduct[]
   pageContent: HomepageRecord
 }
 
-const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
+const Home: NextPage<HomePageProps> = ({ products, pageContent }) => {
   return (
     <Layout
       seo={pageContent.seo || undefined}
@@ -51,9 +51,9 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
         whiteSectionHeading={pageContent.whiteSectionHeading!}
         whiteSectionBody={pageContent.whiteSectionBody!}
       />
-      {drop && (
+      {products && (
         <ProductsSection
-          products={drop?.products}
+          products={products}
           buttonLabel={pageContent.productsSectionCtaLabel!}
         />
       )}
@@ -89,7 +89,7 @@ const Home: NextPage<DropPageProps> = ({ drop, pageContent }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const drop = await Products.getCurrentDrop()
+  const products: SwellProduct[] = await Products.getAllProducts()
 
   const { data } = await client.query<HomePageQuery>({
     query: HomePageDocument,
@@ -97,7 +97,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      drop: drop,
+      products: products,
       pageContent: data?.homepage,
     },
     revalidate: 60,
