@@ -61,7 +61,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({
           ))}
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-[10%] z-10 hidden items-center justify-center sm:left-auto md:bottom-[15%] md:right-[10%] md:flex lg:bottom-[20%] lg:right-[25%]">
+      <div className="absolute inset-x-0 bottom-[10%] z-10 hidden items-center justify-center sm:left-auto md:bottom-[5%] md:right-[15%] md:flex lg:bottom-[10%] lg:right-[25%]">
         <ButtonLink color="purple" href="/shop">
           {buttonLabel}
         </ButtonLink>

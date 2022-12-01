@@ -34,7 +34,7 @@ const EmptyCart: React.FC<{
       <Button
         color="purple"
         className="border-0 underline"
-        onClick={() => router.push('/drop')}
+        onClick={() => router.push('/shop')}
       >
         <span className="flex items-center gap-2">
           <HiArrowNarrowLeft />
